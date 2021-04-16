@@ -18,6 +18,8 @@ class CreatePropiedadesTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('comunidades_id');
+            $table->string('nombre');
+            $table->string('propietario');
             $table->unsignedBigInteger('users_id')->nullable();  // Solo consideramos un propietario por propiedad
             
             $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");

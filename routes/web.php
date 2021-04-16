@@ -18,8 +18,8 @@ use Illuminate\Support\Facades\Route;
 //    dump($e->sql);
 //});
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get("/propiedades", function() {
+return view("propiedades");
 });
 
 Route::get('listar',function () {
