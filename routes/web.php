@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PropiedadController;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
@@ -18,9 +19,8 @@ use Illuminate\Support\Facades\Route;
 //    dump($e->sql);
 //});
 
-Route::get("/propiedades", function() {
-return view("propiedades");
-});
+Route::get("/propiedades", [PropiedadController::class, "index"])->name("propiedades");
+Route::post('/propiedades', [PropiedadController::class, "store"]);
 
 Route::get('listar',function () {
     $resultado= DB::select('select * from comunidades');

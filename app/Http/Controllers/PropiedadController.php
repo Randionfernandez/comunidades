@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
+use App\Http\Requests\propiedadesRequest;
 
 class PropiedadController extends Controller
 {
@@ -14,7 +15,7 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        //
+        return view("propiedades");
     }
 
     /**
@@ -24,7 +25,7 @@ class PropiedadController extends Controller
      */
     public function create()
     {
-        //
+        return "";
     }
 
     /**
@@ -33,9 +34,10 @@ class PropiedadController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+
+        dd($request);
+
     }
 
     /**
@@ -46,7 +48,7 @@ class PropiedadController extends Controller
      */
     public function show(Propiedad $propiedad)
     {
-        //
+        return "";
     }
 
     /**
@@ -57,7 +59,7 @@ class PropiedadController extends Controller
      */
     public function edit(Propiedad $propiedad)
     {
-        //
+        return "";
     }
 
     /**
@@ -80,6 +82,6 @@ class PropiedadController extends Controller
      */
     public function destroy(Propiedad $propiedad)
     {
-        //
+        return "";
     }
 }

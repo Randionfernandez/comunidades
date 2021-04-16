@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <title>Tutores - Examen</title>
+    <title>Propiedades</title>
 </head>
 <body>
     <div class="container">
@@ -15,29 +15,68 @@
                 <div class="mb-3 mt-5">
                     <h2>Propiedades</h2>
                 </div>
-                <form action="">
+                
+                @if ($errors->any())
+                    <div class="alert alert-warning" role="alert">
+                        {{ $errors }}
+                    </div>
+                @endif
+                
+                <form action="{{ route('propiedades') }}" method="POST">
+                    @csrf
                     <label for="nombre" class="form-label">Nombre</label>
-                    <input type="text" id="nombre" name="nombre" class="form-control"/>
-
+                    <input required type="text" id="nombre" name="nombre" class="form-control" value="{{ old('nombre') }}"/>
+                
+                    @error('nombre')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                    
                     <label for="propietario" class="form-label">Propietario</label>
-                    <input type="text" id="propietario" name="propietario" class="form-control"/>
+                    <input required type="text" id="propietario" name="propietario" class="form-control"  value="{{ old('propietario') }}"/>
 
+                    @error('propietario')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                
                     <label for="tipo" class="form-label">Tipo de propiedad</label>
-                    <select class="form-select form-select-sm" id="tipo" name="tipo">
+                    <select required class="form-select form-select-sm" id="tipo" name="tipo"   value="{{ old('tipo') }}">
                         <option value="local">Local</option>
                         <option value="piso">Piso</option>
                         <option value="atico">Atico</option>
                     </select>
+                    
+                    @error('tipo')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
 
                     <label for="coeficiente" class="form-label">Coeficiente</label>
-                    <input type="integer" id="coeficiente" name="coeficiente" class="form-control"/>
-                    
-                    <label for="parte" class="form-label">Parte</label>
-                    <input type="text" id="parte" name="parte" class="form-control"/>
-                    
-                    <label for="observacion" class="form-label">Observaciones</label>
-                    <input type="text" id="observacion" name="observacion" class="form-control"/>
+                    <input required type="integer" id="coeficiente" name="coeficiente" class="form-control"  value="{{ old('coeficiente') }}"/>
 
+                    @error('coeficiente')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                
+                    <label for="parte" class="form-label">Parte</label>
+                    <input required type="text" id="parte" name="parte" class="form-control"  value="{{ old('parte') }}"/>
+
+                    @error('parte')
+                        <div class="alert alert-danger mb-2" role="alert">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                
+                    <label for="observacion" class="form-label">Observaciones</label>
+                    <input type="text" id="observacion" name="observacion" class="form-control"  value="{{ old('observacion') }}"/>
+
+                    
                 </form>
             </div>
             <div class="col-4"></div>
