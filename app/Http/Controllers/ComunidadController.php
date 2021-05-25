@@ -92,7 +92,7 @@ class ComunidadController extends Controller {
             'updated_at' => $new_comunidad->updated_at
         ]);
 
-        /*if (TeamUser::where('team_id', '=', $user->currentTeam->id, 'and', 'user_id', '=', $user->id)->count() == 0) {
+        if (TeamUser::where('team_id', '=', $user->currentTeam->id, 'and', 'user_id', '=', $user->id)->count() == 0) {
             TeamUser::create([
                 'team_id' => $user->currentTeam->id,
                 'user_id' => $user->id,
@@ -100,7 +100,7 @@ class ComunidadController extends Controller {
                 'created_at' => $new_comunidad->created_at,
                 'updated_at' => $new_comunidad->updated_at
             ]);
-        }*/
+        }
 
         return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-primary']);
     }
@@ -113,7 +113,7 @@ class ComunidadController extends Controller {
      */
     public function show(Comunidad $comunidad) {
 
-        return view('comunidades.alt_show', [
+        return view('comunidades.show', [
             'comunidad' => $comunidad,
         ]);
     }

@@ -7,10 +7,6 @@
 
         <title>{{ config('app.name', 'Comunidades') }}</title>
 
-        <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-
-
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
@@ -22,27 +18,29 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
- <body class="container-fluid">
+    <body class="container-fluid">
     <x-jet-banner />
 
     <div class="row">
         <!-- component aside navbar -->
+        <div class="col-12 col-sm-12 col-lg-2 p-0 bg-black collapse show" id="collapseExample">
 
-        <div class="col-12 col-sm-12 col-lg-2 p-0 bg-black collapse show" id="navbarToggleExternalContent">
-
-            <x-jet-nav-link href="{{ route('dashboard') }}" class="h-16 m-auto">
+            <x-jet-nav-link href="{{ route('dashboard') }}" class="h-16">
                 @lang('RandiFincas')
             </x-jet-nav-link>
 
-            <div class="accordion border-0" id="accordionExample">
-                <div class="accordion-item border-0">
-                    <h2 class="accordion-header" id="headingOne">
-                        <button class="accordion-button bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            @lang('ADMINISTRATOR')
-                        </button>
-                    </h2>
-                    <div id="collapseOne" class="accordion-collapse bg-black collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
+            <div id="accordion">
+                <div class="bg-dark card">
+                    <div class="card-header" id="headingOne">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link bg-black" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                @lang('ADMINISTRATOR')
+                            </button>
+                        </h5>
+                    </div>
+
+                    <div id="collapseOne" class="bg-black collapse show" aria-labelledby="headingOne" data-parent="#accordion">
+                        <div class="card-body">
                             @forelse($navDarkLinks as $link)
                             <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                                 {{ __($link['text']) }}
@@ -53,14 +51,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="accordion-item border-0">
-                    <h2 class="accordion-header" id="headingTwo">
-                        <button class="accordion-button collapsed bg-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            @lang('OWNER')
-                        </button>
-                    </h2>
-                    <div id="collapseTwo" class="accordion-collapse bg-black collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                        <div class="accordion-body">
+                <div class="card bg-dark">
+                    <div class="card-header" id="headingTwo">
+                        <h5 class="mb-0">
+                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                @lang('OWNER')
+                            </button>
+                        </h5>
+                    </div>
+                    <div id="collapseTwo" class="collapse bg-black" aria-labelledby="headingTwo" data-parent="#accordion">
+                        <div class="card-body">
                             <x-jet-responsive-nav-link href="{{ route('comunidades.index') }}" :active="request()->routeIs('comunidades.index')">
                                 @lang('Propiedades')
                             </x-jet-responsive-nav-link>
@@ -68,6 +68,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
         <!-- navigationbar -->
@@ -88,17 +89,15 @@
                 {{ $slot }}
             </div>
         </div>
-
-        <footer class="col-12 col-sm-12 col-lg-12 fixed-bottom bg-white text-center text-black-50 mt-auto p-2 py-3 shadow">
-            {{ config('app.name') }} | Copyright @ {{ date('Y') }}
-        </footer>
     </div>
 
-    @stack('modals')
+    <footer class="fixed-bottom col-12 col-sm-12 col-lg-12 mt-auto p-2 bg-white text-center text-black-50 py-3 shadow">
+        {{ config('app.name') }} | Copyright @ {{ date('Y') }}
+    </footer>
+</div>
 
-    @livewireScripts
+@stack('modals')
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
-    
+@livewireScripts
 </body>
 </html>
