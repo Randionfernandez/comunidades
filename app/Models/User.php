@@ -4,6 +4,7 @@ namespace App\Models;
 use App\Role;
 use App\Comunidad;
 use App\Propiedad;
+use App\Propietario;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -34,19 +35,19 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         // 'tipo',
         // 'fecha',
-        'nif',
-        'telefono',
-        'calle',
-        'portal',
-        'bloque',
-        'escalera',
-        'piso',
-        'puerta',
-        'codigo_pais',
-        'cp',
-        'pais',
-        'provincia',
-        'localidad'
+        // 'nif',
+        // 'telefono',
+        // 'calle',
+        // 'portal',
+        // 'bloque',
+        // 'escalera',
+        // 'piso',
+        // 'puerta',
+        // 'codigo_pais',
+        // 'cp',
+        // 'pais',
+        // 'provincia',
+        // 'localidad'
     ];
 
     /**
@@ -86,6 +87,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function role() {
         return $this->belongsToMany(Comunidad_User::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
     }
+
+
+    /** CAMBIOS CON PERMISOS Y ROLES**
     public function roles()
     {
         return $this->belongsToMany(Role::class)->withTimestamps();
@@ -130,10 +134,16 @@ class User extends Authenticatable implements MustVerifyEmail
     // public function propiedades() {
     //     return $this->belongsToMany(Propiedad::class, 'propiedad_user','user_id','comunidad_id')->withTimestamps();
     // }
-
+*/
+    //    ** Asociar usuarios a propiedades **
    public function propiedades()
     {
         return $this->belongsToMany(Propiedad::class)->withTimestamps();
+    }
+
+     public function propietario()
+    {
+         return $this->hasOne(Propietario::class)->withTimestamps();
     }
 
 }

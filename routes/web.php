@@ -44,3 +44,11 @@ Route::resource('ingresos', IngresosController::class);
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
 })->name('contenedor');
+
+
+//asigna los propietarios a las usuarios
+Route::resource('/propietarios', PropietarioController::class);
+
+//vistas con livewire; componentes creados para porpietarios
+Route::view('propietarios', 'propiedades.propietarios');
+
