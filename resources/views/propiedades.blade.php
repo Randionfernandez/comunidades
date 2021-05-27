@@ -22,7 +22,7 @@
                     </div>
                 @endif
                 
-                <form action="{{ route('propiedades') }}" method="POST">
+                <form action="{{ route('propiedades.store') }}" method="POST">
                     @csrf
                     <label for="nombre" class="form-label">Nombre</label>
                     <input required type="text" id="nombre" name="nombre" class="form-control" value="{{ old('nombre') }}"/>
@@ -76,7 +76,7 @@
                     <label for="observacion" class="form-label">Observaciones</label>
                     <input type="text" id="observacion" name="observacion" class="form-control"  value="{{ old('observacion') }}"/>
 
-                    
+                    <button type="submit" class="btn btn-primary">Crear Propiedad</button>
                 </form>
             </div>
             <div class="col-4"></div>

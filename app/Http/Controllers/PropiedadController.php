@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
+use App\Models\propiedadesModel;
 use App\Http\Requests\propiedadesRequest;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 
 class PropiedadController extends Controller
 {
@@ -15,17 +18,12 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        return view("propiedades");
+        return "";
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        return "";
+        return view("propiedades");
     }
 
     /**
@@ -36,7 +34,15 @@ class PropiedadController extends Controller
      */
     public function store(Request $request) {
 
-        dd($request);
+        DB::table('propiedades')->insert([
+            'nombre'=>$request->nombre,
+            'propietario'=>$request->propietario,
+            'tipo'=>$request->tipo,
+            'coeficiente'=>$request->coeficiente,
+            'parte'=>$request->parte,
+            'observaciones'=>$request->observaciones,
+        ]);
+        return $request;
 
     }
 
