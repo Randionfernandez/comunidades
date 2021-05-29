@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
-use App\Models\propiedadesModel;
 use App\Http\Requests\propiedadesRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\DB;
@@ -18,12 +17,15 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        return "";
+        $propiedades = Propiedad::latest()->paginate(5);
+    
+        return view('propiedades.index',compact('propiedades'))
+            ->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     public function create()
     {
-        return view("propiedades");
+        return view("propiedades.create");
     }
 
     /**
@@ -42,7 +44,9 @@ class PropiedadController extends Controller
             'parte'=>$request->parte,
             'observaciones'=>$request->observaciones,
         ]);
-        return $request;
+        
+        return redirect()->route('propiedades.index')
+                        ->with('success','Propiedad creada');
 
     }
 
@@ -54,7 +58,7 @@ class PropiedadController extends Controller
      */
     public function show(Propiedad $propiedad)
     {
-        return "";
+        return view('propiedades.show',compact('propiedad'));
     }
 
     /**
@@ -65,7 +69,7 @@ class PropiedadController extends Controller
      */
     public function edit(Propiedad $propiedad)
     {
-        return "";
+        return view('propiedades.edit',compact('propiedad'));
     }
 
     /**
@@ -77,7 +81,16 @@ class PropiedadController extends Controller
      */
     public function update(Request $request, Propiedad $propiedad)
     {
-        //
+        $request->validate([
+            'nombre'=>'required',
+            'propietario'=>'required',
+
+        ]);
+    
+        $propiedad->update($request->all());
+    
+        return redirect()->route('propiedades.index')
+                        ->with('success','Propiedad actualizada');
     }
 
     /**
@@ -88,6 +101,9 @@ class PropiedadController extends Controller
      */
     public function destroy(Propiedad $propiedad)
     {
-        return "";
+        $propiedad->delete();
+    
+        return redirect()->route('propiedades.index')
+                        ->with('success','Propiedad borrada');
     }
 }

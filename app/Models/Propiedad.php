@@ -17,5 +17,14 @@ class Propiedad extends Model {
     public function comunidad() {
         return $this->belongsTo(Comunidad::class);
     }
+    
+    protected $fillable = [
+        "nombre",
+        "propietario",
+        "tipo",
+        "coeficiente",
+        "parte",
+        "observaciones"
+    ];
 
 }

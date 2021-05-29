@@ -20,11 +20,9 @@ use App\Http\Controllers\PropiedadController;
 //    dump($e->sql);
 //});
 
-Route::resource('propiedades', 'PropiedadController');
+Route::resource('propiedades', 'PropiedadController')->parameters(['propiedades' => 'propiedad']);
 
-Route::get('/', function () {
-	return redirect()->route("propiedades.create");
-});
+
 
 Route::get('listar',function () {
     $resultado= DB::select('select * from comunidades');
