@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Propietario;
-use App\Models\Propiedad;
-use App\Models\User;
-use App\Models\Comunidad;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\Controller;
+// use App\Models\Propietario;
+// use App\Models\User;
+// use App\Models\Propiedad;
+// use App\Models\Comunidad;
+
 use Illuminate\Http\Request;
 
 class PropietarioController extends Controller
@@ -18,26 +16,17 @@ class PropietarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+
+    public function index()
     {
-        //
-         if ($request->user()->hasRole('admin')) {
-            $propiedades=Propietario::Paginate(10);
-        }else
-        $propiedades=Propietario::simplePaginate(10);
-         /*según el role puede ver o no las propiedades:
+        $propietarios =Propietario::get();
+        return view(propietario.index, compact('propietarios'));
+    }
 
-    los propietarios como 'guest' solo podran acceder a la vista de su comunidad, sus cuotas pendientes y el estado de su propiedad dentro de la comunidad..etc,
-
-    El administrador de la propiedad como 'admin' tendrá permisos de visualización completa y se le permite agregar, eliminar y actualizar registros en cada una de las tablas */
-
-    $request->user()->authorizeRoles(['admin', 'guest']);
-    /*  return view('dashboard.propiedad.index', compact('propiedades'));*/
-
-        //retorna la lista de las propiedades
-    $propiedades=Propietario::all();
-    return view('propietario.index', compact('propietario'))->with('propietario',$propietario);
-
+//muestra las acciones del menu Propietario
+    public function list()
+    {
+        return view('propietario.list');
     }
 
     /**
@@ -45,36 +34,33 @@ class PropietarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create($id)
+    public function create()
     {
-        //crea los propietarios tras haberse registrado
-          $propiedad = Propiedad::findOrFail($id);
-        return view('propietario.create', compact('propiedad'));
+        return view('propietario.create');
     }
 
     /**
      * Store a newly created resource in storage.
-     *Almacena el propietario en la base de datos tras enviar el registro,
-     captura con el método get() los campos name="" del formulario.
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-         $messages = [
-            'cad_ref_com.required' => 'El campo "Referencia catastral" es necesario.',
-            'cad_ref_com.unique' => 'La referencia catastral ya esta en uso.',
-            'address.required' => 'El campo "Dirección" es necesario.',
-            'apart_num.required' => 'El campo "Numero de apartamentos" es necesario.',
-        ];
-         $validatedPropietario = ([
-        'email' => 'required|unique:users|max:255',
-        'nif' => 'required|max:255',
-        '' => 'required|max:255|integer|min:1'
+     $validator = Validator::make($request->all(), [
+        'ref_ca' => 'required|max:255',
+        'num_cta' => 'required|max:255',
+
     ]);
-         $propietario = Propietario::create($this->validate($request, $validatedPropietario, $messages));
- $request->merge(['user_id' => $users->id]);
+
+     if ($validator->fails()) {
+        return redirect('propietario/create')
+        ->withErrors($validator)
+        ->withInput();
     }
+
+    dd($request->all());
+}
 
     /**
      * Display the specified resource.

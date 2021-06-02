@@ -13,10 +13,7 @@ class SaveComunidadRequest extends FormRequest
      */
     public function authorize()
     {
-        return TRUE;
-        // podemos acceder al usuario con $this->user()
-        // podemos verificar que es administrador con
-        // $this->user()->isAdmin()
+        return false;
     }
 
     /**
@@ -41,23 +38,12 @@ class SaveComunidadRequest extends FormRequest
             'logo' => 'nullable',
             'observaciones' => 'string||nullable',
             'limitMaxFreeCommunities' => 'integer'
-            /*'president' => 'string',
-            'secretary' => 'string',
-            'responsable' => 'string',
-            'banksuf' => 'required',
-            'doorway' => 'required',
-            'block' => '',
-            'stair' => '',
-            'floor' => 'required|integer',
-            'door' => 'required',
-            'countrycode' => 'required'*/
-    ];
-    }
-    
-    public function messages() {
-        return [
-            'denom.required' => __('The community needs a name'),
-            'cif.required' => __('The community needs an unique cif')
         ];
+        public function messages() {
+            return [
+                'denom.required' => __('The community needs a name'),
+                'cif.required' => __('The community needs an unique cif')
+            ];
+        }
     }
 }

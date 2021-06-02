@@ -1,11 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\User;
-use App\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -14,18 +11,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-      public function __construct()
-    {
-        $this->middleware('auth');
-    }
-    public function index(Request $request)
+    public function index()
     {
         //
-         {
-        $users = User::all();
-        $request->user()->authorizeRoles(['admin']);
-        return view('dashboard.users.index', compact('users'));
     }
+
+    //muestra los usuarios logueados en la app
+        public function list()
+    {
+        return view('user.list');
     }
 
     /**
@@ -36,9 +30,6 @@ class UserController extends Controller
     public function create()
     {
         //
-         User::find(Auth::id())->authorizeRoles(['admin']);
-        return view('dashboard.users.create');
-
     }
 
     /**
@@ -50,11 +41,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         //
-          $validatedData = $request->validate([
-            'email' => 'required|max:255',
-            'password' => 'required|max:255',
-        ]);
-
     }
 
     /**

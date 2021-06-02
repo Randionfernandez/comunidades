@@ -14,73 +14,28 @@
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
             <div>
-                <x-jet-label for="apellido1" value="{{ __('apellido1') }}" />
-                <x-jet-input id="apellido1" class="block mt-1 w-full" type="text" name="apellido1" :value="old('apellido1')" required autofocus autocomplete="apellido2" />
+                <x-jet-label for="apellido1" value="{{ __('Apellido 1') }}" />
+                <x-jet-input id="apellido1" class="block mt-1 w-full" type="text" name="apellido1" :value="old('apellido1')" required autofocus autocomplete="apellido1" />
             </div>
             <div>
-                <x-jet-label for="apellido2" value="{{ __('apellido2') }}" />
+                <x-jet-label for="apellido2" value="{{ __('Apellido 2') }}" />
                 <x-jet-input id="apellido2" class="block mt-1 w-full" type="text" name="apellido2" :value="old('apellido2')" required autofocus autocomplete="apellido2" />
             </div>
-            <div>
-                <x-jet-label for="nif" value="{{ __('nif') }}" />
-                <x-jet-input id="nif" class="block mt-1 w-full" type="text" name="nif" :value="old('nif')" required autofocus autocomplete="nif" />
+              <div class="mt-4">
+                <x-jet-label for="nif" value="{{ __('Nif') }}" />
+                <x-jet-input id="nif" class="block mt-1 w-full" type="text" name="nif" :value="old('nif')" required />
             </div>
             <div>
-                <x-jet-label for="telefono" value="{{ __('telefono') }}" />
+                <x-jet-label for="telefono" value="{{ __('Teléfono') }}" />
                 <x-jet-input id="telefono" class="block mt-1 w-full" type="text" name="telefono" :value="old('telefono')" required autofocus autocomplete="telefono" />
             </div>
-
-            <div>
-                <x-jet-label for="fecha" value="{{ __('fecha') }}" />
-                <x-jet-input id="fecha" class="block mt-1 w-full" type="text" name="fecha" :value="old('fecha')" required autofocus autocomplete="fecha" />
+            <div class="mt-4">
+                <x-jet-label for="role" value="{{ __('Role') }}" />
+                <x-jet-input id="role" class="block mt-1 w-full" type="text" name="role" :value="old('role')"  required autofocus autocomplete="role" />
             </div>
-            <div>
-                <x-jet-label for="tipo" value="{{ __('tipo') }}" />
-                <x-jet-input id="tipo" class="block mt-1 w-full" type="text" name="tipo" :value="old('tipo')" required autofocus autocomplete="tipo" />
-            </div>
-            <div>
-                <x-jet-label for="calle" value="{{ __('calle') }}" />
-                <x-jet-input id="calle" class="block mt-1 w-full" type="text" name="calle" :value="old('calle')" required autofocus autocomplete="calle" />
-            </div>
-            <div>
-                <x-jet-label for="portal" value="{{ __('portal') }}" />
-                <x-jet-input id="portal" class="block mt-1 w-full" type="text" name="portal" :value="old('portal')" required autofocus autocomplete="portal" />
-            </div>
-            <div>
-                <x-jet-label for="bloque" value="{{ __('bloque') }}" />
-                <x-jet-input id="bloque" class="block mt-1 w-full" type="text" name="bloque" :value="old('bloque')" required autofocus autocomplete="bloque" />
-            </div>
-            <div>
-                <x-jet-label for="escalera" value="{{ __('escalera') }}" />
-                <x-jet-input id="escalera" class="block mt-1 w-full" type="text" name="escalera" :value="old('escalera')" required autofocus autocomplete="escalera" />
-            </div>
-            <div>
-                <x-jet-label for="piso" value="{{ __('piso') }}" />
-                <x-jet-input id="piso" class="block mt-1 w-full" type="text" name="piso" :value="old('piso')" required autofocus autocomplete="piso" />
-            </div>
-            <div>
-                <x-jet-label for="puerta" value="{{ __('puerta') }}" />
-                <x-jet-input id="puerta" class="block mt-1 w-full" type="text" name="puerta" :value="old('puerta')" required autofocus autocomplete="puerta" />
-            </div>
-            <div>
-                <x-jet-label for="codigo_pais" value="{{ __('codigo_pais') }}" />
-                <x-jet-input id="codigo_pais" class="block mt-1 w-full" type="text" name="codigo_pais" :value="old('codigo_pais')" required autofocus autocomplete="codigo_pais" />
-            </div>
-            <div>
-                <x-jet-label for="cp" value="{{ __('cp') }}" />
-                <x-jet-input id="cp" class="block mt-1 w-full" type="text" name="cp" :value="old('cp')" required autofocus autocomplete="cp" />
-            </div>
-            <div>
-                <x-jet-label for="pais" value="{{ __('pais') }}" />
-                <x-jet-input id="pais" class="block mt-1 w-full" type="text" name="pais" :value="old('pais')" required autofocus autocomplete="pais" />
-            </div>
-            <div>
-                <x-jet-label for="provincia" value="{{ __('provincia') }}" />
-                <x-jet-input id="provincia" class="block mt-1 w-full" type="text" name="provincia" :value="old('provincia')" required autofocus autocomplete="provincia" />
-            </div>
-            <div>
-                <x-jet-label for="localidad" value="{{ __('localidad') }}" />
-                <x-jet-input id="localidad" class="block mt-1 w-full" type="text" name="localidad" :value="old('localidad')" required autofocus autocomplete="localidad" />
+              <div class="mt-4">
+                <x-jet-label for="nif" value="{{ __('Nº Cuenta') }}" />
+                <x-jet-input id="nif" class="block mt-1 w-full" type="text" name="num_cta" :value="old('num_cta')" required autofocus autocomplete="role"/>
             </div>
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />

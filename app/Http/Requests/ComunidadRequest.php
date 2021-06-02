@@ -13,10 +13,7 @@ class ComunidadRequest extends FormRequest
      */
     public function authorize()
     {
-        return TRUE;
-        // podemos acceder al usuario con $this->user()
-        // podemos verificar que es administrador con
-        // $this->user()->isAdmin()
+        return false;
     }
 
     /**
@@ -27,7 +24,7 @@ class ComunidadRequest extends FormRequest
     public function rules()
     {
         return [
-            'cif' => ['required', 'alpha_num', 'size:9' ,'unique:comunidades,cif'],
+             'cif' => ['required', 'alpha_num', 'size:9' ,'unique:comunidades,cif'],
             'fechalta' => 'required|date',
             'activa' => 'boolean',
             'gratuita' => 'boolean',
@@ -40,13 +37,7 @@ class ComunidadRequest extends FormRequest
             'pais' => 'string|nullable',
             'logo' => 'nullable',
             'observaciones' => 'string||nullable',
-    ];
-    }
-    
-    public function messages() {
-        return [
-            'denom.required' => __('The community needs a name'),
-            'cif.required' => __('The community needs an unique cif')
+            //
         ];
     }
 }

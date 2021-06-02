@@ -1,4 +1,4 @@
- @extends('layouts.home')
+ @extends('layouts.welcome')
 
 @section('content')
 
@@ -7,7 +7,7 @@
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
          <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img class="d-block w-100 " src="image s/portada.jpg" alt="Tu Vecindad">
+                    <img class="d-block w-100 " src="images/portada.jpg" alt="Tu Vecindad">
                  </div>
                  <div class="carousel-item">
                      <img class="d-block w-100" src="images/villa.png" alt="Tu Vecindad">
@@ -57,7 +57,7 @@
     </div>
 
     <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">
-          <a href="{{ route('.index') }}">
+          <a href="{{ route('comunidad.index') }}">
         <div class="card m-3 p-3 zoom " style="width: 16rem;">
 
             <i style='font-size:80px' class='fas text-center m-2'>&#xf0c0;</i>
@@ -113,7 +113,7 @@
     <div class="card border-light mb-3" style="max-width: 75rem;">
         <div class="card-header"><h3>Quiénes somos</h3></div>
         <div class="card-body">
-          <h5 class="card-title">RDN-COMUNIDADES</h5>
+          <h5 class="card-title">Tu Vecindad 2.0</h5>
           <p class="card-text">Somos un equipo de desarrolladores que hemos implementado un software sencillo y económico para facilitar la gestión de comunidades desde una única aplicación web.<br/>
                Podrá tramitar todas las actividades de las comunidades y condominios, desde la creación de una nueva comunidad, seguimiento de incidencias; hasta el cobro de los recibos de los propietarios por domiciliación bancaria.</p>
 
@@ -138,7 +138,7 @@
                 <div class="card-body m-3 p-5 zoom">
                 <h5 class="card-title">Contáctar por correo</h5>
                 <i style='font-size:50px' class='fas text-center m-2'>	&#xf674;</i><br/>
-                <a href="randion@cifpfbmoll.eu?Subject=Informacion%20del%20software">randion@cifpfbmoll.eu</a>
+                <a href="mailto:tuvecindad.fb.moll@gmail.com?Subject=Informacion%20del%20software">tuvecindad.fb.moll@gmail.com</a>
                 </div>
             </div>
             <div class=" col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">

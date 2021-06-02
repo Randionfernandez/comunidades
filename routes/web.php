@@ -1,54 +1,47 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
-//use App\Services\Transistor;
-use Psr\Container\ContainerInterface;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\PropietarioController;
+use App\Http\Controllers\PropiedadController;
 
 /*
-  |--------------------------------------------------------------------------
-  | Web Routes
-  |--------------------------------------------------------------------------
-  |
-  | Here is where you can register web routes for your application. These
-  | routes are loaded by the RouteServiceProvider within a group which
-  | contains the "web" middleware group. Now create something great!
-  |
- */
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
 
 Route::get('/', function () {
-    return view('welcome');
+	return view('welcome');
 });
 
-
-Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
-
-//Route::resource('/comunidades', ComunidadController::class);
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+	return view('dashboard');
 })->name('dashboard');
 
-Route::resource('gastos', GastosController::class);
+//comunidades
+Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 
-Route::resource('distribucion', DistribucionGastosController::class);
+//listar usuarios,propietarios y comunidades con autentificación
+Route::middleware(['auth:sanctum','verified'])->group( function () {
+	//usuarios
+	Route::get('user/list',[UserController::class,'list'])->name('user.list');
 
-Route::resource('cuentasBancarias', CuentasBancariasController::class);
+	//propietarios
+	Route::get('propietario/index',[PropietarioController::class,'index'])->name('propietario.index');
+	Route::get('propietario/list',[PropietarioController::class,'list'])->name('propietario.list');
+	Route::get('propietario/create',[PropietarioController::class,'create'])->name('propietario.create');
 
-Route::resource('liquidacion', LiquidacionController::class);
-
-Route::resource('movimientos', MovimientosController::class);
-
-Route::resource('ingresos', IngresosController::class);
-
-Route::get('/contenedor', function (ContainerInterface $container) {
-    return dd($container);
-})->name('contenedor');
+	//propiedades
+	Route::get('propiedad/list',[PropiedadController::class,'list'])->name('propiedad.list');
+	Route::get('propiedad/create',[PropiedadController::class,'create'])->name('propiedad.create');
+	Route::get('propiedad/index',[PropiedadController::class,'index'])->name('propiedad.index');
 
 
-//asigna los propietarios a las usuarios
-Route::resource('/propietarios', PropietarioController::class);
 
-//vistas con livewire; componentes creados para porpietarios
-Route::view('propietarios', 'propiedades.propietarios');
-
+});

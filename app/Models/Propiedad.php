@@ -6,24 +6,27 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\SoftDeletes;
 
-class Propiedad extends Model {
-
+class Propiedad extends Model
+{
 	use HasFactory;
 	use SoftDeletes;
-
 	protected $table = "propiedades";
-	protected $dates = ['deleted_at'];
+	protected $fillable = [
+		'comunidades_id',
+		'users_id',
+		'ref_ca',
+		'parte',
+		'coeficiente',
+		'tipo',
+		'observaciones'
+	];
 
+//relaciones
 	public function comunidad() {
 		return $this->belongsTo(Comunidad::class);
-	}
-	public function propietario()
-	{
-		return $this->belongsTo(Propietario::class)->withTimestamps();
 	}
 	public function user()
 	{
 		return $this->belongsTo(User::class)->withTimestamps();
 	}
-
 }

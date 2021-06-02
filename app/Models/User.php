@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Models;
-use App\Role;
-use App\Comunidad;
-use App\Propiedad;
-use App\Propietario;
+
+
+use App\Models\Role;
+use App\Models\Comunidad;
+use App\Models\Propiedad;
+
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,14 +15,16 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+
 
     /**
      * The attributes that are mass assignable.
@@ -31,23 +35,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'name',
         'apellido1',
         'apellido2',
+        'telefono',
+        'nif',
+        'role',
+        'num_cta',
         'email',
         'password',
-        // 'tipo',
-        // 'fecha',
-        // 'nif',
-        // 'telefono',
-        // 'calle',
-        // 'portal',
-        // 'bloque',
-        // 'escalera',
-        // 'piso',
-        // 'puerta',
-        // 'codigo_pais',
-        // 'cp',
-        // 'pais',
-        // 'provincia',
-        // 'localidad'
     ];
 
     /**
@@ -80,70 +73,13 @@ class User extends Authenticatable implements MustVerifyEmail
         'profile_photo_url',
     ];
 
-    public function comunidades() {
-        return $this->belongsToMany(Comunidad::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
-    }
 
-    public function role() {
-        return $this->belongsToMany(Comunidad_User::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
-    }
-
-
-    /** CAMBIOS CON PERMISOS Y ROLES**
-    public function roles()
+    //    public function propietario()
+    // {
+    //      return $this->hasOne(Propietario::class)->withTimestamps();
+    // // }
+        public function propiedad()
     {
-        return $this->belongsToMany(Role::class)->withTimestamps();
+         return $this->hasOne(Propiedad::class)->withTimestamps();
     }
- public function authorizeRoles($roles)
-    {
-        abort_unless($this->hasAnyRole($roles), 401);
-        return true;
-    }
- public function hasAnyRole($roles)
-    {
-        if (is_array($roles)) {
-            foreach ($roles as $role) {
-                if ($this->hasRole($role)) {
-                    return true;
-                }
-            }
-        } else {
-            if ($this->hasRole($roles)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public function hasRole($role)
-    {
-        if ($this->roles()->where('role', $role)->first()) {
-            return true;
-        }
-        return false;
-    }
-
-        public function hasRolePropiedad($id,$role)
-    {
-        if ($this->propiedades()->wherePivot('propiedad_id', '=', $id)->wherePivot('role_id', '=', $role)->first()) {
-            return true;
-        }
-        return false;
-    }
-
-    // public function propiedades() {
-    //     return $this->belongsToMany(Propiedad::class, 'propiedad_user','user_id','comunidad_id')->withTimestamps();
-    // }
-*/
-    //    ** Asociar usuarios a propiedades **
-   public function propiedades()
-    {
-        return $this->belongsToMany(Propiedad::class)->withTimestamps();
-    }
-
-     public function propietario()
-    {
-         return $this->hasOne(Propietario::class)->withTimestamps();
-    }
-
 }

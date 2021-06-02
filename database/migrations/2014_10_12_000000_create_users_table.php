@@ -14,35 +14,25 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name');
-            // $table->string('apellido1')->nullable();
-            // $table->string('apellido2')->nullable();
+            $table->string('apellido1');
+            $table->string('apellido2');
+            $table->string('nif')->unique();
+            $table->string('telefono')->nullable();
+            // $table->string('role');
+            $table->enum('role',['admin','invitado'])->comment("Tipo de rol según la gestión:...");
+            $table->unsignedBigInteger('num_cta');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password')->nullable();
-            // $table->string('tipo')->nullable();
-            // $table->string('fecha')->nullable();
-            // $table->string('nif')->unique()->nullable();
-            // $table->string('telefono')->nullable();
-            // $table->string('calle')->nullable();
-            // $table->string('portal')->nullable();
-            // $table->string('bloque')->nullable();
-            // $table->string('escalera')->nullable();
-            // $table->string('piso')->nullable();
-            // $table->string('puerta')->nullable();
-            // $table->string('codigo_pais')->nullable();
-            // $table->string('cp')->nullable();
-            // $table->string('pais')->nullable();
-            // $table->string('provincia')->nullable();
-            // $table->string('localidad')->nullable();
+            // $table->timestamp('updated_at');
+            $table->timestamps();
+
+            $table->string('password');
             $table->rememberToken();
             $table->foreignId('current_team_id')->nullable();
             $table->text('profile_photo_path')->nullable();
-            $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
-
-            $table->timestamps();
+            // $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));$table->timestamps();
         });
     }
 

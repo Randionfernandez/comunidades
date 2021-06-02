@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
+
+use App\Models\Comunidad;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PropiedadController extends Controller
 {
@@ -14,7 +18,13 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        //
+        return view('propiedad.index');
+
+    }
+
+         public function list()
+    {
+        return view('propiedad.list');
     }
 
     /**
