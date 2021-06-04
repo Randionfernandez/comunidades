@@ -12,4 +12,13 @@
             </div>
         </div>
     </div>
+
+    @push('modals')
+    {{-- 1º forma de llamar al modal--}}
+        @livewire('live-modal')
+
+{{--     2º forma de llamar al modal
+    <livewire:live-modal> --}}
+
+    @endpush
 </x-app-layout>

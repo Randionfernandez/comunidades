@@ -29,4 +29,27 @@ class Propiedad extends Model
 	{
 		return $this->belongsTo(User::class)->withTimestamps();
 	}
+
+	/** fucnion scope de busqueda con una query que se anida a la petición principal de sql, recibe el primer parámetro obligatorio que es un consulta y el otro parametro opcinal que es el termino de búsqueda,en esete caso se envia lo que estamos escribiendo en el campo, busca una subquery con el campo de la tabla foranea  */
+	public function scopeTermino($query,$termino){
+		if ($termino === '') {
+    return; //termino vacío para la funcion
+	}
+return $query->where('ref_ca','like',"%{$this->search}%")
+->orWhereHas('users_id',function($query2) use ($termino){
+	$query2->where('users_id','like',"%{$this->search}%");
+});
+// ->orWhereHas('comunidades_id',function($query2) use ($termino){
+// 	$query2->where('comunidades_id','like',"%{$this->search}%");
+// });
+// ->orWhereHas('users_id',function($query2) use ($termino){
+
+// 	->where('users_id','like',"%{$this->search}%");
+// });
+
+}
+
+// public function scope(){
+
+// }
 }

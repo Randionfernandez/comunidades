@@ -38,9 +38,7 @@ class LivePropiedadTable extends Component
 
 	public function render()
 	{
-		$propiedades=Propiedad::where('ref_ca','like',"%{$this->search}%")
-		->orWhere('comunidades_id','like',"%{$this->search}%")
-		->orWhere('users_id','like',"%{$this->search}%");
+		$propiedades=Propiedad::termino($this->search);
 
 			//verificamos el orden y el campo a no nulos y se lo agrega a ususarios
 		if ($this->camp && $this->order) {

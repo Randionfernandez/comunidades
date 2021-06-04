@@ -74,12 +74,43 @@ class User extends Authenticatable
     ];
 
 
-    //    public function propietario()
-    // {
-    //      return $this->hasOne(Propietario::class)->withTimestamps();
-    // // }
-        public function propiedad()
+    //relaciones
+    public function propiedad()
     {
-         return $this->hasOne(Propiedad::class)->withTimestamps();
-    }
+     return $this->hasOne(Propiedad::class)->withTimestamps();
+ }
+
+   //métodos
+
+ /**Actualización para el role, busca en la columna role devolviendo un string
+
+ public function getRolAttribute():string
+ {
+  return $this->role ==='admin' ? 'Administrador':'Invitado';
+}
+
+*/
+
+
+/** fucnion scope de busqueda con una query que se anida a la petición principal de sql, recibe el primer parámetro obligatorio que es un consulta y el otro parametro opcinal que es el termino de búsqueda,en esete caso se envia lo que estamos escribiendo en el campo */
+public function scopeTermino($query,$termino){
+    if ($termino === '') {
+    return; //termino vacío para la funcion
+}
+return $query->where('name','like',"%{$termino}%")
+->orWhere('apellido1','like',"%{$termino}%")
+->orWhere('apellido2','like',"%{$termino}%")
+->orWhere('email','like',"%{$termino}%")
+->orWhere('nif','like',"%{$termino}%");
+
+}
+
+public function scopeRole($query,$role){
+  if ($role === '') {
+    return; //termino vacío para la funcion
+}
+//método mágino que apunta a la columna role
+return $query->whereRole($role);
+}
+
 }

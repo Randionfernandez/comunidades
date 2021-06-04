@@ -31,7 +31,7 @@
             </div>
             <div class="mt-4">
                 <x-jet-label for="role" value="{{ __('Role') }}" />
-                <x-jet-input id="role" class="block mt-1 w-full" type="text" name="role" :value="old('role')"  required autofocus autocomplete="role" />
+                <x-jet-input id="role" class="block mt-1 w-full" placeholder="Tipo de role Admin o Invitado" type="text" name="role" :value="old('role')"  required autofocus autocomplete="role" />
             </div>
               <div class="mt-4">
                 <x-jet-label for="nif" value="{{ __('Nº Cuenta') }}" />
