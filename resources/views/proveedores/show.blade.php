@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{ __('Community Show | ' . $proveedor->nombre ) }}
         </h2>
     </x-slot>
@@ -22,7 +22,7 @@
             @endauth
         </div>
 
-        <label for="nombre"><h1>@lang('Name')</h1></label>
+        <label for="nombre">@lang('Name')</label>
         <h1> {{ $proveedor->nombre }} </h1>
 
         <div class="d-flex justify-content-between align-items-center">

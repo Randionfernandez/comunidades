@@ -1,13 +1,17 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-center">Cuenta Bancaria</h1>
+        <h2 class="text-center">Cuenta Bancaria</h2>
     </x-slot>
 
     <form action="{{url('/cuentasBancarias')}}" method="POST" >
         @csrf
         @method('POST')
 
-        <button class="btn btn-primary col-md-1 mx-4 mb-3">Guardar</button>
+        
+        <div class="btn-group btn-group-sm mx-3" role="group" aria-label="Basic example">
+            <button class="btn btn-primary">@lang('Save')</button>
+            <a class="btn btn-secondary text-white" href='{{ route('cuentasBancarias.index') }}'>@lang('Back')</a>
+        </div>
 
         <div class="row mx-3">
             <div class="col-md-4 mb-4">
@@ -38,7 +42,7 @@
 
             <div class="col-md-3">
                 <label for="dc" class="form-label">DC</label>
-                <input type="number" max="2" class="form-control" name="dc" value="{{old('dc')}}" placeholder="34">
+                <input type="number" min="10" max="99" class="form-control" name="dc" value="{{old('dc')}}" placeholder="34">
                 <label for="digitos" class="form-label">2 digitos</label>
                 @error('dc')
                 <br>

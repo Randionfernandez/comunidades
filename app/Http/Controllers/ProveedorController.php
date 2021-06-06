@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Requests\SaveProveedorRequest;
 use App\Models\Comunidad;
 use App\Models\Proveedor;
-use App\Http\Requests\SaveProveedorRequest;
 use App\Models\Comunidad_Proveedor;
 use App\Models\Tipo;
 use App\Models\Calificacion;
@@ -48,8 +48,6 @@ class ProveedorController extends Controller {
         /* if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->current_team_id), 'server:create')) {
           abort(401, 'You cannot see');
           } */
-        
-        //$this->tipos = Tipo::all()->pluck('tipo', 'id');
         
         return view('proveedores.create', [
             'proveedor' => new Proveedor,
@@ -138,10 +136,12 @@ class ProveedorController extends Controller {
     public function destroy(Proveedor $proveedor) {
 
         $this->msj = 'El proveedor fué eliminado con éxito';
+        
+        dd($this->activeCommunity);
 
         $proveedor->delete();
 
-        return redirect()->route('proveedores.pasarComunidad', $proveedor)->with('status', [$this->msj, 'alert-danger']);
+        return redirect()->route('proveedores.pasarComunidad', $this->activeCommunity)->with('status', [$this->msj, 'alert-danger']);
     }
 
     public function select(Proveedor $proveedor) {
@@ -154,7 +154,6 @@ class ProveedorController extends Controller {
     public function pasarComunidad(Comunidad $comunidad) {
 
         session()->put('activeCommunity', $comunidad);
-        
         $this->activeCommunity = session()->get('activeCommunity');
 
         return view('proveedores.index', [// llamamos al Modelo

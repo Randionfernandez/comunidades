@@ -13,6 +13,17 @@ class CreateIngresosTable extends Migration {
      */
     public function up() {
         // original Randion
+        
+        /*
+         * Schema::create('ingresos', function (Blueprint $table) {
+            $table->id();
+         * 
+         * $table->timestamps();
+            $table->softDeletes();
+         */
+        
+        // Implementacion de parte de Rafa Maya
+        
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
             

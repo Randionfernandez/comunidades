@@ -1,6 +1,6 @@
 <x-app-layout>
 
-@section('title','Distrubucion')
+@section('title','Distribucion')
 
 @section('content')
 <h1 class="text-center m-40">Distribucion</h1>

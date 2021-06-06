@@ -53,4 +53,14 @@ class Proveedor extends Model {
     public function figuras() {
         return $this->belongsTo(Figura::class, 'id', 'figura')->withTimestamps();
     }
+
+     public function nombreTipo($id){
+        // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
+        //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
+        return $nombreTipo = Proveedor::join('tipos', 'proveedores.tipo', '=', 'tipos.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreTipo')->last();
+    }
+
+     public function nombreCalificacion($id){
+        return $nombreCalificacion = Proveedor::join('calificaciones', 'proveedores.calificacion', '=', 'calificaciones.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreCalificacion')->last();
+    }
 }

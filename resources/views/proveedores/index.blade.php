@@ -27,8 +27,8 @@
                 <td>{{$proveedor->cif}}</td>
                 <td>{{$proveedor->email}}</td>
                 <td>{{$proveedor->telefono}}</td>
-                <td>{{$proveedor->tipo}}</td>
-                <td>{{$proveedor->calificacion}}</td>
+                <td>{{$proveedor->nombreTipo($proveedor->id)}}</td>
+                <td>{{$proveedor->nombreCalificacion($proveedor->id)}}</td>
                 <td class="flex border-0">
                     <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
                     <x-jet-danger-button onclick="location.href ='{{ route('proveedores.show', $proveedor) }}'">{{__('Show')}}</x-jet-danger-button>

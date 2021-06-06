@@ -39,7 +39,7 @@ class CreatePropiedadesTable extends Migration
             $table->index(['comunidades_id','parte']);
              */
             
-            // Parte de Rafa Gonzalez
+            // Parte de Alejandro Gonzalez
             $table->id();
             $table->timestamps();
             $table->softDeletes();

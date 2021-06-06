@@ -15,7 +15,7 @@ class ProveedorSeeder extends Seeder {
     public function run() {
 
         Proveedor::factory()
-                ->count(15)
+                ->count(1000)
                 ->create();
     }
 

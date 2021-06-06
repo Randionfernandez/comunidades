@@ -2,7 +2,7 @@
 
 <div class="inline-flex">
     <x-jet-button class="mx-2 {{$btndisabled}}">{{ __($btnText1) }}</x-jet-button>
-    <x-jet-danger-button  onclick="location.href ='{{ route('comunidades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
+    <x-jet-danger-button class="{{$btndisabled}}"  onclick="location.href ='{{ route('comunidades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
 </div>
 
 <x-jet-validation-errors></x-jet-validation-errors>

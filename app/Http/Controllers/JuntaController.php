@@ -14,7 +14,11 @@ class JuntaController extends Controller
      */
     public function index()
     {
-        //
+        return view('juntas.index', [
+            'btnText1' => 'Save', 
+            'btnText2' => 'Cancel', 
+            'btndisabled' => 'd-none'
+        ]);
     }
 
     /**

@@ -2,36 +2,43 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
+use App\Http\Requests\SaveComunidadRequest;
 use App\Models\Comunidad;
 use App\Models\User;
 use \App\Models\Comunidad_User;
 use App\Models\TeamUser;
 use App\Models\Team;
-use App\Http\Requests\SaveComunidadRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
+
+
 
 class ComunidadController extends Controller {
 
     private $msj = '';
+    private $activeCommunity = null;
+    private $user = null;
+    
+    public function __construct(Request $request) {
+        if (! session()->has('activeCommunity')) {
+            $this->activeCommunity = session()->put('activeCommunity', null);
+        }
+        
+    }
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request) {
+    public function index() {
         
-        if (! $request->session()->has('activeCommunity')) {
-            $request->session()->put('activeCommunity', null);
-        }
-
-        $user = auth()->user();
+        $this->user = auth()->user();
         
         return view('comunidades.index', [
-            'user' => $user,
-            'comunidades' => $user->comunidades
+            'user' => $this->user,
+            'comunidades' => $this->user->comunidades
         ]);
     }
 
@@ -63,9 +70,9 @@ class ComunidadController extends Controller {
 
         $gratuita = true;
         
-        $user = auth()->user();
+        $this->user = auth()->user();
 
-        if (auth()->user()->comunidades->count() >= env('APP_LIMIT_MAX_FREE_COMMUNITIES')) {
+        if ($this->user->comunidades->count() >= env('APP_LIMIT_MAX_FREE_COMMUNITIES', 3)) {
             $gratuita = false;
         }
 
@@ -80,7 +87,7 @@ class ComunidadController extends Controller {
 
         Comunidad_User::create([
             'comunidad_id' => $new_comunidad->id,
-            'user_id' => $user->id,
+            'user_id' => $this->user->id,
             'role_id' => '2',
             'created_at' => $new_comunidad->created_at,
             'updated_at' => $new_comunidad->updated_at
@@ -101,7 +108,7 @@ class ComunidadController extends Controller {
             'comunidad' => $comunidad,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
-            'btndisabled' => 'disabled'
+            'btndisabled' => 'd-none'
         ]);
     }
 
@@ -118,7 +125,7 @@ class ComunidadController extends Controller {
             'title' => 'Edit Comunidad', 
             'btnText1' => 'Update', 
             'btnText2' => 'Cancel',
-            'btndisabled' => ' '
+            'btndisabled' => ''
         ]);
     }
 
@@ -146,13 +153,7 @@ class ComunidadController extends Controller {
      */
     public function destroy(Comunidad $comunidad, Request $request) {
 
-        $comunidad->activa = false;
-
-        $comunidad->update();
-
         $this->msj = 'La comunidad fué eliminada con éxito';
-
-        $comunidad::latest('updated_at')->first();
         
         Comunidad_User::where('comunidad_id', '=', $comunidad->id)->delete();
         
@@ -168,12 +169,12 @@ class ComunidadController extends Controller {
         $this->msj = "Has seleccionado la comunidad ";
         $color = 'alert-success';
         
-        if (! $request->session()->has('activeCommunity')) {
-            $request->session()->put('activeCommunity', $comunidad);
+        if (! session()->has('activeCommunity')) {
+            session()->put('activeCommunity', $comunidad);
         } else {
             $this->msj = "Has salido de la comunidad seleccionada";
             $color = 'alert-danger';
-            $request->session()->put('activeCommunity', null);
+            session()->put('activeCommunity', null);
         }
         
         
