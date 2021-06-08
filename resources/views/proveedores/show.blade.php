@@ -1,7 +1,7 @@
 <x-app-layout>
 
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Community Show | ' . $proveedor->nombre ) }}
         </h2>
     </x-slot>
@@ -22,7 +22,7 @@
             @endauth
         </div>
 
-        <label for="nombre">@lang('Name')</label>
+        <label for="nombre"><h1>@lang('Name')</h1></label>
         <h1> {{ $proveedor->nombre }} </h1>
 
         <div class="d-flex justify-content-between align-items-center">
@@ -62,39 +62,9 @@
                             <label for="calle">@lang('street')</label>
                             <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->calle }} </div>
                         </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="portal">@lang('doorway')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->portal }} </div>
-                        </div>
-                    </div>
-                    <div class="col-md-2">
-                        <div class="form-group">
-                            <label for="bloque">@lang('block')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->bloque }} </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="row form-group">
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="escalera">@lang('stair')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->escalera }} </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="piso">@lang('floor')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->piso }} </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3">
-                        <div class="form-group">
-                            <label for="puerta">@lang('door')</label>
-                            <div class="form-control border-0 bg-light shadow-sm"> {{ $proveedor->puerta }} </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-3">
                         <div class="form-group">
                             <label for="codigopais">@lang('countrycode')</label>

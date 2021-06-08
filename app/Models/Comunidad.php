@@ -49,5 +49,15 @@ class Comunidad extends Model {
     public function proveedor() {
         return $this->belongsToMany(Proveedor::class, 'comunidades_proveedores', 'comunidad_id', 'proveedor_id')->withTimestamps();
     }
+    
+    public function paises() {
+        return $this->belongsTo(Pais::class, 'id', 'pais')->withTimestamps();
+    }
+    
+    public function nombrePais($id){
+        // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
+        //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
+        return $nombrePais = Comunidad::join('paises', 'comunidades.pais', '=', 'paises.id')->where('comunidades.id', '=', $id)->get()->pluck('nombrePais')->last();
+    }
 
 }

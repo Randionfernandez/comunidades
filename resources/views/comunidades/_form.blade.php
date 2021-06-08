@@ -58,12 +58,18 @@
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="pais">@lang('Country')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="pais" placeholder=@lang('Country') value="{{ old('pais', $comunidad->pais) }}" {{$btndisabled}}>
-                </div>
-            </div>
+            <select class="form-select col-4" aria-label="Default select example" name="pais">
+                <option value="0">@lang('Country')</option>
+                @forelse($paises as $pais)
+                @if ( old('pais', $comunidad->pais) == $pais->id )
+                <option value="{{ $pais->id }}" selected > {{ $pais->nombrePais }} </option>
+                @else
+                <option value="{{ $pais->id }}"> {{ $pais->nombrePais }} </option>
+                @endif
+                @empty
+                <p>vacio</p>
+                @endforelse
+            </select>
 
             <div class="col-md-3">
                 <div class="form-group">

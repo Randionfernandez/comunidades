@@ -29,7 +29,7 @@
 
            
                 
-        <table class="table col-md-1 mx-5" >
+        <table class="table col-md-1" >
             <thead class="text-white bg-dark"  >
                 <th scope="col">Total</th>
             </thead>

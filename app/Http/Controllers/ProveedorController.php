@@ -11,6 +11,7 @@ use App\Models\Comunidad_Proveedor;
 use App\Models\Tipo;
 use App\Models\Calificacion;
 use App\Models\Figura;
+use App\Models\Pais;
 
 class ProveedorController extends Controller {
 
@@ -20,6 +21,8 @@ class ProveedorController extends Controller {
     private $tipos = Tipo::class;
     private $calificaciones = Calificacion::class;
     private $figuras = Figura::class;
+    private $paises = Pais::class;
+    
 
     /**
      * Display a listing of the resource.
@@ -31,6 +34,7 @@ class ProveedorController extends Controller {
         $this->tipos = Tipo::all();
         $this->calificaciones = Calificacion::all();
         $this->figuras = Figura::all();
+        $this->paises = Pais::all();
         $this->activeCommunity = session()->get('activeCommunity');
     }
     
@@ -53,7 +57,8 @@ class ProveedorController extends Controller {
             'proveedor' => new Proveedor,
             'tipos' => $this->tipos,
             'calificaciones' => $this->calificaciones,
-            'figuras' => $this->figuras
+            'figuras' => $this->figuras,
+            'paises' => $this->paises
             ]);
     }
 
@@ -107,7 +112,8 @@ class ProveedorController extends Controller {
             'proveedor' => $proveedor,
             'tipos' => $this->tipos,
             'calificaciones' => $this->calificaciones,
-            'figuras' => $this->figuras
+            'figuras' => $this->figuras,
+            'paises' => $this->paises
         ]);
     }
 

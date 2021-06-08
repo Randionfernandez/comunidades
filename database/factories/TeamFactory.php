@@ -22,9 +22,12 @@ class TeamFactory extends Factory
      */
     public function definition()
     {
+        
+        $users = DB::table('users')->pluck('id');
+        
         return [
             'name' => $this->faker->unique()->company,
-            'user_id' => User::factory(),
+            'user_id' => $this->faker->randomElement($users),
             'personal_team' => true,
         ];
     }

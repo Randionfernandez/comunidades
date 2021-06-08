@@ -46,7 +46,7 @@ class SaveProveedorRequest extends FormRequest {
             // 'regex:/^\+\d{3}$/'
             'codigopais' => 'string',
             'cp' => 'required|string|size:5',
-            'pais' => 'required|string',
+            'pais' => 'exists:paises,id',
             'provincia' => 'required|string',
             'localidad' => 'required|string',
             // iban ejemplo: AT483200000012345864

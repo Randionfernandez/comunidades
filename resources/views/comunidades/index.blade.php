@@ -18,25 +18,30 @@
                 <th>@lang('actions')</th>
             </tr>
         </thead>
-        @forelse($user->comunidades as $comunidad )
-        <tbody>
-            <tr>
-                <td>{{$comunidad->denom}}</td>
-                <td>{{$comunidad->cif}}</td>
-                <td>{{$comunidad->direccion}}</td>
-                <td>{{$comunidad->fechalta}}</td>
-                <td>{{$comunidad->partes}}</td>
-                <td class="flex border-0">
-                    @if (! Session::has('activeCommunity'))
-                        <x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.select', $comunidad) }}'">{{ __('Select') }}</x-jet-button>
-                    @endif
-                        <x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button>
-                </td>
-        </tr>
-        </tbody>
-        @empty
-        @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not communities created yet'])
-        @endforelse
+        @if(! session()->get('activeCommunity'))
+        @php $comunidades = $user->comunidades @endphp
+        @else
+        @php $comunidades = [session()->get('activeCommunity')] @endphp
+        @endif
+            @forelse($comunidades as $comunidad )
+            <tbody>
+                <tr>
+                    <td>{{$comunidad->denom}}</td>
+                    <td>{{$comunidad->cif}}</td>
+                    <td>{{$comunidad->direccion}}</td>
+                    <td>{{$comunidad->fechalta}}</td>
+                    <td>{{$comunidad->partes}}</td>
+                    <td class="flex border-0">
+                        @if (! Session::has('activeCommunity'))
+                            <x-jet-button class="mx-2" onclick="location.href ='{{ route('comunidades.select', $comunidad) }}'">{{ __('Select') }}</x-jet-button>
+                        @endif
+                            <x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button>
+                    </td>
+            </tr>
+            </tbody>
+            @empty
+            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not communities created yet'])
+            @endforelse
     </table>
     
     @else

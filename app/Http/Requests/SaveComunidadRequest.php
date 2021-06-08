@@ -38,7 +38,7 @@ class SaveComunidadRequest extends FormRequest
             'localidad' => 'string|nullable',
             'provincia' => 'string|nullable',
             'cp' => 'required|size:5',
-            'pais' => 'string|nullable',
+            'pais' => 'exists:paises,id',
             'logo' => 'nullable',
             'observaciones' => 'string||nullable',
             'MaxFreeCommunities' => 'integer'

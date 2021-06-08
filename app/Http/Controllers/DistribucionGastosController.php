@@ -37,12 +37,14 @@ class DistribucionGastosController extends Controller
     {
        //
        $propietarios = Propiedades_User::all();
+       $unidadRegistral = null;
 
         if($propietarios->count()){
             $unidadRegistral = 1 / count($propietarios);
        }else{
-            return 'No hay propietarios';
-    }
+           // Rafa Maya tiene que mejorar esta parte 
+           // return 'No hay propietarios';
+        }
         
        return view('distribucion/distribucion',['propietarios' => $propietarios,'unidadRegistral' => $unidadRegistral]);
     }

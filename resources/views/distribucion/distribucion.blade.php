@@ -3,6 +3,7 @@
 @section('title','Distribucion')
 
 @section('content')
+@if (! $unidadRegistral == null)
 <h1 class="text-center m-40">Distribucion</h1>
 
 
@@ -10,7 +11,7 @@
      @csrf
 
     <button class="btn btn-primary mx-5 mb-4 ">Guardar</button>
-    <a href="{{url('distribucion')}}" class="btn btn-primary mb-4 ">Volver</a>
+    <a href="{{url('distribucion')}}" class="btn btn-danger mb-4 ">Volver</a>
 
     @if($errors->any())
     
@@ -68,7 +69,7 @@
     </div>
     </div>  
 
-    <table class="table col-md-11 mx-5 ">
+    <table class="table col-md-11">
         <thead>
             <tr class="text-white bg-dark">
                 <th>
@@ -102,7 +103,10 @@
             
         </tbody>
     </table>
-    
+    @else
+    <a href="{{url('distribucion')}}" class="btn btn-danger mb-4 ">Volver</a>
+    @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay Propietarios'])
+    @endif
 
 </form>
 </x-app-layout>

@@ -11,7 +11,7 @@
     <a href="{{ route('ingresos.index') }}" class="btn btn-primary mx-5 mb-4">Ver Ingresos</a>
 
     @if($movimientos->count())
-    <table class="table col-md-11 mx-5">
+    <table class="table col-md-11">
 
         @if (session ('mensaje'))
         <div class="alert alert-success  alert-dismissible fade show" role="alert">

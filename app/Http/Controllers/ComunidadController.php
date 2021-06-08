@@ -11,6 +11,7 @@ use App\Models\User;
 use \App\Models\Comunidad_User;
 use App\Models\TeamUser;
 use App\Models\Team;
+use App\Models\Pais;
 
 
 
@@ -19,8 +20,12 @@ class ComunidadController extends Controller {
     private $msj = '';
     private $activeCommunity = null;
     private $user = null;
+    private $paises = Pais::class;
     
     public function __construct(Request $request) {
+        
+        $this->paises = Pais::all();
+        
         if (! session()->has('activeCommunity')) {
             $this->activeCommunity = session()->put('activeCommunity', null);
         }
@@ -38,7 +43,8 @@ class ComunidadController extends Controller {
         
         return view('comunidades.index', [
             'user' => $this->user,
-            'comunidades' => $this->user->comunidades
+            'comunidades' => $this->user->comunidades,
+            'paises' => $this->paises
         ]);
     }
 
@@ -54,7 +60,8 @@ class ComunidadController extends Controller {
             'title' => 'New Community', 
             'btnText1' => 'Save', 
             'btnText2' => 'Cancel', 
-            'btndisabled' => ''
+            'btndisabled' => '',
+            'paises' => $this->paises
             ]);
     }
 
@@ -108,7 +115,8 @@ class ComunidadController extends Controller {
             'comunidad' => $comunidad,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
-            'btndisabled' => 'd-none'
+            'btndisabled' => 'd-none',
+            'paises' => $this->paises
         ]);
     }
 
@@ -122,10 +130,11 @@ class ComunidadController extends Controller {
         //
         return view('comunidades.edit', [
             'comunidad' => $comunidad, 
-            'title' => 'Edit Comunidad', 
+            'title' => 'Edit Comunidad',
             'btnText1' => 'Update', 
             'btnText2' => 'Cancel',
-            'btndisabled' => ''
+            'btndisabled' => '',
+            'paises' => $this->paises
         ]);
     }
 

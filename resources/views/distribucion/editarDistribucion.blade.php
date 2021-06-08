@@ -3,7 +3,9 @@
 @section('title','Distrubucion')
 
 @section('content')
-<h1 class="text-center">Editar distribucion {{$grupo[0]['nombre']}}</h1>
+<x-slot name="header">
+        <h1 class="text-center">Editar distribucion {{$grupo[0]['nombre']}}</h1>
+    </x-slot>
 
 
 <form action="{{ route('distribucion.update', $grupo[0]['nombre']) }}" method="POST">
@@ -68,7 +70,7 @@
     </div>
     </div>  
 
-    <table class="table col-md-11 mx-5 ">
+    <table class="table col-md-11">
         <thead>
             <tr class="text-white bg-dark">
                 <th>

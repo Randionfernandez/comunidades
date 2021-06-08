@@ -28,7 +28,7 @@ class CreateComunidadesTable extends Migration {
             $table->string('localidad', 35)->nullable();
             $table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
-            $table->string('pais')->default('ES');
+            $table->string('pais')->default(1);
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
             $table->string('observaciones')->nullable();
 

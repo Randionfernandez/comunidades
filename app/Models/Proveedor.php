@@ -54,7 +54,7 @@ class Proveedor extends Model {
         return $this->belongsTo(Figura::class, 'id', 'figura')->withTimestamps();
     }
 
-     public function nombreTipo($id){
+    public function nombreTipo($id){
         // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
         //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
         return $nombreTipo = Proveedor::join('tipos', 'proveedores.tipo', '=', 'tipos.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreTipo')->last();
