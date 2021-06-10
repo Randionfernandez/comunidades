@@ -13,7 +13,6 @@ class CreateFailedJobsTable extends Migration
      */
     public function up()
     {
-        // original Randion
         Schema::create('failed_jobs', function (Blueprint $table) {
             $table->id();
             $table->string('uuid')->unique();
