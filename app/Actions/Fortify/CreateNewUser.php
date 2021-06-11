@@ -12,7 +12,7 @@ use Laravel\Jetstream\Jetstream;
 
 class CreateNewUser implements CreatesNewUsers
 {
-    use PasswordValidationRules;
+  use PasswordValidationRules;
 
 
     /**
@@ -23,31 +23,41 @@ class CreateNewUser implements CreatesNewUsers
      */
     public function create(array $input)
     {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'apellido1' => ['required', 'string', 'max:255'],
-            'apellido2' => ['required', 'string', 'max:255'],
-            'nif' => ['required', 'string',  'max:255', 'unique:users'],
-            'telefono' => ['required', 'string', 'max:255'],
-            'role' => ['required', 'string',  'max:255'],
-            'num_cta' => ['required', 'integer'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+      Validator::make($input, [
+        'name' => ['required', 'string', 'max:255'],
+        'apellido1' => ['required', 'string', 'max:255'],
+        'apellido2' => ['required', 'string', 'max:255'],
+        'nif' => ['required', 'string',  'max:255', 'unique:users'],
+        'telefono' => ['required', 'string', 'max:255'],
+        'role' => ['required', 'string',  'max:255'],
+        'num_cta' => ['required', 'integer'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
 
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
-        ])->validate();
+        'password' => $this->passwordRules(),
+        'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
+      ])->validate();
 
-        return User::create([
-            'name' => $input['name'],
-            'apellido1' => $input['apellido1'],
-            'apellido2' => $input['apellido2'],
-            'nif' => $input['nif'],
-            'telefono' => $input['telefono'],
-            'role' => $input['role'],
-            'num_cta' => $input['num_cta'],
-
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
+      return User::create([
+        'name' => $input['name'],
+        'apellido1' => $input['apellido1'],
+        'apellido2' => $input['apellido2'],
+        'nif' => $input['nif'],
+        'telefono' => $input['telefono'],
+        'calle' => $input['calle'],
+        'portal' => $input['portal'],
+        'bloque' => $input['bloque'],
+        'escalera' => $input['escalera'],
+        'piso' => $input['piso'],
+        'puerta' => $input['puerta'],
+        'cod_pais' => $input['cod_pais'],
+        'cp'=>$input['cp'],
+        'pais'=>$input['pais'],
+        'provincia'=>$input['provincia'],
+        'localidad'=>$input['localidad'],
+        'role' => $input['role'],
+        'num_cta' => $input['num_cta'],
+        'email' => $input['email'],
+        'password' => Hash::make($input['password']),
+      ]);
     }
-}
+  }

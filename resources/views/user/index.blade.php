@@ -1,6 +1,6 @@
-@extends('layouts.Propiedades.plantillabase')
+@extends('layouts.plantillabase');
 
-@section('content')
+@section('content');
 <div class="uper">
     @if(session()->get('success'))
     <div class="alert alert-success">

@@ -19,7 +19,7 @@ class RoleSeeder extends Seeder
             'name' => "admin")];
            //ROLES
     	$admin=Role::create(['name'=>'admin']);
-    	$guest=Role::create(['name'=>'guest']);
+    	$guest=Role::create(['name'=>'invitado']);
 
 //          //Permisos roles
 //     	$permissions=[

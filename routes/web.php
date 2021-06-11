@@ -27,10 +27,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //comunidades
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 
+Route::get('user/index',[UserController::class,'index'])->name('user.index');
 //listar usuarios,propietarios y comunidades con autentificación
 Route::middleware(['auth:sanctum','verified'])->group( function () {
 	//usuarios
 	Route::get('user/list',[UserController::class,'list'])->name('user.list');
+
+    // Route::get('user/index',[UserController::class,'index'])->name('user.index');
+
 
 	//propietarios
 	Route::get('propietario/index',[PropietarioController::class,'index'])->name('propietario.index');

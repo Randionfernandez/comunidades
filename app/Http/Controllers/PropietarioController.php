@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 // use App\Models\Propietario;
-// use App\Models\User;
-// use App\Models\Propiedad;
-// use App\Models\Comunidad;
-
+use App\Models\User;
+use App\Models\Propiedad;
+use App\Models\Comunidad;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PropietarioController extends Controller
@@ -19,8 +19,16 @@ class PropietarioController extends Controller
 
     public function index()
     {
-        $propietarios =Propietario::get();
-        return view(propietario.index, compact('propietarios'));
+        // $propietarios =Propietario::get();
+        // return view(propietario.index, compact('propietarios'));
+        $propietarios = User::with('propiedad')->get();
+
+        foreach ($propietarios as $propietario) {
+            echo $propietario->propiedad->name . '';
+            User::withCount('propiedad')->get();
+        }
+
+
     }
 
 //muestra las acciones del menu Propietario
@@ -47,13 +55,13 @@ class PropietarioController extends Controller
      */
     public function store(Request $request)
     {
-     $validator = Validator::make($request->all(), [
+       $validator = Validator::make($request->all(), [
         'ref_ca' => 'required|max:255',
         'num_cta' => 'required|max:255',
 
     ]);
 
-     if ($validator->fails()) {
+       if ($validator->fails()) {
         return redirect('propietario/create')
         ->withErrors($validator)
         ->withInput();

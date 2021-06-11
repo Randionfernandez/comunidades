@@ -1,21 +1,22 @@
 <?php
 
 namespace App\Models;
-
-
+//modelos
 use App\Models\Role;
 use App\Models\Comunidad;
 use App\Models\Propiedad;
 
-
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
-use Spatie\Permission\Traits\HasRoles;
+// use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -37,10 +38,23 @@ class User extends Authenticatable
         'apellido2',
         'telefono',
         'nif',
+        'Calle',
+        'Portal',
+        'Bloque',
+        'Escalera',
+        'Piso',
+        'Puerta',
+        'Codigo_pais',
+        'cp',
+        'Pais',
+        'Provincia',
+        'Localidad',
         'role',
         'num_cta',
         'email',
         'password',
+        // 'limitMaxFreeCommunities',
+        'propiedad_id'
     ];
 
     /**
@@ -77,8 +91,8 @@ class User extends Authenticatable
     //relaciones
     public function propiedad()
     {
-     return $this->hasOne(Propiedad::class)->withTimestamps();
- }
+       return $this->hasOne(Propiedad::class,'propiedad_id')->withTimestamps();
+   }
 
    //métodos
 
@@ -92,16 +106,16 @@ class User extends Authenticatable
 */
 
 
-/** fucnion scope de busqueda con una query que se anida a la petición principal de sql, recibe el primer parámetro obligatorio que es un consulta y el otro parametro opcinal que es el termino de búsqueda,en esete caso se envia lo que estamos escribiendo en el campo */
+/** fucnion scope de busqueda con una query que se anida a la petición principal de sql, recibe el primer parámetro obligatorio que es un consulta y el otro parametro opcinal que es el termino de búsqueda,en este caso se envia lo que estamos escribiendo en el campo */
 public function scopeTermino($query,$termino){
     if ($termino === '') {
     return; //termino vacío para la funcion
 }
-return $query->where('name','like',"%{$termino}%")
-->orWhere('apellido1','like',"%{$termino}%")
-->orWhere('apellido2','like',"%{$termino}%")
-->orWhere('email','like',"%{$termino}%")
-->orWhere('nif','like',"%{$termino}%");
+return $query->where('name','like','%{$termino}%')
+->orWhere('apellido1','like','%{$termino}%')
+->orWhere('apellido2','like','%{$termino}%')
+->orWhere('email','like','%{$termino}%')
+->orWhere('nif','like','%{$termino}%');
 
 }
 
@@ -112,5 +126,6 @@ public function scopeRole($query,$role){
 //método mágino que apunta a la columna role
 return $query->whereRole($role);
 }
+
 
 }

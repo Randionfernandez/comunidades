@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Seeder\UserSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,15 +22,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-    $user=User::create([
-        'name' => 'ines',
-        'nif' => '123456789',
-        'email' =>'igolpe@cifpfbmoll.eu',
-        'email_verified_at' => now(),
-        'password' => Hash::make('123456789'),
-        'remember_token' => Str::random(10),
-    ]);
-    \App\Models\User::factory(15)->create();
+    // $user=User::create([
+    //     'name' => 'ines',
+    //     'nif' => '123456789',
+    //     'email' =>'igolpe@cifpfbmoll.eu',
+    //     'email_verified_at' => now(),
+    //     'password' => Hash::make('123456789'),
+    //     'remember_token' => Str::random(10),
+    // ]);
+    // \App\Models\User::factory(15)->create();
 
 
 
