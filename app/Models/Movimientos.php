@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class movimientos extends Model {
-
+// añadiendo este archivo
     use HasFactory;
 
     protected $table = 'movimientos';

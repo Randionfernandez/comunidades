@@ -9,6 +9,7 @@ use App\Http\Requests\StoreCuentaBancariaRequest;
 
 class CuentasBancariasController extends Controller
 {
+    // añadiendo este archivo
     /**
      * Display a listing of the resource.
      *
