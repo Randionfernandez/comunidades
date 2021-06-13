@@ -4,7 +4,9 @@
 
 @section('content')
     <h1 class="text-center mb-4">Listado de gastos</h1>
+    
 
+    <a href=""></a>
     <table class="table">
         <thead>
             <tr>

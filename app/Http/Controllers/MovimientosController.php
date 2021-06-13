@@ -9,7 +9,7 @@ use App\Models\ingresos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
-use App\Http\Requests\StoreMovimientosRequest;
+use App\Http\Requests\StoreMovimientos;
 use App\Models\Propiedades_User;
 
 class MovimientosController extends Controller
@@ -25,12 +25,11 @@ class MovimientosController extends Controller
         $movimientos = movimientos::orderBy('id')->get();
         $ingresos = ingresos::sum('cantidad');
 
-       //$total = movimientos::sum('cantidad') ;
         $total = movimientos::where('concepto', '!=','ingreso')->sum('cantidad');
         
-        //dd($total);
     
-        return view('movimientos/movimientos',['movimientos' => $movimientos,'total' => $total,'ingresos' => $ingresos]);
+        //return view('movimientos/movimientos',['movimientos' => $movimientos,'total' => $total,'ingresos' => $ingresos]);
+        return view('movimientos/movimiento',compact('movimientos','total','ingresos'));
     }
 
     /**
@@ -44,9 +43,10 @@ class MovimientosController extends Controller
         $movimientos = cuentasBancarias::all();
         $propiedades = Propiedades_User::all();
         $grupos = distribucion_gastos::distinct('nombre')->get();
+        $fran =  new movimientos();
 
-
-        return view('movimientos/movimiento',['movimientos' => $movimientos,'grupos' => $grupos,'propiedades' =>$propiedades]);
+        //return view('movimientos/movimiento',['movimientos' => $movimientos,'grupos' => $grupos,'propiedades' =>$propiedades]);
+        return view('movimientos/crearMovimiento',compact('movimientos','fran','grupos','propiedades'));
     }
 
     /**
@@ -55,7 +55,7 @@ class MovimientosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMovimientosRequest $request)
+    public function store(StoreMovimientos $request)
     {
         
         movimientos::create($request->all());
@@ -85,10 +85,16 @@ class MovimientosController extends Controller
     public function edit(movimientos $movimientos,$id)
     {
         //
+        //$movimientos = new cuentasBancarias;
+        $movimientos = cuentasBancarias::all();
+        $propiedades = Propiedades_User::all();
+
         $grupos = distribucion_gastos::distinct('nombre')->get();
-        $movimiento = movimientos::where('concepto','!=','ingreso')->findOrFail($id);
-        return view('movimientos/editarMovimientos',compact('movimiento','grupos'));
-        //return $movimiento;
+        $fran = movimientos::where('concepto','!=','ingreso')->findOrFail($id);
+        
+        
+        //dd($movimiento);
+        return view('movimientos/editarMovimientos',compact('fran','grupos','movimientos','propiedades'));
     }
 
     /**
@@ -103,16 +109,16 @@ class MovimientosController extends Controller
         //
 
         $movimiento = movimientos::findOrFail($id);
-        $movimiento->distribucion = $request->distribucion;
+        //$movimiento->distribucion = $request->distribucion;
         $movimiento->fechaValor = $request->fechaValor;
         $movimiento->concepto = $request->concepto;
         $movimiento->cantidad = $request->cantidad;
-        $movimiento->distribucion = $request->distribucion;
+       // $movimiento->distribucion = $request->distribucion;
         $movimiento->observaciones = $request->observaciones;
         $movimiento->save();
 
         
-        return redirect()->route('movimientos.index')->with('Se ha actualizado exitasamente');
+        return redirect()->route('movimientos.index')->with('mensaje','Se ha actualizado exitasamente');
     }   
 
     /**

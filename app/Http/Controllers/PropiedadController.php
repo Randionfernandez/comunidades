@@ -4,26 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
-use App\Http\Requests\PropiedadRequest;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\DB;
 
-class PropiedadController extends Controller {
-
+class PropiedadController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index() {
-        $propiedades = Propiedad::latest()->paginate(5);
-
-        return view('propiedades.index', compact('propiedades'))
-                        ->with('i', (request()->input('page', 1) - 1) * 5);
+    public function index()
+    {
+        //
     }
 
-    public function create() {
-        return view("propiedades.create");
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -32,19 +33,9 @@ class PropiedadController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request) {
-
-        DB::table('propiedades')->insert([
-            'nombre' => $request->nombre,
-            'propietario' => $request->propietario,
-            'tipo' => $request->tipo,
-            'coeficiente' => $request->coeficiente,
-            'parte' => $request->parte,
-            'observaciones' => $request->observaciones,
-        ]);
-
-        return redirect()->route('propiedades.index')
-                        ->with('success', 'Propiedad creada');
+    public function store(Request $request)
+    {
+        //
     }
 
     /**
@@ -53,8 +44,9 @@ class PropiedadController extends Controller {
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function show(Propiedad $propiedad) {
-        return view('propiedades.show', compact('propiedad'));
+    public function show(Propiedad $propiedad)
+    {
+        //
     }
 
     /**
@@ -63,8 +55,9 @@ class PropiedadController extends Controller {
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Propiedad $propiedad) {
-        return view('propiedades.edit', compact('propiedad'));
+    public function edit(Propiedad $propiedad)
+    {
+        //
     }
 
     /**
@@ -74,16 +67,9 @@ class PropiedadController extends Controller {
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Propiedad $propiedad) {
-        $request->validate([
-            'nombre' => 'required',
-            'propietario' => 'required',
-        ]);
-
-        $propiedad->update($request->all());
-
-        return redirect()->route('propiedades.index')
-                        ->with('success', 'Propiedad actualizada');
+    public function update(Request $request, Propiedad $propiedad)
+    {
+        //
     }
 
     /**
@@ -92,10 +78,8 @@ class PropiedadController extends Controller {
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Propiedad $propiedad) {
-        $propiedad->delete();
-
-        return redirect()->route('propiedades.index')
-                        ->with('success', 'Propiedad borrada');
+    public function destroy(Propiedad $propiedad)
+    {
+        //
     }
 }
