@@ -60,11 +60,11 @@
             </div>
               <div>
                 <x-jet-label for="cp" value="{{ __('Cp') }}" />
-                <x-jet-input id="cp" class="block mt-1 w-full" type="text" name="cp" :value="old('cp')" required autofocus autocomplete="cp" placeholder="Introduce el cp ..."/>
+                <x-jet-input id="cp" class="block mt-1 w-full" type="text" name="cp" :value="old('cod_pais')" required autofocus autocomplete="cod_pais" placeholder="Introduce el código de pais..."/>
             </div>
               <div>
                 <x-jet-label for="pais" value="{{ __('Pais') }}" />
-                <x-jet-input id="pais" class="block mt-1 w-full" type="text" name="pais" :value="old('')" required autofocus autocomplete="pais" placeholder="Introduce el pais..."/>
+                <x-jet-input id="pais" class="block mt-1 w-full" type="text" name="pais" :value="old('pais')" required autofocus autocomplete="pais" placeholder="Introduce el pais..."/>
             </div>
              <div>
                 <x-jet-label for="provincia" value="{{ __('Provincia') }}" />

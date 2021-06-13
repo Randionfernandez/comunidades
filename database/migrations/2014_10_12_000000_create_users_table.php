@@ -41,7 +41,8 @@ class CreateUsersTable extends Migration
 
             $table->string('password');
             $table->rememberToken();
-              // $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
+
+             // $table->integer('limitMaxFreeCommunities')->default(env('APP_LIMIT_MAX_FREE_COMMUNITIES'));
             $table->foreignId('propiedad_id')->nullable();
             // $table->foreignId('current_team_id')->nullable();
             // $table->text('profile_photo_path')->nullable();
