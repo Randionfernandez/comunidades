@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider {
 
         \Illuminate\Support\Facades\View::share('navDarkCommunitiesLinks', [
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Acciones'],
-            ['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Comunidad'],
+            //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Comunidad'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Contactos'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Conceptos'],
             ['href' => 'juntas.index', 'name' => 'juntas.index', 'text' => 'Juntas'],

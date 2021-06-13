@@ -14,7 +14,7 @@ class CreateJuntasTable extends Migration
     public function up()
     {
         // Integracion parte de Ricardo para que cuadre la integración
-        Schema::create('junstas', function (Blueprint $table) {
+        Schema::create('juntas', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->softDeletes();

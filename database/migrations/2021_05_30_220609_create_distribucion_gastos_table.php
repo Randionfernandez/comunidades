@@ -18,7 +18,7 @@ class CreateDistribucionGastosTable extends Migration
             $table->id();
             $table->string('propiedad');
             $table->decimal('coeficiente');
-            $table->decimal('unidadRegistral');
+            $table->decimal('unidadRegistral')->nullable();
             $table->string('nombre');
             $table->string('abreviatura');
             $table->integer('orden');

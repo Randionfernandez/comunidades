@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use  App\Http\Requests\ingreso;
+use App\Models\distribucion_gastos;
+use App\Models\Propiedades_User;
 
 class IngresosController extends Controller
 {
@@ -20,13 +22,9 @@ class IngresosController extends Controller
      */
     public function index()
     {
-        /*
-        $ingresos = ingresos::all();
-        $total = ingresos::sum('cantidad');
-        return view('ingresos/ingresos',['ingresos' => $ingresos,'total' => $total]);
-        */
-        $ingresos = movimientos::where('concepto', '=', 'ingreso')->get();
-        //dd($ingresos);
+
+        $ingresos = movimientos::where('concepto', '=', 'ingreso')->distinct('propiedad')->get();
+        //  dd($ingresos);
         return view('ingresos/ingresos', compact('ingresos'));
     }
 
@@ -36,14 +34,8 @@ class IngresosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {        
-        $cuentas = cuentasBancarias::all();
-        $propietarios = Propietario::all();
-        //dd($cuenta->cuenta);
-        $actual = Carbon::now();
-        $fecha = $actual -> format('d-m-Y');
+    {  
 
-        return view('ingresos/ingreso',['cuentas' => $cuentas,'fecha' => $fecha,'propietarios' => $propietarios]);
     }
 
     /**
@@ -54,9 +46,7 @@ class IngresosController extends Controller
      */
     public function store(ingreso $request)
     {
-        //
-        ingresos::create($request->all());
-        return redirect()->route('ingreso.index');
+        
     }
 
     /**
@@ -65,10 +55,66 @@ class IngresosController extends Controller
      * @param  \App\Models\ingresos  $ingresos
      * @return \Illuminate\Http\Response
      */
-    public function show(ingresos $ingresos)
+    public function show($propiedad)
     {
         //
+        $prueba = array();
         
+        $gastos = distribucion_gastos::where('propiedad','=',$propiedad)->get(['coeficiente','nombre']);
+        $dineroPropiedad = movimientos::where('propiedad', '=', $propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
+        $totalPropiedades = Propiedades_User::count('propiedad');
+        $total = 0;   
+        $gastosPropiedad = 0;
+
+        for ($i=0; $i < count($gastos) ; $i++) { 
+           $concepto = movimientos::where('grupo' ,'!=', $gastos[$i]['nombre'])->get();
+        
+           $unidad = movimientos::where('grupo','=',$gastos[$i]['nombre'])->get();
+           
+
+            for ($j=0; $j < count($concepto) ; $j++) { 
+
+                for ($h=0; $h <  count($unidad) ; $h++) { 
+ 
+                   if ($unidad->count()) {
+                       $operacion =  sprintf("%01.2f",$concepto[$j]['cantidad'] / $totalPropiedades);
+
+                   }
+               }
+
+            
+                $coeficiente = distribucion_gastos::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad','=',$propiedad)->get('coeficiente');
+                
+                if(empty($coeficiente) == false){
+                    $coeficiente = 0;
+                }
+                
+                if($coeficiente != 0){
+
+                for ($e=0; $e < count($coeficiente) ; $e++) { 
+
+                   // $operacion =  sprintf("%01.2f",$concepto[$j]['cantidad'] / $totalPropiedades);
+
+
+                    $operacion =  sprintf("%01.2f",($coeficiente[$e]['coeficiente']/100) * $concepto[$j]['cantidad']);   
+                    
+                }
+                
+                $restante = $dineroPropiedad - $operacion;
+                $total += $dineroPropiedad - $operacion;
+    
+                array_push($prueba,['ingresado' => $dineroPropiedad,
+                'concepto' => $concepto[$j]['concepto'],
+                'operacion' => $operacion ,'restante' => $restante] );
+    
+                $dineroPropiedad -= $operacion ;
+                $gastosPropiedad += $operacion;
+            }    
+        }
+        }
+    
+        return view('ingresos/listaMovimientos',compact('propiedad','prueba','total'));
+
     }
 
     /**

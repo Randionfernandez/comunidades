@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\liquidacion;
+use App\Models\gastos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class LiquidacionController extends Controller
+
+class ControllerGastos extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
-        $liquidaciones = liquidacion::all();
-        return view('liquidacion/liquidaciones',['liquidaciones' => $liquidaciones]);
+        $gastos = gastos::all();
+        return view('gastos/lista_gastos', ['gastos' => $gastos]);
     }
 
     /**
@@ -28,7 +29,6 @@ class LiquidacionController extends Controller
     public function create()
     {
         //
-        return view('liquidacion/liquidacion');
     }
 
     /**
@@ -40,17 +40,15 @@ class LiquidacionController extends Controller
     public function store(Request $request)
     {
         //
-        liquidacion::create($request->all());
-        return redirect()->route('liquidacion.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\liquidacion  $liquidacion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(liquidacion $liquidacion)
+    public function show($id)
     {
         //
     }
@@ -58,10 +56,10 @@ class LiquidacionController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\liquidacion  $liquidacion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(liquidacion $liquidacion)
+    public function edit($id)
     {
         //
     }
@@ -70,10 +68,10 @@ class LiquidacionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\liquidacion  $liquidacion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, liquidacion $liquidacion)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -81,14 +79,11 @@ class LiquidacionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\liquidacion  $liquidacion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        liquidacion::findOrFail($id)->delete();
-        return redirect()->route('liquidacion.index');
-        
     }
 }

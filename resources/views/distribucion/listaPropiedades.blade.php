@@ -12,8 +12,12 @@
     <thead>
         <tr class="text-white bg-dark">
             <th scope="col">Propiedad</th>
-            <th scope="col">Coeficiente</th>
-            
+          
+           @if ($propietarios[0]['nombre']  == 'unidadRegistral')
+               <th>UnidadRegistral</th>
+           @else
+               <th>Coeficiente</th>
+           @endif  
             
         </tr>
     </thead>

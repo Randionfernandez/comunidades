@@ -1,55 +1,110 @@
-<x-app-layout>
+@extends('layauts/plantilla')
 
-    <x-slot name="header">
-        <h1 class="text-center">@lang('Distribucion de gastos')</h1>
-    </x-slot>
+@section('title','Distrubucion de gastos')
 
-    <div class="position-relative">
-        <form action="{{ url('distribucion/create') }}">
-            @csrf
-            <button class="btn btn-primary mx-5 mb-4">@lang('Crear')</button>
-        </form>
-        @if (session ('mensaje'))
+@section('css')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.8/css/fixedHeader.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
+@endsection
+
+@section('content')
+<h1 class="text-center m-40">Lista distribucion de gastos</h1>
+    
+<div class="position-relative">
+
+<form action="{{ url('distribucion/create') }}">
+@csrf 
+
+<button class="btn btn-primary mx-5 mb-4">Crear</button>
+
+    @if (session ('mensaje'))
         <div class="alert alert-success  alert-dismissible fade show" role="alert">
-            {{ session('mensaje') }}
+        {{ session('mensaje') }}
+  
         </div>
-        @endif
-        @if($distribucion->count())
-        <table class="table col-md-11 mx-5">
-            <thead>
-                <tr class="text-white bg-dark">
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Abreviatura</th>
-                    <th scope="col">orden</th>
-                    <th scope="col">Lista de propietarios</th>
-                    <th scope="col">Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @forelse($distribucion as $distribucio)
-                <tr>
-                    <td>{{$distribucio->nombre}}</td>
-                    <td>{{$distribucio->abreviatura}}</td>
-                    <td>{{$distribucio->orden}}</td>
-                    <td>
+    @endif
+
+    <div class="card">
+        <div class="card-body"> 
+    <table class="table table-hover dt-responsive nowrap " id="distribucion">
+        <thead>
+            <tr class="text-white bg-dark">
+                <th scope="col">Nombre</th>
+                <th scope="col">Abreviatura</th>
+                <th scope="col">orden</th>
+                <th scope="col">Lista de propietarios</th>
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+                
+        <tbody>
+            @if($distribucion->count())
+            @foreach($distribucion as $distribucio)
+            <tr>
+                <td>{{$distribucio->nombre}}</td>
+                <td>{{$distribucio->abreviatura}}</td>
+                <td>{{$distribucio->orden}}</td>
+                <td>
+                    <form>
                         <a href="{{route('distribucion.show',$distribucio->nombre)}}"  type="submit" name='lista' value="{{$distribucio->nombre}}" class="btn btn-info">Propiedades</a> 
-                    </td>
-                    <td>
-                        <a href="{{route('distribucion.edit',$distribucio->nombre)}}"  class="btn btn-dark btn-sm">Editar</a>
-                        <form action="{{route('distribucion.destroy',$distribucio->nombre)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
-                        </form>
-                    </td>
+                    </form>
+                </td>
+
+                <td>    
+
+                    <a href="{{route('distribucion.edit',$distribucio->nombre)}}"  class="btn btn-dark btn-sm">Editar</a>
+
+
+                    <form action="{{route('distribucion.destroy',$distribucio->nombre)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
+                    </form>
+
+
+                </td>
+
+            </tr>
+            @endforeach
+            @else
+                <tr>
+                    <td>No hay Registros</td>
                 </tr>
-                @empty
-                @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay Registros'])
-                @endforelse
-                @else
-                @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay Registros'])
-                @endif
-            </tbody>
-        </table>
+        @endif
+        </tbody>
+    </table>
+        </div>
     </div>
-</x-app-layout>
+@endsection
+
+
+@section('js')
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
+    <script>
+            $('#distribucion').DataTable({
+                resposive:true,
+                autoWidth: false,
+                "language": {
+                "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                "zeroRecords": "Nada encontrado  - disculpa",
+                "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+                "infoEmpty": "No records available",
+                "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                "search":'Buscar:',
+                "paginate": {
+                    "next" : "Siguiente",
+                    "previous": "Anterior"
+                }
+
+        }
+            });
+    </script>
+ @endsection    

@@ -50,8 +50,6 @@ class CreateMovimientosTable extends Migration {
 
             
 
-       
-
             $table->date('fechaValor');
             $table->string('concepto');
             $table->decimal('cantidad');

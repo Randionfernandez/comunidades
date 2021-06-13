@@ -1,4 +1,4 @@
-<x-app-layout>
+@extends('layauts/plantilla')
 
 @section('title','Ingresos')
 
@@ -53,5 +53,5 @@
     </div>
     
 </form>
-</x-app-layout>
+@endsection
 
