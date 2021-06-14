@@ -3,7 +3,7 @@
 @section('content')
 <div class="card uper" style="margin-bottom: 4%;">
 	<div class="card-header">
-		<h1 class=" bg-light text-gray-700 text-center">Configuración Propietario</h1>
+		<h1 class=" bg-light text-gray-700 text-center">Agregar Propietario</h1>
 	</div>
 
 	<div class="card-body">
@@ -49,43 +49,19 @@
 				@enderror
 			</div>
 
+
+
 			<div class="form-group">
-				<label for="password" class="form-label">Contraseña</label>
-				<input required type="password" id="password" name="password" class="form-control" value="{{ old('password') }}" placeholder="Introduce una clave de 9 dígitos..."/>
-				@error('password')
+				<label for="nif" class="form-label">nif</label>
+				<input requied type="text" id="nif" name="nif" class="form-control" value="{{old('nif')}}" required placeholder="Introduce el nif con letra..."/>
+				@error('nif')
 				<div class="alert alert-danger mb-2" role="alert">
 					{{ $message }}
 				</div>
 				@enderror
 			</div>
 
-			<div class="form-group">
-				<label for="role" class="form-label">Role</label>
-				<select  required class="form-select form-select-sm" id="role" name="role">
-					<option value="admin" {{ old("role") == "admin" ? "selected" : "" }}>{{ ("Administrador") }}</option>
-					<option value="invitado" {{ old("role") == "invitado" ? "selected" : "" }}>{{ ("Invitado") }}</option>
-				</select>
-			</div>
 
-			<div class="form-group">
-				<label for="dni" class="form-label">DNI</label>
-				<input requied type="text" id="DNI" name="dni" class="form-control" value="{{old('nif')}}" required placeholder="Introduce el dni con letra..."/>
-				@error('dni')
-				<div class="alert alert-danger mb-2" role="alert">
-					{{ $message }}
-				</div>
-				@enderror
-			</div>
-
-			<div class="form-group">
-				<label for="email" class="form-label">Email</label>
-				<input requied type="email" id="email" name="email" class="form-control" value=""/>
-				@error('email')
-				<div class="alert alert-danger mb-2" role="alert">
-					{{ $message }}
-				</div>
-				@enderror
-			</div>
 
 			<div class="form-group">
 				<label for="telefono" class="form-label">Telefono</label>
@@ -97,15 +73,7 @@
 				@enderror
 			</div>
 
-			<div class="form-group">
-				<label for="num_cta" class="form-label">Nº de Cuenta</label>
-				<input required type="text" id="num_cta" name="num_cta" class="form-control" value="{{old('num_cta')}}" placeholder="Introduce el IBAN..."/>
-				@error('num_cta')
-				<div class="alert alert-danger mb-2" role="alert">
-					{{ $message }}
-				</div>
-				@enderror
-			</div>
+
 			<div class="card-header my-4">
 				<h4 class="bg-light text-dark mt-3">Dirección para notificaciones</h4>
 			</div>
@@ -227,8 +195,47 @@
 			</div>
 
 
+			<div class="form-group">
+				<label for="role" class="form-label">Role</label>
+				<select  required class="form-select form-select-sm" id="role" name="role">
+					<option value="admin" {{ old("role") == "admin" ? "selected" : "" }}>{{ ("Administrador") }}</option>
+					<option value="invitado" {{ old("role") == "invitado" ? "selected" : "" }}>{{ ("Invitado") }}</option>
+				</select>
+			</div>
+				<div class="form-group">
+				<label for="num_cta" class="form-label">Nº de Cuenta</label>
+				<input required type="text" id="num_cta" name="num_cta" class="form-control" value="" placeholder="Introduce el IBAN..."/>
+				@error('num_cta')
+				<div class="alert alert-danger mb-2" role="alert">
+					{{ $message }}
+				</div>
+				@enderror
+			</div>
+			<div class="form-group">
+				<label for="email" class="form-label">Email</label>
+				<input requied type="email" id="email" name="email" class="form-control" value="" placeholder="Introduce el email..."/>
+				@error('email')
+				<div class="alert alert-danger mb-2" role="alert">
+					{{ $message }}
+				</div>
+				@enderror
+			</div>
+
+
+			<div class="form-group">
+				<label for="password" class="form-label">Contraseña</label>
+				<input required type="password" id="password" name="password" class="form-control" value="" placeholder="Introduce una clave de 9 dígitos..."/>
+				@error('password')
+				<div class="alert alert-danger mb-2" role="alert">
+					{{ $message }}
+				</div>
+				@enderror
+			</div>
+
+
 
 			<button type="submit" class="btn btn-secondary mt-3">Agregar</button>
+			<a href="/user" class="btn btn-secondary mt-3">Cancelar</a>
 		</form>
 	</div>
 </div>

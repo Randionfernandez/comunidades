@@ -35,12 +35,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 
 //propietarios-usuarios resource
-Route::resource('user',UserController::class)->names('user');
+// Route::resource('user',UserController::class)->names('user');
 
 
 //grupo de rutas listar usuarios,propietarios y comunidades con autentificación
 Route::middleware(['auth:sanctum','verified'])->group( function () {
 	//usuarios
+  Route::resource('user',UserController::class)->names('user');
 	Route::get('user/list',[UserController::class,'list'])->name('user.list');
   // Route::get('user/index',[UserController::class,'index'])->name('user.index');
 

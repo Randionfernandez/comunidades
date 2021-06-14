@@ -25,26 +25,27 @@ class UserRequest; extends FormRequest
     {
 
         return [
-           'name' => ['required','max:30'],
-           'apellido1' => ['required','max:30'],
-           'apellido2' => ['required','max:30'],
-           'dni' => ['required','max:9'],
-           'email' => ['required','max:30'],
-           'telefono' => ['required','max:9'],
-           'calle' => ['required','max:30'],
-           'portal' => ['required','max:4'],
-           'bloque' => ['required','max:4'],
-           'escalera' => ['required','max:4'],
-           'piso' => ['required|size:4'],
-           'puerta' => ['required|size:4'],
-           'cod_pais' => ['required','max:2'],
-           'cp' => ['required|oci_field_size(statement, field):5'],
-           'pais' => ['required','max:20'],
-           'provincia' => ['required','max:20'],
-           'localidad' => ['required','max:20'],
-           'num_cta' => ['required'],
-           'role' => ['required','max:9'],
+         'name' => ['required','max:30'],
+         'apellido1' => ['required','max:30'],
+         'apellido2' => ['required','max:30'],
+         'nif' => ['required','max:9'],
+         'telefono' => ['required','max:9'],
+         'calle' => ['required','max:30'],
+         'portal' => ['required','max:4'],
+         'bloque' => ['required','max:4'],
+         'escalera' => ['required','max:4'],
+         'piso' => ['required|size:4'],
+         'puerta' => ['required|size:4'],
+         'cod_pais' => ['required','max:2'],
+         'cp' => ['required|size:5'],
+         'pais' => ['required','max:20'],
+         'provincia' => ['required','max:20'],
+         'localidad' => ['required','max:20'],
+         'role' => ['required','max:9'],
+         'num_cta' => ['required|size:30'],
+         'email' => ['required','max:30'],
+         'password' => ['required','max:9'],
 
-        ];
-    }
+     ];
+ }
 }

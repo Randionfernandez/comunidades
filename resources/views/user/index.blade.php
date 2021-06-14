@@ -22,8 +22,8 @@
 					<th scope="col">@lang('Apellido 1')</th >
 					<th scope="col">@lang('Apellido 2')</th >
 					<th scope="col">@lang('Email')</th >
-					<th scope="col">@lang('Tipo')</th >
-					<th scope="col">@lang('Fecha')</th >
+					<th scope="col">@lang('Role')</th >
+					{{-- <th scope="col">@lang('Fecha')</th > --}}
 					<th scope="col">@lang('Nif')</th >
 					<th scope="col">@lang('Teléfono')</th >
 					<th scope="col">@lang('Calle')</th >
@@ -48,10 +48,10 @@
 					<td>{{$user->id}}</td>
 					<td>{{$user->name}}</td>
 					<td>{{$user->apellido1}}</td>
-					<td>{{$user->apelido2}}</td>
+					<td>{{$user->apellido2}}</td>
 					<td>{{$user->email}}</td>
-					<td>{{$user->tipo}}</td>
-					<td>{{$user->fecha}}</td>
+					<td>{{$user->role}}</td>
+					{{-- <td>{{$user->fecha}}</td> --}}
 					<td>{{$user->nif}}</td>
 					<td>{{$user->telefono}}</td>
 					<td>{{$user->calle}}</td>
@@ -66,17 +66,24 @@
 					<td>{{$user->provincia}}</td>
 					<td>{{$user->localidad}}</td>
 					<td>
-						<a class="btn btn-info">Editar</a>
-						<button class="btn btn-danger">Eliminar</button>
+						<a href="/user/{{$user->id}}/edit" class="btn btn-info">Editar</a>
+					</td>
+					<td>
+						<form class="" action="{{route('user.destroy',$user->id)}}" method="POST">
+							@csrf
+							@method('DELETE')
+							<button type="submit" class="btn btn-danger">Eliminar</button>
+						</form>
 					</td>
 				</tr>
 				@endforeach
 			</tbody>
 		</table>
-		{{-- <div id="pagination">
-			{{ $users->links() }}
-		</div> --}}
+
 	</div>
+
+{{ $users->links() }}
 </div>
+
 
 @endsection
