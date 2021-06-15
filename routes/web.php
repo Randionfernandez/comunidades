@@ -1,10 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PropietarioController;
-use App\Http\Controllers\PropiedadController;
+use App\Http\Controllers\ActaController;
 use App\Http\Controllers\ComunidadController;
+use App\Http\Controllers\ConvocatoriaController;
+use App\Http\Controllers\PropiedadController;
+use App\Http\Controllers\PropietarioController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +44,7 @@ Route::middleware('auth')->resource('/comunidades', ComunidadController::class)-
 Route::middleware(['auth:sanctum','verified'])->group( function () {
 	//usuarios
   Route::resource('user',UserController::class)->names('user');
-	Route::get('user/list',[UserController::class,'list'])->name('user.list');
+  Route::get('user/list',[UserController::class,'list'])->name('user.list');
   // Route::get('user/index',[UserController::class,'index'])->name('user.index');
 
    // Route::resource('user',\App\Http\Controllers\UserController);
@@ -57,6 +59,10 @@ Route::middleware(['auth:sanctum','verified'])->group( function () {
   Route::get('propiedad/create',[PropiedadController::class,'create'])->name('propiedad.create');
   Route::get('propiedad/index',[PropiedadController::class,'index'])->name('propiedad.index');
 
+  //actas
+  Route::resource('acta',ActaController::class)->names('acta');
+  //convocatorias
+  Route::resource('convocatoria',ConvocatoriaController::class)->names('convocatoria');
 
 
 });

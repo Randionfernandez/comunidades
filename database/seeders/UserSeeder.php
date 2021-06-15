@@ -18,14 +18,14 @@ class UserSeeder extends Seeder
     {
 
 
-      $user= User::create([
-        'name' => 'randion',
-        'email' => 'randion@cifpfbmoll.eu',
-        'nif' => '000000000',
-        'email_verified_at' => now(),
-        'password' => Hash::make('secretos'),
-        'remember_token' => Str::random(10),
-    ]);
+    //   $user= User::create([
+    //     'name' => 'randion',
+    //     'email' => 'randion@cifpfbmoll.eu',
+    //     'nif' => '000000000',
+    //     'email_verified_at' => now(),
+    //     'password' => Hash::make('secretos'),
+    //     'remember_token' => Str::random(10),
+    // ]);
     //   $user=User::create([
     //     'name' => 'ines',
     //     'nif' => '123456789',

@@ -76,7 +76,7 @@ public function create(/*$id*/)
         'email'=>$request->email,
         'password'=>$request->password,
     ]);
-      return redirect('/user');
+      return redirect('/user')->with('success', 'Propietario agregado');
   }
 
     /**
@@ -134,7 +134,7 @@ public function create(/*$id*/)
 
         $user->save();
 
-        return redirect('/user');
+        return redirect('/user')->with('success', 'Configuración actualizada correctamente');
 
     }
 
@@ -148,7 +148,7 @@ public function create(/*$id*/)
     {
         $user=User::findOrFail($id);
         $user->delete();
-        return redirect('/user');
+        return redirect('/user')->with('success', 'Propietario eliminado');
 
     }
 }

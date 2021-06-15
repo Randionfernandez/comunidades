@@ -2,15 +2,14 @@
 
 namespace App\Models;
 //modelos
-use App\Models\Role;
+use App\Models\Acta;
 use App\Models\Comunidad;
+use App\Models\Convocatoria;
 use App\Models\Propiedad;
-
+use App\Models\Role;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -93,6 +92,15 @@ class User extends Authenticatable
     {
        return $this->hasOne(Propiedad::class,'propiedad_id')->withTimestamps();
    }
+
+    public function acta() {
+        return $this->hasMany(Acta::class);
+    }
+
+     public function acta() {
+        return $this->hasMany(Convocatoria::class);
+    }
+
 
    //métodos
 
