@@ -1,14 +1,16 @@
-@extends('layauts/plantilla')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            @lang('Editar Movimientos')
+        </h2>
+        <hr>
+    </x-slot>
 
-@section('title','Editar Movimientos')
-@section('content')
-<h1 class="text-center">Editar Movimientos</h1>
+    @include('partials.session-status')
 
-
-
-<form action="{{ route('movimientos.update',$fran->id) }}" method="POST">
-    @csrf
-    @method('PUT')
-    @include('movimientos/__form')
-</form>
-@endsection
+    <form action="{{ route('movimientos.update',$fran->id) }}" method="POST">
+        @csrf
+        @method('PUT')
+        @include('movimientos/__form')
+    </form>
+</x-app-layout>

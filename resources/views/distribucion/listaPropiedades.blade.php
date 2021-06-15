@@ -1,10 +1,16 @@
-@extends('layauts/plantilla')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            @lang('Lista propietarios del grupo') {{__($propietarios[0]['nombre'])}}
+        </h2>
+        <hr>
+    </x-slot>
 @section('title','listaPropietarios')
 
 @section('content')
 
 
-<h1 class="text-center mb-4">Lista propietarios del grupo {{$propietarios[0]['nombre']}}</h1>
+<h1 class="text-center mb-4"></h1>
 
 <a href="{{route('distribucion.index')}}" class="btn btn-primary mx-5 mb-4">Volver</a>
 
@@ -45,6 +51,6 @@
     </tbody>
 </table>
 
-@endsection
+</x-app-layout>
 
 

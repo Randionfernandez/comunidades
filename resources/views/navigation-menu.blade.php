@@ -63,7 +63,7 @@
                             
                             @if (Session::has('activeCommunity'))
                                 <x-jet-dropdown-link class="bg-white" href="{{ route('comunidades.select', session()->get('activeCommunity')) }}">
-                                    @lang("Salir de la comunidad")
+                                    @lang("Cambiar de la comunidad")
                                 </x-jet-dropdown-link>
                             @endif
 

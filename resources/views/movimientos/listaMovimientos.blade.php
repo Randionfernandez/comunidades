@@ -1,10 +1,10 @@
-@extends('layauts/plantilla')
-
-@section('title','Listado de liquidaciones')
-
-@section('content')
-
-<h1 class="text-center mb-4">Listado de movimientos de {{$propiedad}}</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            @lang('Listado de movimientos de') {{__($propiedad)}}
+        </h2>
+        <hr>
+    </x-slot>
 
 <a href="{{route('ingreso.index')}}" class="btn btn-primary mx-5 mb-4">Volver</a>
 
@@ -45,4 +45,4 @@
 
         </tbody>
     </table>
-@endsection
+</x-app-layout>

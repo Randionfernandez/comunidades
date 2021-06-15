@@ -1,9 +1,10 @@
-@extends('layauts/plantilla')
-
-@section('title','Distrubucion')
-
-@section('content')
-<h1 class="text-center m-40">Distribucion</h1>
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            @lang('Distrubucion')
+        </h2>
+        <hr>
+    </x-slot>
 
 
 <form action="{{ route('distribucion.store') }}" method="POST">
@@ -11,4 +12,4 @@
 
    @include('distribucion/form')
 </form>
-@endsection 
+</x-app-layout>

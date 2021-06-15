@@ -1,15 +1,15 @@
-@extends('layauts/plantilla')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            @lang('Editar bancaria')
+        </h2>
+        <hr>
+    </x-slot>
+    <form action="{{ route('cuentasBancarias.update',$cuentasBancarias->id) }}" method="POST" >
+        @csrf
+        @method('PUT')
 
-@section('title','Cuenta Bancaria')
-
-@section('content')
-
-<h1 class="text-center">Editar bancaria</h1>
-
-@csrf
-@method('PUT')
-
-    @include('cuentaBancaria/form',['btn' => 'Editar'])
-</form>
-@endsection
+        @include('cuentaBancaria/form',['btn' => 'Editar'])
+    </form>
+</x-app-layout>
 

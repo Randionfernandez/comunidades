@@ -1,18 +1,16 @@
-@extends('layauts/plantilla')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            @lang('Editar Distribucion')
+        </h2>
+        <hr>
+    </x-slot>
 
-@section('title','Editar Distrubucion')
+    <form action="{{route('distribucion.update',$propietarios[0]['nombre'])}}" method="post">
+        @csrf
+        @method('PUT')
+        @include('distribucion/form')
+    </form>
+</x-app-layout>
 
 
-@section('content')
-<h1 class="text-center m-40">Editar Distribucion</h1>
-
-<form action="{{route('distribucion.update',$propietarios[0]['nombre'])}}" method="post">
-    @csrf
-    @method('PUT')
-    @include('distribucion/form')
-</form>
-@endsection
-
-
-
- 

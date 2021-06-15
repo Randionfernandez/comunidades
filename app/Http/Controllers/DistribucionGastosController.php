@@ -35,7 +35,9 @@ class DistribucionGastosController extends Controller
     public function create()
     {
        //
+       //$nw_propietarios = new Propiedades_User;
        $propietarios = Propiedades_User::all();
+       
        return view('distribucion/crearDistribucion',compact('propietarios'));
     }
 

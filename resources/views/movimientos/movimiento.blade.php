@@ -1,83 +1,78 @@
-@extends('layauts/plantilla')
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
+            @lang('Movimientos')
+        </h2>
+        <hr>
+    </x-slot>
 
-@section('title','Movimientos')
+    <a href="{{ route('movimientos.create') }}" class="btn btn-primary mx-5 mb-4">Crear</a>
 
-@section('content')
+    <a href="{{route('ingresos.index')}}" class="btn btn-primary  mb-4">Ingresos</a>
 
-<h1 class="text-center">Movimientos</h1>
+    <table class="table col-md-11 mx-5">
 
-<a href="{{ route('movimientos.create') }}" class="btn btn-primary mx-5 mb-4">Crear</a>
+        @include('partials.session-status')
 
-<a href="{{route('ingresos.index')}}" class="btn btn-primary  mb-4">Ingresos</a>
+        @if($movimientos->count() != 0)
+        <thead>
+            <tr class="text-white bg-dark">
+                <th scope="col">Id</th>
+                <th scope="col">Fecha Alta</th>
+                <th scope="col">Cuenta Corriente</th>
+                <th scope="col">Fecha Valor</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Observaciones</th>
+                <!--<th scope="col">Distribucion</th>-->
+                <th scope="col">Grupo</th>
+                <!--<th scope="col">Propiedad</th>-->
+                <th scope="col">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($movimientos as $movimiento)
+            <tr>
+                <td>{{$movimiento->id}}</td>
+                <td>{{$movimiento->fechaAlta}}</td>
+                <td>{{$movimiento->cuenta}}</td>
+                <td>{{$movimiento->fechaValor }}</td>
+                <td>{{$movimiento->concepto}} {{$movimiento->propiedad}}</td>
+                <td>{{$movimiento->cantidad}}</td>
+                <td>{{$movimiento->observaciones}}</td> 
+                <td>{{$movimiento->grupo}}</td>
+               <!-- <td>{{$movimiento->propiedad}}</td>-->
+                <td>
+                    @if ($movimiento->concepto != 'ingreso')              
+                    <a href="{{route('movimientos.edit',$movimiento->id)}}" class="btn btn-dark btn-sm">Editar</a>
 
-<table class="table col-md-11 mx-5">
+                    <form action="{{route('movimientos.destroy',$movimiento->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
+                    </form>
+                    @endif
+                </td>
+            </tr>
+            @endforeach
 
-  @if (session ('mensaje'))
-    <div class="alert alert-success  alert-dismissible fade show" role="alert">
-      {{ session('mensaje') }}
-      
-    </div>
-  @endif
-
-    <thead>
-        <tr class="text-white bg-dark">
-            <th scope="col">Id</th>
-            <th scope="col">Fecha Alta</th>
-            <th scope="col">Cuenta Corriente</th>
-            <th scope="col">Fecha Valor</th>
-            <th scope="col">Concepto</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Observaciones</th>
-            <!--<th scope="col">Distribucion</th>-->
-            <th scope="col">Grupo</th>
-            <!--<th scope="col">Propiedad</th>-->
-            <th scope="col">Opciones</th>
-        </tr>
-    </thead>
-    <tbody>
-      @if($movimientos->count() != 0)
-        @foreach($movimientos as $movimiento)
-        <tr>
-            <td>{{$movimiento->id}}</td>
-            <td>{{$movimiento->fechaAlta}}</td>
-            <td>{{$movimiento->cuenta}}</td>
-            <td>{{$movimiento->fechaValor }}</td>
-            <td>{{$movimiento->concepto}} {{$movimiento->propiedad}}</td>
-            <td>{{$movimiento->cantidad}}</td>
-            <td>{{$movimiento->observaciones}}</td> 
-            <td>{{$movimiento->grupo}}</td>
-           <!-- <td>{{$movimiento->propiedad}}</td>-->
-            <td>
-              @if ($movimiento->concepto != 'ingreso')              
-              <a href="{{route('movimientos.edit',$movimiento->id)}}" class="btn btn-dark btn-sm">Editar</a>
-
-              <form action="{{route('movimientos.destroy',$movimiento->id)}}" method="post">
-                @csrf
-                @method('DELETE')
-                <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
-              </form>
-              @endif
-               </td>
-        </tr>
-      @endforeach
-
-      <table class="table col-md-1 mx-5" >
-          <thead class="text-white bg-dark" >
+        <table class="table col-md-1 mx-5" >
+            <thead class="text-white bg-dark" >
             <th scope="col">Total</th>
-            
-          </thead>
 
-          <tbody >
+            </thead>
+
+            <tbody >
             <td>{{$total}}</td>
-          </tbody>
-      </table>
-      
+            </tbody>
+        </table>
 
-      @else
-      <tr>
-        <td>No hay registros que mostrar</td>
-      </tr>
-      @endif
-    </tbody>
-</table>
-@endsection
+
+        @else
+        <tr>
+            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not transactions created yet'])
+        </tr>
+        @endif
+        </tbody>
+    </table>
+</x-app-layout>
