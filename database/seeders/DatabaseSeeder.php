@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Comunidad;
 use App\Models\Comunidad_User;
+use App\Models\Junta;
 
 use App\Models\cuentasBancarias;
 use App\Models\gastos;
@@ -39,6 +40,7 @@ class DatabaseSeeder extends Seeder {
         $this->call([ProvinciaSeeder::class]);
         \App\Models\User::factory(15)->create();
         $this->call([ComunidadSeeder::class]);
+        $this->call([JuntaSeeder::class]);
 
         Comunidad_User::create([
             'comunidad_id' => 1,
