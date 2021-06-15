@@ -24,5 +24,9 @@ class Junta extends Model {
         'hora_segunda',
         'orden_dia'
     ];
+    
+    public function comunidad () {
+        return $this->belongsTo(Comunidad::class);
+    }
 
 }

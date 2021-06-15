@@ -59,5 +59,9 @@ class Comunidad extends Model {
         //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
         return $nombrePais = Comunidad::join('paises', 'comunidades.pais', '=', 'paises.id')->where('comunidades.id', '=', $id)->get()->pluck('nombrePais')->last();
     }
+    
+    public function juntas () {
+        return $this->hasMany(Junta::class);
+    }
 
 }
