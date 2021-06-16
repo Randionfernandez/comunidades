@@ -37,11 +37,11 @@
 
         </tbody>
         @empty
-        <div class="alert alert-danger">@lang('No hay proveedores para esta comunidad')</div>
+        @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay proveedores para esta comunidad'])
         @endforelse
     </table>
     @else
-    <h1>@lang('No hay proveedores para esta comunidad todavía')</h1>
+    @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay proveedores para esta comunidad'])
     @endif
 </x-app-layout>
 

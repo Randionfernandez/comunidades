@@ -58,7 +58,8 @@ class ProveedorController extends Controller {
             'tipos' => $this->tipos,
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
-            'paises' => $this->paises
+            'paises' => $this->paises,
+            'btndisabled' => ''
             ]);
     }
 
@@ -96,7 +97,8 @@ class ProveedorController extends Controller {
     public function show(Proveedor $proveedor) {
         //
         return view('proveedores.show', [
-            'proveedor' => $proveedor
+            'proveedor' => $proveedor,
+            'btndisabled' => 'd-none'
         ]);
     }
 
@@ -113,7 +115,8 @@ class ProveedorController extends Controller {
             'tipos' => $this->tipos,
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
-            'paises' => $this->paises
+            'paises' => $this->paises,
+            'btndisabled' => ''
         ]);
     }
 
@@ -140,10 +143,10 @@ class ProveedorController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function destroy(Proveedor $proveedor) {
+        
+        $this->activeCommunity = session()->get('activeCommunity');
 
         $this->msj = 'El proveedor fué eliminado con éxito';
-        
-        dd($this->activeCommunity);
 
         $proveedor->delete();
 

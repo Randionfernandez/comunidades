@@ -12,6 +12,7 @@ use \App\Models\Comunidad_User;
 use App\Models\TeamUser;
 use App\Models\Team;
 use App\Models\Pais;
+use App\Models\Tipo;
 
 
 
