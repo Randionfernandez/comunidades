@@ -128,7 +128,7 @@
         </div>
     </div>
 
-    <footer class="col-12 col-sm-12 col-lg-12 bg-white text-center text-black-50">
+    <footer class="col-12 col-sm-12 col-lg-12 bg-white text-center text-black-50 mt-3 fixed-bottom">
         {{ config('app.name') }} | Copyright @ {{ date('Y') }}
     </footer>
 </div>

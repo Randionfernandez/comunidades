@@ -9,10 +9,16 @@
 
     <x-slot name="css">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.8/css/fixedHeader.bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.8/css/fixedHeader.bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
     </x-slot>
+
+    @if(! session()->get('activeCommunity'))
+    @php $comunidades = $user->comunidades @endphp
+    @else
+    @php $comunidades = [session()->get('activeCommunity')] @endphp
+    @endif
 
     @include('partials.session-status')
 
@@ -34,13 +40,9 @@
                         <th class="col-span-2 text-center">@lang('Actions')</th>
                     </tr>
                 </thead>
-                @if(! session()->get('activeCommunity'))
-                @php $comunidades = $user->comunidades @endphp
-                @else
-                @php $comunidades = [session()->get('activeCommunity')] @endphp
-                @endif
-                @forelse($comunidades as $comunidad )
+                
                 <tbody>
+                    @forelse($comunidades as $comunidad )
                     <tr>
                         <td>{{$comunidad->denom}}</td>
                         <td>{{$comunidad->cif}}</td>
@@ -53,11 +55,11 @@
                             @endif
                             <x-jet-danger-button onclick="location.href ='{{ route('comunidades.show', $comunidad) }}'">{{__('Show')}}</x-jet-danger-button>
                         </td>
-                </tr>
+                    </tr>
+                    @empty
+                    @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not communities created yet'])
+                    @endforelse
                 </tbody>
-                @empty
-                @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not communities created yet'])
-                @endforelse
             </table>
         </div>
     </div>
@@ -68,31 +70,31 @@
     {{-- $comunidades->links() --}}
 
     <x-slot name="js">
-         <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    
-    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
-    <script>
-            $('#buscador').DataTable({
-                resposive:true,
-                autoWidth: false,
-                "language": {
-                "lengthMenu": "Mostrar _MENU_ registros por pagina",
-                "zeroRecords": "Nada encontrado  - disculpa",
-                "info": "Mostrando la pagina _PAGE_ de _PAGES_",
-                "infoEmpty": "No records available",
-                "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                "search":'Buscar:',
-                "paginate": {
-                    "next" : "Siguiente",
-                    "previous": "Anterior"
-                }
+        <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 
-        }
-            });
-    </script>
+        <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+        <script src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+        <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
+        <script>
+                    $('#buscador').DataTable({
+                    resposive:true,
+                            autoWidth: false,
+                            "language": {
+                            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                                    "zeroRecords": "Nada encontrado  - disculpa",
+                                    "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+                                    "infoEmpty": "No records available",
+                                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                                    "search":'Buscar:',
+                                    "paginate": {
+                                    "next" : "Siguiente",
+                                            "previous": "Anterior"
+                                    }
+
+                            }
+                    });
+        </script>
     </x-slot>
 </x-app-layout>
