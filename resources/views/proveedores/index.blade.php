@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            @lang('Listado de cuentas bancarias')
+            @lang('Proveedores')
         </h2>
         <hr>
     </x-slot>
@@ -34,9 +34,9 @@
                         <th class="col-span-2 text-center">@lang('Actions')</th>
                     </tr>
                 </thead>
-                @forelse($activeCommunity->proveedor as $proveedor)
+                
                 <tbody>
-
+                    @forelse($activeCommunity->proveedor as $proveedor)
                     <tr>
                         <td>{{$proveedor->nombre}}</td>
                         <td>{{$proveedor->cif}}</td>
@@ -45,15 +45,14 @@
                         <td>{{$proveedor->nombreTipo($proveedor->id)}}</td>
                         <td>{{$proveedor->nombreCalificacion($proveedor->id)}}</td>
                         <td class="flex">
-                <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
-                <x-jet-danger-button onclick="location.href ='{{ route('proveedores.show', $proveedor) }}'">{{__('Show')}}</x-jet-danger-button>
-                </td>
-                </tr>
-
+                            <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
+                            <x-jet-danger-button onclick="location.href ='{{ route('proveedores.show', $proveedor) }}'">{{__('Show')}}</x-jet-danger-button>
+                        </td>
+                    </tr>
+                    @empty
+                    @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay proveedores para esta comunidad'])
+                    @endforelse
                 </tbody>
-                @empty
-                @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay proveedores para esta comunidad'])
-                @endforelse
             </table>
         </div>
     </div>

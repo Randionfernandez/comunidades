@@ -31,8 +31,9 @@
                         <th class="col-span-2 text-center">@lang('actions')</th>
                     </tr>
                 </thead>
-                @forelse($juntas as $junta)
+
                 <tbody>
+                    @forelse($juntas as $junta)
                     <tr>
                         <td>{{$junta->denom_convocatoria}}</td>
                         <td>{{$junta->tipo}}</td>
@@ -41,14 +42,14 @@
                         <td>{{$junta->fecha_primera}}</td>
                         <td>{{$junta->hora_primera}}</td>
                         <td class="flex">
-                <x-jet-button class="mx-2" onclick="location.href ='{{ route('juntas.edit', $junta) }}'">{{ __('Edit') }}</x-jet-button>
-                <x-jet-danger-button onclick="location.href ='{{ route('juntas.show', $junta) }}'">{{__('Show')}}</x-jet-danger-button>
-                </td>
-                </tr>
+                            <x-jet-button class="mx-2" onclick="location.href ='{{ route('juntas.edit', $junta) }}'">{{ __('Edit') }}</x-jet-button>
+                            <x-jet-danger-button onclick="location.href ='{{ route('juntas.show', $junta) }}'">{{__('Show')}}</x-jet-danger-button>
+                        </td>
+                    </tr>
+                    @empty
+                    @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not juntas created yet'])
+                    @endforelse
                 </tbody>
-                @empty
-                @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not juntas created yet'])
-                @endforelse
             </table>
         </div>
     </div>
@@ -61,24 +62,24 @@
         <script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
         <script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
         <script>
-                        $(document).ready(function() {
-                        $('#buscador').DataTable({
-                        resposive: true,
-                                autoWidth: false,
-                                "language": {
-                                "lengthMenu": "Mostrar _MENU_ registros por pagina",
-                                        "zeroRecords": "Nada encontrado  - disculpa",
-                                        "info": "Mostrando la pagina _PAGE_ de _PAGES_",
-                                        "infoEmpty": "No records available",
-                                        "infoFiltered": "(filtrado de _MAX_ registros totales)",
-                                        "search": 'Buscar:',
-                                        "paginate": {
-                                        "next": "Siguiente",
-                                                "previous": "Anterior"
-                                        }
+                    $(document).ready(function() {
+                    $('#buscador').DataTable({
+                    resposive: true,
+                            autoWidth: false,
+                            "language": {
+                            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                                    "zeroRecords": "Nada encontrado  - disculpa",
+                                    "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+                                    "infoEmpty": "No records available",
+                                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                                    "search": 'Buscar:',
+                                    "paginate": {
+                                    "next": "Siguiente",
+                                            "previous": "Anterior"
+                                    }
 
-                                }
-                        }); });
+                            }
+                    }); });
         </script>
     </x-slot>
 
