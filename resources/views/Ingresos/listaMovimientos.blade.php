@@ -6,7 +6,7 @@
         <hr>
     </x-slot>
 
-    <a href="{{route('ingreso.index')}}" class="btn btn-primary mx-5 mb-4">Volver</a>
+    <a href="{{route('ingresos.index')}}" class="btn btn-danger mx-5 mb-4">Volver</a>
 
     <table class="table col-md-11 mx-5">
         <tr class="text-white bg-dark">
@@ -17,10 +17,7 @@
 
         </tr>
         <tbody>
-
             @if ($prueba)
-
-
             @foreach ($prueba as $dato) 
             <tr>
                 <!--{{dd($dato)}}-->

@@ -29,7 +29,7 @@ class MovimientosController extends Controller
         
     
         //return view('movimientos/movimientos',['movimientos' => $movimientos,'total' => $total,'ingresos' => $ingresos]);
-        return view('movimientos/movimiento',compact('movimientos','total','ingresos'));
+        return view('movimientos.index',compact('movimientos','total','ingresos'));
     }
 
     /**

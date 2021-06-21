@@ -9,7 +9,7 @@
     <a href="{{ route('movimientos.create') }}" class="btn btn-primary mx-5 mb-4">Crear</a>
 
     <!--<a href="{{route('ingreso.index')}}" class="btn btn-primary  mb-4">Ingresos</a>-->
-    <a href="{{route('ingreso.index')}}" class="btn btn-primary  mb-4">Ingresos</a>
+    <a href="{{route('ingreso.index')}}" class="btn btn-success  mb-4">Ingresos</a>
 
     <table class="table col-md-11 mx-5">
 
@@ -17,7 +17,6 @@
 
         <thead>
             <tr class="text-white bg-dark">
-                <th scope="col">Id</th>
                 <th scope="col">Fecha Alta</th>
                 <th scope="col">Cuenta Corriente</th>
                 <th scope="col">Fecha Valor</th>
@@ -31,49 +30,48 @@
             </tr>
         </thead>
         <tbody>
+            @php $divisa = '€ '; @endphp
             @if($movimientos->count())
-            @foreach($movimientos as $movimiento)
-            <tr>
-                <td>{{$movimiento->id}}</td>
-                <td>{{$movimiento->fechaAlta}}</td>
-                <td>{{$movimiento->cuenta}}</td>
-                <td>{{$movimiento->fechaValor }}</td>
-                <td>{{$movimiento->concepto}} {{$movimiento->propiedad}}</td>
-                <td>{{$movimiento->cantidad}}</td>
-                <td>{{$movimiento->observaciones}}</td>
-                <!--<td>{{$movimiento->distribucion}}</td>-->
-                <td>{{$movimiento->grupo}}</td>
-               <!-- <td>{{$movimiento->propiedad}}</td>-->
-                <td>
-                    @if ($movimiento->concepto != 'ingreso')              
-                    <a href="{{route('movimientos.edit',$movimiento->id)}}" class="btn btn-dark btn-sm">Editar</a>
+                @foreach($movimientos as $movimiento)
+                
+                <tr>
+                    <td>{{$movimiento->fechaAlta}}</td>
+                    <td>{{$movimiento->cuenta}}</td>
+                    <td>{{$movimiento->fechaValor }}</td>
+                    <td>{{$movimiento->concepto}} {{$movimiento->propiedad}}</td>
+                    <td>{{$movimiento->cantidad}} {{$divisa}} </td>
+                    <td>{{$movimiento->observaciones}}</td>
+                    <!--<td>{{$movimiento->distribucion}}</td>-->
+                    <td>{{$movimiento->grupo}}</td>
+                   <!-- <td>{{$movimiento->propiedad}}</td>-->
+                    <td>
+                        @if ($movimiento->concepto != 'ingreso')              
+                        <a href="{{route('movimientos.edit',$movimiento->id)}}" class="btn btn-dark btn-sm">Editar</a>
 
-                    <form action="{{route('movimientos.destroy',$movimiento->id)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
-                    </form>
-                    @endif
-                </td>
-            </tr>
-            @endforeach
+                        <form action="{{route('movimientos.destroy',$movimiento->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" class="btn btn-danger btn-sm" value="Eliminar">
+                        </form>
+                        @endif
+                    </td>
+                </tr>
+                @endforeach
 
-        <table class="table col-md-1 mx-5" >
-            <thead class="text-white bg-dark" >
-            <th scope="col">Total</th>
+                <table class="table col-md-1 mx-5" >
+                    <thead class="text-white bg-dark" >
+                    <th scope="col">Total</th>
 
-            </thead>
+                    </thead>
 
-            <tbody >
-            <td>{{$total}}</td>
-            </tbody>
-        </table>
+                    <tbody >
+                    <td>{{$total}}</td>
+                    </tbody>
+                </table>
 
 
         @else
-        <tr>
-            <td>@include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not transactions created yet'])</td>
-        </tr>
+            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not transactions created yet'])
         @endif
         </tbody>
     </table>

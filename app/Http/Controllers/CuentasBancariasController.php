@@ -18,9 +18,9 @@ class CuentasBancariasController extends Controller
     public function index()
     {
         //
-        $cuentasBancarias = cuentasBancarias::orderBy('id')->get();
+        $cuentasBancarias = cuentasBancarias::orderBy('id', 'asc')->get();
         //return view('cuentaBancaria/cuentaBancaria',['cuentasBancarias' => $cuentasBancarias]);
-        return view('cuentaBancaria/cuentaBancaria',compact('cuentasBancarias'));
+        return view('cuentaBancaria.index',compact('cuentasBancarias'));
     }
 
     /**
@@ -81,18 +81,17 @@ class CuentasBancariasController extends Controller
      * @param  \App\Models\cuentasBancarias  $cuentasBancarias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cuentasBancarias $cuentasBancarias,$id)
+    public function update(Request $request, cuentasBancarias $cuentasBancaria)
     {
         //
         $this->msj = 'La Cuenta Bancaria fué actualizada con éxito';
         
-        $cuentasBancaria = cuentasBancarias::findOrFail($id);
         $cuentasBancaria->nombre = $request->nombre;
         $cuentasBancaria->pais = $request->pais;
         $cuentasBancaria->dc = $request->dc;
         $cuentasBancaria->cuenta = $request->cuenta;
         $cuentasBancaria->bic = $request->bic;
-        $cuentasBancaria->save();
+        $cuentasBancaria->update();
 
         return redirect()->route('cuentasBancarias.index')->with('status', [$this->msj, 'alert-success']);
 
@@ -101,14 +100,14 @@ class CuentasBancariasController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\cuentasBancarias  $cuentasBancarias
+     * @param  \App\Models\cuentasBancarias  $cuentasBancaria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cuentasBancarias $cuentasBancarias,$id)
+    public function destroy(cuentasBancarias $cuentasBancaria)
     {
         //
         $this->msj = 'La Cuenta Bancaria fué eliminada con éxito';
-        cuentasBancarias::findOrFail($id)->delete();
+        cuentasBancarias::findOrFail($cuentasBancaria->id)->delete();
         return redirect()->route('cuentasBancarias.index')->with('status', [$this->msj, 'alert-danger']);
 
     }

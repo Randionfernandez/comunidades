@@ -23,7 +23,7 @@ class IngresosController extends Controller
     public function index()
     {
 
-        $ingresos = movimientos::where('concepto', '=', 'ingreso')->distinct('propiedad')->get();
+        $ingresos = Movimientos::where('concepto', '=', 'ingreso')->distinct('propiedad')->get();
         //  dd($ingresos);
         return view('ingresos/ingresos', compact('ingresos'));
     }
@@ -61,56 +61,50 @@ class IngresosController extends Controller
         $prueba = array();
         
         $gastos = distribucion_gastos::where('propiedad','=',$propiedad)->get(['coeficiente','nombre']);
-        $dineroPropiedad = movimientos::where('propiedad', '=', $propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
+        $dineroPropiedad = Movimientos::where('propiedad', '=', $propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
         $totalPropiedades = Propiedades_User::count('propiedad');
         $total = 0;   
         $gastosPropiedad = 0;
 
-        for ($i=0; $i < count($gastos) ; $i++) { 
-           $concepto = movimientos::where('grupo' ,'!=', $gastos[$i]['nombre'])->get();
+        for ($i=0; $i < count($gastos) ; $i++) {
+           $concepto = Movimientos::where('grupo' ,'!=', $gastos[$i]['nombre'])->get();
         
-           $unidad = movimientos::where('grupo','=',$gastos[$i]['nombre'])->get();
-           
+           $unidad = Movimientos::where('grupo','=',$gastos[$i]['nombre'])->get();
 
-            for ($j=0; $j < count($concepto) ; $j++) { 
+            for ($j=0; $j < count($concepto) ; $j++) {
 
-                for ($h=0; $h <  count($unidad) ; $h++) { 
- 
-                   if ($unidad->count()) {
+                for ($h=0; $h <  count($unidad) ; $h++) {
+                   if ($unidad->count() && $unidad[$h]->concepto != 'ingreso') {
                        $operacion =  sprintf("%01.2f",$concepto[$j]['cantidad'] / $totalPropiedades);
-
                    }
                }
 
-            
-                $coeficiente = distribucion_gastos::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad','=',$propiedad)->get('coeficiente');
+                $coeficiente = distribucion_gastos::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad','=',$propiedad)->get(['coeficiente', 'nombre']);
                 
-                if(empty($coeficiente) == false){
-                    $coeficiente = 0;
+                if($coeficiente[$j]->nombre == 'unidadRegistral'){
+                    $coeficiente[$j]->coeficiente = 0;
                 }
                 
-                if($coeficiente != 0){
-
-                for ($e=0; $e < count($coeficiente) ; $e++) { 
-
-                   // $operacion =  sprintf("%01.2f",$concepto[$j]['cantidad'] / $totalPropiedades);
-
-
-                    $operacion =  sprintf("%01.2f",($coeficiente[$e]['coeficiente']/100) * $concepto[$j]['cantidad']);   
+                if($coeficiente[$j]['coeficiente'] != 0){
                     
+                    for ($e=0; $e < count($coeficiente) ; $e++) {
+                        $operacion =  sprintf("%01.2f",($coeficiente[$e]['coeficiente']/100) * $concepto[$j]['cantidad']);
+                    }
+
+                    $restante = $dineroPropiedad - $operacion;
+                    $total += $dineroPropiedad - $operacion;
+
+                    array_push($prueba,[
+                        'ingresado' => $dineroPropiedad,
+                        'concepto' => $concepto[$j]['concepto'],
+                        'operacion' => $operacion ,
+                        'restante' => $restante
+                    ]);
+
+                    $dineroPropiedad -= $operacion ;
+                    $gastosPropiedad += $operacion;
                 }
-                
-                $restante = $dineroPropiedad - $operacion;
-                $total += $dineroPropiedad - $operacion;
-    
-                array_push($prueba,['ingresado' => $dineroPropiedad,
-                'concepto' => $concepto[$j]['concepto'],
-                'operacion' => $operacion ,'restante' => $restante] );
-    
-                $dineroPropiedad -= $operacion ;
-                $gastosPropiedad += $operacion;
-            }    
-        }
+            }
         }
     
         return view('ingresos/listaMovimientos',compact('propiedad','prueba','total'));

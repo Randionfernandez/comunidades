@@ -160,7 +160,7 @@ class DistribucionGastosController extends Controller
      */
     public function destroy($nombre)
     {
-        // 
+        //
         distribucion_gastos::where('nombre','=',$nombre)->delete();
         return redirect()->route('distribucion.index')->with('mensaje','Se ha elimino correctamente');
     }

@@ -9,7 +9,7 @@
         @csrf
         @method('PUT')
 
-        @include('cuentaBancaria/form',['btn' => 'Editar'])
+        @include('CuentaBancaria.form',['btn' => 'Editar'])
     </form>
 </x-app-layout>
 

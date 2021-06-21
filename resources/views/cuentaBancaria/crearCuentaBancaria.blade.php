@@ -12,7 +12,7 @@
 @csrf
 @method('POST')
 
-    @include('cuentaBancaria/form',['btn' => 'Guardar'])
+    @include('cuentaBancaria.form',['btn' => 'Guardar'])
 </form>
 </x-app-layout>
 

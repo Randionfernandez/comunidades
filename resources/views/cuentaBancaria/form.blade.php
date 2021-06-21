@@ -1,5 +1,5 @@
 <button class="btn btn-primary col-md-1 mx-4 mb-3">{{$btn}}</button>
-<a class="btn btn-primary col-md-1 mx-4 mb-3"  href="{{route('cuentasBancarias.index')}}">Volver</a>
+<a class="btn btn-danger col-md-1 mx-4 mb-3"  href="{{route('cuentasBancarias.index')}}">Volver</a>
 
    <div class="row mx-3">
         <div class="col-md-4 mb-4">
@@ -17,8 +17,8 @@
     <div class="row mx-3">
         <div class="col-md-2">
             <label for="pais" class="form-label">Pais</label>
-            <input type="text" class="form-control" name="pais" value="{{old('pais',$cuentasBancarias->pais)}}" placeholder="ES">
-            <label for="letras" class="form-label">2 letras</label>
+            <input type="text" class="form-control" name="pais" value="{{old('pais',$cuentasBancarias->pais)}}" placeholder="ESP">
+            <label for="letras" class="form-label">3 letras</label>
             
             @error('pais')
                 <br>

@@ -5,12 +5,8 @@
         </h2>
         <hr>
     </x-slot>
-    <h1 class="text-center"></h1>
 
-    <a href="{{route('movimientos.index')}}" class="btn btn-primary mx-5 mb-4">Volver</a>
-
-
-
+    <a href="{{route('movimientos.index')}}" class="btn btn-danger mx-5 mb-4">Volver</a>
 
     <table class="table col-md-11 mx-5">
         <thead class="text-white bg-dark">
@@ -36,7 +32,7 @@
                 <td>{{$ingreso->propiedad}}</td>
                 <td>
 
-                    <a href="{{route('ingreso.show',$ingreso->propiedad)}}" type="submit" name="propiedad" value="{{$ingreso->propiedad}}" class="btn btn-info">Gastos</a>
+                    <a href="{{route('ingresos.show', $ingreso->propiedad)}}" type="submit" name="propiedad" value="{{$ingreso->propiedad}}" class="btn btn-info">Gastos</a>
                 </td>
             </tr>
             @endforeach

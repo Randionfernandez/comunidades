@@ -11,6 +11,6 @@
     <form action="{{ route('movimientos.update',$fran->id) }}" method="POST">
         @csrf
         @method('PUT')
-        @include('movimientos/__form')
+        @include('movimientos._form')
     </form>
 </x-app-layout>

@@ -6,7 +6,7 @@
         <hr>
     </x-slot>
 
-    <form action="{{ route('ingreso.store') }}" method="POST">
+    <form action="{{ route('ingresos.store') }}" method="POST">
         @csrf
         @method('POST')
 

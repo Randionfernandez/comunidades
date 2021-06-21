@@ -11,22 +11,12 @@
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
 
-
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-        <!-- header para la parte de Rafa Maya -->
-        @if (isset($css))
-    <css>
-        <div>
-            {{ $css }}
-        </div>
-    </css>
-    @endif
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
 
     @livewireStyles
     <style>
@@ -47,7 +37,16 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
 </head>
 <body class="container-fluid p-0">
-<x-jet-banner />
+<x-jet-banner/>
+
+<!-- header para la parte de Rafa Maya -->
+        @if (isset($css))
+        <css>
+            <div>
+                {{ $css }}
+            </div>
+        </css>
+        @endif
 
 <div class="row m-0 vh-100">
     <!-- component aside navbar -->
@@ -68,27 +67,27 @@
                 <div id="collapseOne" class="accordion-collapse bg-black collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         @forelse($navDarkLinks as $link)
-                            @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
-                                @if(Session::has('activeCommunity') && $link['text'] == 'Comunidades')
-                                    <x-jet-responsive-nav-link href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
-                                        {{ __($link['text']) }}
-                                    </x-jet-responsive-nav-link>
-                                @else
-                                    <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
-                                        {{ __($link['text']) }}
-                                    </x-jet-responsive-nav-link>
-                                @endif
-                            @endif
-                            @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
-                                @forelse($navDarkCommunitiesLinks as $link2)
-                                    <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
-                                        {{ __($link2['text']) }}
-                                    </x-jet-responsive-nav-link>
-                                @empty
-                                @endforelse
-                            @endif
+                        @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
+                        @if(Session::has('activeCommunity') && $link['text'] == 'Comunidades')
+                        <x-jet-responsive-nav-link href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
+                            {{ __($link['text']) }}
+                        </x-jet-responsive-nav-link>
+                        @else
+                        <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
+                            {{ __($link['text']) }}
+                        </x-jet-responsive-nav-link>
+                        @endif
+                        @endif
+                        @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
+                        @forelse($navDarkCommunitiesLinks as $link2)
+                        <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
+                            {{ __($link2['text']) }}
+                        </x-jet-responsive-nav-link>
                         @empty
-                            <h1>El menú no esta disponible</h1>
+                        @endforelse
+                        @endif
+                        @empty
+                        <h1>El menú no esta disponible</h1>
                         @endforelse
                     </div>
                 </div>
@@ -129,7 +128,7 @@
         </div>
     </div>
 
-    <footer class="col-12 col-sm-12 col-lg-12 fixed-bottom bg-white text-center text-black-50 py-2 mt-4 shadow">
+    <footer class="col-12 col-sm-12 col-lg-12 bg-white text-center text-black-50">
         {{ config('app.name') }} | Copyright @ {{ date('Y') }}
     </footer>
 </div>

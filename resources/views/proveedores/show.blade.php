@@ -14,7 +14,7 @@
             @auth
             <div class="btn-group btn-group-sm">
                 <a class="btn btn-primary" href="{{ route('proveedores.edit', $proveedor) }}">@lang('Edit')</a>
-                <a class="btn btn-danger" href="#" onclick="document.getElementById('delete-proveedor').submit()">@lang('Eliminate')</a>
+                <a class="btn btn-danger" href="#" onclick="document.getElementById('delete-proveedor').submit()">@lang('Delete')</a>
             </div>
             <form class="d-none" id="delete-proveedor" method="POST" action="{{ route('proveedores.destroy', $proveedor) }}">
                 @csrf @method('DELETE')

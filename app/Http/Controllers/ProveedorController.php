@@ -85,7 +85,7 @@ class ProveedorController extends Controller {
             'updated_at' => $new_proveedor->updated_at
         ]);
 
-       return redirect()->route('proveedores.pasarComunidad', $this->activeCommunity)->with('status', [$this->msj, 'alert-primary']);
+       return redirect()->route('proveedores.pasarComunidad', $this->activeCommunity)->with('status', [$this->msj, 'alert-success']);
     }
 
     /**
@@ -133,7 +133,7 @@ class ProveedorController extends Controller {
 
         $proveedor->update($request->validated());
 
-        return redirect()->route('proveedores.show', $proveedor)->with('status', [$this->msj, 'alert-primary']);
+        return redirect()->route('proveedores.show', $proveedor)->with('status', [$this->msj, 'alert-success']);
     }
 
     /**

@@ -9,7 +9,7 @@
     <form action="{{route('distribucion.update',$propietarios[0]['nombre'])}}" method="post">
         @csrf
         @method('PUT')
-        @include('distribucion/form')
+        @include('distribucion.form')
     </form>
 </x-app-layout>
 

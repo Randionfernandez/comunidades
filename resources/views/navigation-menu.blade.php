@@ -28,7 +28,7 @@
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if (Session::has('activeCommunity'))
-                <h1 class="text-white">{{ Session::get('activeCommunity')->cif }}</h1>
+                <h5 class="text-white">{{ Session::get('activeCommunity')->denom }}</h5>
                 @endif
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">

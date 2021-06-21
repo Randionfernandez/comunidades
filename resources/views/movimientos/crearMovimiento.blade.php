@@ -9,6 +9,6 @@
     <form action="{{ route('movimientos.store') }}" method="POST">
         @csrf
         @method('POST')
-        @include('movimientos/__form')
+        @include('movimientos._form')
     </form>
 </x-app-layout>

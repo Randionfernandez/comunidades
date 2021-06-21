@@ -126,12 +126,13 @@
 
         <div class="row form-group">
 
-            <div class="col-md-4">
+            <!--<div class="col-md-4">
                 <div class="form-group">
                     <label for="pais">@lang('pais')</label>
                     <input class="form-control border-0 bg-light shadow-sm" type="text" name="pais" placeholder=@lang('pais') value="{{ old('pais', $proveedor->pais) }}" required>
                 </div>
             </div>
+            -->
 
             <select class="form-select col-4" aria-label="Default select example" name="pais">
                 <option value="0">@lang('Country')</option>
