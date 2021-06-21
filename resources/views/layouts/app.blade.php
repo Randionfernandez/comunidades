@@ -16,7 +16,12 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">      
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap5.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.1.8/css/fixedHeader.bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.7/css/responsive.bootstrap.min.css">
 
     @livewireStyles
     <style>
@@ -38,15 +43,6 @@
 </head>
 <body class="container-fluid p-0">
 <x-jet-banner/>
-
-<!-- header para la parte de Rafa Maya -->
-        @if (isset($css))
-        <css>
-            <div>
-                {{ $css }}
-            </div>
-        </css>
-        @endif
 
 <div class="row m-0 vh-100">
     <!-- component aside navbar -->
@@ -128,7 +124,7 @@
         </div>
     </div>
 
-    <footer class="col-12 col-sm-12 col-lg-12 bg-white text-center text-black-50 mt-3 fixed-bottom">
+    <footer class="col-12 col-sm-12 col-lg-12 bg-white text-center text-black-50 mt-3 pb-2 fixed-bottom">
         {{ config('app.name') }} | Copyright @ {{ date('Y') }}
     </footer>
 </div>
@@ -139,12 +135,33 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 <!-- script para la parte de Rafa Maya -->
-@if (isset($js))
-<js>
-    <div>
-        {{ $js }}
-    </div>
-</js>
-@endif
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
+<script src="https://cdn.datatables.net/fixedheader/3.1.8/js/dataTables.fixedHeader.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.7/js/responsive.bootstrap.min.js"></script>
+<script>
+    $('#buscador').DataTable({
+    resposive:true,
+            autoWidth: false,
+            "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+                    "zeroRecords": "Nada encontrado  - disculpa",
+                    "info": "Mostrando la pagina _PAGE_ de _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                    "search":'Buscar:',
+                    "paginate": {
+                    "next" : "Siguiente",
+                            "previous": "Anterior"
+                    }
+
+            }
+    });
+</script>
+
 </body>
 </html>
