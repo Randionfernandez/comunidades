@@ -15,32 +15,37 @@
         @enderror
     </div>
 
-    <select class="form-select col-4" aria-label="Default select example" name="cuenta">
-        <option>@lang('cuenta')</option>
-        @forelse($movimientos as $movimiento1)
-        @if ( old('cuenta', $movimiento1->cuenta) == $fran->cuenta )
-        <option value="{{ $movimiento1->cuenta }}" selected > {{ $movimiento1->cuenta}} </option>
-        @else
-        <option value="{{ $movimiento1->cuenta }}"> {{ $movimiento1->cuenta}} </option>
-        @endif
-        @empty
-        <p>vacio</p>
-        @endforelse
-    </select>
+    <div class="col-md-4 mb-2" >
+        <label for="cuenta" class="form-label">@lang('Cuenta')</label>
+        <select class="form-select" aria-label="Default select example" name="cuenta">
+            <option>@lang('Cuenta')</option>
+            @forelse($movimientos as $movimiento1)
+            @if ( old('cuenta', $movimiento1->cuenta) == $fran->cuenta )
+            <option value="{{ $movimiento1->cuenta }}" selected > {{ $movimiento1->cuenta}} </option>
+            @else
+            <option value="{{ $movimiento1->cuenta }}"> {{ $movimiento1->cuenta}} </option>
+            @endif
+            @empty
+            <p>vacio</p>
+            @endforelse
+        </select>
+    </div>
 
-
-    <select class="form-select col-4" aria-label="Default select example" name="grupo">
-        <option>@lang('grupo')</option>
-        @forelse($grupos as $grupo)
-        @if ( old('grupo', $grupo->nombre) == $fran->grupo)
-        <option value="{{ $grupo->nombre }}" selected > {{ $grupo->nombre}} </option>
-        @else
-        <option value="{{ $grupo->nombre }}"> {{ $grupo->nombre}} </option>
-        @endif
-        @empty
-        <p>vacio</p>
-        @endforelse
-    </select>
+    <div class="col-md-4 mb-2" >
+        <label for="grupo" class="form-label">@lang('Group')</label>
+        <select class="form-select" aria-label="Default select example" name="grupo">
+            <option>@lang('Group')</option>
+            @forelse($grupos as $grupo)
+            @if ( old('grupo', $grupo->nombre) == $fran->grupo)
+            <option value="{{ $grupo->nombre }}" selected > {{ $grupo->nombre}} </option>
+            @else
+            <option value="{{ $grupo->nombre }}"> {{ $grupo->nombre}} </option>
+            @endif
+            @empty
+            <p>vacio</p>
+            @endforelse
+        </select>
+    </div>
 
     <div class="col-md-4">
         <label for="fechaValor" class="form-label">Fecha valor</label>

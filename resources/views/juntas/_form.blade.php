@@ -1,9 +1,13 @@
 @csrf
 
-<div class="inline-flex">
-    <x-jet-button class="mx-2 {{$btndisabled}}">{{ __($btnText1) }}</x-jet-button>
-    <x-jet-danger-button class="{{$btndisabled}}"  onclick="location.href ='{{ route('juntas.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
-</div>
+@if($btndisabled != 'disabled')
+    <div class="inline-flex">
+        <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
+        <x-jet-danger-button onclick="location.href ='{{ route('juntas.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
+    </div>
+@else
+    @include('partials.btneditdeleteback', ['route1' => 'juntas.edit', 'comunidad' => $junta, 'route2' => 'juntas.index', 'route3' => 'juntas.destroy'])
+@endif
 
 <x-jet-validation-errors></x-jet-validation-errors>
 
@@ -50,31 +54,18 @@
         <hr>
     </div>
     <div class="panel-body">
-        <select class="form-select col-4" aria-label="Default select example" name="tipo">
-                <option value="0">@lang('Tipos')</option>
-                @forelse($tipos as $tipo)
-                @if ( old('tipo', $junta->tipo) == $tipo )
-                <option value="{{ $tipo }}" selected > {{ $tipo }} </option>
-                @else
-                <option value="{{ $tipo }}"> {{ $tipo }} </option>
-                @endif
-                @empty
-                <p>vacio</p>
-                @endforelse
-            </select>
-        <div class="row form-group">
-            <!--<div class="col-md-12">
-                 <div class="form-group">
-                    <label for="logo">@lang('Orden del Dia')</label>
-                    <input type="file" id="avatar" class="form-control border-0 bg-light shadow-sm" name="orden_dia" {{$btndisabled}}>
-                </div>-->
-        </div>
-        <!--<div class="col-md-12">
-            <div class="form-group">
-                <label for="orden_dia">@lang('Orden del dia')</label>
-                <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="name" rows="5" cols="10" " name="orden_dia" placeholder=@lang('Orden_del_Dia') value="{{ old('orden_dia', $junta->orden_dia) }}" {{$btndisabled}}> </textarea>
-            </div>
-        </div>-->
+        <select class="form-select col-4" aria-label="Default select example" name="tipo" {{$btndisabled}}>
+            <option value="0">@lang('Tipos')</option>
+            @forelse($tipos as $tipo)
+            @if ( old('tipo', $junta->tipo) == $tipo )
+            <option value="{{ $tipo }}" selected > {{ $tipo }} </option>
+            @else
+            <option value="{{ $tipo }}"> {{ $tipo }} </option>
+            @endif
+            @empty
+            <p>vacio</p>
+            @endforelse
+        </select>
         <div class="form-group">
             <label for="orden_dia">@lang('orden_dia')</label>
             <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="orden_dia" placeholder=@lang('orden_dia') value="{{ old('orden_dia', $junta->orden_dia) }}" {{$btndisabled}} required>

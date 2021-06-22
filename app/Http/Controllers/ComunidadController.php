@@ -116,7 +116,7 @@ class ComunidadController extends Controller {
             'comunidad' => $comunidad,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
-            'btndisabled' => 'd-none',
+            'btndisabled' => 'disabled',
             'paises' => $this->paises
         ]);
     }

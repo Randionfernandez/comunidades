@@ -10,7 +10,7 @@
     @include('partials.session-status')
 
     <x-jet-button onclick="location.href ='{{ route('juntas.create') }}'">@lang('New')</x-jet-button>
-
+    @if ($juntas->count() > 0)
     <div class="card">
         <div class="card-body">
             <table class="table table-hover dt-responsive nowrap" id="buscador">
@@ -47,4 +47,7 @@
             </table>
         </div>
     </div>
+    @else
+        @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not juntas created yet'])
+    @endif
 </x-app-layout>

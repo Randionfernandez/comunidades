@@ -1,18 +1,13 @@
 <x-app-layout>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 col-sm-10 col-lg-10 mx-auto">
+    @include('partials.plantillashoweditfirst')
+        <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('comunidades.update', $comunidad) }}">
+            @csrf @method('PATCH')
 
-                <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('comunidades.update', $comunidad) }}">
-                    @csrf @method('PATCH')
+            <h1 class="display-4"> {{ __($title) }} </h1>
+            <hr>
 
-                    <h1 class="display-4"> {{ __($title) }} </h1>
-                    <hr>
+            @include('comunidades._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
 
-                    @include('comunidades._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
-
-                </form>
-            </div>
-        </div>
-    </div>
+        </form>
+    @include('partials.plantillashoweditend')
 </x-app-layout>

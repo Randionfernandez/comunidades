@@ -1,9 +1,13 @@
 @csrf
 
+@if($btndisabled != 'disabled')
 <div class="inline-flex">
-    <x-jet-button class="mx-2 {{$btndisabled}}">{{ __($btnText1) }}</x-jet-button>
-    <x-jet-danger-button class="{{$btndisabled}}"  onclick="location.href ='{{ route('comunidades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
+    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
+    <x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
 </div>
+@else
+    @include('partials.btneditdeleteback', ['route1' => 'comunidades.edit', 'comunidad' => $comunidad, 'route2' => 'comunidades.index', 'route3' => 'comunidades.destroy'])
+@endif
 
 <x-jet-validation-errors></x-jet-validation-errors>
 
@@ -58,18 +62,21 @@
                 </div>
             </div>
 
-            <select class="form-select col-4" aria-label="Default select example" name="pais">
-                <option value="0">@lang('Country')</option>
-                @forelse($paises as $pais)
-                @if ( old('pais', $comunidad->pais) == $pais->id )
-                <option value="{{ $pais->id }}" selected > {{ $pais->nombrePais }} </option>
-                @else
-                <option value="{{ $pais->id }}"> {{ $pais->nombrePais }} </option>
-                @endif
-                @empty
-                <p>vacio</p>
-                @endforelse
-            </select>
+            <div class="col-md-3 mb-2" >
+                <label for="cuenta" class="form-label">@lang('Cuenta')</label>
+                <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
+                    <option value="0">@lang('Country')</option>
+                    @forelse($paises as $pais)
+                    @if ( old('pais', $comunidad->pais) == $pais->id )
+                    <option value="{{ $pais->id }}" selected > {{ $pais->nombrePais }} </option>
+                    @else
+                    <option value="{{ $pais->id }}"> {{ $pais->nombrePais }} </option>
+                    @endif
+                    @empty
+                    <p>vacio</p>
+                    @endforelse
+                </select>
+            </div>
 
             <div class="col-md-3">
                 <div class="form-group">

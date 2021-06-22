@@ -89,7 +89,7 @@ class JuntaController extends Controller
             'tipos' => $this->tipos,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
-            'btndisabled' => 'd-none'
+            'btndisabled' => 'disabled'
         ]);
     }
 

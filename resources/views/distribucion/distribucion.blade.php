@@ -7,10 +7,8 @@
     </x-slot>
 
     <div class="position-relative">
-        <form action="{{ url('distribucion/create') }}">
-            @csrf 
 
-            <button class="btn btn-primary mx-5 mb-4">Crear</button>
+            <x-jet-button onclick="location.href ='{{ route('distribucion.create') }}'">@lang('New')</x-jet-button>
 
             @include('partials.session-status')
 
@@ -64,7 +62,6 @@
                 <td>No hay Registros</td>
             </tr>
             @endif
-        </form>
     </div>
 
 </x-app-layout> 
