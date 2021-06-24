@@ -84,7 +84,7 @@ class JuntaController extends Controller
      */
     public function show(Junta $junta)
     {
-        return view('juntas.alt_show', [
+        return view('juntas.show', [
             'junta' => $junta,
             'tipos' => $this->tipos,
             'btnText1' => 'Show', 

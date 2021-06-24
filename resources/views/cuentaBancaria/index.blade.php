@@ -5,10 +5,10 @@
         </h2>
         <hr>
     </x-slot>
+    
+    @include('partials.session-status')
 
     <x-jet-button onclick="location.href ='{{ route('cuentasBancarias.create') }}'">@lang('New')</x-jet-button>
-
-    @include('partials.session-status')
 
     <div class="card">
         <div class="card-body">
@@ -34,7 +34,7 @@
                         <td>{{ $cuentaBancaria-> bic }}</td>
                         <td class="flex">
                             <x-jet-button class="mx-2" onclick="location.href ='{{ route('cuentasBancarias.edit', $cuentaBancaria) }}'">{{ __('Edit') }}</x-jet-button>
-                            <x-jet-danger-button type="submit" href="#" onclick="document.getElementById('delete-cuenta').submit()">{{__('Delete')}}</x-jet-danger-button>
+                            <x-jet-danger-button type="submit" onclick="location.href ='{{ route('cuentasBancarias.show', $cuentaBancaria) }}'">@lang('Show')</x-jet-danger-button>
                         </td>
                         <form class="d-none" id="delete-cuenta" action="{{route('cuentasBancarias.destroy', $cuentaBancaria)}}" method="post">
                             @csrf

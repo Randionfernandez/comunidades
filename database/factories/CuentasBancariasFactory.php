@@ -24,7 +24,7 @@ class CuentasBancariasFactory extends Factory
         return [
             "nombre"  => $this -> faker->name(),
             //"pais" => $this -> faker -> countryCode(),
-            "pais" => 'ES',
+            "pais" => 'ESP',
             "dc" => $this -> faker -> numberBetween(10,90),
             "cuenta" => $this -> faker -> bankAccountNumber(),
             "bic" => $this -> faker -> swiftBicNumber()

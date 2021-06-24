@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\cuentasBancarias;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use App\Http\Requests\StoreCuentaBancariaRequest;
 use App\Http\Requests\StoreCuentaBancaria;
+use Illuminate\Http\Request;
 
 class CuentasBancariasController extends Controller
 {
@@ -32,7 +32,14 @@ class CuentasBancariasController extends Controller
     {
         //
         $cuentasBancarias = new cuentasBancarias;
-        return view('cuentaBancaria/crearCuentaBancaria',compact('cuentasBancarias'));
+        
+        return view('cuentaBancaria.create',[
+            'cuentasBancarias' => $cuentasBancarias,
+            'title' => 'Create Cuenta Bancaria',
+            'btnText1' => 'Save', 
+            'btnText2' => 'Cancel', 
+            'btndisabled' => ''            
+            ]);
     }
 
     /**
@@ -46,7 +53,7 @@ class CuentasBancariasController extends Controller
         //
         $this->msj = 'La Cuenta Bancaria fué creada con éxito';
         
-        cuentasBancarias::create($request->all());
+        cuentasBancarias::create($request->validated());
         return redirect('/cuentasBancarias')->with('status', [$this->msj, 'alert-success']);
     }
 
@@ -59,6 +66,12 @@ class CuentasBancariasController extends Controller
     public function show(cuentasBancarias $cuentasBancarias)
     {
         //
+        return view('cuentaBancaria.show', [
+            'cuentasBancarias' => $cuentasBancarias,
+            'btnText1' => 'Show', 
+            'btnText2' => 'Back', 
+            'btndisabled' => 'disabled'
+        ]);
     }
 
     /**
@@ -67,11 +80,16 @@ class CuentasBancariasController extends Controller
      * @param  \App\Models\cuentasBancarias  $cuentasBancarias
      * @return \Illuminate\Http\Response
      */
-    public function edit(cuentasBancarias $cuentasBancarias,$id)
+    public function edit(cuentasBancarias $cuentasBancarias)
     {
         //
-        $cuentasBancarias = cuentasBancarias::findOrFail($id);
-        return view('cuentaBancaria/editarCuentasBancarias',compact('cuentasBancarias'));
+        return view('cuentaBancaria.edit',[
+            'cuentasBancarias' => $cuentasBancarias,
+            'title' => 'Edit Cuenta Bancaria',
+            'btnText1' => 'Update',
+            'btnText2' => 'Cancel',
+            'btndisabled' => ''
+            ]);
     }
 
     /**
@@ -81,17 +99,12 @@ class CuentasBancariasController extends Controller
      * @param  \App\Models\cuentasBancarias  $cuentasBancarias
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, cuentasBancarias $cuentasBancaria)
+    public function update(cuentasBancarias $cuentasBancarias, StoreCuentaBancaria $request)
     {
         //
         $this->msj = 'La Cuenta Bancaria fué actualizada con éxito';
         
-        $cuentasBancaria->nombre = $request->nombre;
-        $cuentasBancaria->pais = $request->pais;
-        $cuentasBancaria->dc = $request->dc;
-        $cuentasBancaria->cuenta = $request->cuenta;
-        $cuentasBancaria->bic = $request->bic;
-        $cuentasBancaria->update();
+        $cuentasBancarias->update($request->validated());
 
         return redirect()->route('cuentasBancarias.index')->with('status', [$this->msj, 'alert-success']);
 
@@ -103,11 +116,11 @@ class CuentasBancariasController extends Controller
      * @param  \App\Models\cuentasBancarias  $cuentasBancaria
      * @return \Illuminate\Http\Response
      */
-    public function destroy(cuentasBancarias $cuentasBancaria)
+    public function destroy(cuentasBancarias $cuentasBancarias, Request $request)
     {
         //
         $this->msj = 'La Cuenta Bancaria fué eliminada con éxito';
-        cuentasBancarias::findOrFail($cuentasBancaria->id)->delete();
+        $cuentasBancarias->delete();
         return redirect()->route('cuentasBancarias.index')->with('status', [$this->msj, 'alert-danger']);
 
     }

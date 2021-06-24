@@ -3,16 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Validation\Rule;
 use App\Http\Requests\SaveComunidadRequest;
 use App\Models\Comunidad;
-use App\Models\User;
 use \App\Models\Comunidad_User;
-use App\Models\TeamUser;
-use App\Models\Team;
 use App\Models\Pais;
-use App\Models\Tipo;
 
 
 
@@ -57,7 +51,7 @@ class ComunidadController extends Controller {
     public function create() {
 
         return view('comunidades.create', [
-            'comunidad' => new Comunidad, 
+            'comunidad' => new Comunidad,
             'title' => 'New Community', 
             'btnText1' => 'Save', 
             'btnText2' => 'Cancel', 
@@ -112,7 +106,7 @@ class ComunidadController extends Controller {
      */
     public function show(Comunidad $comunidad) {
 
-        return view('comunidades.alt_show', [
+        return view('comunidades.show', [
             'comunidad' => $comunidad,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 

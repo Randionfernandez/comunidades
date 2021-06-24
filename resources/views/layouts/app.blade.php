@@ -149,7 +149,7 @@
             autoWidth: false,
             "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
-                    "zeroRecords": "Nada encontrado  - disculpa",
+                    "zeroRecords": "No hay resultados.",
                     "info": "Mostrando la pagina _PAGE_ de _PAGES_",
                     "infoEmpty": "No records available",
                     "infoFiltered": "(filtrado de _MAX_ registros totales)",

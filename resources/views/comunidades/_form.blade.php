@@ -6,7 +6,7 @@
     <x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
 </div>
 @else
-    @include('partials.btneditdeleteback', ['route1' => 'comunidades.edit', 'comunidad' => $comunidad, 'route2' => 'comunidades.index', 'route3' => 'comunidades.destroy'])
+    @include('partials.btneditdeleteback', ['route1' => 'comunidades.edit', 'variable' => $comunidad, 'route2' => 'comunidades.index', 'route3' => 'comunidades.destroy'])
 @endif
 
 <x-jet-validation-errors></x-jet-validation-errors>

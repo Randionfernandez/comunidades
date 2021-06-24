@@ -22,7 +22,7 @@ class CuentaFactory extends Factory
     public function definition()
     {
         return [
-            'iban' => $this->faker->iban('ES'),
+            'iban' => $this->faker->iban('ESP'),
             'fecha_apertura' => $this->faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
             'bic' => $this->faker->swiftBicNumber(),
             

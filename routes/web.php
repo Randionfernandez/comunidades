@@ -33,7 +33,7 @@ Route::resource('distribucion', 'DistribucionGastosController');
 
 //Route::resource('distribucion', GastoController::class);
 
-Route::resource('cuentasBancarias', CuentasBancariasController::class);
+Route::resource('cuentasBancarias', CuentasBancariasController::class)->parameters(['cuentasBancarias' => 'cuentasBancarias']);
 
 Route::resource('liquidacion', LiquidacionController::class);
 
