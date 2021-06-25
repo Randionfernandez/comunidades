@@ -41,7 +41,7 @@ class ComunidadRequest extends FormRequest
             'cp' => 'required|size:5',
             'pais' => 'string|nullable',
             'logo' => 'nullable',
-            'observaciones' => 'string||nullable',
+            'observaciones' => 'string|nullable',
     ];
     }
     

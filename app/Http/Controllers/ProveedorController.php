@@ -59,7 +59,8 @@ class ProveedorController extends Controller {
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
             'paises' => $this->paises,
-            'btndisabled' => ''
+            'btndisabled' => '',
+            'title' => 'New Provider'
             ]);
     }
 
@@ -98,7 +99,13 @@ class ProveedorController extends Controller {
         //
         return view('proveedores.show', [
             'proveedor' => $proveedor,
-            'btndisabled' => 'd-none'
+            'btnText1' => 'Edit',
+            'btnText2' => 'Back',
+            'btndisabled' => 'disabled',
+            'tipos' => $this->tipos,
+            'calificaciones' => $this->calificaciones,
+            'figuras' => $this->figuras,
+            'paises' => $this->paises
         ]);
     }
 

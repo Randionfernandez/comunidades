@@ -25,7 +25,7 @@ class StoreCuentaBancariaRequest extends FormRequest
     {
         return [
             'nombre' => 'required | string',
-            'pais' => 'required | alpha | size:3',
+            'pais' => 'exists:paises,id',
             'dc' => 'required | digits:2',
             'cuenta' => 'required | min:24',
             'bic' => 'required | regex:([A-Z]+)'

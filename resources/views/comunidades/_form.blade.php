@@ -73,7 +73,7 @@
                     <option value="{{ $pais->id }}"> {{ $pais->nombrePais }} </option>
                     @endif
                     @empty
-                    <p>vacio</p>
+                    <p>No hay paises</p>
                     @endforelse
                 </select>
             </div>
@@ -95,13 +95,13 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="logo">@lang('logo')</label>
-                    <input type="file" id="avatar" class="form-control border-0 bg-light shadow-sm" name="logo" {{$btndisabled}}>
+                    <input type="file" id="avatar" class="form-control border-0 bg-light shadow-sm" name="logo" value="{{ old('logo', $comunidad->logo) }}" {{$btndisabled}}>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="observaciones">@lang('observaciones')</label>
-                    <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="name" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{ old('observaciones', $comunidad->observaciones) }}" {{$btndisabled}}> </textarea>
+                    <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="observaciones" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{ old('observaciones', $comunidad->observaciones) }}" {{$btndisabled}}> {{ old('observaciones', $comunidad->observaciones) }} </textarea>
                 </div>
             </div>
         </div>

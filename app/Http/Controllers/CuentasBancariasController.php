@@ -6,10 +6,13 @@ use App\Models\cuentasBancarias;
 use App\Http\Requests\StoreCuentaBancariaRequest;
 use App\Http\Requests\StoreCuentaBancaria;
 use Illuminate\Http\Request;
+use App\Models\Pais;
 
 class CuentasBancariasController extends Controller
 {
     private $msj = '';
+    private $paises = Pais::class;
+    
     /**
      * Display a listing of the resource.
      *
@@ -31,6 +34,8 @@ class CuentasBancariasController extends Controller
     public function create()
     {
         //
+        
+        $this->paises = Pais::all();
         $cuentasBancarias = new cuentasBancarias;
         
         return view('cuentaBancaria.create',[
@@ -38,7 +43,8 @@ class CuentasBancariasController extends Controller
             'title' => 'Create Cuenta Bancaria',
             'btnText1' => 'Save', 
             'btnText2' => 'Cancel', 
-            'btndisabled' => ''            
+            'btndisabled' => '',
+            'paises' => $this->paises
             ]);
     }
 
@@ -66,11 +72,13 @@ class CuentasBancariasController extends Controller
     public function show(cuentasBancarias $cuentasBancarias)
     {
         //
+        $this->paises = Pais::all();
         return view('cuentaBancaria.show', [
             'cuentasBancarias' => $cuentasBancarias,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
-            'btndisabled' => 'disabled'
+            'btndisabled' => 'disabled',
+            'paises' => $this->paises
         ]);
     }
 
@@ -83,12 +91,14 @@ class CuentasBancariasController extends Controller
     public function edit(cuentasBancarias $cuentasBancarias)
     {
         //
+        $this->paises = Pais::all();
         return view('cuentaBancaria.edit',[
             'cuentasBancarias' => $cuentasBancarias,
             'title' => 'Edit Cuenta Bancaria',
             'btnText1' => 'Update',
             'btnText2' => 'Cancel',
-            'btndisabled' => ''
+            'btndisabled' => '',
+            'paises' => $this->paises
             ]);
     }
 

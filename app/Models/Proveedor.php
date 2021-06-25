@@ -60,7 +60,7 @@ class Proveedor extends Model {
         return $nombreTipo = Proveedor::join('tipos', 'proveedores.tipo', '=', 'tipos.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreTipo')->last();
     }
 
-     public function nombreCalificacion($id){
+    public function nombreCalificacion($id){
         return $nombreCalificacion = Proveedor::join('calificaciones', 'proveedores.calificacion', '=', 'calificaciones.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreCalificacion')->last();
     }
 }

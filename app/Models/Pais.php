@@ -14,10 +14,16 @@ class Pais extends Model
     protected $table = 'paises';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'nombrePais'
+        'nombrePais',
+        'abreviaturaPais',
+        'codigoANSIPais'
     ];
     
     public function comunidades() {
         return $this->hasMany(Comunidad::class, 'nombrePais', 'id')->withTimestamps();
+    }
+    
+    public function cuentasBancarias() {
+        return $this->hasMany(CuentasBancarias::class, 'abreviaturaPais', 'id')->withTimestamps();
     }
 }

@@ -40,7 +40,7 @@ class SaveComunidadRequest extends FormRequest
             'cp' => 'required|size:5',
             'pais' => 'exists:paises,id',
             'logo' => 'nullable',
-            'observaciones' => 'string||nullable',
+            'observaciones' => 'string|nullable',
             'MaxFreeCommunities' => 'integer'
             /*'president' => 'string',
             'secretary' => 'string',

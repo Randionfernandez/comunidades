@@ -28,7 +28,7 @@
                     @forelse($cuentasBancarias as $cuentaBancaria)
                     <tr>
                         <td>{{ $cuentaBancaria-> nombre }}</td>
-                        <td>{{ $cuentaBancaria-> pais }}</td>
+                        <td>{{$cuentaBancaria->nombrePais($cuentaBancaria->id)}}</td>
                         <td>{{ $cuentaBancaria-> dc }}</td>
                         <td>{{ $cuentaBancaria-> cuenta }}</td>
                         <td>{{ $cuentaBancaria-> bic }}</td>

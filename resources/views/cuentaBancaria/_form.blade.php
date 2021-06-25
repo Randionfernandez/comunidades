@@ -10,7 +10,7 @@
 @endif
 
    <div class="row mx-3">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-8 mb-2">
             <label for="nombre" class="form-label">Nombre</label>
             <input type="text" class="form-control" name="nombre" value="{{old('nombre',$cuentasBancarias->nombre)}}" placeholder="Cuenta comunitaria" {{ $btndisabled }}>
             @error('nombre')
@@ -19,22 +19,26 @@
                 <br>
             @enderror
         </div>
+       
+       <div class="col-md-4 mb-2" >
+                <label for="pais" class="form-label">@lang('Pais')</label>
+                <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
+                    <option value="0">@lang('Country')</option>
+                    @forelse($paises as $pais)
+                    @if ( old('pais', $cuentasBancarias->pais) == $pais->id )
+                    <option value="{{ $pais->id }}" selected > {{ $pais->abreviaturaPais }} </option>
+                    @else
+                    <option value="{{ $pais->id }}"> {{ $pais->abreviaturaPais }} </option>
+                    @endif
+                    @empty
+                    <p>No hay paises</p>
+                    @endforelse
+                </select>
+            </div>
 
     </div> 
 
     <div class="row mx-3">
-        <div class="col-md-2">
-            <label for="pais" class="form-label">Pais</label>
-            <input type="text" class="form-control" name="pais" value="{{old('pais',$cuentasBancarias->pais)}}" placeholder="ESP" {{ $btndisabled }}>
-            <label for="letras" class="form-label">3 letras</label>
-            
-            @error('pais')
-                <br>
-                <small>*{{$message}}</small>
-                <br>
-            @enderror
-
-        </div>
         
         <div class="col-md-3">
             <label for="dc" class="form-label">DC</label>
@@ -48,7 +52,7 @@
 
         </div>
         
-        <div class="col-md-3">
+        <div class="col-md-5">
             <label for="cuenta" class="form-label">Cuenta</label>
             <input type="text" class="form-control" name="cuenta" placeholder="ES7640044901230456660863	" value="{{old('cuenta',$cuentasBancarias->cuenta)}}" {{ $btndisabled }}>
             <label for="cuentaDigitos" class="form-label">24 digitos para cuentas ES</label>
@@ -59,7 +63,7 @@
             @enderror
         </div>
 
-        <div class="col-md-3">
+        <div class="col-md-4">
             <label for="bic" class="form-label">Bic</label>
             <input type="text" class="form-control" name="bic" value="{{old('bic',$cuentasBancarias->bic)}}" placeholder="BSCHESMMXXX" {{ $btndisabled }}>
             <label for="ej" class="form-label">Ej. BSCHESMMXXX</label>
