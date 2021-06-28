@@ -51,7 +51,7 @@ class DatabaseSeeder extends Seeder {
         ]);
         //Comunidad_User::factory(15)->create();
         //$this->call([ComunidadUserSeeder::class]);
-        $this->call(TipoSeeder::class);
+        $this->call(TipoGastoSeeder::class);
         $this->call(FiguraSeeder::class);
         $this->call(CalificacionSeeder::class);
         $this->call([ProveedorSeeder::class]);

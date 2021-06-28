@@ -10,7 +10,7 @@
     @include('partials.session-status')
 
 
-    <x-jet-button onclick="location.href ='{{ route('proveedores.create') }}'">@lang('New Provider')</x-jet-button>
+    <x-jet-button onclick="location.href ='{{ route('proveedores.create') }}'">@lang('New')</x-jet-button>
 
     @if ($activeCommunity->proveedor->count() > 0)
     <div class="card">
@@ -36,7 +36,7 @@
                         <td>{{$proveedor->cif}}</td>
                         <td>{{$proveedor->email}}</td>
                         <td>{{$proveedor->telefono}}</td>
-                        <td>{{$proveedor->nombreTipo($proveedor->id)}}</td>
+                        <td>{{$proveedor->nombreTipoGasto($proveedor->id)}}</td>
                         <td>{{$proveedor->nombreCalificacion($proveedor->id)}}</td>
                         <td class="flex">
                             <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>

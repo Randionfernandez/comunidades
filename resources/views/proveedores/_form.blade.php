@@ -71,16 +71,16 @@
 </div>
 <div class="row form-group">
     <div class="col-4">
-        <select class="form-select" aria-label="Default select example" name="tipo" {{$btndisabled}}>
-            <option value="0">@lang('Type')</option>
-            @forelse($tipos as $tipo)
-            @if ( old('tipo', $proveedor->tipo) == $tipo->id )
-            <option value="{{ $tipo->id }}" selected > {{ $tipo->nombreTipo }} </option>
+        <select class="form-select" aria-label="Default select example" name="tipoGasto" {{$btndisabled}}>
+            <option value="">@lang('Type')</option>
+            @forelse($tiposGastos as $tipoGasto)
+            @if ( old('tipoGasto', $proveedor->tipoGasto) == $tipoGasto->id )
+            <option value="{{$tipoGasto->id}}" selected> {{$tipoGasto->nombreTipoGasto}} </option>
             @else
-            <option value="{{ $tipo->id }}"> {{ $tipo->nombreTipo }} </option>
+            <option value="{{$tipoGasto->id}}"> {{$tipoGasto->nombreTipoGasto}} </option>
             @endif
             @empty
-            <p>vacio</p>
+            <p>No hay gastos ni ingresos</p>
             @endforelse
         </select>
     </div>

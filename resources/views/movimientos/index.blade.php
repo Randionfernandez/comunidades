@@ -5,10 +5,9 @@
         </h2>
         <hr>
     </x-slot>
-
-    <a href="{{ route('movimientos.create') }}" class="btn btn-primary mx-5 mb-4">Crear</a>
-
-    <a href="{{route('ingresos.index')}}" class="btn btn-success mb-4">Ingresos</a>
+    <x-jet-button onclick="location.href ='{{ route('movimientos.create') }}'">@lang('New')</x-jet-button>
+    <br>
+    <x-jet-button class="btn-success" onclick="location.href ='{{ route('ingresos.index') }}'">@lang('Ingresos')</x-jet-button>
 
     @include('partials.session-status')
 
@@ -19,8 +18,6 @@
         <div class="card-body">
 
             <table class="table table-hover dt-responsive nowrap" id="buscador">
-
-                
                 <thead>
                     <tr class="text-white bg-dark">
                         <th scope="col">Cuenta Corriente</th>
@@ -37,35 +34,39 @@
                             <td>{{$movimiento->cuenta}}</td>
                             <td>{{$movimiento->fechaValor }}</td>
                             <td><b>{{$movimiento->concepto}}</b> {{$movimiento->propiedad}}</td>
-                            <td class="@php echo ($movimiento->concepto == 'ingreso') ? 'text-success' : 'text-danger' @endphp">{{$movimiento->cantidad}} {{ $divisa }}</td>
+                            <td class="@php echo ($movimiento->concepto == 1) ? 'text-success' : 'text-danger' @endphp">{{$movimiento->cantidad}} {{ $divisa }}</td>
                             <td>{{$movimiento->grupo}}</td>
                            <!-- <td>{{$movimiento->propiedad}}</td>-->
-                            @if ($movimiento->concepto != 'ingreso')
+                            @if ($movimiento->concepto != 1)
                                 <td class="flex">
-
-                                    <x-jet-button class="mx-2" onclick="location.href ='{{ route('movimientos.edit',$movimiento->id) }}'">{{ __('Edit') }}</x-jet-button>
-                                    <x-jet-danger-button onclick="document.getElementById('delete-movimiento').submit()">{{__('Delete')}}</x-jet-danger-button>
-                                    <form class="d-none" id="delete-movimiento" method="POST" action="{{ route('movimientos.destroy',$movimiento->id) }}">
-                                        @csrf @method('DELETE')
-                                    </form>
-
+                                    <x-jet-button class="mx-2" onclick="location.href ='{{ route('movimientos.edit',$movimiento) }}'">{{ __('Edit') }}</x-jet-button>
+                                    <x-jet-danger-button onclick="location.href ='{{ route('movimientos.show', $movimiento) }}'">{{__('Show')}}</x-jet-danger-button>
                                 </td>
                             @else
-                                <td></td>
+                                <td>
+                                    <x-jet-danger-button onclick="location.href ='{{ route('movimientos.show', $movimiento) }}'">{{__('Show')}}</x-jet-danger-button>
+                                </td>
                             @endif
                         </tr>
                     @empty
                     @endforelse
+                    <div class="row inline-flex">
+                        <table class="table col-md-3 mx-4" >
+                            <thead>
+                            <th scope="col" class="text-white text-center @php echo ($totalGastos <= 0) ? 'bg-success' : 'bg-danger' @endphp">Total Gastos</th>
+                            <th scope="col" class="text-white text-center @php echo ($totalIngresos >= 0) ? 'bg-success' : 'bg-danger' @endphp">Total Ingresos</th>
+                            <th scope="col" class="text-white text-center @php echo ($totalIngresos-$totalGastos >= 0) ? 'bg-success' : 'bg-danger' @endphp">Total</th>
+                            </thead>
 
-                <table class="table col-md-3 mx-4" >
-                    <thead class="text-white @php echo ($total <= 0) ? 'bg-success' : 'bg-danger' @endphp">
-                    <th scope="col" >Total Gastos</th>
-                    </thead>
-
-                    <tbody>
-                    <td class="@php echo ($total <= 0) ? 'text-success' : 'text-danger' @endphp">{{$total}} {{ $divisa }}</td>
-                    </tbody>
-                </table>
+                            <tbody>
+                            <td class="text-center @php echo ($totalGastos <= 0) ? 'text-success' : 'text-danger' @endphp">{{$totalGastos}} {{ $divisa }}</td>
+                            <td class="text-center @php echo ($totalIngresos >= 0) ? 'text-success' : 'text-danger' @endphp">{{$totalIngresos}} {{ $divisa }}</td>
+                            <td class="text-center @php echo ($totalIngresos-$totalGastos >= 0) ? 'text-success' : 'text-danger' @endphp">{{$totalIngresos-$totalGastos}} {{ $divisa }}</td>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    
                 </tbody>
             </table>
         </div>

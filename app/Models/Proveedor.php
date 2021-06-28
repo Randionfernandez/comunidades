@@ -22,7 +22,7 @@ class Proveedor extends Model {
         'email',
         'telefono',
         'calle',
-        'tipo',
+        'tipoGasto',
         'calificacion',
         'figura',
         'portal',
@@ -42,8 +42,8 @@ class Proveedor extends Model {
         return $this->belongsToMany(Comunidad::class, 'comunidades_proveedores', 'proveedor_id', 'comunidad_id')->withTimestamps();
     }
     
-    public function tipos() {
-        return $this->belongsTo(Tipo::class, 'id', 'tipo')->withTimestamps();
+    public function tipoGasto() {
+        return $this->belongsTo(TipoGasto::class, 'id', 'tipoGasto');
     }
     
     public function calificaciones() {
@@ -54,10 +54,10 @@ class Proveedor extends Model {
         return $this->belongsTo(Figura::class, 'id', 'figura')->withTimestamps();
     }
 
-    public function nombreTipo($id){
+    public function nombreTipoGasto($id){
         // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
         //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
-        return $nombreTipo = Proveedor::join('tipos', 'proveedores.tipo', '=', 'tipos.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreTipo')->last();
+        return $nombreTipo = Proveedor::join('tipos_gastos', 'proveedores.tipoGasto', '=', 'tipos_gastos.id')->where('proveedores.id', '=', $id)->get()->pluck('nombreTipo')->last();
     }
 
     public function nombreCalificacion($id){

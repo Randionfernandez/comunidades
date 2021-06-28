@@ -22,7 +22,7 @@ class ProveedorFactory extends Factory {
      */
     public function definition() {
         
-        $tipos = DB::table('tipos')->pluck('id');
+        $tiposGastos = DB::table('tipos_gastos')->pluck('id');
         $calificaciones = DB::table('calificaciones')->pluck('id');
         $figuras = DB::table('figuras')->pluck('id');
         $paises = DB::table('paises')->pluck('id');
@@ -30,7 +30,7 @@ class ProveedorFactory extends Factory {
         return [
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
             'cif' => $this->faker->unique()->dni(),
-            'tipo' => $this->faker->randomElement($tipos),
+            'tipoGasto' => $this->faker->randomElement($tiposGastos),
             'calificacion' => $this->faker->randomElement($calificaciones),
             'figura' => $this->faker->randomElement($figuras),
             'nombre' => 'C.P. ' . $this->faker->name,

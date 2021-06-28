@@ -98,7 +98,7 @@ class DistribucionGastosController extends Controller
 
        $propietarios = distribucion_gastos::where('nombre', '=', $nombre)->get();  
        
-       return view('distribucion/listaPropiedades', compact('propietarios'));
+       return view('distribucion.listaPropiedades', compact('propietarios'));
 
     }
 

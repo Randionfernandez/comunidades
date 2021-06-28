@@ -23,35 +23,28 @@ class SaveProveedorRequest extends FormRequest {
      */
     public function rules() {
         return [
-            // 'required|string|max:50'
-
             'fechalta' => 'required|date',
             'cif' => ['required', 'alpha_num', 'size:9', Rule::unique('proveedores')->ignore($this->route('proveedor'))],
             'nombre' => 'required|string|max:35',
             'apellido1' => 'string|nullable',
             'apellido2' => 'string|nullable',
             'email' => ['required','email:rfc,filter',Rule::unique('proveedores')->ignore($this->route('proveedor'))],
-            //integer
             'telefono' => 'required|string|max:30',
-            'tipo' => ['required', 'exists:tipos,id'],
+            'tipoGasto' => ['required', 'exists:tipos_gastos,id'],
             'calificacion' => 'required|exists:calificaciones,id',
             'figura' => 'required|exists:figuras,id',
-            
             'calle' => 'required|string|nullable',
             'portal' => 'integer|nullable',
             'bloque' => 'string|nullable',
             'escalera' => 'string|nullable',
             'piso' => 'integer|nullable',
             'puerta' => 'integer|nullable',
-            // 'regex:/^\+\d{3}$/'
             'codigopais' => 'string',
             'cp' => 'required|string|size:5',
             'pais' => 'exists:paises,id',
             'provincia' => 'required|string',
             'localidad' => 'required|string',
-            // iban ejemplo: AT483200000012345864
             'iban' => 'required|string'
-                // string integer enum date
         ];
     }
 

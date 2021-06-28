@@ -24,17 +24,14 @@ class StoreMovimientos extends FormRequest
     public function rules()
     {
         return [
-            /*
+            
             'fechaAlta' => 'required',
             'cuenta' => 'required',
-            //'grupo'  => 'required',
-            //'distribucion' => 'required',
+            'grupo'  => 'required',
             'fechaValor' => 'required',
             'concepto' => 'required',
             'cantidad' => 'required | numeric',
-            'iva' => 'required | numeric',
-            'propietario' => 'required'
-            */
+            //'propietario' => 'required'
         ];
     }
 }

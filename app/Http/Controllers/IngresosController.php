@@ -23,9 +23,9 @@ class IngresosController extends Controller
     public function index()
     {
 
-        $ingresos = Movimientos::where('concepto', '=', 'ingreso')->distinct('propiedad')->get();
+        $ingresos = Movimientos::where('concepto', '=', 1)->distinct('propiedad')->get();
         //  dd($ingresos);
-        return view('ingresos/ingresos', compact('ingresos'));
+        return view('ingresos.ingresos', compact('ingresos'));
     }
 
     /**
@@ -72,20 +72,18 @@ class IngresosController extends Controller
            $unidad = Movimientos::where('grupo','=',$gastos[$i]['nombre'])->get();
 
             for ($j=0; $j < count($concepto) ; $j++) {
-
                 for ($h=0; $h <  count($unidad) ; $h++) {
-                   if ($unidad->count() && $unidad[$h]->concepto != 'ingreso') {
+                   if ($unidad->count() && $unidad[$h]->concepto != 1) {
                        $operacion =  sprintf("%01.2f",$concepto[$j]['cantidad'] / $totalPropiedades);
                    }
                }
 
                 $coeficiente = distribucion_gastos::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad','=',$propiedad)->get(['coeficiente', 'nombre']);
-                
-                if($coeficiente[$j]->nombre == 'unidadRegistral'){
-                    $coeficiente[$j]->coeficiente = 0;
+                if(count($coeficiente) != 0 && $coeficiente[$j]->nombre == 'unidadRegistral'){
+                        $coeficiente[$j]->coeficiente = 0;
                 }
                 
-                if($coeficiente[$j]['coeficiente'] != 0){
+                if(count($coeficiente) != 0 && $coeficiente[$j]['coeficiente'] != 0){
                     
                     for ($e=0; $e < count($coeficiente) ; $e++) {
                         $operacion =  sprintf("%01.2f",($coeficiente[$e]['coeficiente']/100) * $concepto[$j]['cantidad']);
@@ -107,7 +105,7 @@ class IngresosController extends Controller
             }
         }
     
-        return view('ingresos/listaMovimientos',compact('propiedad','prueba','total'));
+        return view('ingresos.listaMovimientos',compact('propiedad','prueba','total'));
 
     }
 

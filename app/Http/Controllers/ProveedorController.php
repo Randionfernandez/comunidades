@@ -8,7 +8,7 @@ use App\Http\Requests\SaveProveedorRequest;
 use App\Models\Comunidad;
 use App\Models\Proveedor;
 use App\Models\Comunidad_Proveedor;
-use App\Models\Tipo;
+use App\Models\TipoGasto;
 use App\Models\Calificacion;
 use App\Models\Figura;
 use App\Models\Pais;
@@ -18,7 +18,7 @@ class ProveedorController extends Controller {
     //
     private $msj = '';
     private $activeCommunity = null;
-    private $tipos = Tipo::class;
+    private $tiposGastos = TipoGasto::class;
     private $calificaciones = Calificacion::class;
     private $figuras = Figura::class;
     private $paises = Pais::class;
@@ -31,7 +31,7 @@ class ProveedorController extends Controller {
      */
     
     public function __construct() {
-        $this->tipos = Tipo::all();
+        $this->tiposGastos = TipoGasto::all();
         $this->calificaciones = Calificacion::all();
         $this->figuras = Figura::all();
         $this->paises = Pais::all();
@@ -55,7 +55,7 @@ class ProveedorController extends Controller {
         
         return view('proveedores.create', [
             'proveedor' => new Proveedor,
-            'tipos' => $this->tipos,
+            'tiposGastos' => $this->tiposGastos,
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
             'paises' => $this->paises,
@@ -75,8 +75,7 @@ class ProveedorController extends Controller {
         $this->msj = 'El proveedor fué creado con éxito';
         
         $this->activeCommunity = session()->get('activeCommunity');
-
-        $new_proveedor = Proveedor::create($request->validated());
+        Proveedor::create($request->validated());
         $new_proveedor = Proveedor::orderBy('created_at', 'desc')->first();
         
         Comunidad_Proveedor::create([
@@ -102,7 +101,7 @@ class ProveedorController extends Controller {
             'btnText1' => 'Edit',
             'btnText2' => 'Back',
             'btndisabled' => 'disabled',
-            'tipos' => $this->tipos,
+            'tiposGastos' => $this->tiposGastos,
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
             'paises' => $this->paises
@@ -119,7 +118,7 @@ class ProveedorController extends Controller {
         
         return view('proveedores.edit', [
             'proveedor' => $proveedor,
-            'tipos' => $this->tipos,
+            'tiposGastos' => $this->tiposGastos,
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
             'paises' => $this->paises,

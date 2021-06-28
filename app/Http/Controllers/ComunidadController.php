@@ -8,8 +8,6 @@ use App\Models\Comunidad;
 use \App\Models\Comunidad_User;
 use App\Models\Pais;
 
-
-
 class ComunidadController extends Controller {
 
     private $msj = '';

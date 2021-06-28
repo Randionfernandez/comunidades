@@ -19,7 +19,7 @@ class CreateProveedoresTable extends Migration {
             $table->string('cif', 9)->unique();
 
             // $table->tipo  enum , y en la vista
-            $table->unsignedBigInteger('tipo');
+            $table->unsignedBigInteger('tipoGasto');
             // $table->calificacion   enum pesimo mala normal buena excelente
             $table->unsignedBigInteger('calificacion');
 
@@ -41,7 +41,7 @@ class CreateProveedoresTable extends Migration {
             $table->timestamps();
             $table->softDeletes();
             
-            $table->foreign('tipo')->references('id')->on('tipos')->onDelete('cascade');
+            $table->foreign('tipoGasto')->references('id')->on('tipos_gastos')->onDelete('cascade');
             $table->foreign('calificacion')->references('id')->on('calificaciones')->onDelete('cascade');
             $table->foreign('figura')->references('id')->on('figuras')->onDelete('cascade');
         });

@@ -6,18 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use \Illuminate\Database\Eloquent\SoftDeletes;
 
-class Tipo extends Model
+class TipoGasto extends Model
 {
     use HasFactory;
     use SoftDeletes;
     
-    protected $table = 'tipos';
+    protected $table = 'tipos_gastos';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'nombreTipo'
+        'nombreTipoGasto'
     ];
     
     public function proveedores() {
-        return $this->hasMany(Proveedor::class, 'nombreTipo', 'id')->withTimestamps();
+        return $this->hasMany(Proveedor::class, 'nombreTipoGasto', 'id')->withTimestamps();
     }
 }
