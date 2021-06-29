@@ -16,7 +16,7 @@ class CreatePropiedadesTable extends Migration
         // original Randion
         Schema::create('propiedades', function (Blueprint $table) {
             // Original de Randion
-            /*
+            
             $table->id();
             $table->timestamps();
             $table->softDeletes();
@@ -27,7 +27,7 @@ class CreatePropiedadesTable extends Migration
             $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
 
           // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
-            $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
+            $table->enum('tipoPropiedad',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
             
 
@@ -37,31 +37,7 @@ class CreatePropiedadesTable extends Migration
                     ->onDelete('cascade');
             
             $table->index(['comunidades_id','parte']);
-             */
-            
-            // Parte de Alejandro Gonzalez
-            $table->id();
-            $table->timestamps();
-            $table->softDeletes();
-            $table->unsignedBigInteger('comunidades_id')->nullable();
-            $table->string('nombre');
-            $table->string('propietario');
-            $table->unsignedBigInteger('users_id')->nullable();  // Solo consideramos un propietario por propiedad
-            
-            $table->string('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
-            $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
-
-          // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
-            $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
-            $table->string('observaciones')->nullable();
-            
-
-            $table->foreign('users_id')->references('id')->on('users');
-            
-            $table->foreign('comunidades_id')->references('id')->on('comunidades')
-                    ->onDelete('cascade');
-            
-            $table->index(['comunidades_id','parte']);
+             
         });
     }
 
