@@ -29,6 +29,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @if (Session::has('activeCommunity'))
                 <h5 class="text-white">{{ Session::get('activeCommunity')->denom }}</h5>
+                <h5 class="pl-3 pr-1 text-warning">{{ Session::get('activeCommunity')->nombreRole(Session::get('activeCommunity')->id) }}</h5>
                 @endif
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">

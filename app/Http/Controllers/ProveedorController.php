@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Http\Requests\SaveProveedorRequest;
+use App\Http\Requests\ProveedorRequest;
 use App\Models\Comunidad;
 use App\Models\Proveedor;
-use App\Models\Comunidad_Proveedor;
+use App\Models\ComunidadProveedor;
 use App\Models\TipoGasto;
 use App\Models\Calificacion;
 use App\Models\Figura;
@@ -54,7 +53,7 @@ class ProveedorController extends Controller {
           } */
         
         return view('proveedores.create', [
-            'proveedor' => new Proveedor,
+            'proveedor' => new Proveedor(),
             'tiposGastos' => $this->tiposGastos,
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
@@ -70,7 +69,7 @@ class ProveedorController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveProveedorRequest $request) {
+    public function store(ProveedorRequest $request) {
 
         $this->msj = 'El proveedor fué creado con éxito';
         
@@ -78,7 +77,7 @@ class ProveedorController extends Controller {
         Proveedor::create($request->validated());
         $new_proveedor = Proveedor::orderBy('created_at', 'desc')->first();
         
-        Comunidad_Proveedor::create([
+        ComunidadProveedor::create([
             'comunidad_id' => $this->activeCommunity->id,
             'proveedor_id' => $new_proveedor->id,
             'created_at' => $new_proveedor->created_at,
@@ -129,11 +128,11 @@ class ProveedorController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ProveedorRequest  $request
      * @param  \App\Models\Proveedor  $proveedor
      * @return \Illuminate\Http\Response
      */
-    public function update(Proveedor $proveedor, SaveProveedorRequest $request) {
+    public function update(Proveedor $proveedor, ProveedorRequest $request) {
 
         $this->msj = 'El proveedor fué actualizado con éxito';
 
@@ -161,7 +160,7 @@ class ProveedorController extends Controller {
 
     public function select(Proveedor $proveedor) {
 
-        $this->msj = "Has seleccionado el proveedor ";
+        $this->msj = "Has seleccionado el proveedor";
 
         return $this->msj . $proveedor;
     }

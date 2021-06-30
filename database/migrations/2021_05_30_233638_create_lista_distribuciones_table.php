@@ -16,16 +16,16 @@ class CreateListaDistribucionesTable extends Migration
         // Integracion parte de Rafa Maya para que cuadre la integración
         Schema::create('lista_distribuciones', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('propietario_id');
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('propiedad_id');
             $table->double('coeficiente');
             $table->double('unidaRegistral');
 
-            $table->foreign('propietario_id')
-                -> references('id')->on('distribucion_gastos')->onDelete('cascade');
+            $table->foreign('user_id')
+                -> references('id')->on('distribuciones_gastos')->onDelete('cascade');
 
             $table->foreign('propiedad_id')
-                -> references('id')->on('distribucion_gastos')->onDelete('cascade');
+                -> references('id')->on('distribuciones_gastos')->onDelete('cascade');
 
             $table->timestamps();
         });

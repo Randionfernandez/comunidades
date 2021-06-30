@@ -47,7 +47,7 @@ class AppServiceProvider extends ServiceProvider {
             ['href' => 'cuentasBancarias.index', 'name' => 'cuentasBancarias.index', 'text' => 'Cuentas bancarias'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Cuotas'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Diario'],
-            ['href' => 'distribucion.index', 'name' => 'distribucion.index', 'text' => 'Distribuciones'],
+            ['href' => 'distribuciones.index', 'name' => 'distribuciones.index', 'text' => 'Distribuciones'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Documentos'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Fondos'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Foro'],

@@ -3,19 +3,20 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\ComunidadProveedor;
+use App\Models\CuentaBancaria;
 
-class ComunidadProveedorSeeder extends Seeder
-{
+class CuentaBancariaSeeder extends Seeder {
+
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run()
-    {
-        ComunidadProveedor::factory()
+    public function run() {
+
+        CuentaBancaria::factory()
                 ->count(15)
                 ->create();
     }
+
 }

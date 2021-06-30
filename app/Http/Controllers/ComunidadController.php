@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\SaveComunidadRequest;
+use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
-use \App\Models\Comunidad_User;
+use \App\Models\ComunidadUser;
 use App\Models\Pais;
 
 class ComunidadController extends Controller {
@@ -64,7 +64,7 @@ class ComunidadController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(SaveComunidadRequest $request) {
+    public function store(ComunidadRequest $request) {
 
         $this->msj = 'La comunidad fué creada con éxito';
 
@@ -85,7 +85,7 @@ class ComunidadController extends Controller {
 
         $new_comunidad = Comunidad::latest('created_at')->first();
 
-        Comunidad_User::create([
+        ComunidadUser::create([
             'comunidad_id' => $new_comunidad->id,
             'user_id' => $this->user->id,
             'role_id' => '2',
@@ -134,11 +134,11 @@ class ComunidadController extends Controller {
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\ComunidadRequest  $request
      * @param  \App\Models\Comunidad  $comunidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Comunidad $comunidad, SaveComunidadRequest $request) {
+    public function update(Comunidad $comunidad, ComunidadRequest $request) {
 
         $this->msj = 'La comunidad fué actualizada con éxito';
         
@@ -157,7 +157,7 @@ class ComunidadController extends Controller {
 
         $this->msj = 'La comunidad fué eliminada con éxito';
         
-        Comunidad_User::where('comunidad_id', '=', $comunidad->id)->delete();
+        ComunidadUser::where('comunidad_id', '=', $comunidad->id)->delete();
         
         $request->session()->put('activeCommunity', null);
         
@@ -179,9 +179,6 @@ class ComunidadController extends Controller {
             session()->put('activeCommunity', null);
         }
         
-        
-                
         return redirect()->route('dashboard', $comunidad)->with('status', [$this->msj, $color]);
     }
-
 }

@@ -4,18 +4,36 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use \Illuminate\Database\Eloquent\SoftDeletes;
 
-class Movimiento extends Model {
-
+class Movimiento extends Model
+{
     use HasFactory;
-    use SoftDeletes;
+
+    protected $table = 'movimientos';
 
     protected $fillable = [
+        'fechaAlta',
+        'cuenta',
+        'distribucion',
+        'grupo',
+        'fechaValor',
+        'concepto',
+        'cantidad',
+        'iva',
+        'observaciones',
+        'propiedad'
     ];
 
-    public function cuenta() {
-        return $this->belongsTo(Cuenta::class);
+    public function cuenta(){
+        return $this -> belongsTo(CuentaBancaria::class);
+    }
+
+     public function distribucion(){
+        return $this -> hasOne(DistribucionGasto::class);
+    }
+
+    public function propiedades(){
+        return $this -> hasMany(PropiedadUser::class);
     }
 
 }

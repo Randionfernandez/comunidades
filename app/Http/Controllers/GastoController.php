@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\gastos;
 use Illuminate\Http\Request;
 
-class GastoController extends Controller
+class GastosController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +15,8 @@ class GastoController extends Controller
     public function index()
     {
         //
-        
+        $gastos = gastos::all();
+        return view('gastos.lista_gastos', ['gastos' => $gastos]);
     }
 
     /**
@@ -42,10 +43,10 @@ class GastoController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  Gasto  $gasto
      * @return \Illuminate\Http\Response
      */
-    public function show(gastos $gastos)
+    public function show(Gasto $gasto)
     {
         //
     }
@@ -53,10 +54,10 @@ class GastoController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  Gasto $gasto
      * @return \Illuminate\Http\Response
      */
-    public function edit(gastos $gastos)
+    public function edit(Gasto $gasto)
     {
         //
     }
@@ -65,10 +66,10 @@ class GastoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\gastos  $gastos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, gastos $gastos)
+    public function update(Request $request, Gasto $gasto)
     {
         //
     }
@@ -76,10 +77,10 @@ class GastoController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\gastos  $gastos
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(gastos $gastos)
+    public function destroy(Gasto $gasto)
     {
         //
     }

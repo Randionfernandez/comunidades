@@ -29,19 +29,19 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('distribucion', 'DistribucionGastosController');
+Route::resource('distribuciones', 'DistribucionGastoController')->parameters(['distribuciones' => 'distribucion']);;
 
 //Route::resource('distribucion', GastoController::class);
 
-Route::resource('cuentasBancarias', CuentasBancariasController::class)->parameters(['cuentasBancarias' => 'cuentasBancarias']);
+Route::resource('cuentasBancarias', CuentaBancariaController::class)->parameters(['cuentasBancarias' => 'cuentaBancaria']);
 
 Route::resource('liquidacion', LiquidacionController::class);
 
-Route::resource('movimientos', MovimientosController::class);
+Route::resource('movimientos', MovimientoController::class);
 
-Route::resource('ingresos', IngresosController::class);
+Route::resource('ingresos', IngresoController::class);
 
-Route::resource('propiedades', 'PropiedadController')->parameters(['propiedades' => 'propiedad']);
+Route::resource('propiedades', PropiedadController::class)->parameters(['propiedades' => 'propiedad']);
 
 Route::get('listar',function () {
     $resultado= DB::select('select * from comunidades');
@@ -49,13 +49,11 @@ Route::get('listar',function () {
     
 });
 
-Route::resource('propietario','PropietarioController');
+Route::resource('listaPropietarios', ListaPropietarioController::class);
 
-Route::resource('listaPropietarios', 'ListaPropietariosController');
+Route::resource('listaMovimientos', ListaMovimientoController::class);
 
-Route::resource('listaMovimientos', 'ListaMovimientosController');
-
-Route::get('proveedores/index/{comunidad?}', [App\Http\Controllers\ProveedorController::class , 'pasarComunidad'])->name('proveedores.pasarComunidad');
+Route::get('proveedores/index/{comunidad?}', [\App\Http\Controllers\ProveedorController::class , 'pasarComunidad'])->name('proveedores.pasarComunidad');
 
 Route::resource('proveedores', ProveedorController::class, ['except' => ['index']])->parameters(['proveedores' => 'proveedor'])->names('proveedores');
 

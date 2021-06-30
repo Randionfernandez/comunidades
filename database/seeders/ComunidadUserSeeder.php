@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use App\Models\Comunidad_User;
+use App\Models\ComunidadUser;
 
 class ComunidadUserSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class ComunidadUserSeeder extends Seeder
      */
     public function run()
     {
-        Comunidad_User::factory()
+        ComunidadUser::factory()
                 ->count(15)
                 ->create();
     }

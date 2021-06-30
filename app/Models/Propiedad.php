@@ -17,7 +17,8 @@ class Propiedad extends Model {
     protected $fillable = [
         "nombre",
         "propietario",
-        "tipo",
+        "comunidad_id",
+        "tipoPropiedad",
         "coeficiente",
         "parte",
         "observaciones"
@@ -25,6 +26,10 @@ class Propiedad extends Model {
 
     public function comunidad() {
         return $this->belongsTo(Comunidad::class);
+    }
+    
+    public function nombretipoPropiedad() {
+        return $this->belongsTo(TipoPropiedad::class, 'id', 'nombreTipoPropiedad')->withTimestamps();
     }
 
 }

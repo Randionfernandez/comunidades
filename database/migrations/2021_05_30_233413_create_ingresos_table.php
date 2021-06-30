@@ -32,14 +32,14 @@ class CreateIngresosTable extends Migration {
             $table->unsignedBigInteger('cuenta_id')->nullable();
             $table->string('cuenta');
             $table -> string('Propietario');
-            $table -> unsignedBigInteger('Propietario_id')->nullable();
+            $table -> unsignedBigInteger('user_id')->nullable();
 
             $table->foreign('cuenta_id')
             ->references('id')->on('cuentas_bancarias')
             ->onDelete('set null');
 
-            $table->foreign('Propietario_id')
-            ->references('id')->on('propietarios')
+            $table->foreign('user_id')
+            ->references('id')->on('users')
             ->onDelete('set null');
             
             $table->timestamps();

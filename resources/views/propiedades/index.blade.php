@@ -2,6 +2,9 @@
     <div class="pull-right">
         <a class="btn btn-success" href="{{ route('propiedades.create') }}">Crear propiedad</a>
     </div>
+    
+    @include('partials.session-status')
+    
     <table class="table table-bordered">
         <tr>
             <th>Id</th>

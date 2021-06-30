@@ -24,6 +24,7 @@ class PropiedadRequest extends FormRequest {
         return [
             "nombre" => ["required", "max:30"],
             "propietario" => ["required", "max:30"],
+            "comunidad_id" => ["required", "exists:comunidades,id"],
             "tipo" => ["required", "in:local, piso, atico"],
             "coeficiente" => ["required"],
             "parte" => ["required"],
