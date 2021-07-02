@@ -31,7 +31,7 @@ class DistribucionGastoRequest extends FormRequest
             //'propietario' => 'required',
             'propiedad' => 'required',
             'coeficiente' => 'required',
-            'unidadRegistral' => 'required'
+            //'unidadRegistral' => 'required'
 
         ];
     }

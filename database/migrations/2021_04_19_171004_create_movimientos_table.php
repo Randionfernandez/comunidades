@@ -45,17 +45,15 @@ class CreateMovimientosTable extends Migration {
             $table->date('fechaAlta');
             $table->string('cuenta');
             $table->string('grupo')->nullable();
-
             $table->string('distribucion')->nullable();
-
-            
-
             $table->date('fechaValor');
             $table->string('concepto');
             $table->decimal('cantidad');
             $table->longText('observaciones')->nullable();
-            $table->string('propiedad')->nullable();
+            $table->unsignedBigInteger('propiedad_id')->nullable();
             $table->timestamps();
+            
+            $table->foreign('propiedad_id')->references('id')->on('propiedades');
         });
     }
 

@@ -19,9 +19,8 @@ class Movimiento extends Model
         'fechaValor',
         'concepto',
         'cantidad',
-        'iva',
         'observaciones',
-        'propiedad'
+        'propiedad_id'
     ];
 
     public function cuenta(){
@@ -32,8 +31,13 @@ class Movimiento extends Model
         return $this -> hasOne(DistribucionGasto::class);
     }
 
-    public function propiedades(){
-        return $this -> hasMany(PropiedadUser::class);
+    public function propiedad(){
+        return $this -> belongsTo(Propiedad::class, 'propiedad_id', 'id');
+    }
+    
+    public function nombrePropiedad($id) {
+        $nombrePropiedad = Movimiento::join('propiedades', 'movimientos.propiedad_id', '=', 'propiedades.id')->where('propiedades.id', '=', $id)->get()->pluck('name')->last();
+        return $nombrePropiedad;
     }
 
 }

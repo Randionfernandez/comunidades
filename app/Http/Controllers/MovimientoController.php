@@ -42,8 +42,8 @@ class MovimientoController extends Controller {
     public function create() {
         //
         $cuentas = CuentaBancaria::all();
-        $propiedades = Propiedad::all();
         $propietarios = User::all();
+        $propiedades = Propiedad::all();
         $grupos = DistribucionGasto::distinct('nombre')->get();
         $tiposGastos = TipoGasto::all();
         
@@ -70,7 +70,7 @@ class MovimientoController extends Controller {
     public function store(MovimientoRequest $request) {
 
         Movimiento::create($request->all());
-        return redirect()->route('movimientos.index')->with('mensaje', 'se ha creado el movimiento exitosamente');
+        return redirect()->route('movimientos.index')->with('mensaje', 'Se ha creado el movimiento exitosamente');
     }
 
     /**
@@ -109,7 +109,7 @@ class MovimientoController extends Controller {
     public function edit(Movimiento $movimiento) {
         //
         $cuentas = CuentaBancaria::all();
-        $propiedades = PropiedadUser::all();
+        $propiedades = Propiedad::all();
 
         $grupos = DistribucionGasto::distinct('nombre')->get();
         $movimiento1 = Movimiento::where('concepto', '!=', 'ingreso')->findOrFail($movimiento->id);

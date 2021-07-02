@@ -18,7 +18,7 @@ class IngresoController extends Controller
     public function index()
     {
 
-        $ingresos = Movimiento::where('concepto', '=', 1)->distinct('propiedad')->get();
+        $ingresos = Movimiento::where('concepto', '=', 1)->distinct('propiedad_id')->get();
         //  dd($ingresos);
         return view('ingresos.index', compact('ingresos'));
     }
@@ -55,9 +55,9 @@ class IngresoController extends Controller
         //
         $prueba = array();
         
-        $gastos = DistribucionGasto::where('propiedad','=',$propiedad)->get(['coeficiente','nombre']);
-        $dineroPropiedad = Movimiento::where('propiedad', '=', $propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
-        $totalPropiedades = PropiedadUser::count('propiedad');
+        $gastos = DistribucionGasto::where('propiedad_id','=',$propiedad)->get(['coeficiente','nombre']);
+        $dineroPropiedad = Movimiento::where('propiedad_id', '=', $propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
+        $totalPropiedades = PropiedadUser::count('propiedad_id');
         $total = 0;   
         $gastosPropiedad = 0;
 
@@ -73,7 +73,7 @@ class IngresoController extends Controller
                    }
                }
 
-                $coeficiente = DistribucionGasto::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad','=',$propiedad)->get(['coeficiente', 'nombre']);
+                $coeficiente = DistribucionGasto::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad_id','=',$propiedad)->get(['coeficiente', 'nombre']);
                 if(count($coeficiente) != 0 && $coeficiente[$j]->nombre == 'unidadRegistral'){
                         $coeficiente[$j]->coeficiente = 0;
                 }

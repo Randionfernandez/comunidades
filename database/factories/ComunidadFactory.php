@@ -25,7 +25,7 @@ class ComunidadFactory extends Factory {
                 'denom' => 'C.P. ' . $this->faker->name,
                 'fechalta' => $this->faker->dateTimeBetween('-2 year'),
                 'direccion' => $this->faker->streetAddress(), //secondaryAddress(),
-                'partes' => $this->faker->randomDigit(),
+                'partes' => $this->faker->randomDigitNot(0),
                 'localidad' => $this->faker->asciify(),
                 'provincia' => $this->faker->community(),
                 'cp' => '07' . $this->faker->randomNumber(3, true),

@@ -6,10 +6,9 @@
         <hr>
     </x-slot>
 
+    <form action="{{ route('distribuciones.store') }}" method="POST">
+         @csrf
 
-<form action="{{ route('distribuciones.store') }}" method="POST">
-     @csrf
-
-   @include('distribuciones._form')
-</form>
+       @include('distribuciones._form')
+    </form>
 </x-app-layout>

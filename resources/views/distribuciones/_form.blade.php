@@ -18,7 +18,7 @@
 <div class="row col-md-11 mx-5 mb-4">
     <div class="col">
         <label class="form-label text-center" for="orden">Orden</label>
-        <input class="form-control" type="text" name="orden" placeholder="1" value="{{old('orden',$propietarios[0]['orden'])}}">
+        <input class="form-control" type="text" name="orden" placeholder="1" value="{{old('orden',$propiedades[0]['orden'])}}">
         <label class="form-label" for="numero">Numero ej. 1</label>
         @error('orden')
         <br>
@@ -29,7 +29,7 @@
 
     <div class="col">
         <label class="form-label text-center" for="abreviatura">Abreviatura</label>
-        <input class="form-control" type="text" name="abreviatura" placeholder="ABC" value="{{old('abreviatura',$propietarios[0]['abreviatura'])}}">
+        <input class="form-control" type="text" name="abreviatura" placeholder="ABC" value="{{old('abreviatura',$propiedades[0]['abreviatura'])}}">
         <label for="letra">Letra Ej. ABC</label>
         @error('abreviatura')
         <br>
@@ -40,7 +40,7 @@
 
     <div class="col">
         <label class="form-label text-center" for="nombre"> Nombre</label>
-        <input class="form-control" type="text" name="nombre" placeholder="Trasteros" value="{{old('nombre',$propietarios[0]['nombre'])}}">
+        <input class="form-control" type="text" name="nombre" placeholder="Trasteros" value="{{old('nombre',$propiedades[0]['nombre'])}}">
         <label for="general">Letras y numeros. Ej. General</label>
         @error('nombre')
         <br>
@@ -64,13 +64,13 @@
 
     <tbody>
 
-        @if ($propietarios -> count())
-        @foreach ($propietarios as $propietario)
+        @if ($propiedades->count())
+        @foreach ($propiedades as $propiedad)
         <tr>
-            <td><input type="hidden"  name="id[]" value="{{$propietario->id}}"></td>
-            <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{$propietario->propiedad}}" id="checkbox"></td>
-            <td><input type="text" class="form-control" name="propiedad[]" value="{{$propietario -> propiedad}}" readonly></td> 
-            <td><input type="text" class="form-control" name="coeficiente[]" value="{{$propietario->coeficiente}}" placeholder="0"> </td> 
+            <td><input type="hidden"  name="id[]" value="{{$propiedad->id}}"></td>
+            <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{$propiedad->id}}" id="checkbox"></td>
+            <td><input type="text" class="form-control" name="propiedad[]" value="{{$propiedad->name}}" readonly></td> 
+            <td><input type="text" class="form-control" name="coeficiente[]" value="{{$propiedad->coeficiente}}" placeholder="0"> </td> 
 
         </tr>
         @endforeach

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
 use Illuminate\Http\Request;
+use App\Http\Requests\PropiedadRequest;
 
 class PropiedadController extends Controller
 {
@@ -14,7 +15,10 @@ class PropiedadController extends Controller
      */
     public function index()
     {
-        //
+        $propiedades = Propiedad::all();
+        return view('propiedades.index', [
+            'propiedades' => $propiedades
+        ]);
     }
 
     /**
@@ -24,16 +28,22 @@ class PropiedadController extends Controller
      */
     public function create()
     {
-        //
+        return view('propiedades.create', [
+            'propiedades' => new Propiedad,
+            'btnText1' => 'Save',
+            'btnText2' => 'Cancel',
+            'btndisabled' => '',
+            'title' => 'Create Propiedad'
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\PropiedadRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PropiedadRequest $request)
     {
         //
     }
@@ -63,11 +73,11 @@ class PropiedadController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\PropiedadRequest  $request
      * @param  \App\Models\Propiedad  $propiedad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Propiedad $propiedad)
+    public function update(PropiedadRequest $request, Propiedad $propiedad)
     {
         //
     }

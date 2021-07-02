@@ -11,7 +11,7 @@
 
    <div class="row mx-3">
         <div class="col-md-8 mb-2">
-            <label for="nombre" class="form-label">Nombre</label>
+            <label for="nombre" class="form-label">@lang('Banca')</label>
             <input type="text" class="form-control" name="nombre" value="{{old('nombre',$cuentaBancaria->nombre)}}" placeholder="Cuenta comunitaria" {{ $btndisabled }}>
             @error('nombre')
                 <br>

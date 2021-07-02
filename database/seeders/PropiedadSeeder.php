@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\Propiedad;
 
 class PropiedadSeeder extends Seeder
 {
@@ -13,6 +14,8 @@ class PropiedadSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Propiedad::factory()
+                ->count(10)
+                ->create();
     }
 }

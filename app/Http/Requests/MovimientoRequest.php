@@ -27,11 +27,11 @@ class MovimientoRequest extends FormRequest
             
             'fechaAlta' => 'required',
             'cuenta' => 'required',
-            'grupo'  => 'required',
+            'grupo'  => '',
             'fechaValor' => 'required',
             'concepto' => 'required',
             'cantidad' => 'required | numeric',
-            //'propietario' => 'required'
+            'propiedad' => 'required'
         ];
     }
 }

@@ -14,7 +14,7 @@
 
 <div class="position-relative">
 
-    <form action="{{ url('distribucion/create') }}">
+    <form action="{{ url('distribucion.create') }}">
         @csrf 
 
         <button class="btn btn-primary mx-5 mb-4">Crear</button>

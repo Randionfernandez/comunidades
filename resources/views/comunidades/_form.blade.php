@@ -11,7 +11,7 @@
 
 <x-jet-validation-errors></x-jet-validation-errors>
 
-<div class="form-group">
+<div class="row form-group">
     <label for="denom">@lang('denom')</label>
     <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denom" placeholder=@lang('denom') value="{{ old('denom', $comunidad->denom) }}" {{$btndisabled}} required>
     @if ($errors->has('denom'))

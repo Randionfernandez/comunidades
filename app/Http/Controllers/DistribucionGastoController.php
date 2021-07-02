@@ -34,7 +34,7 @@ class DistribucionGastoController extends Controller
        //
        $propietarios = User::all();
        $propiedades = Propiedad::all();
-       return view('distribuciones.create',compact('propietarios'));
+       return view('distribuciones.create',compact('propietarios', 'propiedades'));
     }
 
 
@@ -63,12 +63,12 @@ class DistribucionGastoController extends Controller
             if(in_array($input['propiedad'][$i], $input['checkbox'])  ){
                if($suma == 100){
                 $distribucion = new DistribucionGasto();
-                $distribucion -> propiedad      = $input['propiedad'][$i];
-                $distribucion -> coeficiente    = $input['coeficiente'][$i];                
-                $distribucion -> nombre         = $input['nombre'];
-                $distribucion -> abreviatura    = $input['abreviatura'];
-                $distribucion -> orden          = $input['orden'];
-                $distribucion -> save();
+                $distribucion->propiedad      = $input['propiedad'][$i];
+                $distribucion->coeficiente    = $input['coeficiente'][$i];                
+                $distribucion->nombre         = $input['nombre'];
+                $distribucion->abreviatura    = $input['abreviatura'];
+                $distribucion->orden          = $input['orden'];
+                $distribucion->save();
                 } else{
                     return redirect()->route('distribuciones.create')->with('mensaje' ,'Revisa el coeficiente tiene sumar en total 100');
                 }
@@ -134,9 +134,9 @@ class DistribucionGastoController extends Controller
       foreach($request->get('id') as $key => $value ){
             if ($suma == 100) {
                $distribucion = DistribucionGasto::find($value);
-               $distribucion -> propiedad = $request->get('propiedad')[$key];
-               $distribucion -> coeficiente = $request->get('coeficiente')[$key];
-               $distribucion -> update();
+               $distribucion->propiedad = $request->get('propiedad')[$key];
+               $distribucion->coeficiente = $request->get('coeficiente')[$key];
+               $distribucion->update();
             } else{
             return redirect()->route('distribuciones.edit',$request->nombre)->with('mensaje' ,'Revisa el coeficiente tiene sumar en total 100');
        }

@@ -73,9 +73,9 @@
         <label for="propiedad" class="form-label">Propiedad</label>
         <select name="propiedad" class="form-select" {{$btndisabled}}>
             @if ($propiedades->count())
-            <option>Propiedades</option>
+            <option value="">Propiedades</option>
             @foreach ($propiedades as $propiedad)
-            <option value="{{$propiedad->propiedad}}" {{(old('propiedad') == $propiedad->propiedad ? 'selected' : '')}} name="{{$propiedad->propiedad}}" > {{ $propiedad->propiedad}}</option>
+            <option value="{{$propiedad->id}}" {{(old('propiedad') == $propiedad->id ? 'selected' : '')}} name="{{$propiedad->name}}" > {{ $propiedad->name}}</option>
             @endforeach
             @else
             <option value="">No hay propiedades</option>

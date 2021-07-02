@@ -18,25 +18,27 @@ class CreatePropiedadesTable extends Migration
             // Original de Randion
             
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
-            $table->unsignedBigInteger('comunidades_id');
-            $table->unsignedBigInteger('users_id')->nullable();  // Solo consideramos un propietario por propiedad
             
+            $table->string('name');
+            $table->unsignedBigInteger('comunidad_id');
+            $table->unsignedBigInteger('user_id')->nullable();  // Solo consideramos un propietario por propiedad
             $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
             $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
-
           // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
-            $table->enum('tipoPropiedad',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
+            $table->unsignedBigInteger('tipoPropiedad')->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
             
+            $table->timestamps();
+            $table->softDeletes();            
 
-            $table->foreign('users_id')->references('id')->on('users');
-            
-            $table->foreign('comunidades_id')->references('id')->on('comunidades')
+            $table->foreign('user_id')->references('id')->on('users');
+                        
+            $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
             
-            $table->index(['comunidades_id','parte']);
+            $table->foreign('tipoPropiedad')->references('id')->on('tipos_propiedades')->onDelete('cascade');
+            
+            $table->index(['comunidad_id','parte']);
              
         });
     }

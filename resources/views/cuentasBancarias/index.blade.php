@@ -16,7 +16,7 @@
             <table class="table table-hover dt-responsive nowrap" id="buscador">
                 <thead>
                     <tr class="text-white bg-dark">
-                        <th scope="col">Nombre</th>
+                        <th scope="col">@lang('Banca')</th>
                         <th scope="col">Pais</th>
                         <th scope="col">DC</th>
                         <th scope="col">Cuenta</th>

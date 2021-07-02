@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\CuentaBancaria;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 class CuentaBancariaFactory extends Factory
 {
@@ -21,13 +22,15 @@ class CuentaBancariaFactory extends Factory
      */
     public function definition()
     {
+        $paises = DB::table('paises')->pluck('id');
+        
         return [
-            "nombre"  => $this -> faker->name(),
-            //"pais" => $this -> faker -> countryCode(),
-            "pais" => '1',
-            "dc" => $this -> faker -> numberBetween(10,90),
-            "cuenta" => $this -> faker -> bankAccountNumber(),
-            "bic" => $this -> faker -> swiftBicNumber()
+            "nombre"  => 'Banca ' . $this->faker->lastname(),
+            //"pais" => $this->faker->countryCode(),
+            "pais" => $this->faker->randomElement($paises),
+            "dc" => $this->faker->numberBetween(10,90),
+            "cuenta" => $this->faker->bankAccountNumber(),
+            "bic" => $this->faker->swiftBicNumber()
         ];
     }
 }

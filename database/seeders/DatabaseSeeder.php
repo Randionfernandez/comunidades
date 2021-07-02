@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder {
         $this->call([ComunidadSeeder::class]);
         $this->call([JuntaSeeder::class]);
         $this->call([TipoPropiedadSeeder::class]);
+        $this->call([PropiedadSeeder::class]);
 
         ComunidadUser::create([
             'comunidad_id' => 1,

@@ -15,12 +15,12 @@ class Propiedad extends Model {
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        "nombre",
-        "propietario",
+        "name",
+        "user_id",
         "comunidad_id",
         "tipoPropiedad",
-        "coeficiente",
         "parte",
+        "coeficiente",
         "observaciones"
     ];
 
@@ -30,6 +30,10 @@ class Propiedad extends Model {
     
     public function nombretipoPropiedad() {
         return $this->belongsTo(TipoPropiedad::class, 'id', 'nombreTipoPropiedad')->withTimestamps();
+    }
+    
+    public function propiedades() {
+        return $this->hasMany(Propiedad::class, 'id', 'id');
     }
 
 }
