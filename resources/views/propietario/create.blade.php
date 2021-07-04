@@ -142,9 +142,9 @@
                         </div>
                     @enderror
                 
-                    <label for="Codigo_pais" class="form-label">"Codigo pais"</label>
-                    <input required type="text" id="Codigo_pais" name="Codigo_pais" class="form-control" value="{{ old('Codigo_pais') }}"/>
-                    @error('Codigo_pais')
+                    <label for="codigopais" class="form-label">@lang("Codigo pais")</label>
+                    <input required type="text" id="codigopais" name="codigopais" class="form-control" value="{{ old('codigopais') }}"/>
+                    @error('codigopais')
                         <div class="alert alert-danger mb-2" role="alert">
                             {{ $message }}
                         </div>

@@ -46,14 +46,14 @@
     <div class="col-6">
         <div class="form-group">
             <label for="email">@lang('email')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="email" name="email" min="1" placeholder=@lang('email') value="{{ old('email', $proveedor->email) }}" {{$btndisabled}}>
+            <input class="form-control border-0 bg-light shadow-sm" type="email" name="email" minlength="1" placeholder=@lang('email') value="{{ old('email', $proveedor->email) }}" {{$btndisabled}}>
         </div>
     </div>
 
     <div class="col-6">
         <div class="form-group">
             <label for="telefono">@lang('telefono')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="text" name="telefono" min="1" placeholder=@lang('telefono') value="{{ old('telefono', $proveedor->telefono) }}" {{$btndisabled}} required>
+            <input class="form-control border-0 bg-light shadow-sm" type="text" name="telefono" minlength="1" maxlength="12" placeholder=@lang('telefono') value="{{ old('telefono', $proveedor->telefono) }}" {{$btndisabled}} required>
         </div>
     </div>
 </div>
@@ -74,13 +74,15 @@
         <select class="form-select" aria-label="Default select example" name="tipoGasto" {{$btndisabled}}>
             <option value="">@lang('Type')</option>
             @forelse($tiposGastos as $tipoGasto)
-            @if ( old('tipoGasto', $proveedor->tipoGasto) == $tipoGasto->id )
-            <option value="{{$tipoGasto->id}}" selected> {{$tipoGasto->nombreTipoGasto}} </option>
-            @else
-            <option value="{{$tipoGasto->id}}"> {{$tipoGasto->nombreTipoGasto}} </option>
-            @endif
+                @if($tipoGasto->id != '1')
+                    @if ( old('tipoGasto', $proveedor->tipoGasto) == $tipoGasto->id)
+                        <option value="{{$tipoGasto->id}}" selected> {{$tipoGasto->nombreTipoGasto}} </option>
+                    @else
+                        <option value="{{$tipoGasto->id}}"> {{$tipoGasto->nombreTipoGasto}} </option>
+                    @endif
+                @endif
             @empty
-            <p>No hay gastos ni ingresos</p>
+                <p>No hay gastos ni ingresos</p>
             @endforelse
         </select>
     </div>
@@ -164,19 +166,19 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="codigopais">@lang('codigopais')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="5" name="codigopais" placeholder=@lang('codigopais') value="{{ old('codigopais', $proveedor->codigopais) }}" {{$btndisabled}} required>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="3" name="codigopais" placeholder=@lang('codigopais') value="{{ old('codigopais', $proveedor->codigopais) }}" {{$btndisabled}} required>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="cp">@lang('cp')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="5" name="cp" placeholder=@lang('cp') value="{{ old('cp', $proveedor->cp) }}" {{$btndisabled}} required>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="cp" size="5" maxlength="5" placeholder=@lang('cp') value="{{ old('cp', $proveedor->cp) }}" {{$btndisabled}} required>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="iban">@lang('Iban')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="iban" placeholder=@lang('iban') value="{{ old('iban', $proveedor->iban) }}" {{$btndisabled}} required>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="iban" size="34" maxlength="34" placeholder=@lang('iban') value="{{ old('iban', $proveedor->iban) }}" {{$btndisabled}} required>
                 </div>
             </div>
         </div>
