@@ -5,7 +5,7 @@
         @csrf @method('PATCH')
         <h1 class="display-4"> {{ __($title) }} </h1>
         <hr>
-        @include('CuentasBancarias._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
+        @include('cuentasBancarias._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
     </form>
     @include('partials.plantillashoweditend')
 </x-app-layout>
