@@ -15,7 +15,7 @@
                 </nav>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                     
+                    
                     @forelse($navLinks as $link)
                     <x-jet-nav-link class="text-decoration-none" href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                         {{ __($link['text']) }}

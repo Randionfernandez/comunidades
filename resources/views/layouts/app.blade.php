@@ -64,6 +64,7 @@
                     <div class="accordion-body">
                         @forelse($navDarkLinks as $link)
                         @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
+                        @if($link['text'] != 'Personas' || Session::has('activeCommunity'))
                         @if(Session::has('activeCommunity') && $link['text'] == 'Comunidades')
                         <x-jet-responsive-nav-link class="text-white bg-black text-decoration-none" href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
                             {{ __($link['text']) }}
@@ -72,6 +73,7 @@
                         <x-jet-responsive-nav-link class="text-white text-decoration-none" href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                             {{ __($link['text']) }}
                         </x-jet-responsive-nav-link>
+                        @endif
                         @endif
                         @endif
                         @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
