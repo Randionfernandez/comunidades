@@ -6,7 +6,7 @@
 
 <h1 class="text-center mb-4">Lista propietarios del grupo {{$propietarios[0]['nombre']}}</h1>
 
-<a href="{{route('distribucion.index')}}" class="btn btn-primary mx-5 mb-4">Volver</a>
+<a href="{{route('distribuciones.index')}}" class="btn btn-primary mx-5 mb-4">Volver</a>
 
 <table class="table col-md-11 mx-5">
     <thead>

@@ -48,7 +48,7 @@ class DistribucionGastoController extends Controller
     {
         
         $input = $request->except('_token');
-        $inputPropiedades = $input['propiedad'];
+        $inputPropiedades = Propiedad::all();
         $nPropiedades = count($inputPropiedades);
         $suma = 0;
 
@@ -56,14 +56,13 @@ class DistribucionGastoController extends Controller
             $suma += $coeficiente;
         }
 
-        
-
         if(isset($input['checkbox'])){
         for($i = 0; $i < $nPropiedades; $i++ ){
-            if(in_array($input['propiedad'][$i], $input['checkbox'])  ){
+            if(in_array($input['id'][$i], $input['checkbox'])){
                if($suma == 100){
                 $distribucion = new DistribucionGasto();
                 $distribucion->propiedad      = $input['propiedad'][$i];
+                
                 $distribucion->coeficiente    = $input['coeficiente'][$i];                
                 $distribucion->nombre         = $input['nombre'];
                 $distribucion->abreviatura    = $input['abreviatura'];
@@ -108,8 +107,9 @@ class DistribucionGastoController extends Controller
     {
         $propietarios = DistribucionGasto::where('nombre','=',$nombre)->where('nombre','!=','unidadRegistral')->get();
         $todosPropietarios = User::all('id');
+        $propiedades = Propiedad::all();
 
-        return view('distribuciones.editarDistribucion',compact('propietarios','todosPropietarios'));
+        return view('distribuciones.edit',compact('propietarios','todosPropietarios', 'propiedades'));
     }
 
     /**
@@ -154,10 +154,10 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($nombre)
+    public function destroy($id)
     {
         //
-        DistribucionGasto::where('nombre','=',$nombre)->delete();
+        DistribucionGasto::where('id','=',$id)->delete();
         return redirect()->route('distribuciones.index')->with('mensaje','Se ha elimino correctamente');
     }
 }

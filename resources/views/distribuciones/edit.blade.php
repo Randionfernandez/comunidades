@@ -6,10 +6,10 @@
         <hr>
     </x-slot>
 
-    <form action="{{route('distribucion.update',$propietarios[0]['nombre'])}}" method="post">
+    <form action="{{route('distribuciones.update',$propietarios[0]['nombre'])}}" method="post">
         @csrf
         @method('PUT')
-        @include('distribucion._form')
+        @include('distribuciones._form')
     </form>
 </x-app-layout>
 

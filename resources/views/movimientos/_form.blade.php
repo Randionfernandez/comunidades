@@ -33,7 +33,7 @@
 
     <div class="col-md-4 mb-2" >
         <label for="grupo" class="form-label">@lang('Group')</label>
-        <select class="form-select" aria-label="Default select example" name="grupo" {{$btndisabled}} required>
+        <select class="form-select" aria-label="Default select example" name="grupo" {{$btndisabled}}>
             <option value="">@lang('Group')</option>
             @forelse($grupos as $grupo)
             @if ( old('grupo', $grupo->nombre) == $movimiento->grupo)

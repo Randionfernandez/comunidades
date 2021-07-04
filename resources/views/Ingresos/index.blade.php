@@ -34,7 +34,7 @@
                 <td>{{$ingreso->cantidad}}</td>
                 <td>{{$ingreso->propiedad}}</td>
                 <td>
-                    <a href="{{route('ingresos.show', $ingreso->propiedad)}}" type="submit" name="propiedad" value="{{$ingreso->propiedad}}" class="btn btn-info">Gastos</a>
+                    <a href="{{route('ingresos.show', $ingreso)}}" type="submit" name="propiedad" value="{{$ingreso->propiedad}}" class="btn btn-info">Gastos</a>
                 </td>
             </tr>
             @endforeach

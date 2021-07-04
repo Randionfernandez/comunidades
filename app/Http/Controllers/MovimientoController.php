@@ -83,7 +83,7 @@ class MovimientoController extends Controller {
         //
         
         $cuentas = cuentaBancaria::all();
-        $propiedades = PropiedadUser::all();
+        $propiedades = Propiedad::all();
         $grupos = DistribucionGasto::distinct('nombre')->get();
         $tiposGastos = TipoGasto::all();
         

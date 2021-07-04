@@ -50,13 +50,13 @@ class IngresoController extends Controller
      * @param  \App\Models\Ingreso  $ingreso
      * @return \Illuminate\Http\Response
      */
-    public function show($propiedad)
+    public function show(Ingreso $ingreso)
     {
         //
         $prueba = array();
         
-        $gastos = DistribucionGasto::where('propiedad_id','=',$propiedad)->get(['coeficiente','nombre']);
-        $dineroPropiedad = Movimiento::where('propiedad_id', '=', $propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
+        $gastos = DistribucionGasto::where('propiedad_id','=',$ingreso->propiedad)->get(['coeficiente','nombre']);
+        $dineroPropiedad = Movimiento::where('propiedad_id', '=', $ingreso->propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
         $totalPropiedades = PropiedadUser::count('propiedad_id');
         $total = 0;   
         $gastosPropiedad = 0;
@@ -73,7 +73,7 @@ class IngresoController extends Controller
                    }
                }
 
-                $coeficiente = DistribucionGasto::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad_id','=',$propiedad)->get(['coeficiente', 'nombre']);
+                $coeficiente = DistribucionGasto::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad_id','=',$ingreso->propiedad)->get(['coeficiente', 'nombre']);
                 if(count($coeficiente) != 0 && $coeficiente[$j]->nombre == 'unidadRegistral'){
                         $coeficiente[$j]->coeficiente = 0;
                 }

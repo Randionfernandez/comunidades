@@ -35,14 +35,14 @@
                             <td>{{$distribucio->orden}}</td>
                             <td>
                                 <form>
-                                    <a href="{{route('distribucion.show',$distribucio->nombre)}}"  type="submit" name='lista' value="{{$distribucio->nombre}}" class="btn btn-info">Propiedades</a> 
+                                    <a href="{{route('distribuciones.show',$distribucio->nombre)}}"  type="submit" name='lista' value="{{$distribucio->nombre}}" class="btn btn-info">Propiedades</a> 
                                 </form>
                             </td>
                             @if ($distribucio->nombre != 'unidadRegistral')
                             <td class="flex">
-                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribucion.edit',$distribucio->nombre)}}'">{{ __('Edit') }}</x-jet-button>
+                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribuciones.edit',$distribucio->nombre)}}'">{{ __('Edit') }}</x-jet-button>
                     <x-jet-danger-button type="submit" href="#" onclick="document.getElementById('delete-distribucion').submit()">{{__('Delete')}}</x-jet-danger-button>
-                    <form class="d-none" id="delete-distribucion" action="{{route('distribucion.destroy', $distribucio)}}" method="post">
+                    <form class="d-none" id="delete-distribucion" action="{{route('distribuciones.destroy', $distribucio)}}" method="post">
                         @csrf
                         @method('DELETE')
                     </form>

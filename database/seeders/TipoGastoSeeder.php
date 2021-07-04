@@ -17,7 +17,7 @@ class TipoGastoSeeder extends Seeder {
         $tiposGastos = [
             'Ingreso' ,'Admin. Públic', 'Alcantarillado', 'Agua', 'Antenas', 'Antiplaga', 
             'Ascensores', 'Basuras', 'Comunidad', 'Desatascos', 'Electricidad', 
-            'Entidades Financiearas', 'Fontanería', 'Gas', 'Impermeabilizaciones', 
+            'Entidades Financieras', 'Fontanería', 'Gas', 'Impermeabilizaciones', 
             'Jardinería', 'Mantenimiento', 'Profesionales', 'Limpieza', 
             'Piscinas', 'Porteros automáticos', 'Garajes', 'Rehabilitación', 
             'Seguros', 'Telefonía'
