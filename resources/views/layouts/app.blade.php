@@ -49,7 +49,7 @@
 
     <div class="col-12 col-sm-12 col-lg-2 p-0 bg-black collapse show" id="navbarToggleExternalContent">
 
-        <x-jet-nav-link id="sideTitle" href="{{ route('dashboard') }}" class="h-16 m-auto">
+        <x-jet-nav-link id="sideTitle" href="{{ route('dashboard') }}" class="h-16 m-auto text-decoration-none">
             RANDI<b class="bolder">FINCAS</b>
         </x-jet-nav-link>
 
@@ -65,18 +65,18 @@
                         @forelse($navDarkLinks as $link)
                         @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
                         @if(Session::has('activeCommunity') && $link['text'] == 'Comunidades')
-                        <x-jet-responsive-nav-link href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
+                        <x-jet-responsive-nav-link class="text-white bg-black text-decoration-none" href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
                             {{ __($link['text']) }}
                         </x-jet-responsive-nav-link>
                         @else
-                        <x-jet-responsive-nav-link href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
+                        <x-jet-responsive-nav-link class="text-white text-decoration-none" href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
                             {{ __($link['text']) }}
                         </x-jet-responsive-nav-link>
                         @endif
                         @endif
                         @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
                         @forelse($navDarkCommunitiesLinks as $link2)
-                        <x-jet-responsive-nav-link class='bg-gray-300 text-black-50' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
+                        <x-jet-responsive-nav-link class='bg-gray-300 text-black-50 text-decoration-none' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
                             {{ __($link2['text']) }}
                         </x-jet-responsive-nav-link>
                         @empty
@@ -96,7 +96,7 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse bg-black collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <x-jet-responsive-nav-link href="{{ route('comunidades.index') }}" :active="request()->routeIs('comunidades.index')">
+                        <x-jet-responsive-nav-link class="text-white text-decoration-none" href="{{ route('comunidades.index') }}" :active="request()->routeIs('comunidades.index')">
                             @lang('Propiedades')
                         </x-jet-responsive-nav-link>
                     </div>
