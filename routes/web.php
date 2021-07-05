@@ -22,6 +22,8 @@ Route::get('/', function () {
 
 Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
 
+Route::resource('usuarios', UserController::class)->names('usuarios');
+
 Route::middleware('auth')->get('/comunidades/select/{comunidad}', [App\Http\Controllers\ComunidadController::class, 'select'])->name('comunidades.select');
 //Route::resource('/comunidades', ComunidadController::class);
 

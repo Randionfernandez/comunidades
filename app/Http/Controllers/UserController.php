@@ -7,6 +7,10 @@ use App\Models\ComunidadUser;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use Laravel\Fortify\Contracts\CreatesNewUsers;
+use Illuminate\Auth\Events\Registered;
+use Laravel\Fortify\Contracts\RegisterResponse;
+use Laravel\Fortify\Contracts\RegisterViewResponse;
 //use App\Models\Propietario;
 //use App\Http\Requests\PropietariosRequest;
 
@@ -29,15 +33,12 @@ class UserController extends Controller
         $activeCommunity = session()->get('activeCommunity');
         $users = User::join('comunidades_users', 'comunidades_users.user_id', '=', 'users.id')
             ->where('comunidades_users.comunidad_id','=', $activeCommunity->id)
-            ->where('comunidades_users.role_id','=', 3)->get(); 
-             
-        return view('usuarios.index',
-            [
+            ->where('comunidades_users.role_id','=', 3)->get();
+        
+        return view('usuarios.index', [
             'users' => $users,
             'activeCommunity' => $activeCommunity
-            ]
-         )->with('i', (request()->input('page', 1) - 1) * 5);
-
+        ]);
     }
 
     /**
@@ -56,21 +57,12 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(Request $request, CreatesNewUsers $creator)
     {
         $this->msj = 'Se ha creado el usuario';
         
         event(new Registered($user = $creator->create($request->all())));
         
-
-        //return app(RegisterResponse::class); eliminar
-        
-        /*
-        $request->replace(['password' => Hash::make( $request->password )] ); // aplicar hash al password
-        dd($request);
-        
-        User::create($request->validated());
-
         $new_user = User::latest('created_at')->first();
         
         $activeCommunity = session()->get('activeCommunity');
@@ -82,11 +74,8 @@ class UserController extends Controller
             'created_at' => $new_user->created_at,
             'updated_at' => $new_user->updated_at
         ]);
-         * 
-         */
-
+        
         return redirect()->route('usuarios.index')->with('status', [$this->msj, 'alert-success']);
-
     }
     
     /**

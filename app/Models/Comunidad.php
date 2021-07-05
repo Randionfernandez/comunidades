@@ -38,7 +38,7 @@ class Comunidad extends Model {
         return $this->hasMany(Cuenta::class);
     }
     
-    public function comunidades_user() {
+    public function comunidades_users() {
         return $this->hasMany(ComunidadUser::class);
     }
 
@@ -64,8 +64,8 @@ class Comunidad extends Model {
         return $this->hasMany(Junta::class);
     }
     
-    public function nombreRole($id){
-        return $nombreTipo = Role::join('comunidades_users', 'roles.id', '=', 'comunidades_users.role_id')->where('comunidades_users.comunidad_id', '=', $id)->where('comunidades_users.user_id', '=', auth()->user()->id)->get()->pluck('role')->last();
+    public function nombreRole(Comunidad $comunidad){
+        return Role::join('comunidades_users', 'roles.id', '=', 'comunidades_users.role_id')->where('comunidades_users.comunidad_id', '=', $comunidad->id)->where('comunidades_users.user_id', '=', auth()->user()->id)->get()->pluck('role')->last();
     }
 
 }

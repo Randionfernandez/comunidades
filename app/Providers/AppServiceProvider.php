@@ -32,7 +32,7 @@ class AppServiceProvider extends ServiceProvider {
             //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Incidencias tabla'],
             ['href' => 'comunidades.index', 'name' => 'comunidades.create', 'text' => 'Comunidades'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.show', 'text' => 'Acciones'],
-            ['href' => 'comunidades.index', 'name' => 'comunidades.edit', 'text' => 'Personas'],
+            ['href' => 'usuarios.index', 'name' => 'usuarios.index', 'text' => 'Personas'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.delete', 'text' => 'Inmuebles'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.restore', 'text' => 'Presupuestos'],
             //['href' => 'comunidades.index', 'name' => 'comunidades.eliminar', 'text' => 'Honorarios'],
