@@ -57,26 +57,25 @@
             <th></th>
             <th scope="col">Propiedad</th>
             <th colspan="col">Coeficiente</th>
-
-
         </tr>
     </thead>
 
     <tbody>
 
         @if ($propiedades->count())
-        @foreach ($propiedades as $propiedad)
+        @forelse ($propiedades as $propiedad)
         <tr>
-            <td><input type="hidden"  name="id[]" value="{{$propiedad->id}}"></td>
-            <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{$propiedad->id}}" id="checkbox"></td>
-            <td><input type="text" class="form-control" name="propiedad[]" value="{{$propiedad->name}}" readonly></td> 
-            <td><input type="text" class="form-control" name="coeficiente[]" value="{{$propiedad->coeficiente}}" placeholder="0"> </td> 
-
+            <td><input type="hidden"  name="id[]" value="{{old('id[]', $propiedad->id)}}"></td>
+            <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{old('checkbox[]', $propiedad->id)}}" id="checkbox"></td>
+            <td><input type="text" class="form-control" name="propiedad[]" value="{{ old('propiedad[]', $propiedad->id)}}" placeholder="{{$propiedad->name}}" readonly></td>
+            <td><input type="text" class="form-control" name="coeficiente[]" value="{{old('coeficiente[]',$propiedad->coeficiente)}}" placeholder="0"></td>
         </tr>
-        @endforeach
+        @empty
+            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])
+        @endforelse
         @else
         <tr>
-            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not owners created yet'])
+            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])
         </tr>
         @endif
 

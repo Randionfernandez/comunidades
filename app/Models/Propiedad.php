@@ -31,9 +31,5 @@ class Propiedad extends Model {
     public function nombretipoPropiedad() {
         return $this->belongsTo(TipoPropiedad::class, 'id', 'nombreTipoPropiedad')->withTimestamps();
     }
-    
-    public function propiedades() {
-        return $this->hasMany(Propiedad::class, 'id', 'id');
-    }
 
 }

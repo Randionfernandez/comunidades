@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
+use App\Models\TipoPropiedad;
 use Illuminate\Http\Request;
 use App\Http\Requests\PropiedadRequest;
 
@@ -28,8 +29,11 @@ class PropiedadController extends Controller
      */
     public function create()
     {
+        $tipoPropiedades = TipoPropiedad::all();
+        
         return view('propiedades.create', [
-            'propiedades' => new Propiedad,
+            'propiedad' => new Propiedad,
+            'tipoPropiedades' => $tipoPropiedades,
             'btnText1' => 'Save',
             'btnText2' => 'Cancel',
             'btndisabled' => '',

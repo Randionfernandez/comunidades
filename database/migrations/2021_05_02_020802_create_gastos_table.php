@@ -16,10 +16,6 @@ class CreateGastosTable extends Migration {
         Schema::create('gastos', function (Blueprint $table) {
             $table->id();
             
-            
-            
-            
-            
             $table->timestamps();    
             $table->softDeletes();
         });

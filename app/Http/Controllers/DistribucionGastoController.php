@@ -32,9 +32,11 @@ class DistribucionGastoController extends Controller
     public function create()
     {
        //
-       $propietarios = User::all();
-       $propiedades = Propiedad::all();
-       return view('distribuciones.create',compact('propietarios', 'propiedades'));
+       $propiedades = session()->get('activeCommunity')->propiedades;
+       
+       return view('distribuciones.create', [
+           'propiedades' => $propiedades
+       ]);
     }
 
 
@@ -61,15 +63,14 @@ class DistribucionGastoController extends Controller
             if(in_array($input['id'][$i], $input['checkbox'])){
                if($suma == 100){
                 $distribucion = new DistribucionGasto();
-                $distribucion->propiedad      = $input['propiedad'][$i];
-                
-                $distribucion->coeficiente    = $input['coeficiente'][$i];                
-                $distribucion->nombre         = $input['nombre'];
-                $distribucion->abreviatura    = $input['abreviatura'];
-                $distribucion->orden          = $input['orden'];
+                $distribucion->propiedad_id   = $input['propiedad'][$i];
+                $distribucion->coeficiente = $input['coeficiente'][$i];                
+                $distribucion->nombre      = $input['nombre'];
+                $distribucion->abreviatura = $input['abreviatura'];
+                $distribucion->orden       = $input['orden'];
                 $distribucion->save();
                 } else{
-                    return redirect()->route('distribuciones.create')->with('mensaje' ,'Revisa el coeficiente tiene sumar en total 100');
+                    return redirect()->route('distribuciones.create')->with('mensaje' ,'Revisa el coeficiente, tiene sumar en total 100');
                 }
             }
 

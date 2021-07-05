@@ -16,13 +16,17 @@ class CreateDistribucionesGastosTable extends Migration
         // Integracion parte de Rafa Maya para que cuadre la integración
         Schema::create('distribuciones_gastos', function (Blueprint $table) {
             $table->id();
-            $table->string('propiedad');
+            
+            $table->unsignedBigInteger('propiedad_id');
             $table->decimal('coeficiente');
             $table->decimal('unidadRegistral')->nullable();
             $table->string('nombre');
             $table->string('abreviatura');
             $table->integer('orden');
+            
             $table->timestamps();
+            
+            $table->foreign('propiedad_id')->references('id')->on('propiedades')->onDelete('cascade');
         });
     }
 
