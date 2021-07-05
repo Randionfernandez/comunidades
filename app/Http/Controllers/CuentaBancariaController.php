@@ -69,10 +69,10 @@ class CuentaBancariaController extends Controller
      */
     public function show(CuentaBancaria $cuentaBancaria)
     {
-        //
         $this->paises = Pais::all();
         return view('cuentasBancarias.show', [
             'cuentaBancaria' => $cuentaBancaria,
+            'comunidad' => session()->get('activeCommunity'),
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
             'btndisabled' => 'disabled',

@@ -88,10 +88,11 @@ class MovimientoController extends Controller {
         $tiposGastos = TipoGasto::all();
         
         return view('movimientos.show', [
+            'movimiento' => $movimiento,
+            'comunidad' => session()->get('activeCommunity'),
             'cuentas' => $cuentas,
             'propiedades' => $propiedades,
             'grupos' => $grupos,
-            'movimiento' => $movimiento,
             'tiposGastos' => $tiposGastos,
             'btnText1' => 'Create',
             'btnText2' => 'Cancel',

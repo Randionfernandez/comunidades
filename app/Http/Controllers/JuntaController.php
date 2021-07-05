@@ -21,7 +21,6 @@ class JuntaController extends Controller
     public function index()
     {
         $this->user = auth()->user();
-        $comunidad_activa = session()->get('activeCommunity');
         //$juntas = $comunidad_activa->juntas;
         
         $juntas = Junta::all();
@@ -79,7 +78,7 @@ class JuntaController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  Junta $junta
      * @return \Illuminate\Http\Response
      */
     public function show(Junta $junta)
@@ -96,7 +95,7 @@ class JuntaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Junta $junta
      * @return \Illuminate\Http\Response
      */
     public function edit(Junta $junta)
@@ -115,7 +114,7 @@ class JuntaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  Junta $junta
      * @return \Illuminate\Http\Response
      */
     public function update(Junta $junta, JuntaRequest $request)
