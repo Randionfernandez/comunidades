@@ -22,10 +22,9 @@ class CreatePropiedadesTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('comunidad_id');
             $table->unsignedBigInteger('user_id')->nullable();  // Solo consideramos un propietario por propiedad
+            $table->unsignedBigInteger('tipoPropiedad_id')->comment("Tipo de propiedad: piso, ático, local,...");
             $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
             $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
-          // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
-            $table->unsignedBigInteger('tipoPropiedad')->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
             
             $table->timestamps();
@@ -36,10 +35,11 @@ class CreatePropiedadesTable extends Migration
             $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
             
-            $table->foreign('tipoPropiedad')->references('id')->on('tipos_propiedades')->onDelete('cascade');
+            $table->foreign('tipoPropiedad_id')->references('id')->on('tipos_propiedades')->onDelete('cascade');
             
             $table->index(['comunidad_id','parte']);
-             
+            $table->unique(['name', 'comunidad_id']);
+                         
         });
     }
 

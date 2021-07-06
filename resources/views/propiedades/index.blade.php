@@ -11,13 +11,13 @@
     
     <x-jet-button onclick="location.href ='{{ route('propiedades.create') }}'">@lang('New')</x-jet-button>
 
-    @if( $propiedades->count() <= 0)
+    @if( $propiedades->count())
 
     <div class="card">
         <div class="card-body">
             <table class="table table-hover dt-responsive nowrap" id="buscador">
                 <thead>
-                    <tr class="text-white bg-dark">
+                    <tr class="text-white bg-dark text-center">
                         <th>@lang('Name')</th>
                         <th>@lang('Owner')</th>
                         <th class="col-span-2 text-center">@lang('Actions')</th>
@@ -26,9 +26,9 @@
                 
                 <tbody>
                     @forelse($propiedades as $propiedad )
-                    <tr>
+                    <tr class="text-center">
                         <td>{{$propiedad->name}}</td>
-                        <td>{{$comunidad->user_id}}</td>
+                        <td>{{$propiedad->user_id}}</td>
                         <td class="flex">
                             <x-jet-button class="mx-2" onclick="location.href ='{{ route('propiedades.edit', $propiedad->id) }}'">{{ __('Edit') }}</x-jet-button>
                             <x-jet-danger-button onclick="location.href ='{{ route('propiedades.show', $propiedad) }}'">{{__('Show')}}</x-jet-danger-button>

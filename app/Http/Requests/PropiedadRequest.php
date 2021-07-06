@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class PropiedadRequest extends FormRequest {
 
@@ -22,13 +23,13 @@ class PropiedadRequest extends FormRequest {
      */
     public function rules() {
         return [
-            "nombre" => ["required", "max:30"],
-            "user_id" => ["required"],
-            "comunidad_id" => ["required", "exists:comunidades,id"],
-            "tipoPropiedad" => ["required", "exists:tipos_propiedades,id"],
+            "name" => ["required", "max:30", Rule::unique('propiedades', 'name')->where('comunidad_id', $this->request->get('comunidad_id'))],
+            "user_id" => ["required", "exists:users,id"],
+            "comunidad_id" => ["exists:comunidades,id"],
+            "tipoPropiedad_id" => ["required", "exists:tipos_propiedades,id"],
             "coeficiente" => ["required"],
             "parte" => ["required"],
-            "observacion" => ["max:100"]
+            "observaciones" => ["max:100"]
         ];
     }
 

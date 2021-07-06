@@ -18,7 +18,7 @@ class Propiedad extends Model {
         "name",
         "user_id",
         "comunidad_id",
-        "tipoPropiedad",
+        "tipoPropiedad_id",
         "parte",
         "coeficiente",
         "observaciones"
@@ -29,7 +29,11 @@ class Propiedad extends Model {
     }
     
     public function nombretipoPropiedad() {
-        return $this->belongsTo(TipoPropiedad::class, 'id', 'nombreTipoPropiedad')->withTimestamps();
+        return $this->belongsTo(TipoPropiedad::class, 'tipoPropiedad_id', 'nombreTipoPropiedad')->withTimestamps();
+    }
+    
+    public function propietario() {
+        return $this->belongsTo(User::class);
     }
 
 }

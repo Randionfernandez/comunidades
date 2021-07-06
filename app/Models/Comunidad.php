@@ -31,7 +31,7 @@ class Comunidad extends Model {
     ];
 
     public function propiedades() {
-        return $this->hasMany(Propiedad::class);
+        return $this->hasMany(Propiedad::class, 'comunidad_id', 'id');
     }
 
     public function cuentas() {

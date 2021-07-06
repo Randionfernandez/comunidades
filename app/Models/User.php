@@ -69,5 +69,9 @@ class User extends Authenticatable
     public function roles() {
         return $this->belongsToMany(Role::class, 'comunidades_users','user_id','role_id')->withTimestamps();
     }
+    
+    public function propiedades() {
+        return $this->hasMany(Propiedad::class);
+    }
 
 }
