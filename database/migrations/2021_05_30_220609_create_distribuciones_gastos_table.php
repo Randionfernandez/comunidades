@@ -20,7 +20,7 @@ class CreateDistribucionesGastosTable extends Migration
             $table->unsignedBigInteger('propiedad_id');
             $table->decimal('coeficiente');
             $table->decimal('unidadRegistral')->nullable();
-            $table->string('nombre');
+            $table->string('name');
             $table->string('abreviatura');
             $table->integer('orden');
             

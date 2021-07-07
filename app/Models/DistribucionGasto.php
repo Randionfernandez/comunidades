@@ -19,7 +19,7 @@ class DistribucionGasto extends Model
         'propiedad_id',
         'coeficiente',
         'unidadRegistral',
-        'nombre',
+        'name',
         'abreviatura',
         'orden'
     ];

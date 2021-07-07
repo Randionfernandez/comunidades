@@ -26,7 +26,7 @@ class DistribucionGastoRequest extends FormRequest
         return [
             'orden' => 'required | numeric',
             'abreviatura' => 'required | alpha | max:3',
-            'nombre' => 'required | alpha',
+            'name' => 'required | alpha',
             'checkbox' => 'required',
             //'propietario' => 'required',
             'propiedad' => 'required',

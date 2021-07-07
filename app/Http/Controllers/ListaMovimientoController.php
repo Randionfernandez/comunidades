@@ -20,7 +20,7 @@ class ListaMovimientoController extends Controller {
 
         $prueba = array();
         $propiedad = request()->get('propiedad');
-        $gastos = DistribucionGasto::where('propiedad', '=', $propiedad)->get(['coeficiente', 'unidadRegistral', 'nombre']);
+        $gastos = DistribucionGasto::where('propiedad', '=', $propiedad)->get(['coeficiente', 'unidadRegistral', 'name']);
         $totalPropiedades = PropiedadUser::count('propiedad');
         $dineroPropiedad = Movimiento::where('propiedad', '=', $propiedad)->where('concepto', '=', 'ingreso')->get('cantidad')->sum('cantidad');
         $gastosPropiedad = 0;
@@ -29,8 +29,8 @@ class ListaMovimientoController extends Controller {
         $arrayIngresado['ingresado'] = $dineroPropiedad;
 
         foreach ($gastos as $gasto) {
-            $concepto = Movimiento::where('grupo', '=', $gasto['nombre'])->get(['concepto', 'cantidad']);
-            if ($gasto['nombre'] == 'coeficiente') {
+            $concepto = Movimiento::where('grupo', '=', $gasto['name'])->get(['concepto', 'cantidad']);
+            if ($gasto['name'] == 'coeficiente') {
                 $operacion = sprintf("%01.2f", ($gasto['coeficiente'] / 100) * $concepto[0]['cantidad']);
             } else {
                 $operacion = sprintf("%01.2f", $concepto[0]['cantidad'] / $totalPropiedades);

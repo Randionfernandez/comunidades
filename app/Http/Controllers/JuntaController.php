@@ -23,8 +23,9 @@ class JuntaController extends Controller
         $this->user = auth()->user();
         //$juntas = $comunidad_activa->juntas;
         
-        $juntas = Junta::all();
-        //dd($comunidad->juntas);
+        $activeCommunity = session()->get('activeCommunity');
+        $juntas = $activeCommunity->juntas()->get();
+        
         return view('juntas.index', [
             'user' => $this->user,
             'comunidades' => $this->user->comunidades,

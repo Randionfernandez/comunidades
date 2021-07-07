@@ -44,7 +44,7 @@ class MovimientoController extends Controller {
         $cuentas = CuentaBancaria::all();
         $propietarios = User::all();
         $propiedades = Propiedad::all();
-        $grupos = DistribucionGasto::distinct('nombre')->get();
+        $grupos = DistribucionGasto::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
         
         return view('movimientos.create', [
@@ -84,7 +84,7 @@ class MovimientoController extends Controller {
         
         $cuentas = cuentaBancaria::all();
         $propiedades = Propiedad::all();
-        $grupos = DistribucionGasto::distinct('nombre')->get();
+        $grupos = DistribucionGasto::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
         
         return view('movimientos.show', [
@@ -112,7 +112,7 @@ class MovimientoController extends Controller {
         $cuentas = CuentaBancaria::all();
         $propiedades = Propiedad::all();
 
-        $grupos = DistribucionGasto::distinct('nombre')->get();
+        $grupos = DistribucionGasto::distinct('name')->get();
         $movimiento1 = Movimiento::where('concepto', '!=', 'ingreso')->findOrFail($movimiento->id);
         $tiposGastos = TipoGasto::all();
 

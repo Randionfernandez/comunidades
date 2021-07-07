@@ -61,7 +61,7 @@ class Comunidad extends Model {
     }
     
     public function juntas () {
-        return $this->hasMany(Junta::class);
+        return $this->hasMany(Junta::class, 'comunidad_id', 'id');
     }
     
     public function nombreRole(Comunidad $comunidad){

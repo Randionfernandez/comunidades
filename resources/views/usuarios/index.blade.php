@@ -11,47 +11,40 @@
 
     <x-jet-button onclick="location.href ='{{ route('usuarios.create') }}'">@lang('New')</x-jet-button>
 
-    <div>
+        @include('partials.session-status')
 
-        @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
+        @if ($users->count())
+        <div class="card">
+            <div class="card-body">
+                <table class="table table-hover dt-responsive nowrap" id="buscador">
+                    <thead>
+                        <tr class="text-white bg-dark">
+                            <th>@lang('Nombre')</th>
+                            <th>@lang('Email')</th>
+                            <th class="col-span-2 text-center">@lang('Actions')</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @forelse ($users as $user)
+                        <tr>
+                            <td>{{ $user->name }}</td>
+                            <td>{{ $user->email }}</td>
+                            <td class="flex">
+                                <x-jet-button class="mx-2" onclick="location.href ='{{ route('usuarios.edit', $user) }}'">{{ __('Edit') }}</x-jet-button>
+                                <x-jet-danger-button onclick="location.href ='{{ route('usuarios.show', $user) }}'">{{__('Show')}}</x-jet-danger-button>
+                            </td>
+                        </tr>
+                        @empty
+                            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not communities created yet'])
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
+        @else
+        @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not communities created yet'])
         @endif
-        <br>
-        <table class="table table-bordered">
-            <tr>
-                <th>Nombre</th>
-                <th>@lang('Email')</th>
-                <th width="280px">Action</th>
-            </tr>
-            @forelse ($users as $user)
-
-            <tr>
-                <td>{{ $user->name }}</td>
-                <td>{{ $user->email }}</td>
-                <td>
-                    <form action="{{ route('usuarios.destroy',$user) }}" method="POST">
-
-                        <a class="btn btn-primary" href="{{ route('usuarios.show',$user) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('usuarios.edit',$user) }}">Edit</a>
-
-                        @csrf
-                        @method('DELETE')
-
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
-            </tr>
-            @empty
-            @endforelse
-        </table>
-
-        @else 
-        <div class="alert alert-warning">
-            <p>No tienes permisos para ver los usuarios de esta comunidad</p>
-        </div> 
-        @endif
-    </div>
+    @endif
 
 </x-app-layout>

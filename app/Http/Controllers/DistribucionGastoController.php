@@ -65,7 +65,7 @@ class DistribucionGastoController extends Controller
                 $distribucion = new DistribucionGasto();
                 $distribucion->propiedad_id   = $input['propiedad'][$i];
                 $distribucion->coeficiente = $input['coeficiente'][$i];                
-                $distribucion->nombre      = $input['nombre'];
+                $distribucion->name      = $input['name'];
                 $distribucion->abreviatura = $input['abreviatura'];
                 $distribucion->orden       = $input['orden'];
                 $distribucion->save();
@@ -89,10 +89,10 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function show($nombre)
+    public function show($name)
     {
 
-       $propietarios = DistribucionGasto::where('nombre', '=', $nombre)->get();  
+       $propietarios = DistribucionGasto::where('name', '=', $name)->get();
        
        return view('distribuciones.listaPropiedades', compact('propietarios'));
 
@@ -104,13 +104,19 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function edit(DistribucionGasto $distribuciongasto,$nombre)
+    public function edit(DistribucionGasto $distribuciongasto,$name)
     {
-        $propietarios = DistribucionGasto::where('nombre','=',$nombre)->where('nombre','!=','unidadRegistral')->get();
+        $propietarios = DistribucionGasto::where('name','=',$name)->where('name','!=','unidadRegistral')->get();
         $todosPropietarios = User::all('id');
         $propiedades = Propiedad::all();
+        dd($propiedades);
 
-        return view('distribuciones.edit',compact('propietarios','todosPropietarios', 'propiedades'));
+        return view('distribuciones.edit', [
+            'propietarios' => $propietarios,
+            'todosPropietarios' => $todosPropietarios,
+            'propiedades' => $propiedades,
+            'coeficiente_if' => 1
+        ]);
     }
 
     /**
@@ -120,7 +126,7 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function update(DistribucionGastoRequest $request,$nombre)
+    public function update(DistribucionGastoRequest $request,$name)
     {  /* 
        $input = $request->except('_token','_method');
        $n = count($request['propiedad']);
@@ -139,7 +145,7 @@ class DistribucionGastoController extends Controller
                $distribucion->coeficiente = $request->get('coeficiente')[$key];
                $distribucion->update();
             } else{
-            return redirect()->route('distribuciones.edit',$request->nombre)->with('mensaje' ,'Revisa el coeficiente tiene sumar en total 100');
+            return redirect()->route('distribuciones.edit',$request->name)->with('mensaje' ,'Revisa el coeficiente tiene sumar en total 100');
        }
        
       }

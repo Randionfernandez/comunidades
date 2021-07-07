@@ -25,7 +25,7 @@ class CuentaBancariaFactory extends Factory
         $paises = DB::table('paises')->pluck('id');
         
         return [
-            "nombre"  => 'Banca ' . $this->faker->lastname(),
+            "name"  => 'Banca ' . $this->faker->lastname(),
             //"pais" => $this->faker->countryCode(),
             "pais" => $this->faker->randomElement($paises),
             "dc" => $this->faker->numberBetween(10,90),

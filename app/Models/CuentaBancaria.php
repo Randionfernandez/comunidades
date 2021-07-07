@@ -13,7 +13,7 @@ class CuentaBancaria extends Model
     protected $table = 'cuentas_bancarias';
 
     protected $fillable = [
-        'nombre',
+        'name',
         'pais',
         'dc',
         'cuenta',

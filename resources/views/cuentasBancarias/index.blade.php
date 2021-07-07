@@ -28,11 +28,11 @@
                 <tbody>
                 @forelse($cuentasBancarias as $cuentaBancaria)
                     <tr>
-                        <td>{{ $cuentaBancaria-> nombre }}</td>
+                        <td>{{ $cuentaBancaria->name }}</td>
                         <td>{{$cuentaBancaria->nombrePais($cuentaBancaria->id)}}</td>
-                        <td>{{ $cuentaBancaria-> dc }}</td>
-                        <td>{{ $cuentaBancaria-> cuenta }}</td>
-                        <td>{{ $cuentaBancaria-> bic }}</td>
+                        <td>{{ $cuentaBancaria->dc }}</td>
+                        <td>{{ $cuentaBancaria->cuenta }}</td>
+                        <td>{{ $cuentaBancaria->bic }}</td>
                         <td class="flex">
                             <x-jet-button class="mx-2" onclick="location.href ='{{ route('cuentasBancarias.edit', $cuentaBancaria) }}'">{{ __('Edit') }}</x-jet-button>
                             <x-jet-danger-button type="submit" onclick="location.href ='{{ route('cuentasBancarias.show', $cuentaBancaria) }}'">@lang('Show')</x-jet-danger-button>

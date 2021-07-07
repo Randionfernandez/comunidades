@@ -16,7 +16,7 @@ class CreateCuentasBancariasTable extends Migration
         // Integracion parte de Rafa Maya para que cuadre la integración
         Schema::create('cuentas_bancarias', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre');
+            $table->string('name');
             $table->unsignedBigInteger('pais');
             $table->integer('dc');
             $table->string('cuenta');

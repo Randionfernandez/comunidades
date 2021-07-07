@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            @lang('Lista propietarios del grupo') {{__($propietarios[0]['nombre'])}}
+            @lang('Lista propietarios del grupo') {{__($propietarios[0]['name'])}}
         </h2>
         <hr>
     </x-slot>
@@ -19,7 +19,7 @@
         <tr class="text-white bg-dark">
             <th scope="col">Propiedad</th>
           
-           @if ($propietarios[0]['nombre']  == 'unidadRegistral')
+           @if ($propietarios[0]['name']  == 'unidadRegistral')
                <th>UnidadRegistral</th>
            @else
                <th>Coeficiente</th>
@@ -34,10 +34,8 @@
         @foreach ($propietarios as $propietario)
            
             <tr>
-                <td>{{$propietario->propiedad}}</td>
+                <td>{{$propietario->propiedad_id}}</td>
                 <td>{{$propietario->coeficiente}}</td>
-
-               
             </tr>
           
         @endforeach

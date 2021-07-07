@@ -24,7 +24,7 @@ class CuentaBancariaRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required | string',
+            'name' => 'required | string',
             'pais' => 'exists:paises,id',
             'dc' => 'required | numeric | digits:2 ',
             'cuenta' => 'required | min:24',

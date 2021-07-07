@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="position-relative">
-
+        
         <x-jet-button onclick="location.href ='{{ route('distribuciones.create') }}'">@lang('New')</x-jet-button>
 
         @include('partials.session-status')
@@ -30,17 +30,17 @@
 
                         @foreach($distribucion as $distribucio)
                         <tr>
-                            <td>{{$distribucio->nombre}}</td>
+                            <td>{{$distribucio->name}}</td>
                             <td>{{$distribucio->abreviatura}}</td>
                             <td>{{$distribucio->orden}}</td>
                             <td>
                                 <form>
-                                    <a href="{{route('distribuciones.show',$distribucio->nombre)}}"  type="submit" name='lista' value="{{$distribucio->nombre}}" class="btn btn-info">Propiedades</a> 
+                                    <a href="{{route('distribuciones.show',$distribucio->name)}}"  type="submit" name='lista' value="{{$distribucio->name}}" class="btn btn-info">Propiedades</a> 
                                 </form>
                             </td>
-                            @if ($distribucio->nombre != 'unidadRegistral')
+                            @if ($distribucio->name != 'unidadRegistral')
                             <td class="flex">
-                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribuciones.edit',$distribucio->nombre)}}'">{{ __('Edit') }}</x-jet-button>
+                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribuciones.edit',$distribucio->name)}}'">{{ __('Edit') }}</x-jet-button>
                     <x-jet-danger-button type="submit" href="#" onclick="document.getElementById('delete-distribucion').submit()">{{__('Delete')}}</x-jet-danger-button>
                     <form class="d-none" id="delete-distribucion" action="{{route('distribuciones.destroy', $distribucio)}}" method="post">
                         @csrf
