@@ -68,7 +68,7 @@
             <td><input type="hidden"  name="id[]" value="{{old('id[]', $propiedad->id)}}"></td>
             <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{old('checkbox[]', $propiedad->id)}}" id="checkbox"></td>
             <td><input type="text" class="form-control" name="propiedad[]" value="{{ old('propiedad[]', $propiedad->id)}}" placeholder="{{$propiedad->name}}" readonly></td>
-            <td><input type="text" class="form-control" name="coeficiente[]" value="{{old('coeficiente[]',$propiedad->coeficiente)}}" placeholder="0"></td>
+            <td><input type="text" class="form-control" name="coeficiente[]" @if($coeficiente_if != 0)  value="{{old('coeficiente[]',$propiedad->coeficiente)}}" @else value="0" @endif placeholder="0"></td>
         </tr>
         @empty
             @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])

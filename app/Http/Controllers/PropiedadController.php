@@ -22,7 +22,7 @@ class PropiedadController extends Controller
     {
         
         $activeCommunity = session()->get('activeCommunity');
-        $propiedades = session()->get('activeCommunity')->propiedades()->get();
+        $propiedades = $activeCommunity->propiedades()->get();
         
         return view('propiedades.index', [
             'comunidad' => $activeCommunity,

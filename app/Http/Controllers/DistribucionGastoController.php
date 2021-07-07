@@ -21,7 +21,6 @@ class DistribucionGastoController extends Controller
        
         return view('distribuciones.index', compact('distribucion')); 
 
-
     }
 
     /**
@@ -31,11 +30,12 @@ class DistribucionGastoController extends Controller
      */
     public function create()
     {
-       //
-       $propiedades = session()->get('activeCommunity')->propiedades;
-       
-       return view('distribuciones.create', [
-           'propiedades' => $propiedades
+        
+        $propiedades = session()->get('activeCommunity')->propiedades()->get();
+        
+        return view('distribuciones.create', [
+           'propiedades' => $propiedades,
+            'coeficiente_if' => 0
        ]);
     }
 
