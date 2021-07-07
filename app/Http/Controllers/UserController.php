@@ -16,10 +16,10 @@ class UserController extends Controller
      */
     public function index()
     {
-        // $users=auth()->User::all();
-        // $users = User::paginate(5);
-        $users=User::latest()->paginate(5);
-        return view('user.index')->with('users',$users);
+        $users=User::all();
+        // $users = User::paginate();
+        // $users=User::latest()->paginate(5);
+        return view('user.index',compact('users'))->with('users',$users);
 
 
       // return view('user.index',compact('users'))

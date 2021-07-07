@@ -1,10 +1,13 @@
 <?php
 
+namespace App\Http\Controllers;
+
 emailspace App\Http\Controllers;
 
 use App\Models\Convocatoria;
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\Request;
+use Illuminate\Http\ConvocatoriaRequest;
 
 class ConvocatoriaController extends Controller
 {

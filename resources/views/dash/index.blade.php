@@ -1,0 +1,3 @@
+<dir>
+	vista dash
+</dir>

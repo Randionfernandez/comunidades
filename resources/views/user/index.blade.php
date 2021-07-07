@@ -1,5 +1,10 @@
 @extends('layouts.plantilla')
 
+{{-- uso de datatables --}}
+@section('css')
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+@endsection
+
 @section('content')
 <div class="card uper" style="margin-bottom: 4%;">
 	<div class="card-header">
@@ -9,14 +14,17 @@
 							</span></a>Propietarios en Activo</h1>
 	</div>
 
+<div class="cardbody">
+
 	<div class="uper table-responsive">
 		@if(session()->get('success'))
 		<div class="alert2 alert-success">
 			{{ session()->get('success') }}
 		</div><br />
 		@endif
-		<table class="table table-light text-gray-700 table-striped text-nowrap mt-4">
-			<thead>
+		<table id="users" class="table table-light text-gray-700 table-striped table-bordered
+		table-hover shadow-lg text-nowrap mt-4" style="width:100%">
+			<thead class="table-secondary ">
 				<tr>
 					<th scope="col">@lang('ID')</th >
 					<th scope="col">@lang('Nombre')</th >
@@ -84,8 +92,23 @@
 
 	</div>
 
-{{ $users->links() }}
+{{--{{ $users->links() }} --}}
 </div>
+</div>
+
+@endsection
+
+@section('js')
+
+<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js
+"></script>
+<script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+<script >
+$(document).ready(function() {
+    $('#users').DataTable();
+} );
+</script>
 
 
 @endsection

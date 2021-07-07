@@ -97,7 +97,7 @@ class User extends Authenticatable
         return $this->hasMany(Acta::class);
     }
 
-     public function acta() {
+     public function convocatoria() {
         return $this->hasMany(Convocatoria::class);
     }
 
