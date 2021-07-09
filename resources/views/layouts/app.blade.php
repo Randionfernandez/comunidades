@@ -36,7 +36,7 @@
         .bolder {
             font-weight: bolder;
         }
-        #propiedad, #grupo, #propiedad_label, #grupo_label {
+        #propiedad, #grupo, #propiedad_label, #grupo_label, #divgrupopropiedad {
             display: none;
         }
     </style>
@@ -172,12 +172,14 @@
     $(document).ready(function(){
         $('#select').change(function() {
             if ($('#select').val() === "1") {
+                $("#divgrupopropiedad").show();
                 $("#propiedad").show();
                 $("#propiedad_label").show();
                 $("#grupo").hide();
                 $("#grupo_label").hide();
                 $('#grupo').val("");
             } else if ($('#select').val() === "") {
+                $("#divgrupopropiedad").hide();
                 $("#propiedad").hide();
                 $("#propiedad_label").hide();
                 $("#grupo").hide();
@@ -185,6 +187,7 @@
                 $("#propiedad").val("");
                 $("#grupo").val("");
             } else {
+                $("#divgrupopropiedad").show();
                 $("#propiedad").hide();
                 $("#propiedad_label").hide();
                 $("#grupo").show();

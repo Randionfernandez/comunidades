@@ -53,7 +53,7 @@
         </select>
     </div>
     
-        <div class="col-md-4 mb-2" >
+    <div id="divgrupopropiedad" class="col-md-4 mb-2" >
         <label id="grupo_label" for="grupo" class="form-label">@lang('Group')</label>
         <select id="grupo" class="form-select" aria-label="Default select example" name="grupo" {{$btndisabled}}>
             <option value="">@lang('Group')</option>
