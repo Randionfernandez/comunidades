@@ -1,84 +1,74 @@
-<button class="btn btn-primary mx-5 mb-4 ">@lang('Save')</button>
-<a href="{{url('distribuciones')}}" class="btn btn-danger mb-4 ">@lang('Back')</a>
+@csrf
 
-@if($errors->any())
-@foreach($errors->all() as $error)
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{ $error}}
+@if($btndisabled != 'disabled')
+<div class="inline-flex">
+    @if ($propiedades->count())
+    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
+    @endif
+    <x-jet-danger-button onclick="location.href ='{{ route('distribuciones.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
 </div>
-@endforeach
+@else
+@include('partials.btneditdeleteback', ['route1' => 'propiedades.edit', 'variable' => $propiedades, 'route2' => 'propiedades.index', 'route3' => 'propiedades.destroy'])
 @endif
 
-@if (session ('mensaje'))
-<div class="alert alert-danger  alert-dismissible fade show" role="alert">
-    {{ session('mensaje') }}
+<x-jet-validation-errors></x-jet-validation-errors>
+
+@if ($propiedades->count())
+<div class="row form-group">
+    <div class="col-4">
+        <label for="orden">@lang('Orden')</label>
+        <input class="form-control border-0 bg-light shadow-sm" type="number" name="orden" placeholder="1" value="{{ old('orden', $distribucionGasto->orden) }}" {{$btndisabled}} required>
+        <label class="form-label" for="orden">@lang('Numero ej. 1')</label>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="abreviatura">@lang('Abreviatura')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="text" name="abreviatura" placeholder=@lang('abreviatura') value="{{ old('abreviatura', $distribucionGasto->abreviatura) }}" {{$btndisabled}} required>
+            <label for="abreviatura">@lang('Letra Ej. ABC')</label>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="form-group">
+            <label for="name">@lang('Name')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="text" name="name" placeholder=@lang('name') value="{{ old('name', $distribucionGasto->name) }}" {{$btndisabled}} required >
+            <label for="name">@lang('Letras y numeros. Ej. General')</label>
+        </div>
+    </div>
 </div>
+
+<div class="card">
+    <div class="card-body">
+        <table class="table table-hover dt-responsive nowrap" id="buscador">
+            <thead>
+                <tr class="text-white bg-dark">
+                    <th></th>
+                    <th></th>
+                    <th>@lang('Propiedad')</th>
+                    <th>@lang('Coeficiente')</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @if ($propiedades->count())
+                @forelse ($propiedades as $propiedad)
+                <tr>
+                    <td><input type="hidden"  name="id[]" value="{{old('id[]', $propiedad->id)}}"></td>
+                    <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{old('checkbox[]', $propiedad->id)}}" id="checkbox"></td>
+                    <td><input type="text" class="form-control" name="propiedad[]" value="{{ old('propiedad[]', $propiedad->id)}}" placeholder="{{$propiedad->name}}" readonly></td>
+                    <td><input type="text" class="form-control" name="coeficiente[]" @if($coeficiente_if)  value="{{old('coeficiente[]',$propiedad->coeficiente)}}" @else value="" @endif placeholder="0"></td>
+                </tr>
+                @empty
+                @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])
+                @endforelse
+                @else
+                <tr>
+                    @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])
+                </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
+</div>
+@else
+@include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])
 @endif
-
-<div class="row col-md-11 mx-5 mb-4">
-    <div class="col">
-        <label class="form-label text-center" for="orden">Orden</label>
-        <input class="form-control" type="text" name="orden" placeholder="1" value="{{old('orden',$propiedades[0]['orden'])}}">
-        <label class="form-label" for="numero">Numero ej. 1</label>
-        @error('orden')
-        <br>
-        {{$message}}
-        <br>
-        @enderror
-    </div>
-
-    <div class="col">
-        <label class="form-label text-center" for="abreviatura">Abreviatura</label>
-        <input class="form-control" type="text" name="abreviatura" placeholder="ABC" value="{{old('abreviatura',$propiedades[0]['abreviatura'])}}">
-        <label for="letra">Letra Ej. ABC</label>
-        @error('abreviatura')
-        <br>
-        {{$message}}
-        <br>
-        @enderror
-    </div>
-
-    <div class="col">
-        <label class="form-label text-center" for="name"> Nombre</label>
-        <input class="form-control" type="text" name="name" placeholder="Trasteros" value="{{old('name',$propiedades[0]['name'])}}">
-        <label for="general">Letras y numeros. Ej. General</label>
-        @error('name')
-        <br>
-        {{$message}}
-        <br>
-        @enderror
-    </div>
-</div>
-
-<table class="table col-md-11 mx-5 ">
-    <thead>
-        <tr class="text-white bg-dark">
-            <th></th>
-            <th></th>
-            <th scope="col">Propiedad</th>
-            <th colspan="col">Coeficiente</th>
-        </tr>
-    </thead>
-
-    <tbody>
-
-        @if ($propiedades->count())
-        @forelse ($propiedades as $propiedad)
-        <tr>
-            <td><input type="hidden"  name="id[]" value="{{old('id[]', $propiedad->id)}}"></td>
-            <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{old('checkbox[]', $propiedad->id)}}" id="checkbox"></td>
-            <td><input type="text" class="form-control" name="propiedad[]" value="{{ old('propiedad[]', $propiedad->id)}}" placeholder="{{$propiedad->name}}" readonly></td>
-            <td><input type="text" class="form-control" name="coeficiente[]" @if($coeficiente_if != 0)  value="{{old('coeficiente[]',$propiedad->coeficiente)}}" @else value="" @endif placeholder="0"></td>
-        </tr>
-        @empty
-            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])
-        @endforelse
-        @else
-        <tr>
-            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Propiedades created yet'])
-        </tr>
-        @endif
-
-    </tbody>
-</table>
-

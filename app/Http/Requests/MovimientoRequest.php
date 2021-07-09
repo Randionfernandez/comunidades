@@ -31,7 +31,8 @@ class MovimientoRequest extends FormRequest
             'fechaValor' => 'required',
             'concepto' => 'required',
             'cantidad' => 'required | numeric',
-            'propiedad' => 'required'
+            'propiedad' => '',
+            'observaciones' => ''
         ];
     }
 }

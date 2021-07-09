@@ -36,6 +36,9 @@
         .bolder {
             font-weight: bolder;
         }
+        #propiedad, #grupo, #propiedad_label, #grupo_label {
+            display: none;
+        }
     </style>
 
     <!-- Scripts -->
@@ -139,6 +142,7 @@
 <!-- script para la parte de Rafa Maya -->
 
 <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 
 <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap5.min.js"></script>
@@ -162,6 +166,32 @@
                     }
 
             }
+    });
+</script>
+<script>
+    $(document).ready(function(){
+        $('#select').change(function() {
+            if ($('#select').val() === "1") {
+                $("#propiedad").show();
+                $("#propiedad_label").show();
+                $("#grupo").hide();
+                $("#grupo_label").hide();
+                $('#grupo').val("");
+            } else if ($('#select').val() === "") {
+                $("#propiedad").hide();
+                $("#propiedad_label").hide();
+                $("#grupo").hide();
+                $("#grupo_label").hide();
+                $("#propiedad").val("");
+                $("#grupo").val("");
+            } else {
+                $("#propiedad").hide();
+                $("#propiedad_label").hide();
+                $("#grupo").show();
+                $("#grupo_label").show();
+                $("#propiedad").val("");
+            }
+        });
     });
 </script>
 

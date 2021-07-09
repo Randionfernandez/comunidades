@@ -15,13 +15,14 @@ class DistribucionGasto extends Model
 
 
     protected $fillable = [
-        //'propietario',
-        'propiedad_id',
-        'coeficiente',
-        'unidadRegistral',
-        'name',
+        
         'abreviatura',
-        'orden'
+        'coeficiente',
+        'name',
+        'orden',
+        'propiedad_id',
+        //'propietario',
+        'unidadRegistral'
     ];
 
 

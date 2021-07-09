@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Pais;
 
 class CuentaBancaria extends Model
 {
@@ -21,11 +20,11 @@ class CuentaBancaria extends Model
     ];
 
     public function ingresos(){
-        return $this->hasMany(ingresos::class);
+        return $this->hasMany(Ingreso::class);
     }
 
     public function movimientos(){
-        return $this->hasMany(ingresos::class);
+        return $this->hasMany(Ingreso::class);
     }
     
     public function paises() {

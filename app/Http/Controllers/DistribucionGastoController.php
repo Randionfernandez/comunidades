@@ -32,10 +32,18 @@ class DistribucionGastoController extends Controller
     {
         
         $propiedades = session()->get('activeCommunity')->propiedades()->get();
+        $btnText1 = 'Save';
+        $btnText2 = 'Back';
+        $btndisabled = '';
         
         return view('distribuciones.create', [
-           'propiedades' => $propiedades,
-            'coeficiente_if' => 0
+            'distribucionGasto' => new DistribucionGasto,
+            'propiedades' => $propiedades,
+            'btnText1' => $btnText1,
+            'btnText2' => $btnText2,
+            'btndisabled' => $btndisabled,
+            'title' => 'Create Distribucion',
+            'coeficiente_if' => false
        ]);
     }
 
@@ -50,7 +58,7 @@ class DistribucionGastoController extends Controller
     {
         
         $input = $request->except('_token');
-        $inputPropiedades = Propiedad::all();
+        $inputPropiedades = session()->get('activeCommunity')->propiedades()->get();
         $nPropiedades = count($inputPropiedades);
         $suma = 0;
 
@@ -108,14 +116,13 @@ class DistribucionGastoController extends Controller
     {
         $propietarios = DistribucionGasto::where('name','=',$name)->where('name','!=','unidadRegistral')->get();
         $todosPropietarios = User::all('id');
-        $propiedades = Propiedad::all();
-        dd($propiedades);
+        $propiedades = session()->get('activeCommunity')->propiedades()->get();
 
         return view('distribuciones.edit', [
             'propietarios' => $propietarios,
             'todosPropietarios' => $todosPropietarios,
             'propiedades' => $propiedades,
-            'coeficiente_if' => 1
+            'coeficiente_if' => true
         ]);
     }
 
