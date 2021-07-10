@@ -35,10 +35,10 @@ class ComunidadRequest extends FormRequest
             'partes' => 'integer|nullable',
             'denom' => 'required|string|max:30',
             'direccion' => 'required|string|max:60',
-            'localidad_id' => 'string|nullable|exists:comunidades_autonomas,id',
-            'provincia_id' => 'exists:provincias,id|nullable',
+            'localidad' => 'string|nullable|exists:comunidades_autonomas,id',
+            'provincia' => 'exists:provincias,id|nullable',
             'cp' => 'required|size:5',
-            'pais_id' => 'exists:paises,id',
+            'pais' => 'exists:paises,id',
             'logo' => 'nullable',
             'observaciones' => 'string|nullable',
             'MaxFreeCommunities' => 'integer'

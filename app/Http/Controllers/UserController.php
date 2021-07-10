@@ -31,9 +31,9 @@ class UserController extends Controller
     public function index()
     {   
         $activeCommunity = session()->get('activeCommunity');
-        $users = User::join('comunidades_users', 'comunidades_users.user_id', '=', 'users.id')
-            ->where('comunidades_users.comunidad_id','=', $activeCommunity->id)
-            ->where('comunidades_users.role_id','=', 3)->get();
+        $users = User::join('comunidad_user', 'comunidad_user.user_id', '=', 'users.id')
+            ->where('comunidad_user.comunidad_id','=', $activeCommunity->id)
+            ->where('comunidad_user.role_id','=', 3)->get();
         
         return view('usuarios.index', [
             'users' => $users,

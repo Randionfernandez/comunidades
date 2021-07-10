@@ -21,10 +21,10 @@ class Comunidad extends Model {
         'partes',
         'denom',
         'direccion',
-        'localidad_id',
-        'provincia_id',
+        'localidad',
+        'provincia',
         'cp',
-        'pais_id',
+        'pais',
         'logo',
         'observaciones',
         'limitMaxFree'
@@ -65,7 +65,7 @@ class Comunidad extends Model {
     }
     
     public function nombreRole(Comunidad $comunidad){
-        return Role::join('comunidades_users', 'roles.id', '=', 'comunidades_users.role_id')->where('comunidades_users.comunidad_id', '=', $comunidad->id)->where('comunidades_users.user_id', '=', auth()->user()->id)->get()->pluck('role')->last();
+        return Role::join('comunidad_user', 'roles.id', '=', 'comunidad_user.role_id')->where('comunidad_user.comunidad_id', '=', $comunidad->id)->where('comunidad_user.user_id', '=', auth()->user()->id)->get()->pluck('role')->last();
     }
 
 }

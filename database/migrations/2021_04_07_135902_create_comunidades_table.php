@@ -26,7 +26,7 @@ class CreateComunidadesTable extends Migration {
             $table->string('denom', 35);
             $table->string('direccion', 40);
             $table->string('localidad', 35)->nullable();
-            $table->string('provincia')->nullable();
+            //$table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
             //$table->string('pais')->default('ES');
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
@@ -38,8 +38,10 @@ class CreateComunidadesTable extends Migration {
             // parte diferente
             
             $table->unsignedBigInteger('pais')->default(1);
+            $table->unsignedBigInteger('provincia')->nullable()->comment('Comunidad Autonoma o Estado del pais seleccionado .');
             
             $table->foreign('pais')->references('id')->on('paises');
+            $table->foreign('provincia')->references('id')->on('provincias');
         });
     }
 

@@ -63,7 +63,7 @@
             </div>
 
             <div class="col-md-3 mb-2" >
-                <label for="cuenta" class="form-label">@lang('Cuenta')</label>
+                <label for="pais" class="form-label">@lang('Country')</label>
                 <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
                     <option value="0">@lang('Country')</option>
                     @forelse($paises as $pais)
@@ -79,14 +79,14 @@
             </div>
             
             <div class="col-md-3 mb-2" >
-                <label for="cuenta" class="form-label">@lang('Province')</label>
+                <label for="provincia" class="form-label">@lang('Province')</label>
                 <select class="form-select" aria-label="Default select example" name="provincia" {{$btndisabled}}>
                     <option value="0">@lang('Province')</option>
                     @forelse($comunidadesAutonomas as $comunidadAutonoma)
-                    @if ( old('provincia', $comunidad->localidad_id) == $comunidadAutonoma->id )
-                    <option value="{{ $comunidadAutonoma->id }}" selected > {{ $comunidadAutonoma->id }} </option>
+                    @if ( old('provincia', $comunidad->provincia) == $comunidadAutonoma->id )
+                    <option value="{{ $comunidadAutonoma->id }}" selected > {{ $comunidadAutonoma->nombreComunidadAutonoma }} </option>
                     @else
-                    <option value="{{ $comunidadAutonoma->id }}"> {{ $comunidadAutonoma->id }} </option>
+                    <option value="{{ $comunidadAutonoma->id }}"> {{ $comunidadAutonoma->nombreComunidadAutonoma }} </option>
                     @endif
                     @empty
                     <p>No hay Comunidades Autonomas</p>
