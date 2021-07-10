@@ -8,19 +8,17 @@ use App\Models\User;
 use App\Models\Propiedad;
 use App\Http\Requests\DistribucionGastoRequest;
 
-class DistribucionGastoController extends Controller
-{
+class DistribucionGastoController extends Controller {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        $distribucion =  DistribucionGasto::orderBy('orden')->distinct('orden')->get();
-       
-        return view('distribuciones.index', compact('distribucion')); 
+    public function index() {
+        $distribuciones = DistribucionGasto::orderBy('orden')->distinct('orden')->get();
 
+        return view('distribuciones.index', compact('distribuciones'));
     }
 
     /**
@@ -28,14 +26,13 @@ class DistribucionGastoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        
+    public function create() {
+
         $propiedades = session()->get('activeCommunity')->propiedades()->get();
         $btnText1 = 'Save';
         $btnText2 = 'Back';
         $btndisabled = '';
-        
+
         return view('distribuciones.create', [
             'distribucionGasto' => new DistribucionGasto,
             'propiedades' => $propiedades,
@@ -44,9 +41,8 @@ class DistribucionGastoController extends Controller
             'btndisabled' => $btndisabled,
             'title' => 'Create Distribucion',
             'coeficiente_if' => false
-       ]);
+        ]);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -54,41 +50,37 @@ class DistribucionGastoController extends Controller
      * @param  \Illuminate\Http\DistribucionGastoRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DistribucionGastoRequest $request)
-    {
-        
+    public function store(DistribucionGastoRequest $request) {
+
         $input = $request->except('_token');
         $inputPropiedades = session()->get('activeCommunity')->propiedades()->get();
         $nPropiedades = count($inputPropiedades);
         $suma = 0;
 
-        foreach($input['coeficiente'] as $coeficiente){
+        foreach ($input['coeficiente'] as $coeficiente) {
             $suma += $coeficiente;
         }
 
-        if(isset($input['checkbox'])){
-        for($i = 0; $i < $nPropiedades; $i++ ){
-            if(in_array($input['id'][$i], $input['checkbox'])){
-               if($suma == 100){
-                $distribucion = new DistribucionGasto();
-                $distribucion->propiedad_id   = $input['propiedad'][$i];
-                $distribucion->coeficiente = $input['coeficiente'][$i];                
-                $distribucion->name      = $input['name'];
-                $distribucion->abreviatura = $input['abreviatura'];
-                $distribucion->orden       = $input['orden'];
-                $distribucion->save();
-                } else{
-                    return redirect()->route('distribuciones.create')->with('mensaje' ,'Revisa el coeficiente, tiene sumar en total 100');
+        if (isset($input['checkbox'])) {
+            for ($i = 0; $i < $nPropiedades; $i++) {
+                if (in_array($input['id'][$i], $input['checkbox'])) {
+                    if ($suma == 100) {
+                        $distribucion = new DistribucionGasto();
+                        $distribucion->propiedad_id = $input['propiedad'][$i];
+                        $distribucion->coeficiente = $input['coeficiente'][$i];
+                        $distribucion->name = $input['name'];
+                        $distribucion->abreviatura = $input['abreviatura'];
+                        $distribucion->orden = $input['orden'];
+                        $distribucion->save();
+                    } else {
+                        return redirect()->route('distribuciones.create')->with('mensaje', 'Revisa el coeficiente, tiene sumar en total 100');
+                    }
                 }
             }
-
+        } else {
+            return redirect()->route('distribuciones.create')->with('mensaje', 'Tienes que selecionar alguna propiedad');
         }
-    } else{
-        return redirect()->route('distribuciones.create')->with('mensaje','Tienes que selecionar alguna propiedad');
-        
-    }   
-        return redirect()->route('distribuciones.index')->with('mensaje','Se ha creado satisfactoriamente');
-
+        return redirect()->route('distribuciones.index')->with('mensaje', 'Se ha creado satisfactoriamente');
     }
 
     /**
@@ -97,13 +89,11 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function show($name)
-    {
+    public function show($name) {
 
-       $propietarios = DistribucionGasto::where('name', '=', $name)->get();
-       
-       return view('distribuciones.listaPropiedades', compact('propietarios'));
+        $propietarios = DistribucionGasto::where('name', '=', $name)->get();
 
+        return view('distribuciones.listaPropiedades', compact('propietarios'));
     }
 
     /**
@@ -112,9 +102,8 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function edit(DistribucionGasto $distribuciongasto,$name)
-    {
-        $propietarios = DistribucionGasto::where('name','=',$name)->where('name','!=','unidadRegistral')->get();
+    public function edit(DistribucionGasto $distribuciongasto, $name) {
+        $propietarios = DistribucionGasto::where('name', '=', $name)->where('name', '!=', 'unidadRegistral')->get();
         $todosPropietarios = User::all('id');
         $propiedades = session()->get('activeCommunity')->propiedades()->get();
 
@@ -133,33 +122,29 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function update(DistribucionGastoRequest $request,$name)
-    {  /* 
-       $input = $request->except('_token','_method');
-       $n = count($request['propiedad']);
-       */
-       $suma = 0;
+    public function update(DistribucionGasto $distribucionGasto ,DistribucionGastoRequest $request) { /*
+      $input = $request->except('_token','_method');
+      $n = count($request['propiedad']);
+     */
+        dd($request->get());
+        $suma = 0;
 
-      foreach($request->get('coeficiente') as $coeficiente){
-          $suma += $coeficiente;
-      }
-      
+        foreach ($request->get('coeficiente') as $coeficiente) {
+            $suma += $coeficiente;
+        }
 
-      foreach($request->get('id') as $key => $value ){
+
+        foreach ($request->get('id') as $key => $value) {
             if ($suma == 100) {
-               $distribucion = DistribucionGasto::find($value);
-               $distribucion->propiedad = $request->get('propiedad')[$key];
-               $distribucion->coeficiente = $request->get('coeficiente')[$key];
-               $distribucion->update();
-            } else{
-            return redirect()->route('distribuciones.edit',$request->name)->with('mensaje' ,'Revisa el coeficiente tiene sumar en total 100');
-       }
-       
-      }
-      return redirect()->route('distribuciones.index')->with('mensaje','Se ha editado satisfactoriamente');
-
-
-
+                $distribucion = DistribucionGasto::find($value);
+                $distribucion->propiedad = $request->get('propiedad')[$key];
+                $distribucion->coeficiente = $request->get('coeficiente')[$key];
+                $distribucion->update();
+            } else {
+                return redirect()->route('distribuciones.edit', $request->name)->with('mensaje', 'Revisa el coeficiente tiene sumar en total 100');
+            }
+        }
+        return redirect()->route('distribuciones.index')->with('mensaje', 'Se ha editado satisfactoriamente');
     }
 
     /**
@@ -168,10 +153,10 @@ class DistribucionGastoController extends Controller
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id) {
         //
-        DistribucionGasto::where('id','=',$id)->delete();
-        return redirect()->route('distribuciones.index')->with('mensaje','Se ha elimino correctamente');
+        DistribucionGasto::where('id', '=', $id)->delete();
+        return redirect()->route('distribuciones.index')->with('mensaje', 'Se ha elimino correctamente');
     }
+
 }

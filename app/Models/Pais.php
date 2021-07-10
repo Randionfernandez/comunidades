@@ -20,10 +20,14 @@ class Pais extends Model
     ];
     
     public function comunidades() {
-        return $this->hasMany(Comunidad::class, 'nombrePais', 'id')->withTimestamps();
+        return $this->hasMany(Comunidad::class, 'pais_id', 'id')->withTimestamps();
     }
     
     public function cuentasBancarias() {
-        return $this->hasMany(CuentasBancarias::class, 'abreviaturaPais', 'id')->withTimestamps();
+        return $this->hasMany(CuentaBancaria::class, 'pais_id', 'id')->withTimestamps();
+    }
+    
+    public function comunidadesAutonomas() {
+        return $this->hasMany(ComunidadAutonoma::class, 'pais_id', 'id')->withTimestamps();
     }
 }

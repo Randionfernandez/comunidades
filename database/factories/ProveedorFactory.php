@@ -26,6 +26,7 @@ class ProveedorFactory extends Factory {
         $calificaciones = DB::table('calificaciones')->pluck('id');
         $figuras = DB::table('figuras')->pluck('id');
         $paises = DB::table('paises')->pluck('id');
+        $provincias = DB::table('provincias')->pluck('id');
         
         return [
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
@@ -41,9 +42,10 @@ class ProveedorFactory extends Factory {
             'calle' => $this->faker->streetAddress(), //secondaryAddress(),
             'codigopais' => $this->faker->randomNumber(2, true),
             'cp' => '07' . $this->faker->randomNumber(3, true),
-            'pais' => $this->faker->randomElement($paises),
-            'provincia' => $this->faker->community(),
-            'localidad' => $this->faker->asciify(),
+            'pais_id' => $this->faker->randomElement($paises),
+            'provincia' => $this->faker->randomElement($provincias),
+            'localidad' => $this->faker->community(),
+            //'localidad' => $this->faker->asciify(),
             'iban' => $this->faker->iban('ES')
         ];
     }

@@ -6,19 +6,19 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Provincia extends Model
+class ComunidadAutonoma extends Model
 {
     use HasFactory;
     use SoftDeletes;
     
-    protected $table = 'provincias';
+    protected $table = 'comunidades_autonomas';
     protected $fillable = [
-        'comunidadAutonoma_id',
-        'nombreProvincia'
+        'pais_id',
+        'nombreComunidadAutonoma'
     ];
     
-    public function comunidadautonoma() {
-        return $this->belongsTo(ComunidadAutonoma::class, 'id', 'comunidadAutonoma_id');
+    public function pais () {
+        return $this->belongsTo(ComunidadAutonoma::class, 'id', 'pais_id');
     }
-     
+    
 }

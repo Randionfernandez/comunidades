@@ -13,7 +13,7 @@ class CuentaBancaria extends Model
 
     protected $fillable = [
         'name',
-        'pais',
+        'pais_id',
         'dc',
         'cuenta',
         'bic'
@@ -28,10 +28,10 @@ class CuentaBancaria extends Model
     }
     
     public function paises() {
-        return $this->belongsTo(Pais::class, 'id', 'pais')->withTimestamps();
+        return $this->belongsTo(Pais::class, 'id', 'pais_id')->withTimestamps();
     }
     
     public function nombrePais($id){
-        return $nombrePais = CuentaBancaria::join('paises', 'cuentas_bancarias.pais', '=', 'paises.id')->where('cuentas_bancarias.id', '=', $id)->get()->pluck('nombrePais')->last();
+        return $nombrePais = CuentaBancaria::join('paises', 'cuentas_bancarias.pais_id', '=', 'paises.id')->where('cuentas_bancarias.id', '=', $id)->get()->pluck('nombrePais')->last();
     }
 }

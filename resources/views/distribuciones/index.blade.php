@@ -12,7 +12,7 @@
 
         @include('partials.session-status')
 
-        @if($distribucion->count())
+        @if($distribuciones->count())
 
         <div class="card">
             <div class="card-body"> 
@@ -28,31 +28,30 @@
                     </thead>
                     <tbody>
 
-                        @foreach($distribucion as $distribucio)
+                        @foreach($distribuciones as $distribucion)
                         <tr>
-                            <td>{{$distribucio->name}}</td>
-                            <td>{{$distribucio->abreviatura}}</td>
-                            <td>{{$distribucio->orden}}</td>
+                            <td>{{$distribucion->name}}</td>
+                            <td>{{$distribucion->abreviatura}}</td>
+                            <td>{{$distribucion->orden}}</td>
                             <td>
                                 <form>
-                                    <a href="{{route('distribuciones.show',$distribucio->name)}}"  type="submit" name='lista' value="{{$distribucio->name}}" class="btn btn-info">Propiedades</a> 
+                                    <a href="{{route('distribuciones.show',$distribucion->name)}}"  type="submit" name='lista' value="{{$distribucion->name}}" class="btn btn-info">Propiedades</a> 
                                 </form>
                             </td>
-                            @if ($distribucio->name != 'unidadRegistral')
-                            <td class="flex">
-                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribuciones.edit',$distribucio->name)}}'">{{ __('Edit') }}</x-jet-button>
-                    <x-jet-danger-button type="submit" href="#" onclick="document.getElementById('delete-distribucion').submit()">{{__('Delete')}}</x-jet-danger-button>
-                    <form class="d-none" id="delete-distribucion" action="{{route('distribuciones.destroy', $distribucio)}}" method="post">
-                        @csrf
-                        @method('DELETE')
-                    </form>
-                    </td>
-                    @else
-                    <td></td>
-                    @endif
-                    </tr>
-                    @endforeach
-
+                            @if ($distribucion->name != 'unidadRegistral')
+                                <td class="flex">
+                                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribuciones.edit',$distribucion->name)}}'">{{ __('Edit') }}</x-jet-button>
+                                    <x-jet-danger-button type="submit" href="#" onclick="document.getElementById('delete-distribucion').submit()">{{__('Delete')}}</x-jet-danger-button>
+                                    <form class="d-none" id="delete-distribucion" action="{{route('distribuciones.destroy', $distribucion)}}" method="post">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                </td>
+                                @else
+                                <td></td>
+                            @endif
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

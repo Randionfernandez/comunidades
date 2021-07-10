@@ -24,7 +24,7 @@ class Comunidad extends Model {
         'localidad',
         'provincia',
         'cp',
-        'pais',
+        'pais_id',
         'logo',
         'observaciones',
         'limitMaxFree'
@@ -51,13 +51,13 @@ class Comunidad extends Model {
     }
     
     public function paises() {
-        return $this->belongsTo(Pais::class, 'id', 'pais')->withTimestamps();
+        return $this->belongsTo(Pais::class, 'id', 'pais_id')->withTimestamps();
     }
     
     public function nombrePais($id){
         // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
         //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
-        return $nombrePais = Comunidad::join('paises', 'comunidades.pais', '=', 'paises.id')->where('comunidades.id', '=', $id)->get()->pluck('nombrePais')->last();
+        return $nombrePais = Comunidad::join('paises', 'comunidades.pais_id', '=', 'paises.id')->where('comunidades.id', '=', $id)->get()->pluck('nombrePais')->last();
     }
     
     public function juntas () {

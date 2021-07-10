@@ -36,9 +36,9 @@ class ComunidadRequest extends FormRequest
             'denom' => 'required|string|max:30',
             'direccion' => 'required|string|max:60',
             'localidad' => 'string|nullable|max:35',
-            'provincia' => 'string|nullable',
+            'provincia' => 'exists:provincias,id|nullable',
             'cp' => 'required|size:5',
-            'pais' => 'exists:paises,id',
+            'pais_id' => 'exists:paises,id',
             'logo' => 'nullable',
             'observaciones' => 'string|nullable',
             'MaxFreeCommunities' => 'integer'

@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder {
 
         $this->call([RoleSeeder::class]);
         $this->call([PaisSeeder::class]);
+        $this->call([ComunidadAutonomaSeeder::class]);
         $this->call([ProvinciaSeeder::class]);
         \App\Models\User::factory(15)->create();
         $this->call([ComunidadSeeder::class]);

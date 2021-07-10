@@ -21,11 +21,11 @@
         </div>
        
        <div class="col-md-4 mb-2" >
-                <label for="pais" class="form-label">@lang('Pais')</label>
-                <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
+                <label for="pais_id" class="form-label">@lang('Country')</label>
+                <select class="form-select" aria-label="Default select example" name="pais_id" {{$btndisabled}}>
                     <option value="0">@lang('Country')</option>
                     @forelse($paises as $pais)
-                    @if ( old('pais', $cuentaBancaria->pais) == $pais->id )
+                    @if ( old('pais_id', $cuentaBancaria->pais_id) == $pais->id )
                     <option value="{{ $pais->id }}" selected > {{ $pais->abreviaturaPais }} </option>
                     @else
                     <option value="{{ $pais->id }}"> {{ $pais->abreviaturaPais }} </option>
