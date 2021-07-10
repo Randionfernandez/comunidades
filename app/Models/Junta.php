@@ -26,7 +26,7 @@ class Junta extends Model {
     ];
     
     public function comunidad() {
-        return $this->belongsTo(Comunidad::class, 'id', 'comunidad_id');
+        return $this->belongsTo(Comunidad::class, 'comunidad_id', 'id');
     }
 
 }

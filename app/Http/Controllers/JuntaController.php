@@ -84,7 +84,11 @@ class JuntaController extends Controller
      */
     public function show(Junta $junta)
     {
+        
+        $community = $junta->comunidad()->get()->last();
+        
         return view('juntas.show', [
+            'comunidad' => $community,
             'junta' => $junta,
             'tipos' => $this->tipos,
             'btnText1' => 'Show', 
