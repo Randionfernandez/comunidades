@@ -20,22 +20,22 @@ class CreateComunidadesTable extends Migration {
 
             $table->string('cif', 9)->unique();
             $table->date('fechalta');
-            $table->boolean('activa')->default(true);
-            $table->boolean('gratuita')->default(true);
+            $table->boolean('activa')->default(true)->comment('Si no está activa, no se pueden realizar operaciones sobre esta comunidad');
+            $table->boolean('gratuita')->default(true)->comment('Indica si esta comnidad es de pago o gratuita');
             $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
-            $table->string('denom', 60);
-            $table->string('direccion', 60);
+            $table->string('denom', 35);
+            $table->string('direccion', 40);
             $table->string('localidad', 35)->nullable();
             $table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
-            $table->unsignedBigInteger('pais_id')->default(1);
+            $table->unsignedBigInteger('pais')->default(1);
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
             $table->string('observaciones')->nullable();
 
             $table->timestamps();
             $table->softDeletes();
             
-            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->foreign('pais')->references('id')->on('paises');
         });
     }
 

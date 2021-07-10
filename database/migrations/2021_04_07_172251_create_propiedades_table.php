@@ -13,33 +13,27 @@ class CreatePropiedadesTable extends Migration
      */
     public function up()
     {
-        // original Randion
         Schema::create('propiedades', function (Blueprint $table) {
-            // Original de Randion
-            
             $table->id();
-            
-            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
             $table->unsignedBigInteger('comunidad_id');
             $table->unsignedBigInteger('user_id')->nullable();  // Solo consideramos un propietario por propiedad
-            $table->unsignedBigInteger('tipoPropiedad_id')->comment("Tipo de propiedad: piso, ático, local,...");
+            $table->string('denominacion',10)->comment("Nombre por el que se conoce la parte, p.e., 1 izda. Ent-B, etc.");
             $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
-            $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
+            $table->decimal('coeficiente',5,2)->comment("Porcentaje de participación en el total de la comunidad, según registro de la propiedad");
+            $table->unsignedBigInteger('tipo_id')->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
-            
-            $table->timestamps();
-            $table->softDeletes();            
 
             $table->foreign('user_id')->references('id')->on('users');
-                        
+            
             $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
             
-            $table->foreign('tipoPropiedad_id')->references('id')->on('tipos_propiedades')->onDelete('cascade');
+            $table->foreign('tipo_id')->references('id')->on('tipos_propiedades')->onDelete('cascade');
             
-            $table->index(['comunidad_id','parte']);
-            $table->unique(['name', 'comunidad_id']);
-                         
+            $table->unique(['comunidad_id','parte']);
+            $table->unique(['comunidad_id','denominacion']);                         
         });
     }
 
