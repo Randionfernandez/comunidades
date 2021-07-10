@@ -7,6 +7,8 @@ use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
 use \App\Models\ComunidadUser;
 use App\Models\Pais;
+use App\Models\ComunidadAutonoma;
+use App\Models\Provincia;
 
 class ComunidadController extends Controller {
 
@@ -14,10 +16,15 @@ class ComunidadController extends Controller {
     private $activeCommunity = null;
     private $user = null;
     private $paises = Pais::class;
+    private $comunidadesAutonomas = ComunidadAutonoma::class;
+    private $provincias = Provincia::class;
     
     public function __construct(Request $request) {
         
         $this->paises = Pais::all();
+        $this->comunidadesAutonomas = ComunidadAutonoma::all();
+        $this->provincias = Provincia::all();
+        
         
         if (! session()->has('activeCommunity')) {
             $this->activeCommunity = session()->put('activeCommunity', null);
@@ -54,7 +61,8 @@ class ComunidadController extends Controller {
             'btnText1' => 'Save', 
             'btnText2' => 'Cancel', 
             'btndisabled' => '',
-            'paises' => $this->paises
+            'paises' => $this->paises,
+            'comunidadesAutonomas' => $this->comunidadesAutonomas
             ]);
     }
 
@@ -109,7 +117,8 @@ class ComunidadController extends Controller {
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
             'btndisabled' => 'disabled',
-            'paises' => $this->paises
+            'paises' => $this->paises,
+            'comunidadesAutonomas' => $this->comunidadesAutonomas
         ]);
     }
 
@@ -127,7 +136,8 @@ class ComunidadController extends Controller {
             'btnText1' => 'Update', 
             'btnText2' => 'Cancel',
             'btndisabled' => '',
-            'paises' => $this->paises
+            'paises' => $this->paises,
+            'comunidadesAutonomas' => $this->comunidadesAutonomas
         ]);
     }
 
