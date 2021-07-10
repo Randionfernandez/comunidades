@@ -22,18 +22,24 @@ class CreatePropiedadesTable extends Migration
             $table->string('denominacion',10)->comment("Nombre por el que se conoce la parte, p.e., 1 izda. Ent-B, etc.");
             $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
             $table->decimal('coeficiente',5,2)->comment("Porcentaje de participación en el total de la comunidad, según registro de la propiedad");
-            $table->unsignedBigInteger('tipo_id')->comment("Tipo de propiedad: piso, ático, local,...");
+
+          // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
+            //$table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
+            
 
             $table->foreign('user_id')->references('id')->on('users');
             
             $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
             
-            $table->foreign('tipo_id')->references('id')->on('tipos_propiedades')->onDelete('cascade');
-            
             $table->unique(['comunidad_id','parte']);
-            $table->unique(['comunidad_id','denominacion']);                         
+            $table->unique(['comunidad_id','denominacion']);
+            
+            // parte diferente
+            $table->unsignedBigInteger('tipo_id')->comment("Tipo de propiedad: piso, ático, local,...");
+            
+            $table->foreign('tipo_id')->references('id')->on('tipos_propiedades')->onDelete('cascade');
         });
     }
 
