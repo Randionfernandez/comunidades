@@ -27,10 +27,10 @@ class PropiedadFactory extends Factory
         $tiposPropiedades = DB::table('tipos_propiedades')->pluck('id');
         
         return [
-            "name" => $this->faker->numberBetween($min = 1, $max = 20) . strtoupper($this->faker->randomLetter),
+            "denominacion" => $this->faker->numberBetween($min = 1, $max = 20) . strtoupper($this->faker->randomLetter),
             "user_id" => $this->faker->randomElement($users),
             "comunidad_id" => $this->faker->randomElement($comunidades),
-            "tipoPropiedad_id" => $this->faker->randomElement($tiposPropiedades),
+            "tipo_id" => $this->faker->randomElement($tiposPropiedades),
             "parte" => $this->faker->randomDigitNot(0),
             "coeficiente" => $this->faker->randomDigitNot(0),
             "observaciones" => $this->faker->text(20)

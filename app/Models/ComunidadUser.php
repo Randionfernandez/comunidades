@@ -9,7 +9,7 @@ class ComunidadUser extends Model {
 
     use HasFactory;
 
-    protected $table = 'comunidades_users';
+    protected $table = 'comunidad_user';
 
     protected $fillable = [
         'comunidad_id',
