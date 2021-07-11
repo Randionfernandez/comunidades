@@ -1,16 +1,11 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            @lang('Editar Distribucion')
-        </h2>
-        <hr>
-    </x-slot>
-
-    <form action="{{route('distribuciones.update',$distribucion)}}" method="post">
-        @csrf
-        @method('PUT')
-        @include('distribuciones._form')
-    </form>
+    @include('partials.plantillashoweditfirst')
+        <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('distribuciones.update', $distribucion) }}">
+            @csrf @method('PATCH')
+            <h1 class="display-4"> {{ __($title) }} </h1>
+            <hr>
+            @include('distribuciones._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
+        </form>
+    @include('partials.plantillashoweditend')
 </x-app-layout>
-
 

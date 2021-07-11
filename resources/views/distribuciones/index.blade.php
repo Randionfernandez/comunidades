@@ -28,7 +28,7 @@
                     </thead>
                     <tbody>
 
-                        @foreach($distribuciones as $distribucion)
+                        @forelse($distribuciones as $distribucion)
                         <tr>
                             <td>{{$distribucion->name}}</td>
                             <td>{{$distribucion->abreviatura}}</td>
@@ -51,7 +51,9 @@
                                 <td></td>
                             @endif
                         </tr>
-                        @endforeach
+                        @empty
+                        <p>Vacio</p>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

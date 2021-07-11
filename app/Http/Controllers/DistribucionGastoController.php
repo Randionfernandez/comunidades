@@ -103,6 +103,7 @@ class DistribucionGastoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(DistribucionGasto $distribuciongasto, $name) {
+        
         $distribucion = DistribucionGasto::where('name', '=', $name)->where('name', '!=', 'unidadRegistral')->get()->last();
         $propietarios = User::all('id');
         $propiedades = session()->get('activeCommunity')->propiedades()->get();
@@ -115,6 +116,7 @@ class DistribucionGastoController extends Controller {
             'btnText1' => 'Update',
             'btnText2' => 'Cancel',
             'btndisabled' => '',
+            'title' => 'Editar Distribucion',
             'coeficiente_if' => true
         ]);
     }
@@ -157,9 +159,9 @@ class DistribucionGastoController extends Controller {
      * @param  \App\Models\DistribucionGasto  $distribuciongasto
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id) {
+    public function destroy(DistribucionGasto $distribucion) {
         //
-        DistribucionGasto::where('id', '=', $id)->delete();
+        $distribucion->delete();
         return redirect()->route('distribuciones.index')->with('mensaje', 'Se ha elimino correctamente');
     }
 
