@@ -39,7 +39,7 @@ class ProveedorRequest extends FormRequest {
             'escalera' => 'string|nullable',
             'piso' => 'integer|nullable',
             'puerta' => 'integer|nullable',
-            'codigopais' => 'string|max:3|exists:paises,codigoANSIPais',
+            'codigopais' => 'string|max:3|exists:paises,codigoANSI',
             'cp' => 'required|string|size:5',
             'pais' => 'exists:paises,id',
             'provincia' => 'required|string',
