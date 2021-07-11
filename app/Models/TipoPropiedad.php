@@ -9,14 +9,14 @@ class TipoPropiedad extends Model
 {
     use HasFactory;
     
-    protected $table = 'tipos_propiedades';
+    protected $table = 'tipo_propiedad';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'abreviaturaTipoPropiedad',
-        'nombreTipoPropiedad'
+        'abreviatura',
+        'nombre'
     ];
     
     public function propiedades() {
-        return $this->hasMany(Propiedad::class, 'nombreTipoPropiedad', 'id')->withTimestamps();
+        return $this->hasMany(Propiedad::class, 'nombre', 'id')->withTimestamps();
     }
 }

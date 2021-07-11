@@ -24,7 +24,7 @@ class PropiedadFactory extends Factory
     {
         $comunidades = DB::table('comunidades')->pluck('id');
         $users = DB::table('users')->pluck('id');
-        $tiposPropiedades = DB::table('tipos_propiedades')->pluck('id');
+        $tiposPropiedades = DB::table('tipo_propiedad')->pluck('id');
         
         return [
             "denominacion" => $this->faker->numberBetween($min = 1, $max = 20) . strtoupper($this->faker->randomLetter),

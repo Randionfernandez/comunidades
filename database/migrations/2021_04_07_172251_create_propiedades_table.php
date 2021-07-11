@@ -39,7 +39,7 @@ class CreatePropiedadesTable extends Migration
             // parte diferente
             $table->unsignedBigInteger('tipo_id')->comment("Tipo de propiedad: piso, ático, local,...");
             
-            $table->foreign('tipo_id')->references('id')->on('tipos_propiedades')->onDelete('cascade');
+            $table->foreign('tipo_id')->references('id')->on('tipo_propiedad')->onDelete('cascade');
         });
     }
 

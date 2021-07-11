@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use App\Models\TipoPropiedad;
 
 class TipoPropiedadSeeder extends Seeder
 {
@@ -21,9 +22,9 @@ class TipoPropiedadSeeder extends Seeder
         ];
 
         foreach ($tiposPropiedades as $tipoPropiedad) {
-            \App\Models\TipoPropiedad::create([
-                'abreviaturaTipoPropiedad' => $tipoPropiedad[0],
-                'nombreTipoPropiedad' => $tipoPropiedad[1]
+            TipoPropiedad::create([
+                'abreviatura' => $tipoPropiedad[0],
+                'nombre' => $tipoPropiedad[1]
             ]);
         }
     }

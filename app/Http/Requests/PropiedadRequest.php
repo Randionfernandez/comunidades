@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\Request;
 
 class PropiedadRequest extends FormRequest {
 
@@ -22,13 +23,14 @@ class PropiedadRequest extends FormRequest {
      * @return array
      */
     public function rules() {
+        
         return [
-            "name" => ["required", "max:30", Rule::unique('propiedades', 'name')->where('comunidad_id', $this->request->get('comunidad_id'))],
+            "denominacion" => ["required", "max:30", Rule::unique('propiedades')->where('comunidad_id', Session()->get('activeCommunity')->id)->ignore($this->route('propiedad'))],
             "user_id" => ["required", "exists:users,id"],
             "comunidad_id" => ["exists:comunidades,id"],
-            "tipoPropiedad_id" => ["required", "exists:tipos_propiedades,id"],
+            "tipo_id" => ["required", "exists:tipo_propiedad,id"],
             "coeficiente" => ["required"],
-            "parte" => ["required"],
+            "parte" => ["required", Rule::unique('propiedades')->where('comunidad_id', Session()->get('activeCommunity')->id)->ignore($this->route('propiedad'))],
             "observaciones" => ["max:100"]
         ];
     }

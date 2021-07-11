@@ -27,8 +27,8 @@
                 <tbody>
                     @forelse($propiedades as $propiedad )
                     <tr class="text-center">
-                        <td>{{$propiedad->name}}</td>
-                        <td>{{$propiedad->user_id}}</td>
+                        <td>{{$propiedad->denominacion}}</td>
+                        <td>{{$propiedad->nombrePropietario($propiedad)}}</td>
                         <td class="flex">
                             <x-jet-button class="mx-2" onclick="location.href ='{{ route('propiedades.edit', $propiedad->id) }}'">{{ __('Edit') }}</x-jet-button>
                             <x-jet-danger-button onclick="location.href ='{{ route('propiedades.show', $propiedad) }}'">{{__('Show')}}</x-jet-danger-button>
