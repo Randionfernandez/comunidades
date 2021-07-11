@@ -15,12 +15,12 @@ class CreateComunidadesAutonomasTable extends Migration
     {
         Schema::create('comunidades_autonomas', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('pais_id');
-            $table->string('nombreComunidadAutonoma');
+            $table->unsignedBigInteger('pais');
+            $table->string('nombre');
             $table->timestamps();
             $table->softDeletes();
             
-            $table->foreign('pais_id')->references('id')->on('paises')->onDelete('cascade');
+            $table->foreign('pais')->references('id')->on('paises')->onDelete('cascade');
         });
     }
 

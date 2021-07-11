@@ -42,7 +42,7 @@ class ProveedorFactory extends Factory {
             'calle' => $this->faker->streetAddress(), //secondaryAddress(),
             'codigopais' => $this->faker->randomNumber(2, true),
             'cp' => '07' . $this->faker->randomNumber(3, true),
-            'pais_id' => $this->faker->randomElement($paises),
+            'pais' => $this->faker->randomElement($paises),
             'provincia' => $this->faker->randomElement($provincias),
             'localidad' => $this->faker->community(),
             //'localidad' => $this->faker->asciify(),

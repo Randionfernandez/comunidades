@@ -22,9 +22,9 @@ class MovimientoController extends Controller {
     public function index() {
         //
         $movimientos = Movimiento::orderBy('id')->get();
-        $ingreso = Ingreso::sum('cantidad');
-        $totalGastos = Movimiento::where('concepto', '!=', 1)->sum('cantidad');
-        $totalIngresos = Movimiento::where('concepto', '=', 1)->sum('cantidad');
+        $ingreso = Ingreso::sum('importe');
+        $totalGastos = Movimiento::where('concepto', '!=', 1)->sum('importe');
+        $totalIngresos = Movimiento::where('concepto', '=', 1)->sum('importe');
 
         return view('movimientos.index', [
             'movimientos' => $movimientos,
@@ -141,7 +141,7 @@ class MovimientoController extends Controller {
         $movimiento1 = Movimiento::findOrFail($movimiento->id);
         $movimiento1->fechaValor = $request->fechaValor;
         $movimiento1->concepto = $request->concepto;
-        $movimiento1->cantidad = $request->cantidad;
+        $movimiento1->importe = $request->importe;
         $movimiento1->observaciones = $request->observaciones;
         $movimiento1->save();
 

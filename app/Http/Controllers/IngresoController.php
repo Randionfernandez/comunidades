@@ -56,7 +56,7 @@ class IngresoController extends Controller
         $prueba = array();
         
         $gastos = DistribucionGasto::where('propiedad_id','=',$ingreso->propiedad)->get(['coeficiente','nombre']);
-        $dineroPropiedad = Movimiento::where('propiedad_id', '=', $ingreso->propiedad)->where('concepto', '=', 'ingreso' )->get('cantidad')->sum('cantidad');
+        $dineroPropiedad = Movimiento::where('propiedad_id', '=', $ingreso->propiedad)->where('concepto', '=', 'ingreso' )->get('importe')->sum('importe');
         $totalPropiedades = PropiedadUser::count('propiedad_id');
         $total = 0;   
         $gastosPropiedad = 0;
@@ -69,7 +69,7 @@ class IngresoController extends Controller
             for ($j=0; $j < count($concepto) ; $j++) {
                 for ($h=0; $h <  count($unidad) ; $h++) {
                    if ($unidad->count() && $unidad[$h]->concepto != 1) {
-                       $operacion =  sprintf("%01.2f",$concepto[$j]['cantidad'] / $totalPropiedades);
+                       $operacion =  sprintf("%01.2f",$concepto[$j]['importe'] / $totalPropiedades);
                    }
                }
 
@@ -81,7 +81,7 @@ class IngresoController extends Controller
                 if(count($coeficiente) != 0 && $coeficiente[$j]['coeficiente'] != 0){
                     
                     for ($e=0; $e < count($coeficiente) ; $e++) {
-                        $operacion =  sprintf("%01.2f",($coeficiente[$e]['coeficiente']/100) * $concepto[$j]['cantidad']);
+                        $operacion =  sprintf("%01.2f",($coeficiente[$e]['coeficiente']/100) * $concepto[$j]['importe']);
                     }
 
                     $restante = $dineroPropiedad - $operacion;

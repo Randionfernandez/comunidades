@@ -17,13 +17,13 @@ class CreateCuentasBancariasTable extends Migration
         Schema::create('cuentas_bancarias', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->unsignedBigInteger('pais_id');
+            $table->unsignedBigInteger('pais');
             $table->integer('dc');
             $table->string('cuenta');
             $table->string('bic');
             $table->timestamps();
             
-            $table->foreign('pais_id')->references('id')->on('paises');
+            $table->foreign('pais')->references('id')->on('paises');
         });
     }
 

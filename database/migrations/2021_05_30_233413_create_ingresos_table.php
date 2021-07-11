@@ -28,7 +28,7 @@ class CreateIngresosTable extends Migration {
             $table->id();
             
             $table->date('fecha');
-            $table->double('cantidad');
+            $table->double('importe');
             $table->unsignedBigInteger('cuenta_id')->nullable();
             $table->string('cuenta');
             $table -> string('Propietario');

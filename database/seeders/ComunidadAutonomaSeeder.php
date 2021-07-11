@@ -24,8 +24,8 @@ class ComunidadAutonomaSeeder extends Seeder {
 
         foreach ($comunidadesAutonomas as $comunidadAutonoma) {
             ComunidadAutonoma::create([
-                'pais_id' => 1,
-                'nombreComunidadAutonoma' => $comunidadAutonoma,
+                'pais' => 1,
+                'nombre' => $comunidadAutonoma,
             ]);
         }
     }

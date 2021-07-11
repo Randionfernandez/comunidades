@@ -6,7 +6,7 @@
         <hr>
     </x-slot>
 
-    <form action="{{route('distribuciones.update',$propietarios[0]['nombre'])}}" method="post">
+    <form action="{{route('distribuciones.update',$distribucion)}}" method="post">
         @csrf
         @method('PUT')
         @include('distribuciones._form')

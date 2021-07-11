@@ -103,14 +103,18 @@ class DistribucionGastoController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function edit(DistribucionGasto $distribuciongasto, $name) {
-        $propietarios = DistribucionGasto::where('name', '=', $name)->where('name', '!=', 'unidadRegistral')->get();
-        $todosPropietarios = User::all('id');
+        $distribucion = DistribucionGasto::where('name', '=', $name)->where('name', '!=', 'unidadRegistral')->get()->last();
+        $propietarios = User::all('id');
         $propiedades = session()->get('activeCommunity')->propiedades()->get();
-
+        
         return view('distribuciones.edit', [
-            'propietarios' => $propietarios,
-            'todosPropietarios' => $todosPropietarios,
+            'distribucion' => $distribucion,
+            'distribucionGasto' => $distribuciongasto,
+            'todosPropietarios' => $propietarios,
             'propiedades' => $propiedades,
+            'btnText1' => 'Update',
+            'btnText2' => 'Cancel',
+            'btndisabled' => '',
             'coeficiente_if' => true
         ]);
     }

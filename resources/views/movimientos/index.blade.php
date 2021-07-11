@@ -34,7 +34,7 @@
                             <td>{{$movimiento->cuenta}}</td>
                             <td>{{$movimiento->fechaValor }}</td>
                             <td><b>{{$movimiento->concepto}}</b> {{$movimiento->nombrePropiedad($movimiento->propiedad_id)}}</td>
-                            <td class="@php echo ($movimiento->concepto == 1) ? 'text-success' : 'text-danger' @endphp">{{$movimiento->cantidad}} {{ $divisa }}</td>
+                            <td class="@php echo ($movimiento->concepto == 1) ? 'text-success' : 'text-danger' @endphp">{{$movimiento->importe}} {{ $divisa }}</td>
                             <td>{{$movimiento->grupo}}</td>
                            <!-- <td>{{$movimiento->propiedad}}</td>-->
                             @if ($movimiento->concepto != 1)

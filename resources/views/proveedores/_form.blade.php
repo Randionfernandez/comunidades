@@ -139,9 +139,9 @@
                     <option value="0">@lang('Country')</option>
                     @forelse($paises as $pais)
                     @if ( old('pais', $proveedor->pais) == $pais->id )
-                    <option value="{{ $pais->id }}" selected > {{ $pais->nombrePais }} </option>
+                    <option value="{{ $pais->id }}" selected > {{ $pais->nombre }} </option>
                     @else
-                    <option value="{{ $pais->id }}"> {{ $pais->nombrePais }} </option>
+                    <option value="{{ $pais->id }}"> {{ $pais->nombre }} </option>
                     @endif
                     @empty
                     <p>No hay paises</p>

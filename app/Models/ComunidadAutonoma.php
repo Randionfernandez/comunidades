@@ -13,12 +13,12 @@ class ComunidadAutonoma extends Model
     
     protected $table = 'comunidades_autonomas';
     protected $fillable = [
-        'pais_id',
+        'pais',
         'nombreComunidadAutonoma'
     ];
     
     public function pais () {
-        return $this->belongsTo(ComunidadAutonoma::class, 'id', 'pais_id');
+        return $this->belongsTo(ComunidadAutonoma::class, 'id', 'pais');
     }
     
 }

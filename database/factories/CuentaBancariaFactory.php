@@ -27,7 +27,7 @@ class CuentaBancariaFactory extends Factory
         return [
             "name"  => 'Banca ' . $this->faker->lastname(),
             //"pais" => $this->faker->countryCode(),
-            "pais_id" => $this->faker->randomElement($paises),
+            "pais" => $this->faker->randomElement($paises),
             "dc" => $this->faker->numberBetween(10,90),
             "cuenta" => $this->faker->bankAccountNumber(),
             "bic" => $this->faker->swiftBicNumber()

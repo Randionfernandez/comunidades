@@ -15,9 +15,9 @@ class CreatePaisesTable extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->id();
-            $table->string('nombrePais');
-            $table->string('abreviaturaPais');
-            $table->string('codigoANSIPais');
+            $table->string('nombre');
+            $table->string('abreviatura');
+            $table->string('codigoANSI');
             $table->timestamps();
             $table->softDeletes();
         });

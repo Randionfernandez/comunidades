@@ -68,9 +68,9 @@
                     <option value="0">@lang('Country')</option>
                     @forelse($paises as $pais)
                     @if ( old('pais', $comunidad->pais) == $pais->id )
-                    <option value="{{ $pais->id }}" selected > {{ $pais->nombrePais }} </option>
+                    <option value="{{ $pais->id }}" selected > {{ $pais->nombre }} </option>
                     @else
-                    <option value="{{ $pais->id }}"> {{ $pais->nombrePais }} </option>
+                    <option value="{{ $pais->id }}"> {{ $pais->nombre }} </option>
                     @endif
                     @empty
                     <p>No hay paises</p>
@@ -79,14 +79,14 @@
             </div>
             
             <div class="col-md-3 mb-2" >
-                <label for="provincia" class="form-label">@lang('Province')</label>
-                <select class="form-select" aria-label="Default select example" name="provincia" {{$btndisabled}}>
-                    <option value="0">@lang('Province')</option>
+                <label for="localidad" class="form-label">@lang('Locality')</label>
+                <select class="form-select" aria-label="Default select example" name="localidad" {{$btndisabled}}>
+                    <option value="0">@lang('Locality')</option>
                     @forelse($comunidadesAutonomas as $comunidadAutonoma)
-                    @if ( old('provincia', $comunidad->provincia) == $comunidadAutonoma->id )
-                    <option value="{{ $comunidadAutonoma->id }}" selected > {{ $comunidadAutonoma->nombreComunidadAutonoma }} </option>
+                    @if ( old('localidad', $comunidad->localidad) == $comunidadAutonoma->id )
+                    <option value="{{ $comunidadAutonoma->id }}" selected > {{ $comunidadAutonoma->nombre }} </option>
                     @else
-                    <option value="{{ $comunidadAutonoma->id }}"> {{ $comunidadAutonoma->nombreComunidadAutonoma }} </option>
+                    <option value="{{ $comunidadAutonoma->id }}"> {{ $comunidadAutonoma->nombre }} </option>
                     @endif
                     @empty
                     <p>No hay Comunidades Autonomas</p>
@@ -96,8 +96,8 @@
             
             <div class="col-md-3">
                 <div class="form-group">
-                    <label for="localidad">@lang('locality')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="localidad" placeholder=@lang('locality') value="{{ old('localidad', $comunidad->localidad) }}" {{$btndisabled}}>
+                    <label for="provincia">@lang('Province')</label>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('locality') value="{{ old('provincia', $comunidad->provincia) }}" {{$btndisabled}}>
                 </div>
             </div>
         </div>

@@ -302,9 +302,9 @@ class PaisSeeder extends Seeder {
         
         foreach ($paises as $pais) {
             Pais::create([
-                'nombrePais' => $pais[0],
-                'abreviaturaPais' => $pais[1],
-                'codigoANSIPais' => $pais[2]
+                'nombre' => $pais[0],
+                'abreviatura' => $pais[1],
+                'codigoANSI' => $pais[2]
             ]);
         }
     }

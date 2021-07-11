@@ -25,7 +25,7 @@ class CuentaBancariaRequest extends FormRequest
     {
         return [
             'name' => 'required | string',
-            'pais_id' => 'exists:paises,id',
+            'pais' => 'exists:paises,id',
             'dc' => 'required | numeric | digits:2 ',
             'cuenta' => 'required | min:24',
             'bic' => 'required | regex:([A-Z]+)'

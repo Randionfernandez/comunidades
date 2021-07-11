@@ -82,8 +82,8 @@
 
     @if($cuentas->count())
     <div class="col">
-        <label for="cantidad" class="form-label">Cantidad</label>
-        <input type="number" min="0.0" step="any" name="cantidad" class="form-control" value="{{old('cantidad' ,$movimiento->cantidad)}}" placeholder="0.00 €" {{$btndisabled}} required>
+        <label for="importe" class="form-label">Cantidad</label>
+        <input type="number" min="0.0" step="any" name="importe" class="form-control" value="{{old('importe' ,$movimiento->importe)}}" placeholder="0.00 €" {{$btndisabled}} required>
     </div>
 
     <div class="col-md-12 mb-3">
