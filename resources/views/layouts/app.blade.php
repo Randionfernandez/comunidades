@@ -66,29 +66,29 @@
                 <div id="collapseOne" class="accordion-collapse bg-black collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         @forelse($navDarkLinks as $link)
-                        @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
-                        @if($link['text'] != 'Personas' || Session::has('activeCommunity'))
-                        @if(Session::has('activeCommunity') && $link['text'] == 'Comunidades')
-                        <x-jet-responsive-nav-link class="text-white bg-black text-decoration-none" href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
-                            {{ __($link['text']) }}
-                        </x-jet-responsive-nav-link>
-                        @else
-                        <x-jet-responsive-nav-link class="text-white text-decoration-none" href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
-                            {{ __($link['text']) }}
-                        </x-jet-responsive-nav-link>
-                        @endif
-                        @endif
-                        @endif
-                        @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
-                        @forelse($navDarkCommunitiesLinks as $link2)
-                        <x-jet-responsive-nav-link class='bg-gray-300 text-black-50 text-decoration-none' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
-                            {{ __($link2['text']) }}
-                        </x-jet-responsive-nav-link>
-                        @empty
-                        @endforelse
-                        @endif
-                        @empty
-                        <h1>El menú no esta disponible</h1>
+                                @if($link['text'] != 'Proveedores' || Session::has('activeCommunity'))
+                                    @if($link['text'] != 'Personas' || Session::has('activeCommunity'))
+                                        @if(Session::has('activeCommunity') && $link['text'] == 'Comunidades')
+                                            <x-jet-responsive-nav-link class="text-white bg-black text-decoration-none" href="{{ route('comunidades.show', Session()->get('activeCommunity')) }}" :active="request()->routeIs($link['name'])">
+                                                {{ __($link['text']) }}
+                                            </x-jet-responsive-nav-link>
+                                        @else
+                                            <x-jet-responsive-nav-link class="text-white text-decoration-none" href="{{ route($link['href']) }}" :active="request()->routeIs($link['name'])">
+                                                {{ __($link['text']) }}
+                                            </x-jet-responsive-nav-link>
+                                        @endif
+                                    @endif
+                                @endif
+                                @if($link['text'] == 'Comunidades' && Session::has('activeCommunity'))
+                                    @forelse($navDarkCommunitiesLinks as $link2)
+                                        <x-jet-responsive-nav-link class='bg-gray-300 text-black-50 text-decoration-none' href="{{ route($link2['href'], Session()->get('activeCommunity')) }}" :active="request()->routeIs($link2['name'])">
+                                            {{ __($link2['text']) }}
+                                        </x-jet-responsive-nav-link>
+                                        @empty
+                                    @endforelse
+                                @endif
+                            @empty
+                            <h1>El menú no esta disponible</h1>
                         @endforelse
                     </div>
                 </div>
