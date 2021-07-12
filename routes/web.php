@@ -19,17 +19,30 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+//vista original laravel
+// Route::get('/', function () {
+// 	return view('welcome');
+// });
+
+
+//por defecto la raíz siemore rediridi´ra a la autentcación
 Route::get('/', function () {
-	return view('welcome');
+ return view('auth.login');
 });
+
 
 // Route::get('/', function () {
 //     return view('portada');
 // });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-	return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+// 	return view('dashboard');
+// })->name('dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dash', function () {
+  return view('dash.index');
+})->name('dash');
 
 // Route::resource('user',UserController::class)->names('user');
 
@@ -58,6 +71,18 @@ Route::middleware(['auth:sanctum','verified'])->group( function () {
   Route::get('propiedad/list',[PropiedadController::class,'list'])->name('propiedad.list');
   Route::get('propiedad/create',[PropiedadController::class,'create'])->name('propiedad.create');
   Route::get('propiedad/index',[PropiedadController::class,'index'])->name('propiedad.index');
+
+    //propiedades c/adminlt
+ Route::resource('dash',DashController::class)->names('dash');
+ Route::resource('admnltpropietario',PropiedadController::class)->names('property');
+
+  // Route::get('propiedad/list',[PropiedadController::class,'list'])->name('propiedad.list');
+
+  //   Route::get('/dash/adminltpropietario/create'),[PropiedadController::class,'create'])->name('adminltpropietario.create');
+  // Route::get('/dash/adminltpropietario',[PropiedadController::class,'index'])->name('propiedad.index');
+
+
+
 
   //actas
   Route::resource('acta',ActaController::class)->names('acta');
