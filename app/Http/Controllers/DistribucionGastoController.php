@@ -132,7 +132,6 @@ class DistribucionGastoController extends Controller {
       $input = $request->except('_token','_method');
       $n = count($request['propiedad']);
      */
-        dd($request->get());
         $suma = 0;
 
         foreach ($request->get('coeficiente') as $coeficiente) {

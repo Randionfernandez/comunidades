@@ -24,15 +24,14 @@ class MovimientoRequest extends FormRequest
     public function rules()
     {
         return [
-            
-            'fechaAlta' => 'required',
-            'cuenta' => 'required',
-            'grupo'  => '',
-            'fechaValor' => 'required',
-            'concepto' => 'required',
-            'cantidad' => 'required | numeric',
-            'propiedad' => '',
-            'observaciones' => ''
+            'n_op' => 'required',
+            'fecha' => 'required|date',
+            'fecha valor' => 'required|date',
+            'importe' => 'required|numeric',
+            'saldo' => 'required|numeric',
+            'concepto' => 'string',
+            'comunidad_id' => 'exists:comunidades,id',
+            'propiedad' => 'exists:propiedades,id'
         ];
     }
 }

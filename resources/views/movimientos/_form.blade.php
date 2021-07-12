@@ -24,11 +24,11 @@
         <label for="cuenta" class="form-label">@lang('Cuenta')</label>
         <select class="form-select" aria-label="Default select example" name="cuenta" {{$btndisabled}} required>
             <option value="">@lang('Cuenta')</option>
-            @forelse($cuentas as $movimiento1)
-            @if ( old('cuenta', $movimiento->cuenta) == $movimiento1->id)
-            <option value="{{ $movimiento1->id }}" selected> {{ $movimiento1->cuenta}} </option>
+            @forelse($cuentas as $cuenta)
+            @if ( old('cuenta', $movimiento->cuenta) == $cuenta->id)
+            <option value="{{ $cuenta->id }}" selected> {{ $cuenta->cuenta}} </option>
             @else
-            <option value="{{ $movimiento1->id }}"> {{ $movimiento1->cuenta}} </option>
+            <option value="{{ $cuenta->id }}"> {{ $cuenta->cuenta}} </option>
             @endif
             @empty
             <p>No hay cuentas</p>
@@ -72,7 +72,7 @@
             @if ($propiedades->count())
             <option value="">Propiedades</option>
             @foreach ($propiedades as $propiedad)
-            <option value="{{$propiedad->id}}" {{(old('propiedad') == $propiedad->id ? 'selected' : '')}} name="{{$propiedad->name}}" > {{ $propiedad->name}}</option>
+            <option value="{{$propiedad->id}}" {{(old('propiedad') == $propiedad->id ? 'selected' : '')}} name="{{$propiedad->denominacion}}" > {{ $propiedad->denominacion}}</option>
             @endforeach
             @else
             <option value="">No hay propiedades</option>

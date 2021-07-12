@@ -43,7 +43,7 @@ class MovimientoController extends Controller {
         //
         $cuentas = CuentaBancaria::all();
         $propietarios = User::all();
-        $propiedades = Propiedad::all();
+        $propiedades = Session()->get('activeCommunity')->propiedades;
         $grupos = DistribucionGasto::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
         
@@ -67,7 +67,9 @@ class MovimientoController extends Controller {
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MovimientoRequest $request) {
+    public function store(Movimiento $movimiento,MovimientoRequest $request) {
+        
+        dd($request->all());
 
         Movimiento::create($request->all());
         return redirect()->route('movimientos.index')->with('mensaje', 'Se ha creado el movimiento exitosamente');
@@ -82,16 +84,17 @@ class MovimientoController extends Controller {
     public function show(Movimiento $movimiento) {
         //
         
+        $comunidad = Session()->get('activeCommunity');
         $cuentas = cuentaBancaria::all();
-        $propiedades = Propiedad::all();
         $grupos = DistribucionGasto::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
         
+        
         return view('movimientos.show', [
             'movimiento' => $movimiento,
-            'comunidad' => session()->get('activeCommunity'),
+            'comunidad' => $comunidad,
             'cuentas' => $cuentas,
-            'propiedades' => $propiedades,
+            'propiedades' => $comunidad->propiedades,
             'grupos' => $grupos,
             'tiposGastos' => $tiposGastos,
             'btnText1' => 'Create',
@@ -104,13 +107,13 @@ class MovimientoController extends Controller {
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Movimiento  $movimiento1
+     * @param  \App\Models\Movimiento  $movimiento
      * @return \Illuminate\Http\Response
      */
     public function edit(Movimiento $movimiento) {
         //
         $cuentas = CuentaBancaria::all();
-        $propiedades = Propiedad::all();
+        $propiedades = Session()->get('activeCommunity')->propiedades;
 
         $grupos = DistribucionGasto::distinct('name')->get();
         $movimiento1 = Movimiento::where('concepto', '!=', 'ingreso')->findOrFail($movimiento->id);
