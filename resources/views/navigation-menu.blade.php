@@ -32,13 +32,6 @@
                 <h5 class="pl-3 pr-1 text-warning">{{ Session::get('activeCommunity')->nombreRole(Session::get('activeCommunity')) }}</h5>
                 @else
                     @yield('comunidadRole');
-                    @if (isset($comunidadRole))
-                    <comunidadRole class="bg-white shadow">
-                        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                            {{ $comunidadRole }}
-                        </div>
-                    </comunidadRole>
-                    @endif
                 @endif
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
