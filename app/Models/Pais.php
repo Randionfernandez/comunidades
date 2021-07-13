@@ -16,7 +16,7 @@ class Pais extends Model
     protected $fillable = [
         'nombre',
         'abreviatura',
-        'codigoANSI'
+        'codigoANSI',
     ];
     
     public function comunidades() {

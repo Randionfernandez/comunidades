@@ -22,8 +22,8 @@ class ComunidadFactory extends Factory {
      */
     public function definition() {
         
-        $comunidadesAutonomas = DB::table('comunidades_autonomas')->pluck('id');
-        $provincias = DB::table('provincias')->pluck('id');
+        $provincia = $this->faker->randomElement(DB::table('provincias')->get());
+        $comunidadAutonoma = DB::table('comunidades_autonomas')->get()[$provincia->comunidadAutonoma_id-1];
         
         return [
             'cif' => $this->faker->unique()->dni(),
@@ -31,8 +31,9 @@ class ComunidadFactory extends Factory {
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
             'direccion' => $this->faker->streetAddress(), //secondaryAddress(),
             'partes' => $this->faker->randomDigitNot(0),
-            'localidad' => $this->faker->randomElement($comunidadesAutonomas),
-            'provincia' => $this->faker->randomElement($provincias),
+            'pais' => $comunidadAutonoma->pais,
+            'localidad' => $comunidadAutonoma->id,
+            'provincia' => $provincia->id,
             'cp' => '07' . $this->faker->randomNumber(3, true),
         ];
     }

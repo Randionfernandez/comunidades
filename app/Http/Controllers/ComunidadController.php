@@ -44,7 +44,8 @@ class ComunidadController extends Controller {
         return view('comunidades.index', [
             'user' => $this->user,
             'comunidades' => $this->user->comunidades,
-            'paises' => $this->paises
+            'paises' => $this->paises,
+            'provincias' => $this->provincias
         ]);
     }
 
@@ -62,7 +63,8 @@ class ComunidadController extends Controller {
             'btnText2' => 'Cancel', 
             'btndisabled' => '',
             'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas
+            'comunidadesAutonomas' => $this->comunidadesAutonomas,
+            'provincias' => $this->provincias
             ]);
     }
 
@@ -118,7 +120,8 @@ class ComunidadController extends Controller {
             'btnText2' => 'Back', 
             'btndisabled' => 'disabled',
             'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas
+            'comunidadesAutonomas' => $this->comunidadesAutonomas,
+            'provincias' => $this->provincias
         ]);
     }
 
@@ -137,7 +140,8 @@ class ComunidadController extends Controller {
             'btnText2' => 'Cancel',
             'btndisabled' => '',
             'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas
+            'comunidadesAutonomas' => $this->comunidadesAutonomas,
+            'provincias' => $this->provincias
         ]);
     }
 

@@ -11,6 +11,8 @@ use App\Models\TipoGasto;
 use App\Models\Calificacion;
 use App\Models\Figura;
 use App\Models\Pais;
+use App\Models\ComunidadAutonoma;
+use App\Models\Provincia;
 
 class ProveedorController extends Controller {
 
@@ -21,6 +23,8 @@ class ProveedorController extends Controller {
     private $calificaciones = Calificacion::class;
     private $figuras = Figura::class;
     private $paises = Pais::class;
+    private $comunidadesAutonomas = ComunidadAutonoma::class;
+    private $provincias = Provincia::class;
     
 
     /**
@@ -34,6 +38,8 @@ class ProveedorController extends Controller {
         $this->calificaciones = Calificacion::all();
         $this->figuras = Figura::all();
         $this->paises = Pais::all();
+        $this->comunidadesAutonomas = $this->comunidadesAutonomas::all();
+        $this->provincias = $this->provincias::all();
         $this->activeCommunity = session()->get('activeCommunity');
     }
     
@@ -58,6 +64,8 @@ class ProveedorController extends Controller {
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
             'paises' => $this->paises,
+            'comunidadesAutonomas' => $this->comunidadesAutonomas,
+            'provincias' => $this->provincias,
             'btndisabled' => '',
             'title' => 'New Provider'
             ]);
@@ -97,13 +105,15 @@ class ProveedorController extends Controller {
         //
         return view('proveedores.show', [
             'proveedor' => $proveedor,
-            'btnText1' => 'Edit',
-            'btnText2' => 'Back',
-            'btndisabled' => 'disabled',
             'tiposGastos' => $this->tiposGastos,
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
-            'paises' => $this->paises
+            'paises' => $this->paises,
+            'comunidadesAutonomas' => $this->comunidadesAutonomas,
+            'provincias' => $this->provincias,
+            'btnText1' => 'Edit',
+            'btnText2' => 'Back',
+            'btndisabled' => 'disabled'
         ]);
     }
 
@@ -121,6 +131,8 @@ class ProveedorController extends Controller {
             'calificaciones' => $this->calificaciones,
             'figuras' => $this->figuras,
             'paises' => $this->paises,
+            'comunidadesAutonomas' => $this->comunidadesAutonomas,
+            'provincias' => $this->provincias,
             'btndisabled' => ''
         ]);
     }

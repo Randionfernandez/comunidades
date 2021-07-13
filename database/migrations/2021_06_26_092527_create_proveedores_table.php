@@ -35,8 +35,8 @@ class CreateProveedoresTable extends Migration {
             $table->integer('codigopais');
             $table->string('cp');
             $table->unsignedBigInteger('pais');
-            $table->string('provincia', 60);
-            $table->string('localidad');
+            $table->unsignedBigInteger('localidad');
+            $table->unsignedBigInteger('provincia');
             $table->string('iban');
             $table->timestamps();
             $table->softDeletes();
@@ -45,6 +45,8 @@ class CreateProveedoresTable extends Migration {
             $table->foreign('calificacion')->references('id')->on('calificaciones')->onDelete('cascade');
             $table->foreign('figura')->references('id')->on('figuras')->onDelete('cascade');
             $table->foreign('pais')->references('id')->on('paises')->onDelete('cascade');
+            $table->foreign('localidad')->references('id')->on('comunidades_autonomas')->onDelete('cascade');
+            $table->foreign('provincia')->references('id')->on('provincias')->onDelete('cascade');
         });
     }
 

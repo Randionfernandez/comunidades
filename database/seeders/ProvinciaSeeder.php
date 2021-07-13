@@ -38,7 +38,7 @@ class ProvinciaSeeder extends Seeder {
         foreach ($provincias as $provincia) {
             Provincia::create([
                 'comunidadAutonoma_id' => $provincia[0],
-                'nombreProvincia' => $provincia[1],
+                'nombre' => $provincia[1],
             ]);
         }
     }

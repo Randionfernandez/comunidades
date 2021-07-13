@@ -14,7 +14,7 @@ class ComunidadAutonoma extends Model
     protected $table = 'comunidades_autonomas';
     protected $fillable = [
         'pais',
-        'nombreComunidadAutonoma'
+        'nombre'
     ];
     
     public function pais () {

@@ -16,7 +16,7 @@ class CreateProvinciasTable extends Migration
         Schema::create('provincias', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('comunidadAutonoma_id');
-            $table->string('nombreProvincia');
+            $table->string('nombre');
             $table->timestamps();
             $table->softDeletes();
             

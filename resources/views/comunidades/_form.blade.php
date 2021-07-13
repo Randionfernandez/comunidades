@@ -94,13 +94,23 @@
                 </select>
             </div>
             
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="provincia">@lang('Province')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('locality') value="{{ old('provincia', $comunidad->provincia) }}" {{$btndisabled}}>
-                </div>
+            <div class="col-md-3 mb-2" >
+                <label for="provincia" class="form-label">@lang('Province')</label>
+                <select class="form-select" aria-label="Default select example" name="provincia" {{$btndisabled}}>
+                    <option value="0">@lang('Province')</option>
+                    @forelse($provincias as $provincia)
+                    @if ( old('provincia', $comunidad->provincia) == $provincia->id )
+                    <option value="{{ $provincia->id }}" selected > {{ $provincia->nombre }} </option>
+                    @else
+                    <option value="{{ $provincia->id }}"> {{ $provincia->nombre }} </option>
+                    @endif
+                    @empty
+                    <p>No hay Provincias</p>
+                    @endforelse
+                </select>
             </div>
         </div>
+        
         <div class="row form-group">
             <div class="col-md-12">
                 <div class="form-group">

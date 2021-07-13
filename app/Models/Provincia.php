@@ -20,5 +20,9 @@ class Provincia extends Model
     public function comunidadautonoma() {
         return $this->belongsTo(ComunidadAutonoma::class, 'id', 'comunidadAutonoma_id');
     }
+    
+    public function pais() {
+        return $this->hasOneThrough(Pais::class, ComunidadAutonoma::class);
+    }
      
 }
