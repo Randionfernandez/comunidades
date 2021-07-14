@@ -54,7 +54,7 @@
                 <tr>
                     <td><input type="hidden"  name="id[]" value="{{old('id[]', $propiedad->id)}}"></td>
                     <td><input class="form-check-input" type="checkbox" name='checkbox[]' value="{{old('checkbox[]', $propiedad->id)}}" id="checkbox"></td>
-                    <td><input type="text" class="form-control" name="propiedad[]" value="{{ old('propiedad[]', $propiedad->id)}}" placeholder="{{$propiedad->name}}" readonly></td>
+                    <td><input type="text" class="form-control" name="propiedad[]" value="{{ old('propiedad[]', $propiedad->id)}}" placeholder="{{$propiedad->id}}" hidden readonly> <a href="{{ route('propiedades.show', $propiedad) }}" style="text-decoration: none"><input type="text" class="form-control" placeholder="{{$propiedad->denominacion}}" readonly></a></td>
                     <td><input type="text" class="form-control" name="coeficiente[]" @if($coeficiente_if)  value="{{old('coeficiente[]',$propiedad->coeficiente)}}" @else value="" @endif placeholder="0"></td>
                 </tr>
                 @empty
