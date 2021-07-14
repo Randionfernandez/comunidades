@@ -9,13 +9,12 @@ use \Illuminate\Database\Eloquent\SoftDeletes;
 class Pais extends Model
 {
     use HasFactory;
-    use SoftDeletes;
+
     
     protected $table = 'paises';
-    protected $dates = ['deleted_at'];
     protected $fillable = [
         'nombre',
-        'abreviatura',
+        'codigoISO',
         'codigoANSI',
     ];
     
