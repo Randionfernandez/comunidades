@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ComunidadUser extends Model {
+class Comunidad_User extends Model {
 
     use HasFactory;
 
@@ -16,16 +16,16 @@ class ComunidadUser extends Model {
         'user_id',
         'role_id'
     ];
-    
+
     public function comunidades() {
         return $this->belongsToMany('comunidad')->withTimestamps();
     }
-    
+
     public function usuarios() {
         return $this->belongsToMany('user')->withTimestamps();
     }
-    
+
     public function roles() {
         return $this->belongsToMany('role')->withTimestamps();
     }
-}
+}     

@@ -12,9 +12,12 @@ class CreateGastosTable extends Migration {
      * @return void
      */
     public function up() {
-        // original Randion
         Schema::create('gastos', function (Blueprint $table) {
             $table->id();
+            
+            
+            
+            
             
             $table->timestamps();    
             $table->softDeletes();
