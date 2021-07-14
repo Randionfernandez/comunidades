@@ -27,14 +27,15 @@ class ComunidadFactory extends Factory {
         
         return [
             'cif' => $this->faker->unique()->dni(),
-            'denom' => 'C.P. ' . $this->faker->name,
+            'denom' => 'C.P. ' . substr($this->faker->name(), 0, 30),
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
-            'direccion' => $this->faker->streetAddress(), //secondaryAddress(),
+            'direccion' => substr($this->faker->streetAddress(), 0, 40), //secondaryAddress(),
             'partes' => $this->faker->randomDigitNot(0),
             'pais' => $comunidadAutonoma->pais,
             'localidad' => $comunidadAutonoma->id,
             'provincia' => $provincia->id,
             'cp' => '07' . $this->faker->randomNumber(3, true),
+            'observaciones' => $this->faker->text()
         ];
     }
 

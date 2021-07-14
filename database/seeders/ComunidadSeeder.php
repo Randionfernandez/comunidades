@@ -17,7 +17,7 @@ class ComunidadSeeder extends Seeder {
 
         Comunidad::factory()
                 ->has(Cuenta::factory()->count(1))
-                ->count(15)
+                ->count(20)
                 ->create();
     }
 

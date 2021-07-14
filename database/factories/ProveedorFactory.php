@@ -27,6 +27,7 @@ class ProveedorFactory extends Factory {
         $figuras = DB::table('figuras')->pluck('id');
         $provincia = $this->faker->randomElement(DB::table('provincias')->get());
         $comunidadAutonoma = DB::table('comunidades_autonomas')->get()[$provincia->comunidadAutonoma_id-1];
+        $pais = DB::table('paises')->get()[$comunidadAutonoma->pais-1];
         
         return [
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
@@ -40,9 +41,9 @@ class ProveedorFactory extends Factory {
             'email' => $this->faker->unique()->safeEmail,
             'telefono' => $this->faker->randomNumber(9, true),
             'calle' => $this->faker->streetAddress(), //secondaryAddress(),
-            'codigopais' => $this->faker->randomNumber(2, true),
+            'codigopais' => $pais->codigoANSI,
             'cp' => '07' . $this->faker->randomNumber(3, true),
-            'pais' => $comunidadAutonoma->pais,
+            'pais' => $pais->id,
             'localidad' => $comunidadAutonoma->id,
             'provincia' => $provincia->id,
             //'localidad' => $this->faker->community(),
