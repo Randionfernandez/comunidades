@@ -15,10 +15,17 @@ class TipoPropiedadSeeder extends Seeder
     public function run() {
         
         $tiposPropiedades = [
-            ['AP','Apartamento'], ['CA','Casa'], ['CH','Chalet'], 
-            ['DS','Despacho'], ['DP','Dúplex'], ['LC','Local Comercial'], 
-            ['PS','Piso'], ['PG','Plaza de Garaje'], ['TR','Trastero'], 
-            ['VI','Vivienda'], ['AT','Ático']
+            ['codigo' => 'NOC', 'descripcion' => 'No consta'],
+            ['codigo' => 'APT', 'descripcion' => 'Apartamento'],
+            ['codigo' => 'DUP', 'descripcion' => 'Dúplex'],
+            ['codigo' => 'VIV', 'descripcion' => 'Vivienda'],
+            ['codigo' => 'ATC', 'descripcion' => 'Ático'],
+            ['codigo' => 'PAR', 'descripcion' => 'Pareado'],
+            ['codigo' => 'LOC', 'descripcion' => 'Local comercial'],
+            ['codigo' => 'GAR', 'descripcion' => 'Plaza de garaje'],
+            ['codigo' => 'TRAS', 'descripcion' => 'Trastero'],
+            ['codigo' => 'CHA', 'descripcion' => 'Casa Unifamiliar'],
+            ['codigo' => 'DES', 'descripcion' => 'Despacho'],
         ];
 
         foreach ($tiposPropiedades as $tipoPropiedad) {

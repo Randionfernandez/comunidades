@@ -14,10 +14,9 @@ class CreateTiposPropiedadTable extends Migration
     public function up()
     {
         Schema::create('tipos_propiedad', function (Blueprint $table) {
-            $table->id();
-            $table->string('abreviatura');
-            $table->string('nombre');
-            $table->timestamps();
+            $table->char('codigo',4);
+            $table->string('descripcion');
+            $table->primary('codigo');
         });
     }
 
