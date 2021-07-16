@@ -31,8 +31,8 @@
                     <tr>
                         <td>{{$junta->denom_convocatoria}}</td>
                         <td>{{$junta->tipo}}</td>
-                        <td>{{$junta->user_id}}</td>
-                        <td>{{$junta->comunidad_id}}</td>
+                        <td>{{$junta->nombreSolicitante($junta->user_id)}}</td>
+                        <td>{{$junta->nombreComunidad($junta->comunidad_id)}}</td>
                         <td>{{$junta->fecha_primera}}</td>
                         <td>{{$junta->hora_primera}}</td>
                         <td class="flex">

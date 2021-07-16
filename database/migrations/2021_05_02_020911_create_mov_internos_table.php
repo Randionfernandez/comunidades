@@ -11,8 +11,8 @@ class CreateMovInternosTable extends Migration
      *
      * @return void
      */
-    public function up() {
-        // original Randion
+    public function up()
+    {
         Schema::create('mov_internos', function (Blueprint $table) {
             $table->id();
             

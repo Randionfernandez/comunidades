@@ -48,7 +48,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="direccion">@lang('direction')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="direccion" placeholder=@lang('direction') value="{{ old('direccion', $comunidad->direccion) }}" {{$btndisabled}} required>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="40" name="direccion" placeholder=@lang('direction') value="{{ old('direccion', $comunidad->direccion) }}" {{$btndisabled}} required>
                 </div>
             </div>
 
@@ -67,10 +67,10 @@
                 <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
                     <option value="0">@lang('Country')</option>
                     @forelse($paises as $pais)
-                    @if ( old('pais', $comunidad->pais) == $pais->id )
-                    <option value="{{ $pais->id }}" selected > {{ $pais->nombre }} </option>
+                    @if ( old('pais', $comunidad->pais) == $pais->codigoISO )
+                    <option value="{{ $pais->codigoISO }}" selected > {{ $pais->codigoISO }} </option>
                     @else
-                    <option value="{{ $pais->id }}"> {{ $pais->nombre }} </option>
+                    <option value="{{ $pais->codigoISO }}"> {{ $pais->codigoISO }} </option>
                     @endif
                     @empty
                     <p>No hay paises</p>
@@ -78,38 +78,21 @@
                 </select>
             </div>
             
-            <div class="col-md-3 mb-2" >
-                <label for="localidad" class="form-label">@lang('Locality')</label>
-                <select class="form-select" aria-label="Default select example" name="localidad" {{$btndisabled}}>
-                    <option value="0">@lang('Locality')</option>
-                    @forelse($comunidadesAutonomas as $comunidadAutonoma)
-                    @if ( old('localidad', $comunidad->localidad) == $comunidadAutonoma->id )
-                    <option value="{{ $comunidadAutonoma->id }}" selected > {{ $comunidadAutonoma->nombre }} </option>
-                    @else
-                    <option value="{{ $comunidadAutonoma->id }}"> {{ $comunidadAutonoma->nombre }} </option>
-                    @endif
-                    @empty
-                    <p>No hay Comunidades Autonomas</p>
-                    @endforelse
-                </select>
+            <div class="col-md-3 mb-2">
+                <label for="localidad">@lang('Locality')</label>
+                <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="localidad" placeholder=@lang('Locality') value="{{ old('localidad', $comunidad->localidad) }}" {{$btndisabled}}>
+                @if ($errors->has('denom'))
+                <span class="error-message">{{ $errors->first('localidad') }}</span>
+                @endif
             </div>
             
-            <div class="col-md-3 mb-2" >
-                <label for="provincia" class="form-label">@lang('Province')</label>
-                <select class="form-select" aria-label="Default select example" name="provincia" {{$btndisabled}}>
-                    <option value="0">@lang('Province')</option>
-                    @forelse($provincias as $provincia)
-                    @if ( old('provincia', $comunidad->provincia) == $provincia->id )
-                    <option value="{{ $provincia->id }}" selected > {{ $provincia->nombre }} </option>
-                    @else
-                    <option value="{{ $provincia->id }}"> {{ $provincia->nombre }} </option>
-                    @endif
-                    @empty
-                    <p>No hay Provincias</p>
-                    @endforelse
-                </select>
+            <div class="col-md-3 mb-2">
+                <label for="provincia">@lang('Province')</label>
+                <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('Province') value="{{ old('provincia', $comunidad->provincia) }}" {{$btndisabled}}>
+                @if ($errors->has('provincia'))
+                <span class="error-message">{{ $errors->first('provincia') }}</span>
+                @endif
             </div>
-        </div>
         
         <div class="row form-group">
             <div class="col-md-12">

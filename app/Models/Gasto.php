@@ -3,18 +3,16 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use \Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Model;
 
-class Gasto extends Model
-{
-    use HasFactory;
+class Gasto extends Model {
 
-    protected $table = 'lista_gastos';
+    use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
-        'descripcion',
-        'proveedor',
-        'fecha',
-        'importe'
+        
     ];
+
 }

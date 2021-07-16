@@ -15,11 +15,22 @@ class CreatePaisesTable extends Migration
     {
         Schema::create('paises', function (Blueprint $table) {
             $table->id();
+<<<<<<< HEAD
             $table->string('nombre');
             $table->string('codigoISO','3');
             $table->decimal('codigoANSI',3,0)->comment('Su valor es menor de 1000. ');
             $table->timestamps();
 
+=======
+            $table->string('nombre','50');
+            $table->char('codigoISO',3);
+            $table->string('codigoANSI','3');
+            
+            
+            $table->timestamps();
+            $table->unique('codigoISO');
+            $table->unique('codigoANSI');
+>>>>>>> c4e5f520d6fa6d9bc9914a643a82cd2e2fe89654
         });
     }
 

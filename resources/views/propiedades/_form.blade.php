@@ -45,20 +45,21 @@
     </div>
     
     <div class="col-4">
-        <label for="tipo_id" class="form-label">@lang('Property Type')</label>
-        <select class="form-select" aria-label="Default select example" name="tipo_id" {{$btndisabled}}>
-            <option value="0">@lang('Tipo Propiedades')</option>
+        <label for="tipo" class="form-label">@lang('Property Type')</label>
+        <select class="form-select" aria-label="Default select example" name="tipo" {{$btndisabled}}>
+            <option value="">@lang('Tipo Propiedades')</option>
             @forelse($tipoPropiedades as $tipoPropiedad)
-            @if ( old('tipo_id', $propiedad->tipo_id) == $tipoPropiedad->id )
-            <option value="{{ $tipoPropiedad->id }}" selected > {{ $tipoPropiedad->nombre }} </option>
+            {{$tipoPropiedad}}
+            @if ( old('tipo', $propiedad->tipo) == $tipoPropiedad )
+            <option value="{{ $tipoPropiedad }}" selected > {{ $tipoPropiedad }} </option>
             @else
-            <option value="{{ $tipoPropiedad->id }}"> {{$tipoPropiedad->nombre }} </option>
+            <option value="{{ $tipoPropiedad }}"> {{$tipoPropiedad }} </option>
             @endif
             @empty
             <p>vacio</p>
             @endforelse
         </select>
-        @error('tipoPropiedad')
+        @error('tipo')
         <div class="alert alert-danger mb-2" role="alert">
             {{ $message }}
         </div>

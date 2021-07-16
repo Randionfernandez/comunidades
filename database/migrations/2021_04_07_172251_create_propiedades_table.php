@@ -24,7 +24,7 @@ class CreatePropiedadesTable extends Migration
             $table->decimal('coeficiente',5,2)->comment("Porcentaje de participación en el total de la comunidad, según registro de la propiedad");
 
           // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
-            //$table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
+            $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
             
 
@@ -35,11 +35,6 @@ class CreatePropiedadesTable extends Migration
             
             $table->unique(['comunidad_id','parte']);
             $table->unique(['comunidad_id','denominacion']);
-            
-            // parte diferente
-            $table->unsignedBigInteger('tipo_id')->comment("Tipo de propiedad: piso, ático, local,...");
-            
-            $table->foreign('tipo_id')->references('id')->on('tipo_propiedad')->onDelete('cascade');
         });
     }
 

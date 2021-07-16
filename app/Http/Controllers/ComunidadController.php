@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
-use \App\Models\ComunidadUser;
+use \App\Models\Comunidad_User;
 use App\Models\Pais;
 use App\Models\ComunidadAutonoma;
 use App\Models\Provincia;
@@ -95,7 +95,7 @@ class ComunidadController extends Controller {
 
         $new_comunidad = Comunidad::latest('created_at')->first();
 
-        ComunidadUser::create([
+        Comunidad_User::create([
             'comunidad_id' => $new_comunidad->id,
             'user_id' => $this->user->id,
             'role_id' => '2',
@@ -171,7 +171,7 @@ class ComunidadController extends Controller {
 
         $this->msj = 'La comunidad fué eliminada con éxito';
         
-        ComunidadUser::where('comunidad_id', '=', $comunidad->id)->delete();
+        Comunidad_User::where('comunidad_id', '=', $comunidad->id)->delete();
         
         $request->session()->put('activeCommunity', null);
         

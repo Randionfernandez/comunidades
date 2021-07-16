@@ -1,6 +1,5 @@
 <?php
-
-namespace App\Models;
+ namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,29 +7,28 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
+use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 
-class User extends Authenticatable
-{
+class User extends Authenticatable {
+
     use HasApiTokens;
     use HasFactory;
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
-
+    use \Illuminate\Database\Eloquent\SoftDeletes;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    
-    //protected ComunidadSeleccionada = null;
-    
     protected $fillable = [
         'name',
-        'email',
-        'password'
+        'email', 
+        //'password',
     ];
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -69,9 +67,4 @@ class User extends Authenticatable
     public function roles() {
         return $this->belongsToMany(Role::class, 'comunidad_user','user_id','role_id')->withTimestamps();
     }
-    
-    public function propiedades() {
-        return $this->hasMany(Propiedad::class);
-    }
-
 }

@@ -18,7 +18,7 @@ class CreateComunidadUserTable extends Migration {
                     ->onDelete('cascade');
             $table->foreignId('user_id')->constrained()
                     ->onDelete('cascade');
-            $table->foreignId('role_id')->constrained('roles')
+            $table->foreignId('role_id')->constrained()
                     ->onUpdate('cascade');
 
             $table->unique(['comunidad_id', 'user_id']);

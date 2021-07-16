@@ -30,18 +30,18 @@ class ComunidadRequest extends FormRequest
         return [
             'cif' => ['required', 'alpha_num', 'size:9', Rule::unique('comunidades')->ignore($this->route('comunidad'))],
             'fechalta' => 'required|date',
-            'activa' => 'boolean',
-            'gratuita' => 'boolean',
+            'activa' => 'boolean|nullable',
+            'gratuita' => 'boolean|nullable',
             'partes' => 'integer|nullable',
-            'denom' => 'required|string|max:30',
-            'direccion' => 'required|string|max:60',
-            'localidad' => 'nullable|exists:comunidades_autonomas,id',
-            'provincia' => 'string|exists:provincias,id|nullable',
+            'denom' => 'required|string|max:35',
+            'direccion' => 'required|string|max:40',
+            'localidad' => 'nullable|string|max:35',
+            'provincia' => 'string|nullable',
             'cp' => 'required|size:5',
-            'pais' => 'exists:paises,id',
+            'pais' => 'nullable|exists:paises,codigoISO',
             'logo' => 'nullable',
             'observaciones' => 'string|nullable',
-            'MaxFreeCommunities' => 'integer'
+            'limitMaxFree' => 'integer'
     ];
     }
     

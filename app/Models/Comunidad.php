@@ -31,37 +31,19 @@ class Comunidad extends Model {
     ];
 
     public function propiedades() {
-        return $this->hasMany(Propiedad::class, 'comunidad_id', 'id');
+        return $this->hasMany(Propiedad::class);
     }
 
     public function cuentas() {
         return $this->hasMany(Cuenta::class);
     }
     
-    public function comunidades_users() {
-        return $this->hasMany(ComunidadUser::class);
-    }
+//    public function comunidades_user() {
+//        return $this->hasMany(Comunidad_User::class);
+//    }
 
     public function usuarios() {
-        return $this->belongsToMany('user')->withTimestamps();
-    }
-    
-    public function proveedor() {
-        return $this->belongsToMany(Proveedor::class, 'comunidades_proveedores', 'comunidad_id', 'proveedor_id')->withTimestamps();
-    }
-    
-    public function paises() {
-        return $this->belongsTo(Pais::class, 'id', 'pais')->withTimestamps();
-    }
-    
-    public function nombrePais($id){
-        // $nombre_tipo = Tipo::findOrFail($id, ['nombreTipo']); 
-        //$users = User::join('posts', 'users.id', '=', 'posts.user_id') ->get(['users.*', 'posts.descrption']);
-        return $nombrePais = Comunidad::join('paises', 'comunidades.pais', '=', 'paises.id')->where('comunidades.id', '=', $id)->get()->pluck('nombre')->last();
-    }
-    
-    public function juntas () {
-        return $this->hasMany(Junta::class, 'comunidad_id', 'id');
+        return $this->belongsToMany(User::class)->withTimestamps();
     }
     
     public function nombreRole(Comunidad $comunidad){

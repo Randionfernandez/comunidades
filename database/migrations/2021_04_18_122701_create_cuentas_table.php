@@ -11,9 +11,7 @@ class CreateCuentasTable extends Migration {
      *
      * @return void
      */
-    public function up() 
-    {
-        // original Randion
+    public function up() {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
 

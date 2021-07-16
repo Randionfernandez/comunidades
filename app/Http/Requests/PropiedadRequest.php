@@ -25,11 +25,11 @@ class PropiedadRequest extends FormRequest {
     public function rules() {
         
         return [
-            "denominacion" => ["required", "max:30", Rule::unique('propiedades')->where('comunidad_id', Session()->get('activeCommunity')->id)->ignore($this->route('propiedad'))],
+            "denominacion" => ["required", "max:10", Rule::unique('propiedades')->where('comunidad_id', Session()->get('activeCommunity')->id)->ignore($this->route('propiedad'))],
             "user_id" => ["required", "exists:users,id"],
             "comunidad_id" => ["exists:comunidades,id"],
-            "tipo_id" => ["required", "exists:tipo_propiedad,id"],
-            "coeficiente" => ["required"],
+            "tipo" => ["required", "in:local,piso,atico"],
+            "coeficiente" => ["required", "numeric"],
             "parte" => ["required", Rule::unique('propiedades')->where('comunidad_id', Session()->get('activeCommunity')->id)->ignore($this->route('propiedad'))],
             "observaciones" => ["max:100"]
         ];

@@ -4,10 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Comunidad;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\DB;
 
 class ComunidadFactory extends Factory {
-
     /**
      * The name of the factory's corresponding model.
      *
@@ -15,28 +13,23 @@ class ComunidadFactory extends Factory {
      */
     protected $model = Comunidad::class;
 
-    /**
-     * Define the model's default state.
-     *
-     * @return array
-     */
-    public function definition() {
-        
-        $provincia = $this->faker->randomElement(DB::table('provincias')->get());
-        $comunidadAutonoma = DB::table('comunidades_autonomas')->get()[$provincia->comunidadAutonoma_id-1];
-        
-        return [
-            'cif' => $this->faker->unique()->dni(),
-            'denom' => 'C.P. ' . substr($this->faker->name(), 0, 30),
-            'fechalta' => $this->faker->dateTimeBetween('-2 year'),
-            'direccion' => substr($this->faker->streetAddress(), 0, 40), //secondaryAddress(),
-            'partes' => $this->faker->randomDigitNot(0),
-            'pais' => $comunidadAutonoma->pais,
-            'localidad' => $comunidadAutonoma->id,
-            'provincia' => $provincia->id,
-            'cp' => '07' . $this->faker->randomNumber(3, true),
-            'observaciones' => $this->faker->text()
-        ];
-    }
 
-}
+        /**
+         * Define the model's default state.
+         *
+         * @return array
+         */
+        public function definition() {
+            return [
+                'cif' => $this->faker->unique()->dni(),
+                'denom' => 'C.P. ' . substr($this->faker->name, 0, 30),  // denom: máximo 35 char
+                'fechalta' => $this->faker->dateTimeBetween('-2 year'),
+                'direccion' => '"' . $this->faker->streetAddress() . '"', //secondaryAddress(),
+                'localidad' => $this->faker->asciify(),
+                'provincia' => $this->faker->community(),
+                'cp' => '07' . $this->faker->randomNumber(3, true),
+                'pais'=>'ESP'
+            ];
+        }
+
+    }

@@ -15,25 +15,17 @@ class Propiedad extends Model {
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        "denominacion",
-        "user_id",
-        "comunidad_id",
-        "tipo_id",
-        "parte",
-        "coeficiente",
-        "observaciones"
+        'denominacion',
+        'user_id',
+        'comunidad_id',
+        'tipo',
+        'coeficiente',
+        'parte',
+        'observaciones'
     ];
 
     public function comunidad() {
-        return $this->belongsTo(Comunidad::class, 'id', 'comunidad_id');
-    }
-    
-    public function nombretipoPropiedad() {
-        return $this->belongsTo(TipoPropiedad::class, 'tipo_id', 'nombre')->withTimestamps();
-    }
-    
-    public function propietario() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Comunidad::class);
     }
     
     public function nombrePropietario(Propiedad $propiedad){

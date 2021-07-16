@@ -11,9 +11,7 @@ class CreateComunidadesTable extends Migration {
      *
      * @return void
      */
-    public function up() 
-    {
-        // original Randion
+    public function up() {
         Schema::create('comunidades', function (Blueprint $table) {
             
             $table->id();
@@ -25,25 +23,17 @@ class CreateComunidadesTable extends Migration {
             $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
             $table->string('denom', 35);
             $table->string('direccion', 40);
-            //$table->string('localidad', 35)->nullable();
-            //$table->string('provincia')->nullable();
+            $table->string('localidad', 35)->nullable();
+            $table->string('provincia')->nullable();
             $table->char('cp', 5)->comment('Código postal');
-            //$table->string('pais')->default('ES');
+            $table->char('pais',3)->default('ESP')->comment('Código ISO del país, 3 caracteres');
             $table->string('logo')->nullable()->comment('Imagen con el logo de la comunidad');
             $table->string('observaciones')->nullable();
 
+            $table->foreign('pais')->references('codigoISO')->on('paises');
             $table->timestamps();
             $table->softDeletes();
-            
-            // parte diferente
-            
-            $table->unsignedBigInteger('pais')->default(1);
-            $table->unsignedBigInteger('localidad')->nullable()->comment('Comunidad Autonoma o Estado del pais seleccionado.');
-            $table->unsignedBigInteger('provincia')->nullable()->comment('Provincia o region del pais seleccionado.');
-            
-            $table->foreign('pais')->references('id')->on('paises');
-            $table->foreign('localidad')->references('id')->on('comunidades_autonomas');
-            $table->foreign('provincia')->references('id')->on('provincias');
+
         });
     }
 
