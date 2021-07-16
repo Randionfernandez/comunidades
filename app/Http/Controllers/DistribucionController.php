@@ -16,9 +16,11 @@ class DistribucionController extends Controller {
      * @return \Illuminate\Http\Response
      */
     public function index() {
+        
         $distribuciones = Distribucion::orderBy('orden')->distinct('orden')->get();
+        $propiedades = session()->get('activeCommunity')->propiedades()->get();
 
-        return view('distribuciones.index', compact('distribuciones'));
+        return view('distribuciones.index', compact('distribuciones', 'propiedades'));
     }
 
     /**

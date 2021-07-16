@@ -22,8 +22,8 @@ class IngresoFactory extends Factory
     public function definition()
     {
         return [
-            "fecha" => $this -> faker -> now(),
-            "cantidad" => $this -> faker -> randomDigitNotNull(),
+            "fecha" => $this->faker->now(),
+            "cantidad" => $this->faker->randomDigitNotNull(),
             "cuenta" ,
             "Propietario"
         ];

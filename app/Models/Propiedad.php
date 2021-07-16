@@ -15,12 +15,12 @@ class Propiedad extends Model {
     protected $dates = ['deleted_at'];
     
     protected $fillable = [
-        'denominacion',
-        'user_id',
         'comunidad_id',
-        'tipo',
-        'coeficiente',
+        'user_id',
+        'denominacion',
         'parte',
+        'coeficiente',
+        'tipo',
         'observaciones'
     ];
 

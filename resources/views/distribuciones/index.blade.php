@@ -8,7 +8,11 @@
 
     <div class="position-relative">
         
-        <x-jet-button onclick="location.href ='{{ route('distribuciones.create') }}'">@lang('New')</x-jet-button>
+        @if ($propiedades->count())
+            <x-jet-button onclick="location.href ='{{ route('distribuciones.create') }}'">@lang('New')</x-jet-button>
+        @else
+            @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Properties created yet'])
+        @endif
 
         @include('partials.session-status')
 
