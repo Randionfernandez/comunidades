@@ -12,7 +12,7 @@
 
     <x-jet-button onclick="location.href ='{{ route('proveedores.create') }}'">@lang('New')</x-jet-button>
 
-    @if ($activeCommunity->proveedor->count() > 0)
+    @if (! is_null($activeCommunity->proveedor) && $activeCommunity->proveedor->count())
     <div class="card">
         <div class="card-body">
             <table class="table table-hover dt-responsive nowrap" id="buscador">
@@ -22,8 +22,6 @@
                         <th>@lang('cif')</th>
                         <th>@lang('email')</th>
                         <th>@lang('telefono')</th>
-                        <th>@lang('tipo')</th>
-                        <th>@lang('calificacion')</th>
 
                         <th class="col-span-2 text-center">@lang('Actions')</th>
                     </tr>
@@ -36,8 +34,6 @@
                         <td>{{$proveedor->cif}}</td>
                         <td>{{$proveedor->email}}</td>
                         <td>{{$proveedor->telefono}}</td>
-                        <td>{{$proveedor->nombreTipoGasto($proveedor->id)}}</td>
-                        <td>{{$proveedor->nombreCalificacion($proveedor->id)}}</td>
                         <td class="flex">
                             <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
                             <x-jet-danger-button onclick="location.href ='{{ route('proveedores.show', $proveedor) }}'">{{__('Show')}}</x-jet-danger-button>

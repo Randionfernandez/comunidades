@@ -26,9 +26,9 @@
             <option value="">@lang('Cuenta')</option>
             @forelse($cuentas as $cuenta)
             @if ( old('cuenta', $movimiento->cuenta) == $cuenta->id)
-            <option value="{{ $cuenta->id }}" selected> {{ $cuenta->cuenta}} </option>
+            <option value="{{ $cuenta->id }}" selected> {{ $cuenta->denominacion}} </option>
             @else
-            <option value="{{ $cuenta->id }}"> {{ $cuenta->cuenta}} </option>
+            <option value="{{ $cuenta->id }}"> {{ $cuenta->denominacion}} </option>
             @endif
             @empty
             <p>No hay cuentas</p>
@@ -43,9 +43,9 @@
             <option value="">@lang('Concepto')</option>
             @forelse($tiposGastos as $tipoGasto)
             @if ( old('concepto', $movimiento->concepto) == $tipoGasto->id )
-            <option value="{{ $tipoGasto->id }}" selected > {{ $tipoGasto->nombreTipoGasto}} </option>
+            <option value="{{ $tipoGasto->id }}" selected > {{ $tipoGasto->nombre}} </option>
             @else
-            <option value="{{ $tipoGasto->id }}"> {{ $tipoGasto->nombreTipoGasto }} </option>
+            <option value="{{ $tipoGasto->id }}"> {{ $tipoGasto->nombre }} </option>
             @endif
             @empty
             <p>No hay Tipos de Gastos</p>

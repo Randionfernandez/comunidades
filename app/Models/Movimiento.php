@@ -12,6 +12,13 @@ class Movimiento extends Model {
     use SoftDeletes;
 
     protected $fillable = [
+        'n_op',
+        'fecha',
+        'fechavalor',
+        'importe',
+        'saldo',
+        'concepto',
+        'cuenta_id'
     ];
 
     public function cuenta() {

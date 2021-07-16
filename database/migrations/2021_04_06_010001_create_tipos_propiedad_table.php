@@ -4,23 +4,20 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProvinciasTable extends Migration
+class CreateTiposPropiedadTable extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * Dominio de los tipos de propiedades disponibles en la aplicacion
      * @return void
      */
     public function up()
     {
-        Schema::create('provincias', function (Blueprint $table) {
+        Schema::create('tipos_propiedad', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('comunidadAutonoma_id');
+            $table->string('abreviatura');
             $table->string('nombre');
             $table->timestamps();
-            $table->softDeletes();
-            
-            $table->foreign('comunidadAutonoma_id')->references('id')->on('comunidades_autonomas')->onDelete('cascade');
         });
     }
 
@@ -31,6 +28,6 @@ class CreateProvinciasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('provincias');
+        Schema::dropIfExists('tipos_propiedad');
     }
 }

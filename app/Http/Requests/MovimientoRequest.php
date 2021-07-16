@@ -4,15 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class MovimientoRequest extends FormRequest
-{
+class MovimientoRequest extends FormRequest {
+
     /**
      * Determine if the user is authorized to make this request.
      *
      * @return bool
      */
-    public function authorize()
-    {
+    public function authorize() {
         return true;
     }
 
@@ -21,17 +20,16 @@ class MovimientoRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'n_op' => 'required',
+            'n_op' => 'required|integer|min:1',
             'fecha' => 'required|date',
-            'fecha valor' => 'required|date',
-            'importe' => 'required|numeric',
-            'saldo' => 'required|numeric',
-            'concepto' => 'string',
-            'comunidad_id' => 'exists:comunidades,id',
-            'propiedad' => 'exists:propiedades,id'
+            'fechavalor' => 'required|date|gte:fecha',
+            'importe' => 'required|numeric|digits_between:0,10',
+            'saldo' => 'required|numeric|digits_between:0,10',
+            'concepto' => 'string|max:70',
+            'cuenta_id' => 'exits:cuentas,id'
         ];
     }
+
 }

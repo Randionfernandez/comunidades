@@ -17,20 +17,20 @@
 <div class="row form-group">
     <div class="col-4">
         <label for="orden">@lang('Orden')</label>
-        <input class="form-control border-0 bg-light shadow-sm" type="number" name="orden" placeholder="1" value="{{ old('orden', $distribucionGasto->orden) }}" {{$btndisabled}} required>
+        <input class="form-control border-0 bg-light shadow-sm" type="number" name="orden" placeholder="1" value="{{ old('orden', $distribucion->orden) }}" {{$btndisabled}} required>
         <label class="form-label" for="orden">@lang('Numero ej. 1')</label>
     </div>
     <div class="col-4">
         <div class="form-group">
             <label for="abreviatura">@lang('Abreviatura')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="text" name="abreviatura" placeholder=@lang('abreviatura') value="{{ old('abreviatura', $distribucionGasto->abreviatura) }}" {{$btndisabled}} required>
+            <input class="form-control border-0 bg-light shadow-sm" type="text" name="abreviatura" placeholder=@lang('abreviatura') value="{{ old('abreviatura', $distribucion->abreviatura) }}" {{$btndisabled}} required>
             <label for="abreviatura">@lang('Letra Ej. ABC')</label>
         </div>
     </div>
     <div class="col-4">
         <div class="form-group">
             <label for="name">@lang('Name')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="text" name="name" placeholder=@lang('name') value="{{ old('name', $distribucionGasto->name) }}" {{$btndisabled}} required >
+            <input class="form-control border-0 bg-light shadow-sm" type="text" name="name" placeholder=@lang('name') value="{{ old('name', $distribucion->name) }}" {{$btndisabled}} required >
             <label for="name">@lang('Letras y numeros. Ej. General')</label>
         </div>
     </div>

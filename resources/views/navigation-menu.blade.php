@@ -31,7 +31,7 @@
                 <h5 class="text-white">{{ Session::get('activeCommunity')->denom }}</h5>
                 <h5 class="pl-3 pr-1 text-warning">{{ Session::get('activeCommunity')->nombreRole(Session::get('activeCommunity')) }}</h5>
                 @else
-                    @yield('comunidadRole');
+                    @yield('comunidadRole')
                 @endif
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">

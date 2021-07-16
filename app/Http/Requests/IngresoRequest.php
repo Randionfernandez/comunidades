@@ -24,10 +24,6 @@ class IngresoRequest extends FormRequest
     public function rules()
     {
         return [
-            'fecha' => 'required',
-            'cantidad' => 'required | numeric',
-            'cuenta' => 'required',
-            'Propietario' => 'required',
         ];
     }
 }

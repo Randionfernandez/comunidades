@@ -24,7 +24,7 @@ $navLinks = [
         //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Contactos'],
         //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Conceptos'],
         ['href' => 'juntas.index', 'name' => 'juntas.index', 'text' => 'Juntas'],
-        ['href' => 'cuentasBancarias.index', 'name' => 'cuentasBancarias.index', 'text' => 'Cuentas bancarias'],
+        ['href' => 'cuentas.index', 'name' => 'cuentas.index', 'text' => 'Cuentas bancarias'],
         //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Cuotas'],
         //['href' => 'comunidades.index', 'name' => 'comunidades.index', 'text' => 'Diario'],
         ['href' => 'distribucion.index', 'name' => 'distribucion.index', 'text' => 'Distribuciones'],

@@ -14,7 +14,6 @@ class Cuenta extends Model {
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'iban',
-        'num_cuenta',
         'siglas',
         'denominacion',
         'fecha_apertura',

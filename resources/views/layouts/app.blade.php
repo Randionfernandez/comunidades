@@ -101,7 +101,7 @@
                 </h2>
                 <div id="collapseTwo" class="accordion-collapse bg-black collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
-                        <x-jet-responsive-nav-link class="text-white text-decoration-none" href="{{ route('comunidades.index') }}" :active="request()->routeIs('comunidades.index')">
+                        <x-jet-responsive-nav-link class="text-white text-decoration-none" href="{{ route('propiedades.index') }}" :active="request()->routeIs('propiedades.*')">
                             @lang('Propiedades')
                         </x-jet-responsive-nav-link>
                     </div>

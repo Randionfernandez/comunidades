@@ -15,12 +15,12 @@ class CreateCuentasTable extends Migration {
         Schema::create('cuentas', function (Blueprint $table) {
             $table->id();
 
-            $table->string('iban', 25)->unique();
-            $table->string('siglas', 4)->default('BBVA');
+            $table->char('iban', 25)->unique();
+            $table->char('siglas', 4)->default('BBVA');
             $table->string('denominacion', 35)->default('Banco Bilbao Vizcaya Argentaria');
             $table->date('fecha_apertura');
             $table->boolean('activa')->default(true);
-            $table->decimal('saldo', 8, 2)->default(0);
+            $table->decimal('saldo', 10, 2)->default(0);
             $table->string('bic')->nullable();
             $table->char('divisa', 5)->default('EUR');
             $table->text('comentarios')->nullable();

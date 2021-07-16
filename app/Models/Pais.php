@@ -24,7 +24,7 @@ class Pais extends Model
     }
     
     public function cuentasBancarias() {
-        return $this->hasMany(CuentaBancaria::class, 'paises', 'id');
+        return $this->hasMany(Cuenta::class, 'paises', 'id');
     }
     
     public function comunidadesAutonomas() {

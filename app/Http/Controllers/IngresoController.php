@@ -4,7 +4,7 @@ namespace app\Http\Controllers;
 
 use App\Models\Ingreso;
 use App\Http\Requests\IngresoRequest;
-use App\Models\DistribucionGasto;
+use App\Models\Distribucion;
 use App\Models\PropiedadUser;
 use App\Models\Movimiento;
 
@@ -55,7 +55,7 @@ class IngresoController extends Controller
         //
         $prueba = array();
         
-        $gastos = DistribucionGasto::where('propiedad_id','=',$ingreso->propiedad)->get(['coeficiente','nombre']);
+        $gastos = Distribucion::where('propiedad_id','=',$ingreso->propiedad)->get(['coeficiente','nombre']);
         $dineroPropiedad = Movimiento::where('propiedad_id', '=', $ingreso->propiedad)->where('concepto', '=', 'ingreso' )->get('importe')->sum('importe');
         $totalPropiedades = PropiedadUser::count('propiedad_id');
         $total = 0;   
@@ -73,7 +73,7 @@ class IngresoController extends Controller
                    }
                }
 
-                $coeficiente = DistribucionGasto::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad_id','=',$ingreso->propiedad)->get(['coeficiente', 'nombre']);
+                $coeficiente = Distribucion::where('nombre','=',$concepto[$j]['grupo'])->where('propiedad_id','=',$ingreso->propiedad)->get(['coeficiente', 'nombre']);
                 if(count($coeficiente) != 0 && $coeficiente[$j]->nombre == 'unidadRegistral'){
                         $coeficiente[$j]->coeficiente = 0;
                 }

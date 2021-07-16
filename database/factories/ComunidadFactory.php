@@ -28,7 +28,8 @@ class ComunidadFactory extends Factory {
                 'localidad' => $this->faker->asciify(),
                 'provincia' => $this->faker->community(),
                 'cp' => '07' . $this->faker->randomNumber(3, true),
-                'pais'=>'ESP'
+                'pais'=>'ESP',
+                'observaciones' => $this->faker->text()
             ];
         }
 

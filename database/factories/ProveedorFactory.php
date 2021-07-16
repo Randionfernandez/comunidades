@@ -23,8 +23,6 @@ class ProveedorFactory extends Factory {
     public function definition() {
         
         $tiposGastos = DB::table('tipos_gastos')->pluck('id');
-        $calificaciones = DB::table('calificaciones')->pluck('id');
-        $figuras = DB::table('figuras')->pluck('id');
         $provincia = $this->faker->randomElement(DB::table('provincias')->get());
         $comunidadAutonoma = DB::table('comunidades_autonomas')->get()[$provincia->comunidadAutonoma_id-1];
         $pais = DB::table('paises')->get()[$comunidadAutonoma->pais-1];
@@ -33,8 +31,6 @@ class ProveedorFactory extends Factory {
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
             'cif' => $this->faker->unique()->dni(),
             'tipoGasto' => $this->faker->randomElement($tiposGastos),
-            'calificacion' => $this->faker->randomElement($calificaciones),
-            'figura' => $this->faker->randomElement($figuras),
             'nombre' => 'C.P. ' . $this->faker->name,
             'apellido1' => $this->faker->firstName,
             'apellido2' => $this->faker->lastName,

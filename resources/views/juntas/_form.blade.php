@@ -12,37 +12,37 @@
 <x-jet-validation-errors></x-jet-validation-errors>
 
 <div class="form-group">
-    <label for="denom_convocatoria">@lang('denom_convocatoria')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denom_convocatoria" placeholder=@lang('denom_convocatoria') value="{{ old('denom_convocatoria', $junta->denom_convocatoria) }}" {{$btndisabled}} required>
-    @if ($errors->has('denom_convocatoria'))
-    <span class="error-message">{{ $errors->first('denom_convocatoria') }}</span>
+    <label for="denominacion">@lang('denominacion')</label>
+    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denominacion" placeholder=@lang('denominacion') value="{{ old('denominacion', $junta->denominacion) }}" {{$btndisabled}} required>
+    @if ($errors->has('denominacion'))
+    <span class="error-message">{{ $errors->first('denominacion') }}</span>
     @endif
 </div>
 <div class="row form-group">
     <div class="col-6">
         <div class="form-group">
-            <label for="fecha_primera">@lang('Fecha Primera')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="date" name="fecha_primera" placeholder=@lang('fecha_primera') value="{{ old('fecha_primera', $junta->fecha_primera) }}" {{$btndisabled}} required>
+            <label for="fechaprimera">@lang('Fecha Primera')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechaprimera" placeholder=@lang('fechaprimera') value="{{ old('fechaprimera', $junta->fechaprimera) }}" {{$btndisabled}} required>
         </div>
     </div>
     <div class="col-6">
         <div class="form-group">
-            <label for="hora_primera">@lang('Hora primera')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="time" name="hora_primera" placeholder=@lang('hora_primera') value="{{ old('hora_primera', $junta->hora_primera) }}" {{$btndisabled}} required>
+            <label for="horaprimera">@lang('Hora primera')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="time" name="horaprimera" placeholder=@lang('horaprimera') value="{{ old('horaprimera', $junta->horaprimera) }}" {{$btndisabled}} required>
         </div>
     </div>
 </div>
 <div class="row form-group">
     <div class="col-6">
         <div class="form-group">
-            <label for="fecha_segunda">@lang('Fecha Segunda')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="date" name="fecha_segunda" placeholder=@lang('fecha_segunda') value="{{ old('fecha_segunda', $junta->fecha_segunda) }}" {{$btndisabled}} required>
+            <label for="fechasegunda">@lang('Fecha Segunda')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechasegunda" placeholder=@lang('fechasegunda') value="{{ old('fechasegunda', $junta->fechasegunda) }}" {{$btndisabled}} required>
         </div>
     </div>
     <div class="col-6">
         <div class="form-group">
-            <label for="hora_primera">@lang('Hora Segunda')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="time" name="hora_segunda" placeholder=@lang('hora_segunda') value="{{ old('hora_segunda', $junta->hora_segunda) }}" {{$btndisabled}} required>
+            <label for="horaprimera">@lang('Hora Segunda')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="time" name="horasegunda" placeholder=@lang('horasegunda') value="{{ old('horasegunda', $junta->horasegunda) }}" {{$btndisabled}} required>
         </div>
     </div>
 </div>
@@ -67,10 +67,10 @@
             @endforelse
         </select>
         <div class="form-group">
-            <label for="orden_dia">@lang('orden_dia')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="orden_dia" placeholder=@lang('orden_dia') value="{{ old('orden_dia', $junta->orden_dia) }}" {{$btndisabled}} required>
-            @if ($errors->has('orden_dia'))
-            <span class="error-message">{{ $errors->first('orden_dia') }}</span>
+            <label for="ordendia">@lang('ordendia')</label>
+            <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="ordendia" placeholder=@lang('ordendia') value="{{ old('ordendia', $junta->ordendia) }}" {{$btndisabled}} required>
+            @if ($errors->has('ordendia'))
+            <span class="error-message">{{ $errors->first('ordendia') }}</span>
             @endif
         </div>
         <div class="form-group">

@@ -4,7 +4,7 @@
         <div class="bg-white py-3 px-4 shadow rounded">
             <h1 class="display-4"> @lang('Bank account') </h1>
             <hr>
-            @include('cuentasBancarias._form',['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
+            @include('cuentas._form',['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
         </div>
     @include('partials.plantillashoweditend')
     

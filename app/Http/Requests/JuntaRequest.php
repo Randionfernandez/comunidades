@@ -24,15 +24,15 @@ class JuntaRequest extends FormRequest
     public function rules()
     {
         return [
-            'denom_convocatoria' => 'required|string',
+            'denominacion' => 'required|string',
             'tipo' => 'required|in:ordinaria,extraordinaria',
             'user_id' => 'required|exists:users,id',
             'comunidad_id' => 'required|exists:comunidades,id',
-            'fecha_primera' => 'required|date',
-            'hora_primera' => 'required',
-            'fecha_segunda' => 'required|date',
-            'hora_segunda' => 'required',
-            'orden_dia' => 'required|string',
+            'fechaprimera' => 'required|date',
+            'horaprimera' => 'required',
+            'fechasegunda' => 'required|date',
+            'horasegunda' => 'required',
+            'ordendia' => 'required|string',
         ];
     }
 }
