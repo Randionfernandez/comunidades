@@ -31,20 +31,12 @@ class ProveedorRequest extends FormRequest {
             'email' => ['required','email:rfc,filter',Rule::unique('proveedores')->ignore($this->route('proveedor'))],
             'telefono' => 'required|string|max:12',
             'tipoGasto' => ['required', 'exists:tipos_gastos,id'],
-            'calificacion' => 'required|exists:calificaciones,id',
-            'figura' => 'required|exists:figuras,id',
             'calle' => 'required|string|nullable',
-            'portal' => 'integer|nullable',
-            'bloque' => 'string|nullable',
-            'escalera' => 'string|nullable',
-            'piso' => 'integer|nullable',
-            'puerta' => 'integer|nullable',
             'codigopais' => 'string|max:3|exists:paises,codigoANSI',
             'cp' => 'required|string|size:5',
             'pais' => 'exists:paises,id',
-            'provincia' => 'required|string',
             'localidad' => 'required|string',
-            'iban' => 'required|string|max:34'
+            'provincia' => 'required|string'
         ];
     }
 

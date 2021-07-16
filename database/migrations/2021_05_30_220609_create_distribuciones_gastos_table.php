@@ -13,7 +13,6 @@ class CreateDistribucionesGastosTable extends Migration
      */
     public function up()
     {
-        // Integracion parte de Rafa Maya para que cuadre la integración
         Schema::create('distribuciones_gastos', function (Blueprint $table) {
             $table->id();
             

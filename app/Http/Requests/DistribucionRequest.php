@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DistribucionGastoRequest extends FormRequest
+class DistribucionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,7 +28,6 @@ class DistribucionGastoRequest extends FormRequest
             'abreviatura' => 'required | alpha | max:3',
             'name' => 'required | alpha',
             'checkbox' => 'required',
-            //'propietario' => 'required',
             'propiedad' => 'required',
             'coeficiente' => 'required',
             //'unidadRegistral' => 'required'

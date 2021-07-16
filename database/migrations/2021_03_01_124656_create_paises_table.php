@@ -17,8 +17,7 @@ class CreatePaisesTable extends Migration
             $table->id();
             $table->string('nombre','50');
             $table->char('codigoISO',3);
-            $table->string('codigoANSI','3');
-            
+            $table->decimal('codigoANSI',3,0);
             
             $table->timestamps();
             $table->unique('codigoISO');

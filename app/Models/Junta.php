@@ -14,15 +14,15 @@ class Junta extends Model {
     protected $table = 'juntas';
     
     protected $fillable = [
-        'denom_convocatoria',
-        'tipo',
+        'denominacion',
+        'tipo', // tipo de junta ordinaria o extraordinaria
         'user_id',
         'comunidad_id',
-        'fecha_primera',
-        'hora_primera',
-        'fecha_segunda',
-        'hora_segunda',
-        'orden_dia'
+        'fechaprimera',
+        'horaprimera',
+        'fechasegunda',
+        'horasegunda',
+        'ordendia'
     ];
     
     public function comunidad() {

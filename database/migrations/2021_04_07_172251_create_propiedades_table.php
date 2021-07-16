@@ -27,9 +27,7 @@ class CreatePropiedadesTable extends Migration
             $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
             $table->string('observaciones')->nullable();
             
-
             $table->foreign('user_id')->references('id')->on('users');
-            
             $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
             

@@ -8,36 +8,34 @@
     
     @include('partials.session-status')
 
-    <x-jet-button onclick="location.href ='{{ route('cuentasBancarias.create') }}'">@lang('New')</x-jet-button>
+    <x-jet-button onclick="location.href ='{{ route('cuentas.create') }}'">@lang('New')</x-jet-button>
 
-    @if(count($cuentasBancarias))
+    @if(count($cuentas))
     <div class="card">
         <div class="card-body">
             <table class="table table-hover dt-responsive nowrap" id="buscador">
                 <thead>
                     <tr class="text-white bg-dark">
                         <th scope="col">@lang('Banca')</th>
-                        <th scope="col">Pais</th>
-                        <th scope="col">DC</th>
-                        <th scope="col">Cuenta</th>
-                        <th scope="col">Bic</th>
+                        <th scope="col">@lang('Cuenta')</th>
+                        <th scope="col">@lang('Bic')</th>
+                        <th scope="col">@lang('Saldo')</th>
                         <th class="col-span-2 text-center">@lang('Actions')</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                @forelse($cuentasBancarias as $cuentaBancaria)
+                @forelse($cuentas as $cuenta)
                     <tr>
-                        <td>{{ $cuentaBancaria->name }}</td>
-                        <td>{{$cuentaBancaria->nombrePais($cuentaBancaria->id)}}</td>
-                        <td>{{ $cuentaBancaria->dc }}</td>
-                        <td>{{ $cuentaBancaria->cuenta }}</td>
-                        <td>{{ $cuentaBancaria->bic }}</td>
+                        <td>{{ $cuenta->siglas }}</td>
+                        <td>{{ $cuenta->iban }}</td>
+                        <td>{{ $cuenta->bic }}</td>
+                        <td>{{ $cuenta->saldo }}</td>
                         <td class="flex">
-                            <x-jet-button class="mx-2" onclick="location.href ='{{ route('cuentasBancarias.edit', $cuentaBancaria) }}'">{{ __('Edit') }}</x-jet-button>
-                            <x-jet-danger-button type="submit" onclick="location.href ='{{ route('cuentasBancarias.show', $cuentaBancaria) }}'">@lang('Show')</x-jet-danger-button>
+                            <x-jet-button class="mx-2" onclick="location.href ='{{ route('cuentas.edit', $cuenta) }}'">{{ __('Edit') }}</x-jet-button>
+                            <x-jet-danger-button type="submit" onclick="location.href ='{{ route('cuentas.show', $cuenta) }}'">@lang('Show')</x-jet-danger-button>
                         </td>
-                        <form class="d-none" id="delete-cuenta" action="{{route('cuentasBancarias.destroy', $cuentaBancaria)}}" method="post">
+                        <form class="d-none" id="delete-cuenta" action="{{route('cuentas.destroy', $cuenta)}}" method="post">
                             @csrf
                             @method('DELETE')
                         </form>

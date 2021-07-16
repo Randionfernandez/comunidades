@@ -7,8 +7,6 @@ use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
 use \App\Models\Comunidad_User;
 use App\Models\Pais;
-use App\Models\ComunidadAutonoma;
-use App\Models\Provincia;
 
 class ComunidadController extends Controller {
 
@@ -16,14 +14,10 @@ class ComunidadController extends Controller {
     private $activeCommunity = null;
     private $user = null;
     private $paises = Pais::class;
-    private $comunidadesAutonomas = ComunidadAutonoma::class;
-    private $provincias = Provincia::class;
     
     public function __construct(Request $request) {
         
         $this->paises = Pais::all();
-        $this->comunidadesAutonomas = ComunidadAutonoma::all();
-        $this->provincias = Provincia::all();
         
         
         if (! session()->has('activeCommunity')) {
@@ -44,8 +38,7 @@ class ComunidadController extends Controller {
         return view('comunidades.index', [
             'user' => $this->user,
             'comunidades' => $this->user->comunidades,
-            'paises' => $this->paises,
-            'provincias' => $this->provincias
+            'paises' => $this->paises
         ]);
     }
 
@@ -62,9 +55,7 @@ class ComunidadController extends Controller {
             'btnText1' => 'Save', 
             'btnText2' => 'Cancel', 
             'btndisabled' => '',
-            'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas,
-            'provincias' => $this->provincias
+            'paises' => $this->paises
             ]);
     }
 
@@ -119,9 +110,7 @@ class ComunidadController extends Controller {
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
             'btndisabled' => 'disabled',
-            'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas,
-            'provincias' => $this->provincias
+            'paises' => $this->paises
         ]);
     }
 
@@ -139,9 +128,7 @@ class ComunidadController extends Controller {
             'btnText1' => 'Update', 
             'btnText2' => 'Cancel',
             'btndisabled' => '',
-            'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas,
-            'provincias' => $this->provincias
+            'paises' => $this->paises
         ]);
     }
 

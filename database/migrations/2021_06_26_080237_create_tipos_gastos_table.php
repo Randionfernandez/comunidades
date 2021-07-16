@@ -15,7 +15,7 @@ class CreateTiposGastosTable extends Migration
     {
         Schema::create('tipos_gastos', function (Blueprint $table) {
             $table->id();
-            $table->string('nombreTipoGasto');
+            $table->string('nombre');
             $table->timestamps();
             $table->softDeletes();
         });

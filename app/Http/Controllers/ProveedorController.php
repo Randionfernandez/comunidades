@@ -8,11 +8,7 @@ use App\Models\Comunidad;
 use App\Models\Proveedor;
 use App\Models\ComunidadProveedor;
 use App\Models\TipoGasto;
-use App\Models\Calificacion;
-use App\Models\Figura;
 use App\Models\Pais;
-use App\Models\ComunidadAutonoma;
-use App\Models\Provincia;
 
 class ProveedorController extends Controller {
 
@@ -20,11 +16,7 @@ class ProveedorController extends Controller {
     private $msj = '';
     private $activeCommunity = null;
     private $tiposGastos = TipoGasto::class;
-    private $calificaciones = Calificacion::class;
-    private $figuras = Figura::class;
     private $paises = Pais::class;
-    private $comunidadesAutonomas = ComunidadAutonoma::class;
-    private $provincias = Provincia::class;
     
 
     /**
@@ -35,11 +27,7 @@ class ProveedorController extends Controller {
     
     public function __construct() {
         $this->tiposGastos = TipoGasto::all();
-        $this->calificaciones = Calificacion::all();
-        $this->figuras = Figura::all();
         $this->paises = Pais::all();
-        $this->comunidadesAutonomas = $this->comunidadesAutonomas::all();
-        $this->provincias = $this->provincias::all();
         $this->activeCommunity = session()->get('activeCommunity');
     }
     
@@ -61,11 +49,7 @@ class ProveedorController extends Controller {
         return view('proveedores.create', [
             'proveedor' => new Proveedor(),
             'tiposGastos' => $this->tiposGastos,
-            'calificaciones' => $this->calificaciones,
-            'figuras' => $this->figuras,
             'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas,
-            'provincias' => $this->provincias,
             'btndisabled' => '',
             'title' => 'New Provider'
             ]);
@@ -106,11 +90,7 @@ class ProveedorController extends Controller {
         return view('proveedores.show', [
             'proveedor' => $proveedor,
             'tiposGastos' => $this->tiposGastos,
-            'calificaciones' => $this->calificaciones,
-            'figuras' => $this->figuras,
             'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas,
-            'provincias' => $this->provincias,
             'btnText1' => 'Edit',
             'btnText2' => 'Back',
             'btndisabled' => 'disabled'
@@ -128,11 +108,7 @@ class ProveedorController extends Controller {
         return view('proveedores.edit', [
             'proveedor' => $proveedor,
             'tiposGastos' => $this->tiposGastos,
-            'calificaciones' => $this->calificaciones,
-            'figuras' => $this->figuras,
             'paises' => $this->paises,
-            'comunidadesAutonomas' => $this->comunidadesAutonomas,
-            'provincias' => $this->provincias,
             'btndisabled' => ''
         ]);
     }

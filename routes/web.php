@@ -31,11 +31,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::resource('distribuciones', 'DistribucionGastoController')->parameters(['distribuciones' => 'distribucion']);;
+Route::resource('distribuciones', 'DistribucionController')->parameters(['distribuciones' => 'distribucion']);;
 
 //Route::resource('distribucion', GastoController::class);
 
-Route::resource('cuentasBancarias', CuentaBancariaController::class)->parameters(['cuentasBancarias' => 'cuentaBancaria']);
+Route::resource('cuentas', CuentaController::class)->parameters(['cuentas' => 'cuenta']);
 
 Route::resource('liquidacion', LiquidacionController::class);
 

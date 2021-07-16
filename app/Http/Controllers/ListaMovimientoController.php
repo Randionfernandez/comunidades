@@ -2,7 +2,7 @@
 
 namespace app\Http\Controllers;
 
-use App\Models\DistribucionGasto;
+use App\Models\Distribucion;
 use App\Models\ListaMovimiento;
 use App\Models\Movimiento;
 use App\Models\PropiedadUser;
@@ -20,7 +20,7 @@ class ListaMovimientoController extends Controller {
 
         $prueba = array();
         $propiedad = request()->get('propiedad');
-        $gastos = DistribucionGasto::where('propiedad', '=', $propiedad)->get(['coeficiente', 'unidadRegistral', 'name']);
+        $gastos = Distribucion::where('propiedad', '=', $propiedad)->get(['coeficiente', 'unidadRegistral', 'name']);
         $totalPropiedades = PropiedadUser::count('propiedad');
         $dineroPropiedad = Movimiento::where('propiedad', '=', $propiedad)->where('concepto', '=', 'ingreso')->get('cantidad')->sum('cantidad');
         $gastosPropiedad = 0;

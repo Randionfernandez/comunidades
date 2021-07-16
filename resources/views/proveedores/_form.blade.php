@@ -60,17 +60,16 @@
 
 
 <div class="row form-group">
-    <div class="col-6">
+    <div class="col-4">
         <label for="fechalta">@lang('Create Date')</label>
         <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechalta" placeholder=@lang('fechalta') value="{{ old('fechalta', $proveedor->fechalta) }}" {{$btndisabled}} required>
     </div>
-    <div class="col-6">
+    <div class="col-4">
         <label for="cif">@lang('cif')</label>
         <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="9" name="cif" placeholder=@lang('cif') value="{{ old('cif', $proveedor->cif) }}" {{$btndisabled}} required>
     </div>
-</div>
-<div class="row form-group">
     <div class="col-4">
+        <label for="tipoGasto">@lang('Tipo Gastos')</label>
         <select class="form-select" aria-label="Default select example" name="tipoGasto" {{$btndisabled}}>
             <option value="">@lang('Type')</option>
             @forelse($tiposGastos as $tipoGasto)
@@ -86,36 +85,6 @@
             @endforelse
         </select>
     </div>
-    
-    <div class="col-4">
-        <select class="form-select" aria-label="Default select example" name="calificacion" {{$btndisabled}}>
-            <option value="0">@lang('Calification')</option>
-            @forelse($calificaciones as $calificacion)
-            @if ( old('calificacion', $proveedor->calificacion) == $calificacion->id )
-            <option value="{{ $calificacion->id }}" selected > {{ $calificacion->nombreCalificacion }} </option>
-            @else
-            <option value="{{ $calificacion->id }}"> {{ $calificacion->nombreCalificacion }} </option>
-            @endif
-            @empty
-            <p>vacio</p>
-            @endforelse
-        </select>
-    </div>
-    
-    <div class="col-4">
-        <select class="form-select" aria-label="Default select example" name="figura" {{$btndisabled}}>
-            <option value="0">@lang('Figure')</option>
-            @forelse($figuras as $figura)
-            @if ( old('figura', $proveedor->figura) == $figura->id )
-            <option value="{{ $figura->id }}" selected > {{ $figura->nombreFigura }} </option>
-            @else
-            <option value="{{ $figura->id }}"> {{ $figura->nombreFigura }} </option>
-            @endif
-            @empty
-            <p>vacio</p>
-            @endforelse
-        </select>
-    </div>
 </div>
 
 <div class="panel panel-default top-spaced">
@@ -125,15 +94,12 @@
     </div>
     <div class="panel-body">
         <div class="row form-group">
-            <div class="col-md-12">
+            <div class="col-md-8">
                 <div class="form-group">
                     <label for="calle">@lang('calle')</label>
                     <input class="form-control border-0 bg-light shadow-sm" type="text" name="calle" placeholder=@lang('calle') value="{{ old('calle', $proveedor->calle) }}" {{$btndisabled}}>
                 </div>
             </div>
-        </div>
-
-        <div class="row form-group">
             <div class="col-4">
                 <label for="pais">@lang('Country')</label>
                 <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
@@ -146,38 +112,6 @@
                     @endif
                     @empty
                     <p>No hay paises</p>
-                    @endforelse
-                </select>
-            </div>
-            
-            <div class="col-md-4" >
-                <label for="localidad" class="form-label">@lang('Locality')</label>
-                <select class="form-select" aria-label="Default select example" name="localidad" {{$btndisabled}}>
-                    <option value="0">@lang('Locality')</option>
-                    @forelse($comunidadesAutonomas as $comunidadAutonoma)
-                    @if ( old('localidad', $proveedor->localidad) == $comunidadAutonoma->id )
-                    <option value="{{ $comunidadAutonoma->id }}" selected > {{ $comunidadAutonoma->nombre }} </option>
-                    @else
-                    <option value="{{ $comunidadAutonoma->id }}"> {{ $comunidadAutonoma->nombre }} </option>
-                    @endif
-                    @empty
-                    <p>No hay Comunidades Autonomas</p>
-                    @endforelse
-                </select>
-            </div>
-            
-            <div class="col-md-4" >
-                <label for="provincia" class="form-label">@lang('Province')</label>
-                <select class="form-select" aria-label="Default select example" name="provincia" {{$btndisabled}}>
-                    <option value="0">@lang('Province')</option>
-                    @forelse($provincias as $provincia)
-                    @if ( old('provincia', $proveedor->provincia) == $provincia->id )
-                    <option value="{{ $provincia->id }}" selected > {{ $provincia->nombre }} </option>
-                    @else
-                    <option value="{{ $provincia->id }}"> {{ $provincia->nombre }} </option>
-                    @endif
-                    @empty
-                    <p>No hay Provincias</p>
                     @endforelse
                 </select>
             </div>

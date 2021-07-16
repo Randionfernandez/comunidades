@@ -5,8 +5,8 @@ namespace app\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\MovimientoRequest;
 use App\Models\Movimiento;
-use App\Models\CuentaBancaria;
-use App\Models\DistribucionGasto;
+use App\Models\Cuenta;
+use App\Models\Distribucion;
 use App\Models\Ingreso;
 use App\Models\TipoGasto;
 use App\Models\Propiedad;
@@ -18,17 +18,18 @@ class MovimientoController extends Controller {
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
+     * 
      */
     public function index() {
         //
         $movimientos = Movimiento::orderBy('id')->get();
-        $ingreso = Ingreso::sum('importe');
+        //$ingreso = Ingreso::sum('importe');
         $totalGastos = Movimiento::where('concepto', '!=', 1)->sum('importe');
         $totalIngresos = Movimiento::where('concepto', '=', 1)->sum('importe');
 
         return view('movimientos.index', [
             'movimientos' => $movimientos,
-            'ingresos' => $ingreso,
+            //'ingresos' => $ingreso,
             'totalGastos' => $totalGastos,
             'totalIngresos' => $totalIngresos
         ]);
@@ -41,10 +42,10 @@ class MovimientoController extends Controller {
      */
     public function create() {
         //
-        $cuentas = CuentaBancaria::all();
+        $cuentas = Cuenta::all();
         $propietarios = User::all();
         $propiedades = Session()->get('activeCommunity')->propiedades;
-        $grupos = DistribucionGasto::distinct('name')->get();
+        $grupos = Distribucion::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
         
         return view('movimientos.create', [
@@ -85,8 +86,8 @@ class MovimientoController extends Controller {
         //
         
         $comunidad = Session()->get('activeCommunity');
-        $cuentas = cuentaBancaria::all();
-        $grupos = DistribucionGasto::distinct('name')->get();
+        $cuentas = cuenta::all();
+        $grupos = Distribucion::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
         
         
@@ -112,10 +113,10 @@ class MovimientoController extends Controller {
      */
     public function edit(Movimiento $movimiento) {
         //
-        $cuentas = CuentaBancaria::all();
+        $cuentas = Cuenta::all();
         $propiedades = Session()->get('activeCommunity')->propiedades;
 
-        $grupos = DistribucionGasto::distinct('name')->get();
+        $grupos = Distribucion::distinct('name')->get();
         $movimiento1 = Movimiento::where('concepto', '!=', 'ingreso')->findOrFail($movimiento->id);
         $tiposGastos = TipoGasto::all();
 

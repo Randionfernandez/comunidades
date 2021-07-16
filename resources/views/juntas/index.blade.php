@@ -29,12 +29,12 @@
                 <tbody>
                     @forelse($juntas as $junta)
                     <tr>
-                        <td>{{$junta->denom_convocatoria}}</td>
+                        <td>{{$junta->denominacion}}</td>
                         <td>{{$junta->tipo}}</td>
                         <td>{{$junta->nombreSolicitante($junta->user_id)}}</td>
                         <td>{{$junta->nombreComunidad($junta->comunidad_id)}}</td>
-                        <td>{{$junta->fecha_primera}}</td>
-                        <td>{{$junta->hora_primera}}</td>
+                        <td>{{$junta->fechaprimera}}</td>
+                        <td>{{$junta->horaprimera}}</td>
                         <td class="flex">
                             <x-jet-button class="mx-2" onclick="location.href ='{{ route('juntas.edit', $junta) }}'">{{ __('Edit') }}</x-jet-button>
                             <x-jet-danger-button onclick="location.href ='{{ route('juntas.show', $junta) }}'">{{__('Show')}}</x-jet-danger-button>
