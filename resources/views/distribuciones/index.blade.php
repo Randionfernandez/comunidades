@@ -44,7 +44,7 @@
                             </td>
                             @if ($distribucion->name != 'unidadRegistral')
                                 <td class="flex">
-                                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribuciones.edit',$distribucion->name)}}'">{{ __('Edit') }}</x-jet-button>
+                                    <x-jet-button class="mx-2" onclick="location.href ='{{route('distribuciones.edit',$distribucion)}}'">{{ __('Edit') }}</x-jet-button>
                                     <x-jet-danger-button type="submit" href="#" onclick="document.getElementById('delete-distribucion').submit()">{{__('Delete')}}</x-jet-danger-button>
                                     <form class="d-none" id="delete-distribucion" action="{{route('distribuciones.destroy', $distribucion)}}" method="post">
                                         @csrf

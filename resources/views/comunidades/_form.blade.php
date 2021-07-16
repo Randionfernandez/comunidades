@@ -104,7 +104,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="observaciones">@lang('observaciones')</label>
-                    <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="observaciones" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{ old('observaciones', $comunidad->observaciones) }}" {{$btndisabled}}> {{ old('observaciones', $comunidad->observaciones) }} </textarea>
+                    <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="observaciones" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{old('observaciones', $comunidad->observaciones)}}" {{$btndisabled}}>{{old('observaciones', $comunidad->observaciones)}}</textarea>
                 </div>
             </div>
         </div>

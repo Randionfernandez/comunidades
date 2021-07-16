@@ -88,7 +88,7 @@
     </div>
     <div class="col-4">
         <label for="observaciones" class="form-label">@lang('Observaciones')</label>
-        <input type="text" id="observacion" name="observaciones" class="form-control"  value="{{ old('observaciones', $propiedad->observaciones) }}"  {{$btndisabled}} />
+        <input type="text" id="observacion" name="observaciones" class="form-control"  value="{{old('observaciones', $propiedad->observaciones)}}"  {{$btndisabled}} />
         @error('observacion')
         <div class="alert alert-danger mb-2" role="alert">
             {{ $message }}

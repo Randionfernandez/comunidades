@@ -30,6 +30,7 @@ class DistribucionRequest extends FormRequest
             'checkbox' => 'required',
             'propiedad' => 'required',
             'coeficiente' => 'required',
+            'propiedad_id' => 'exists:propiedades,id'
             //'unidadRegistral' => 'required'
 
         ];

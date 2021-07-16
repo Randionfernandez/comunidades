@@ -88,7 +88,7 @@
 
     <div class="col-md-12 mb-3">
         <label for="obsevaciones" class="form-label">Obsevaciones</label>
-        <textarea class="form-control" name="observaciones" rows="2" {{$btndisabled}}>  {{old('observaciones',$movimiento->observaciones)}}</textarea>
+        <textarea class="form-control" name="observaciones" rows="2" {{$btndisabled}}>{{old('observaciones',$movimiento->observaciones)}}</textarea>
     </div>
     @else
         @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not accounts created yet'])

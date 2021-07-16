@@ -104,9 +104,9 @@ class DistribucionController extends Controller {
      * @param  \App\Models\Distribucion  $distribucion
      * @return \Illuminate\Http\Response
      */
-    public function edit(Distribucion $distribucion, $name) {
+    public function edit(Distribucion $distribucion) {
         
-        $distribucion = Distribucion::where('name', '=', $name)->where('name', '!=', 'unidadRegistral')->get()->last();
+        $distribucion = Distribucion::where('name', '=', $distribucion->name)->where('name', '!=', 'unidadRegistral')->get()->last();
         $propietarios = User::all('id');
         $propiedades = session()->get('activeCommunity')->propiedades()->get();
         
