@@ -15,9 +15,6 @@ class CreateIngresosTable extends Migration {
         Schema::create('ingresos', function (Blueprint $table) {
             $table->id();
 
-           
-            
-            
             $table->timestamps();
             $table->softDeletes();
         });

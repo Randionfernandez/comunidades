@@ -20,6 +20,8 @@ class Propiedad extends Model {
         'denominacion',
         'parte',
         'coeficiente',
+        'domiciliada',
+        'iban',
         'tipo',
         'observaciones'
     ];

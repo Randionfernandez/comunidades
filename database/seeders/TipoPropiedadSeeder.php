@@ -4,17 +4,18 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\TipoPropiedad;
+use Illuminate\Support\Facades\DB;
 
-class TipoPropiedadSeeder extends Seeder
-{
+class TipoPropiedadSeeder extends Seeder {
+
     /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run() {
-        
-        $tiposPropiedades = [
+
+        DB::table('tipos_propiedad')->insert([
             ['codigo' => 'NOC', 'descripcion' => 'No consta'],
             ['codigo' => 'APT', 'descripcion' => 'Apartamento'],
             ['codigo' => 'DUP', 'descripcion' => 'Dúplex'],
@@ -25,14 +26,7 @@ class TipoPropiedadSeeder extends Seeder
             ['codigo' => 'GAR', 'descripcion' => 'Plaza de garaje'],
             ['codigo' => 'TRAS', 'descripcion' => 'Trastero'],
             ['codigo' => 'CHA', 'descripcion' => 'Casa Unifamiliar'],
-            ['codigo' => 'DES', 'descripcion' => 'Despacho'],
-        ];
-
-        foreach ($tiposPropiedades as $tipoPropiedad) {
-            TipoPropiedad::create([
-                'abreviatura' => $tipoPropiedad[0],
-                'nombre' => $tipoPropiedad[1]
-            ]);
-        }
+            ['codigo' => 'DES', 'descripcion' => 'Despacho'],]);
     }
+
 }

@@ -21,8 +21,16 @@ class MovimientoFactory extends Factory
      */
     public function definition()
     {
+        $fecha = $this->faker->dateTimeBetween('-2 year');
+        
         return [
-            //
+            'n_op' => 1,
+            'fecha' => $fecha,
+            'fechavalor' => $fecha + $this->faker->randomDigitNotZero(),
+            'importe' => 1,
+            'saldo' => 1,
+            'concepto' => $this->faker->text(),
+            'cuenta_id' => 1,
         ];
     }
 }
