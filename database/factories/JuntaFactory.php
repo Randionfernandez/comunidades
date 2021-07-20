@@ -24,16 +24,17 @@ class JuntaFactory extends Factory {
             
             $usuarios = DB::table('users')->pluck('id');
             $comunidades = DB::table('comunidades')->pluck('id');
+            $fecha = $this->faker->dateTimeBetween('-2 year');
             
             return [
                 'denominacion' => $this->faker->name,
                 'tipo' => $this->faker->randomElement(['ordinaria', 'extraordinaria']),
                 'user_id' => $this->faker->randomElement($usuarios),
                 'comunidad_id' => $this->faker->randomElement($comunidades),
-                'fechaprimera' => $this->faker->dateTimeBetween('-2 year'),
+                'fechaprimera' => $fecha,
                 'horaprimera' => now(),
-                'fechasegunda' => $this->faker->dateTimeBetween('-2 year'),
-                'horasegunda' => now() + 30,
+                'fechasegunda' => $fecha,
+                'horasegunda' => now(),
                 'ordendia' => $this->faker->text(),
             ];
         }

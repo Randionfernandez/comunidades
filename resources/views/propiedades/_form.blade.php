@@ -50,10 +50,10 @@
             <option value="">@lang('Tipo Propiedades')</option>
             @forelse($tipoPropiedades as $tipoPropiedad)
             {{$tipoPropiedad}}
-            @if ( old('tipo', $propiedad->tipo) == $tipoPropiedad )
-            <option value="{{ $tipoPropiedad }}" selected > {{ $tipoPropiedad }} </option>
+            @if ( old('tipo', $propiedad->tipo) == $tipoPropiedad->codigo )
+            <option value="{{ $tipoPropiedad->codigo }}" selected > {{ $tipoPropiedad->descripcion }} </option>
             @else
-            <option value="{{ $tipoPropiedad }}"> {{$tipoPropiedad }} </option>
+            <option value="{{ $tipoPropiedad->codigo }}"> {{$tipoPropiedad->descripcion }} </option>
             @endif
             @empty
             <p>vacio</p>

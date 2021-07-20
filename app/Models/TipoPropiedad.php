@@ -9,7 +9,7 @@ class TipoPropiedad extends Model
 {
     use HasFactory;
     
-    protected $table = 'tipo_propiedad';
+    protected $table = 'tipos_propiedad';
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'abreviatura',

@@ -38,7 +38,7 @@ class PropiedadController extends Controller
     public function create()
     {
         //$tipoPropiedades = TipoPropiedad::all();
-        $tipoPropiedades = ['local','piso','atico'];
+        $tipoPropiedades = TipoPropiedad::all();
         $propietarios = User::all();
         
         return view('propiedades.create', [
@@ -83,8 +83,8 @@ class PropiedadController extends Controller
     {
         
         $activeCommunity = session()->get('activeCommunity');
-        //$tipoPropiedades = TipoPropiedad::all();
-        $tipoPropiedades = ['local','piso','atico'];
+        $tipoPropiedades = TipoPropiedad::all();
+        //$tipoPropiedades = ['local','piso','atico'];
         $propietarios = User::all();
         
         return view('propiedades.show', [
@@ -106,8 +106,8 @@ class PropiedadController extends Controller
      */
     public function edit(Propiedad $propiedad)
     {
-        //$tipoPropiedades = TipoPropiedad::all();
-        $tipoPropiedades = ['local','piso','atico'];
+        $tipoPropiedades = TipoPropiedad::all();
+        //$tipoPropiedades = ['local','piso','atico'];
         $propietarios = User::all();
         
         return view('propiedades.edit', [

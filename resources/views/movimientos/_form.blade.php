@@ -39,18 +39,7 @@
 
     <div class="col-md-4">
         <label for="concepto" class="form-label">@lang('Concepto')</label>
-        <select id="select" class="form-select" aria-label="Default select example" name="concepto" {{$btndisabled}} required>
-            <option value="">@lang('Concepto')</option>
-            @forelse($tiposGastos as $tipoGasto)
-            @if ( old('concepto', $movimiento->concepto) == $tipoGasto->id )
-            <option value="{{ $tipoGasto->id }}" selected > {{ $tipoGasto->nombre}} </option>
-            @else
-            <option value="{{ $tipoGasto->id }}"> {{ $tipoGasto->nombre }} </option>
-            @endif
-            @empty
-            <p>No hay Tipos de Gastos</p>
-            @endforelse
-        </select>
+        <input type="text" class="form-control"  name="concepto" value="{{old('concepto',$cuenta->concepto)}}" {{$btndisabled}} required>
     </div>
     
     <div id="divgrupopropiedad" class="col-md-4 mb-2" >
