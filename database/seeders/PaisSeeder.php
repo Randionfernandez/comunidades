@@ -19,7 +19,7 @@ class PaisSeeder extends Seeder {
         // abreviatura ISO del pais
         // codigo ANSI del pais
 
-        DB::table('paises')->insert(
+        DB::table('paises')->insert([
                 ['nombre' => 'España', 'codigoISO' => 'ESP', 'codigoANSI' => '724'],
                 ['nombre' => 'Afganistán', 'codigoISO' => 'AFG', 'codigoANSI' => '4'],
                 ['nombre' => 'Aland Islands', 'codigoISO' => 'ALI', 'codigoANSI' => '248'],
@@ -299,7 +299,7 @@ class PaisSeeder extends Seeder {
                 ['nombre' => 'Yugoslavia,  Rep. Fed. de (Serbia y Montenegro)', 'codigoISO' => 'YUG', 'codigoANSI' => '890'],
                 ['nombre' => 'Zambia', 'codigoISO' => 'ZMB', 'codigoANSI' => '894'],
                 ['nombre' => 'Zimbabwe', 'codigoISO' => 'ZWE', 'codigoANSI' => '716'],
-        );
+        ]);
     }
 
 }
