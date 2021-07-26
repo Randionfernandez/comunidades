@@ -18,21 +18,24 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run() {
-
+        $this->call([DivisaSeeder::class]);
+        $this->call([TiposPropiedadSeeder::class]);
+        $this->call([PaisSeeder::class]);
+        $this->call([RoleSeeder::class]);
+        $this->call([ActividadSeeder::class]);
+        
         $user = User::create([
-                    'name' => 'randion',
+                    'name' => 'Rafael',
+                    'apellidos' => 'Andión',
+                    'fechalta' => "2010-05-01",
                     'email' => 'randion@cifpfbmoll.eu',
                     'email_verified_at' => now(),
                     'password' => Hash::make('secretos'),
                     'remember_token' => Str::random(10),
         ]);
-        $this->call([TipoPropiedadSeeder::class]);
-        $this->call([PaisSeeder::class]);
-        $this->call([RoleSeeder::class]);
+
         \App\Models\User::factory(15)->create();
         $this->call([ComunidadSeeder::class]);
-        $this->call([PropiedadSeeder::class]);
-        $this->call([JuntaSeeder::class]);
 
         Comunidad_User::create([
             'comunidad_id' => 1,

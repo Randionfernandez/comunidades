@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Cuenta;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\DB;
 
 class CuentaFactory extends Factory
 {
