@@ -45,8 +45,8 @@
 
     <div class="col-md-5">
         <label for="iban" class="form-label">@lang('Iban')</label>
-        <input type="text" class="form-control" name="iban" size="25" maxlength="25" placeholder="ES76400449012304566608634" value="{{old('iban',$cuenta->iban)}}" {{ $btndisabled }}>
-        <label for="iban" class="form-label">25 digitos para cuentas ES76400449012304566608634</label>
+        <input type="text" class="form-control" name="iban" size="25" maxlength="24" placeholder="ES76400449012304566608634" value="{{old('iban',$cuenta->iban)}}" {{ $btndisabled }}>
+        <label for="iban" class="form-label">25 digitos para cuentas ES7640044901230456660863</label>
         @error('iban')
         <br>
         <small>{{$message}}</small>
