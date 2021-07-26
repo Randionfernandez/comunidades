@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Proveedor extends Model {
 
     use HasFactory;
-    use SoftDeletes;
+    //use SoftDeletes;
 
     protected $table = 'proveedores';
     protected $dates = ['delete_at'];
