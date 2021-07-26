@@ -14,10 +14,10 @@ class TipoGasto extends Model
     protected $table = 'tipos_gastos';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'nombreTipoGasto'
+        'nombre'
     ];
     
     public function proveedores() {
-        return $this->hasMany(Proveedor::class, 'nombreTipoGasto', 'id')->withTimestamps();
+        return $this->hasMany(Proveedor::class, 'nombre', 'id')->withTimestamps();
     }
 }

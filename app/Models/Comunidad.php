@@ -26,8 +26,7 @@ class Comunidad extends Model {
         'cp',
         'pais',
         'logo',
-        'observaciones',
-        'limitMaxFree'
+        'observaciones'
     ];
 
     public function propiedades() {

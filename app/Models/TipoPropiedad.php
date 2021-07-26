@@ -12,11 +12,11 @@ class TipoPropiedad extends Model
     protected $table = 'tipos_propiedad';
     protected $dates = ['deleted_at'];
     protected $fillable = [
-        'abreviatura',
-        'nombre'
+        'codigo',
+        'descripcion'
     ];
     
     public function propiedades() {
-        return $this->hasMany(Propiedad::class, 'nombre', 'id')->withTimestamps();
+        return $this->hasMany(Propiedad::class, 'codigo', 'id')->withTimestamps();
     }
 }

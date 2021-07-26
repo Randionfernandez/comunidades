@@ -19,10 +19,12 @@ class Movimiento extends Model {
         'saldo',
         'concepto',
         'contabilizado',
+        'user_id',
+        'cuenta_id'
     ];
 
     public function cuenta() {
-        return $this->belongsTo(Cuenta::class);
+        return $this->belongsTo(Cuenta::class, 'id', 'cuenta_id');
     }
 
 }

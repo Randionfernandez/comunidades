@@ -42,6 +42,7 @@ class User extends Authenticatable {
         'localidad',
         'pais',
         'comentario',
+        'limitMaxFree'
     ];
 
     /**
