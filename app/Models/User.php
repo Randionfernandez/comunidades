@@ -1,5 +1,6 @@
 <?php
- namespace App\Models;
+
+namespace App\Models;
 
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -18,6 +19,7 @@ class User extends Authenticatable {
     use Notifiable;
     use TwoFactorAuthenticatable;
     use \Illuminate\Database\Eloquent\SoftDeletes;
+
     /**
      * The attributes that are mass assignable.
      *
@@ -25,10 +27,22 @@ class User extends Authenticatable {
      */
     protected $fillable = [
         'name',
-        'email', 
+        'apellidos',
+        'fechalta',
+        'email',
         //'password',
+        'tratamiento',
+        'tipo',
+        'doi',
+        'telefono1',
+        'telefono2',
+        'direccion',
+        'cp',
+        'municipio',
+        'localidad',
+        'pais',
+        'comentario',
     ];
-
 
     /**
      * The attributes that should be hidden for arrays.
@@ -61,10 +75,11 @@ class User extends Authenticatable {
     ];
 
     public function comunidades() {
-        return $this->belongsToMany(Comunidad::class, 'comunidad_user','user_id','comunidad_id')->withTimestamps();
+        return $this->belongsToMany(Comunidad::class, 'comunidad_user', 'user_id', 'comunidad_id')->withTimestamps();
     }
-    
+
     public function roles() {
-        return $this->belongsToMany(Role::class, 'comunidad_user','user_id','role_id')->withTimestamps();
+        return $this->belongsToMany(Role::class, 'comunidad_user', 'user_id', 'role_id')->withTimestamps();
     }
+
 }

@@ -14,11 +14,11 @@ class Movimiento extends Model {
     protected $fillable = [
         'n_op',
         'fecha',
-        'fechavalor',
+        'fecha_valor',
         'importe',
         'saldo',
         'concepto',
-        'cuenta_id'
+        'contabilizado',
     ];
 
     public function cuenta() {
