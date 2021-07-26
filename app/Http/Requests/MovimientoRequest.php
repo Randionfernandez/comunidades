@@ -28,6 +28,8 @@ class MovimientoRequest extends FormRequest {
             'importe' => 'required|numeric|digits_between:0,10',
             'saldo' => 'required|numeric|digits_between:0,10',
             'concepto' => 'string|max:70',
+            'contabilizado' => 'boolean|nullable',
+            'user_id' => 'exits:users,id',
             'cuenta_id' => 'exits:cuentas,id'
         ];
     }

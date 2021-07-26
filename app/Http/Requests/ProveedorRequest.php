@@ -24,19 +24,20 @@ class ProveedorRequest extends FormRequest {
     public function rules() {
         return [
             'fechalta' => 'required|date',
-            'cif' => ['required', 'alpha_num', 'size:9', Rule::unique('proveedores')->ignore($this->route('proveedor'))],
-            'nombre' => 'required|string|max:35',
-            'apellido1' => 'string|nullable',
-            'apellido2' => 'string|nullable',
+            'doi' => ['required', 'alpha_num', 'size:9', Rule::unique('proveedores')->ignore($this->route('proveedor'))],
+            'persona' => ['enum:física,jurídica'],
+            'nombre' => 'required|string|max:25',
+            'apellidos' => 'string|max:40|nullable',
             'email' => ['required','email:rfc,filter',Rule::unique('proveedores')->ignore($this->route('proveedor'))],
-            'telefono' => 'required|string|max:12',
-            'tipoGasto' => ['required', 'exists:tipos_gastos,id'],
-            'calle' => 'required|string|nullable',
-            'codigopais' => 'string|max:3|exists:paises,codigoANSI',
-            'cp' => 'required|string|size:5',
+            'telefono1' => 'required|string|max:14',
+            'telefono2' => 'required|string|max:14',
+            'dir_postal' => ['string', 'max:40'],
+            'cp' => ['required', 'string', 'size:5'],
+            'actividad' => 'exists:actividades,codigo',
             'pais' => 'exists:paises,id',
-            'localidad' => 'required|string',
-            'provincia' => 'required|string'
+            'localidad' => 'required|string|max:35',
+            'iban' => ['string', 'size:24'],
+            'comentario' => ['nullable', 'string']
         ];
     }
 
