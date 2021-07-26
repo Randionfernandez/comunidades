@@ -12,6 +12,7 @@ class Cuenta extends Model {
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
+    
     protected $fillable = [
         'iban',
         'siglas',
@@ -22,6 +23,7 @@ class Cuenta extends Model {
         'bic',
         'divisa',
         'comentarios',
+        'comunidad_id'
     ];
 
     public function comunidad() {

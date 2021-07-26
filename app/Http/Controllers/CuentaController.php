@@ -2,27 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Cuenta;
-use App\Http\Requests\CuentaRequest;
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Pais;
+use App\Http\Requests\CuentaRequest;
+use App\Models\Cuenta;
 
 class CuentaController extends Controller
 {
+    
     private $msj = '';
-    private $paises = Pais::class;
+    private $activeCommunity = null;
     
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    
+    public function __construct() {
+        $this->activeCommunity = session()->get('activeCommunity');
+    }
+    
     public function index()
     {
-        //
-        $cuentas = Cuenta::orderBy('id', 'asc')->get();
-        //return view('cuenta/cuenta',['cuenta' => $cuentas]);
-        return view('cuentas.index',compact('cuentas'));
+        $this->activeCommunity = session()->get('activeCommunity');
+        
+        return view('cuentas.index', [
+            'cuentas' => $this->activeCommunity->cuentas,
+            'title' => 'Listado de cuentas bancarias'
+        ]);
     }
 
     /**
@@ -32,105 +40,110 @@ class CuentaController extends Controller
      */
     public function create()
     {
-        //
+        $divisas = ['EURO'];
         
-        $this->paises = Pais::all();
-        
-        return view('cuentas.create',[
+        return view('cuentas.create', [
             'cuenta' => new Cuenta,
-            'title' => 'Create Cuenta Bancaria',
+            'divisas' => $divisas,
             'btnText1' => 'Save', 
-            'btnText2' => 'Cancel', 
-            'btndisabled' => '',
-            'paises' => $this->paises
-            ]);
+            'btnText2' => 'Cancel',
+            'title' => 'Create Cuentas',
+            'btndisabled' => ''
+        ]);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\CuentaRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(CuentaRequest $request)
     {
-        //
-        $this->msj = 'La Cuenta Bancaria fué creada con éxito';
+        $this->msj = 'La cuenta fué creada con éxito';
+        
+        $this->activeCommunity = session()->get('activeCommunity');
+        
+        $request->merge([
+            'comunidad_id' => $this->activeCommunity->id
+        ]);
         
         Cuenta::create($request->validated());
-        return redirect('/cuentas')->with('status', [$this->msj, 'alert-success']);
+        
+        return redirect()->route('cuentas.index')->with('status', [$this->msj, 'alert-success']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param  Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
     public function show(Cuenta $cuenta)
     {
-        $this->paises = Pais::all();
+        
+        $divisas = ['EURO'];
         
         return view('cuentas.show', [
             'cuenta' => $cuenta,
-            'comunidad' => session()->get('activeCommunity'),
+            'divisas' => $divisas,
+            'title' => 'Bank account',
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
             'btndisabled' => 'disabled',
-            'paises' => $this->paises
+            'comunidad' => session()->get('activeCommunity')
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param  Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
     public function edit(Cuenta $cuenta)
     {
-        //
-        $this->paises = Pais::all();
-        return view('cuentas.edit',[
+        $divisas = ['EURO'];
+        
+        return view('cuentas.edit', [
             'cuenta' => $cuenta,
-            'title' => 'Edit Cuenta Bancaria',
-            'btnText1' => 'Update',
-            'btnText2' => 'Cancel',
+            'divisas' => $divisas,
+            'title' => 'Edit Cuenta',
+            'btnText1' => 'Update', 
+            'btnText2' => 'Back', 
             'btndisabled' => '',
-            'paises' => $this->paises
-            ]);
+            'comunidad' => session()->get('activeCommunity')
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\CuentaRequest  $request
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param  Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function update(Cuenta $cuenta, CuentaRequest $request)
+    public function update(CuentaRequest $request, Cuenta $cuenta)
     {
-        //
-        $this->msj = 'La Cuenta Bancaria fué actualizada con éxito';
+        $this->msj = 'La cuenta fué actualizada con éxito';
         
         $cuenta->update($request->validated());
 
-        return redirect()->route('cuentas.index')->with('status', [$this->msj, 'alert-success']);
-
+        return redirect()->route('cuentas.show', $cuenta)->with('status', [$this->msj, 'alert-success']);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Cuenta  $cuenta
+     * @param  Cuenta  $cuenta
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cuenta $cuenta, Request $request)
+    public function destroy(Cuenta $cuenta)
     {
-        //
-        $this->msj = 'La Cuenta Bancaria fué eliminada con éxito';
+        $this->msj = 'La cuenta fué eliminada con éxito';
+        
         $cuenta->delete();
-        return redirect()->route('cuentas.index')->with('status', [$this->msj, 'alert-danger']);
 
+        return redirect()->route('cuentas.index', $cuenta)->with('status', [$this->msj, 'alert-danger']);
     }
 }

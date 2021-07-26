@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            @lang('Listado de cuentas bancarias')
+            {{__($title)}}
         </h2>
         <hr>
     </x-slot>

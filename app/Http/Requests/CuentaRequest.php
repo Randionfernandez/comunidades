@@ -24,15 +24,17 @@ class CuentaRequest extends FormRequest
     public function rules()
     {
         return [
-            'iban' => ['boolean', 'size:25', 'required', 'unique:cuentas,iban'],
+            'iban' => ['size:25', 'required', 'unique:cuentas,iban'],
             'siglas' => ['string', 'size:4'],
             'denominacion' => ['string', 'max:35', 'alpha_num'],
             'fecha_apertura' => 'required|date',
             'activa' => 'boolean',
-            'saldo' => 'digits_between:0,10',
+            //'saldo' => 'numeric|digits_between:0.00,10.00',
+            'saldo' => 'numeric' ,
             'bic' => 'string',
-            'divisa' => 'string|size:5',
-            'comentarios' => 'string'
+            'divisa' => 'string|max:5',
+            'comentarios' => 'string',
+            'comunidad_id' => 'exists:comunidades,id'
         ];
     }
 

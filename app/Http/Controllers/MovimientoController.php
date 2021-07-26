@@ -42,7 +42,7 @@ class MovimientoController extends Controller {
      */
     public function create() {
         //
-        $cuentas = Cuenta::all();
+        $cuentas = session()->get('activeCommunity')->cuentas;
         $propietarios = User::all();
         $propiedades = Session()->get('activeCommunity')->propiedades;
         $grupos = Distribucion::distinct('name')->get();

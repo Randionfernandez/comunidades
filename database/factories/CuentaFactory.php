@@ -21,10 +21,13 @@ class CuentaFactory extends Factory
      */
     public function definition()
     {
+        $comunidad = $this->faker->randomElement(DB::table('comunidades')->get());
         return [
             'iban' => $this->faker->iban('ES'),
             'fecha_apertura' => $this->faker->dateTimeBetween($startDate = '-2 years', $endDate = 'now', $timezone = null),
             'bic' => $this->faker->swiftBicNumber(),
+            'comentarios' => $this->faker->text(),
+            'comunidad_id' => $comunidad->id
             
         ];
     }
