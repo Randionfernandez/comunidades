@@ -21,7 +21,7 @@ class CreateComunidadesTable extends Migration {
             $table->boolean('activa')->default(true)->comment('Si no está activa, no se pueden realizar operaciones sobre esta comunidad');
             $table->boolean('gratuita')->default(true)->comment('Indica si esta comnidad es de pago o gratuita');  
             $table->integer('partes')->default(10)->comment('Cantidad de unidades registrales que componen la comunidad');
-            $table->string('denom', 35);
+            $table->string('denom', 35)->comment('Nombre de la comunidad');
             $table->string('direccion', 40);
             $table->string('localidad', 35)->nullable();
             $table->string('provincia')->nullable();

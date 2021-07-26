@@ -12,31 +12,29 @@ class CreateProveedoresTable extends Migration {
      * @return void
      */
     public function up() {
-        // Integracion parte de Sixto Vera para que cuadre la integración
         Schema::create('proveedores', function (Blueprint $table) {
             $table->id();
-            $table->date('fechalta');
-            $table->string('cif', 9)->unique();
-
-            // $table->tipo  enum , y en la vista
-            $table->unsignedBigInteger('tipoGasto');
-
-            $table->string('nombre');
-            $table->string('apellido1')->nullable();
-            $table->string('apellido2')->nullable();
-            $table->string('email')->unique();
-            $table->string('telefono');
-            $table->string('calle')->nullable();
-            $table->integer('codigopais');
-            $table->string('cp');
-            $table->unsignedBigInteger('pais');
-            $table->string('localidad');
-            $table->string('provincia');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->date('fechalta');
+            $table->string('doi')->unique()->comment('Documento oficial de identidad: pasaporte, dni, cif, nie');
+            $table->enum('persona', ['física', 'jurídica']);
+            $table->string('nombre', 25);
+            $table->string('apellidos', 40)->nullable()->comment('NULL si la persona es jurídica');
+            $table->string('email')->unique();
+            $table->string('telefono1', 14);
+            $table->string('telefono2', 14)->nullable();
+            $table->string('dir_postal',40)->comment('Incluirá tipo de vía, número, piso, portal, bloque, escalera, etc');
+            $table->char('cp', 5)->comment('Un mismo código postal puede pertenecer a más de un municipio, y por tanto también, a más de una loclalidad'); 
+            $table->char('actividad')->comment('Actividad principal a la que se dedica: seguros, albañilería, limpieza, etc');
+            $table->char('pais', 3)->default('ESP')->comment('CódigoISO del país');
+            $table->string('localidad', 35)->comment('Municipio, quizás seguido de localidad. Será un select determinado por cp.');
+            $table->char('iban', 24);
+            $table->text('comentario')->nullable();
             
-            $table->foreign('tipoGasto')->references('id')->on('tipos_gastos')->onDelete('cascade');
-            $table->foreign('pais')->references('id')->on('paises')->onDelete('cascade');
+            $table->foreign('pais')->references('codigoISO')->on('paises');
+            $table->foreign('actividad')->references('codigo')->on('actividades');
         });
     }
 

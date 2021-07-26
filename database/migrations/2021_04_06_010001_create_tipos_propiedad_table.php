@@ -1,3 +1,4 @@
+
 <?php
 
 use Illuminate\Database\Migrations\Migration;
@@ -8,7 +9,7 @@ class CreateTiposPropiedadTable extends Migration
 {
     /**
      * Run the migrations.
-     * Dominio de los tipos de propiedades disponibles en la aplicacion
+     *
      * @return void
      */
     public function up()
@@ -16,7 +17,11 @@ class CreateTiposPropiedadTable extends Migration
         Schema::create('tipos_propiedad', function (Blueprint $table) {
             $table->char('codigo',4);
             $table->string('descripcion');
+            
             $table->primary('codigo');
+            
+            
+            
         });
     }
 
