@@ -80,12 +80,12 @@
     <div class="col-md-4">
         <label for="divisa" class="form-label">@lang('Divisa')</label>
         <select class="form-select" aria-label="Default select example" name="divisa" {{$btndisabled}}>
-            <option value="EUR">@lang('Divisa')</option>
+            <option value="">@lang('Divisa')</option>
             @forelse($divisas as $divisa)
-            @if ( old('divisa', $cuenta->divisa) == $divisa)
-            <option value="{{ $divisa }}" selected > {{ $divisa }} </option>
+            @if ( old('divisa', $cuenta->divisa) == $divisa->codigo)
+            <option value="{{ $divisa->codigo }}" selected > {{ $divisa->nombre }} </option>
             @else
-            <option value="{{ $divisa }}"> {{ $divisa }} </option>
+            <option value="{{ $divisa->codigo }}"> {{ $divisa->nombre }} </option>
             @endif
             @empty
             <p>No hay divisas disponibles</p>

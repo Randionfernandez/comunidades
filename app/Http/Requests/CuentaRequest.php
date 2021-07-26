@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class CuentaRequest extends FormRequest
 {
@@ -24,7 +25,7 @@ class CuentaRequest extends FormRequest
     public function rules()
     {
         return [
-            'iban' => ['size:25', 'required', 'unique:cuentas,iban'],
+            'iban' => ['size:25', 'required', Rule::unique('cuentas')->ignore($this->route('cuentas'))],
             'siglas' => ['string', 'size:4'],
             'denominacion' => ['string', 'max:35', 'alpha_num'],
             'fecha_apertura' => 'required|date',

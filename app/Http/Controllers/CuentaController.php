@@ -6,12 +6,14 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\CuentaRequest;
 use App\Models\Cuenta;
+use App\Models\Divisa;
 
 class CuentaController extends Controller
 {
     
     private $msj = '';
     private $activeCommunity = null;
+    private $divisas = null;
     
     /**
      * Display a listing of the resource.
@@ -21,6 +23,7 @@ class CuentaController extends Controller
     
     public function __construct() {
         $this->activeCommunity = session()->get('activeCommunity');
+        $this->divisas = Divisa::all();
     }
     
     public function index()
@@ -40,11 +43,9 @@ class CuentaController extends Controller
      */
     public function create()
     {
-        $divisas = ['EURO'];
-        
         return view('cuentas.create', [
             'cuenta' => new Cuenta,
-            'divisas' => $divisas,
+            'divisas' => $this->divisas,
             'btnText1' => 'Save', 
             'btnText2' => 'Cancel',
             'title' => 'Create Cuentas',
@@ -81,12 +82,9 @@ class CuentaController extends Controller
      */
     public function show(Cuenta $cuenta)
     {
-        
-        $divisas = ['EURO'];
-        
         return view('cuentas.show', [
             'cuenta' => $cuenta,
-            'divisas' => $divisas,
+            'divisas' => $this->divisas,
             'title' => 'Bank account',
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
@@ -103,11 +101,9 @@ class CuentaController extends Controller
      */
     public function edit(Cuenta $cuenta)
     {
-        $divisas = ['EURO'];
-        
         return view('cuentas.edit', [
             'cuenta' => $cuenta,
-            'divisas' => $divisas,
+            'divisas' => $this->divisas,
             'title' => 'Edit Cuenta',
             'btnText1' => 'Update', 
             'btnText2' => 'Back', 
