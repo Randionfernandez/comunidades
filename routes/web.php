@@ -1,12 +1,14 @@
 <?php
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ComunidadController;
 
 use App\Http\Controllers\ActaController;
-use App\Http\Controllers\ComunidadController;
 use App\Http\Controllers\ConvocatoriaController;
 use App\Http\Controllers\PropiedadController;
 use App\Http\Controllers\PropietarioController;
-use App\Http\Controllers\UserController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DashController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +57,7 @@ Route::middleware('auth')->resource('/comunidades', ComunidadController::class)-
 
 //grupo de rutas listar usuarios,propietarios y comunidades con autentificación
 Route::middleware(['auth:sanctum','verified'])->group( function () {
+  // Route::get('',[HomeController::Class,'index']);
 	//usuarios
   Route::resource('user',UserController::class)->names('user');
   Route::get('user/list',[UserController::class,'list'])->name('user.list');
@@ -72,9 +75,9 @@ Route::middleware(['auth:sanctum','verified'])->group( function () {
   Route::get('propiedad/create',[PropiedadController::class,'create'])->name('propiedad.create');
   Route::get('propiedad/index',[PropiedadController::class,'index'])->name('propiedad.index');
 
-    //propiedades c/adminlt
- Route::resource('dash',DashController::class)->names('dash');
- Route::resource('admnltpropietario',PropiedadController::class)->names('property');
+ //    //propiedades c/adminlt
+ // Route::resource('dash',DashController::class)->names('dash');
+ // Route::resource('admnltpropietario',PropiedadController::class)->names('property');
 
   // Route::get('propiedad/list',[PropiedadController::class,'list'])->name('propiedad.list');
 

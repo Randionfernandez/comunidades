@@ -14,7 +14,6 @@ class Cuenta extends Model {
     protected $dates = ['deleted_at'];
     protected $fillable = [
         'iban',
-        'num_cuenta',
         'siglas',
         'denominacion',
         'fecha_apertura',
@@ -23,6 +22,7 @@ class Cuenta extends Model {
         'bic',
         'divisa',
         'comentarios',
+        'comunidad_id'
     ];
 
     public function comunidad() {

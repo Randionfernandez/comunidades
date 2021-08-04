@@ -26,8 +26,7 @@ class Comunidad extends Model {
         'cp',
         'pais',
         'logo',
-        'observaciones',
-        'limitMaxFree'
+        'observaciones'
     ];
 
     public function propiedades() {
@@ -35,15 +34,23 @@ class Comunidad extends Model {
     }
 
     public function cuentas() {
-        return $this->hasMany(Cuenta::class);
+        return $this->hasMany(Cuenta::class, 'comunidad_id', 'id');
     }
     
-    public function comunidades_user() {
-        return $this->hasMany(Comunidad_User::class);
-    }
+//    public function comunidades_user() {
+//        return $this->hasMany(Comunidad_User::class);
+//    }
 
     public function usuarios() {
-        return $this->belongsToMany('user')->withTimestamps();
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
+    
+    public function juntas () {
+        return $this->hasMany(Junta::class, 'comunidad_id', 'id');
+    }
+    
+    public function nombreRole(Comunidad $comunidad){
+        return Role::join('comunidad_user', 'roles.id', '=', 'comunidad_user.role_id')->where('comunidad_user.comunidad_id', '=', $comunidad->id)->where('comunidad_user.user_id', '=', auth()->user()->id)->get()->pluck('role')->last();
     }
 
 }

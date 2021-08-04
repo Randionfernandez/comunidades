@@ -1,4 +1,11 @@
-@extends('layouts.plantilla')
+{{-- @extends('layouts.plantilla') --}}
+@extends('adminlte::page')
+
+@section('title', 'CONFIGURACIÓN USUARIOS')
+
+@section('content_header')
+    <h1>CONFIGURACION</h1>
+@stop
 
 @section('content')
 <div class="card uper" style="margin-bottom: 4%;">

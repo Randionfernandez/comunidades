@@ -173,4 +173,11 @@ class ComunidadController extends Controller {
         return $this->msj . $comunidad;
     }
 
+    public function adduser($id)
+    {
+        $community = Comunidad::findOrFail($id);
+
+        return view('adminltpropietario.create', compact('community'));
+    }
+
 }

@@ -1,0 +1,62 @@
+<x-adminlte-modal id="modalCustom" title="Account Policy" size="lg" theme="teal"
+    icon="fas fa-bell" v-centered static-backdrop scrollable>
+    <div style="height:800px;">
+<div class="card uper">
+    <div class="card-header">
+        Añadir propiedades
+    </div>
+
+    <div class="card-body">
+        @if(session()->get('success'))
+        <div class="alert2 alert-success mb-0">
+            {{ session()->get('success') }}
+        </div><br />
+        @endif
+        @if(session()->get('error'))
+        <div class="alert2 alert-danger mb-0">
+            <ul class="mb-0">
+                <li>
+                    {{ session()->get('error') }}
+                </li>
+            </ul>
+        </div><br />
+        @endif
+        @if ($errors->any())
+        <div class="alert alert-danger mb-0">
+            <ul class="mb-0">
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div><br />
+        @endif
+        <form method="post" action="{{ route('propiedad.storeuser') }}">
+            <div class="form-group">
+                @csrf
+                <label for="propiedad_id">Propiedad</label>
+                <input type="text" class="form-control" name="propiedad_show" value="ID: {{ $propiedad->id }} Catastro: {{ $propiedad->cad_ref_com }}" disabled />
+                <input type="hidden" class="form-control" name="propiedad_id" value="{{ $propiedad->id }}" />
+            </div>
+            <div class="form-group">
+                <label for="email">Mail de usuario</label>
+                <input type="email" class="form-control" name="email" />
+            </div>
+            <div class="d-flex justify-content-between">
+                <div class="align-self-center">
+                    {!! Form::Label('role_id', 'Rol del usuario: ','class="mb-0"') !!}
+                    {{ Form::select('role_id', [  2 => 'Invitado', 1 => 'Administrador']) }}
+                </div>
+                <button type="submit" class="btn btn-primary">Añadir propietario</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+    </div>
+    <x-slot name="footerSlot">
+        <x-adminlte-button class="mr-auto" theme="success" label="Accept"/>
+        <x-adminlte-button theme="danger" label="Dismiss" data-dismiss="modal"/>
+    </x-slot>
+</x-adminlte-modal>
+{{-- Example button to open modal --}}
+<x-adminlte-button label="Open Modal" data-toggle="modal" data-target="#modalCustom" class="bg-teal"/>

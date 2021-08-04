@@ -1,10 +1,19 @@
 @csrf
 
+@if($btndisabled != 'disabled')
+<div class="inline-flex">
+    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
+    <x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
+</div>
+@else
+    @include('partials.btneditdeleteback', ['route1' => 'comunidades.edit', 'variable' => $comunidad, 'route2' => 'comunidades.index', 'route3' => 'comunidades.destroy'])
+@endif
+
 <x-jet-validation-errors></x-jet-validation-errors>
 
-<div class="form-group">
+<div class="row form-group">
     <label for="denom">@lang('denom')</label>
-    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denom" placeholder=@lang('denom') value="{{ old('denom', $comunidad->denom) }}" required>
+    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="denom" placeholder=@lang('denom') value="{{ old('denom', $comunidad->denom) }}" {{$btndisabled}} required>
     @if ($errors->has('denom'))
     <span class="error-message">{{ $errors->first('denom') }}</span>
     @endif
@@ -12,18 +21,18 @@
 <div class="row form-group">
     <div class="col-4">
         <label for="cif">@lang('cif')</label>
-        <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="9" name="cif" placeholder=@lang('cif') value="{{ old('cif', $comunidad->cif) }}" required>
+        <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="9" name="cif" placeholder=@lang('cif') value="{{ old('cif', $comunidad->cif) }}" {{$btndisabled}} required>
     </div>
     <div class="col-4">
         <div class="form-group">
             <label for="fechalta">@lang('Create Date')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechalta" placeholder=@lang('fechalta') value="{{ old('fechalta', $comunidad->fechalta) }}" required>
+            <input class="form-control border-0 bg-light shadow-sm" type="date" name="fechalta" placeholder=@lang('fechalta') value="{{ old('fechalta', $comunidad->fechalta) }}" {{$btndisabled}} required>
         </div>
     </div>
     <div class="col-4">
         <div class="form-group">
             <label for="partes">@lang('partes')</label>
-            <input class="form-control border-0 bg-light shadow-sm" type="number" name="partes" min="1" placeholder=@lang('partes') value="{{ old('partes', $comunidad->partes) }}">
+            <input class="form-control border-0 bg-light shadow-sm" type="number" name="partes" min="1" placeholder=@lang('partes') value="{{ old('partes', $comunidad->partes) }}" {{$btndisabled}} >
         </div>
     </div>
 </div>
@@ -39,7 +48,7 @@
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="direccion">@lang('direction')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="direccion" placeholder=@lang('direction') value="{{ old('direccion', $comunidad->direccion) }}" required>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="40" name="direccion" placeholder=@lang('direction') value="{{ old('direccion', $comunidad->direccion) }}" {{$btndisabled}} required>
                 </div>
             </div>
 
@@ -49,46 +58,55 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label for="cp">@lang('cp')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="5" name="cp" placeholder=@lang('cp') value="{{ old('cp', $comunidad->cp) }}" required>
+                    <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="5" name="cp" placeholder=@lang('cp') value="{{ old('cp', $comunidad->cp) }}" {{$btndisabled}} required>
                 </div>
             </div>
 
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="pais">@lang('Country')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="pais" placeholder=@lang('Country') value="{{ old('pais', $comunidad->pais) }}">
-                </div>
+            <div class="col-md-3 mb-2" >
+                <label for="pais" class="form-label">@lang('Country')</label>
+                <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
+                    <option value="0">@lang('Country')</option>
+                    @forelse($paises as $pais)
+                    @if ( old('pais', $comunidad->pais) == $pais->codigoISO )
+                    <option value="{{ $pais->codigoISO }}" selected > {{ $pais->codigoISO }} </option>
+                    @else
+                    <option value="{{ $pais->codigoISO }}"> {{ $pais->codigoISO }} </option>
+                    @endif
+                    @empty
+                    <p>No hay paises</p>
+                    @endforelse
+                </select>
             </div>
-
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="provincia">@lang('province')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('province') value="{{ old('provincia', $comunidad->provincia) }}">
-                </div>
+            
+            <div class="col-md-3 mb-2">
+                <label for="localidad">@lang('Locality')</label>
+                <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="localidad" placeholder=@lang('Locality') value="{{ old('localidad', $comunidad->localidad) }}" {{$btndisabled}}>
+                @if ($errors->has('denom'))
+                <span class="error-message">{{ $errors->first('localidad') }}</span>
+                @endif
             </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="localidad">@lang('locality')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="localidad" placeholder=@lang('locality') value="{{ old('localidad', $comunidad->localidad) }}">
-                </div>
+            
+            <div class="col-md-3 mb-2">
+                <label for="provincia">@lang('Province')</label>
+                <input class="form-control border-0 bg-light shadow-sm" type="text" name="provincia" placeholder=@lang('Province') value="{{ old('provincia', $comunidad->provincia) }}" {{$btndisabled}}>
+                @if ($errors->has('provincia'))
+                <span class="error-message">{{ $errors->first('provincia') }}</span>
+                @endif
             </div>
-        </div>
+        
         <div class="row form-group">
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="logo">@lang('logo')</label>
-                    <input type="file" id="avatar" class="form-control border-0 bg-light shadow-sm" name="logo">
+                    <input type="file" id="avatar" class="form-control border-0 bg-light shadow-sm" name="logo" value="{{ old('logo', $comunidad->logo) }}" {{$btndisabled}}>
                 </div>
             </div>
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="observaciones">@lang('observaciones')</label>
-                    <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="name" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{ old('observaciones', $comunidad->observaciones) }}"> </textarea>
+                    <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="observaciones" rows="5" cols="10" " name="observaciones" placeholder=@lang('observaciones') value="{{old('observaciones', $comunidad->observaciones)}}" {{$btndisabled}}>{{old('observaciones', $comunidad->observaciones)}}</textarea>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<x-jet-button>{{ __($btnText1) }}</x-jet-button>
-<x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'">{{ __($btnText2) }}</x-jet-danger-button>
-<br><br>
