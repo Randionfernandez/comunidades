@@ -30,14 +30,14 @@ class UserController extends Controller
 
     public function index()
     {   
-        $activeCommunity = session()->get('activeCommunity');
+        $cmd_seleccionada = session()->get('cmd_seleccionada');
         $users = User::join('comunidad_user', 'comunidad_user.user_id', '=', 'users.id')
-            ->where('comunidad_user.comunidad_id','=', $activeCommunity->id)
+            ->where('comunidad_user.comunidad_id','=', $cmd_seleccionada->id)
             ->where('comunidad_user.role_id','=', 3)->get();
         
         return view('usuarios.index', [
             'users' => $users,
-            'activeCommunity' => $activeCommunity
+            'cmd_seleccionada' => $cmd_seleccionada
         ]);
     }
 
@@ -65,10 +65,10 @@ class UserController extends Controller
         
         $new_user = User::latest('created_at')->first();
         
-        $activeCommunity = session()->get('activeCommunity');
+        $cmd_seleccionada = session()->get('cmd_seleccionada');
 
         ComunidadUser::create([
-            'comunidad_id' => $activeCommunity->id,
+            'comunidad_id' => $cmd_seleccionada->id,
             'user_id' => $new_user->id,
             'role_id' => '3',
             'created_at' => $new_user->created_at,

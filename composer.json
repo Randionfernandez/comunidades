@@ -46,7 +46,8 @@
         },
         "classmap": [
             "database/factories"
-        ]
+        ],
+        "files": ["app/Http/helpers.php"]
     },
     "autoload-dev": {
         "psr-4": {

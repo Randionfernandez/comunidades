@@ -1,11 +1,11 @@
 <x-jet-action-section>
     <x-slot name="title">
         {{ __('Browser Sessions') }}
-    </x-slot>
+    @endsection
 
     <x-slot name="description">
         {{ __('Manage and log out your active sessions on other browsers and devices.') }}
-    </x-slot>
+    @endsection
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
@@ -65,7 +65,7 @@
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
                 {{ __('Log Out Other Browser Sessions') }}
-            </x-slot>
+            @endsection
 
             <x-slot name="content">
                 {{ __('Please enter your password to confirm you would like to log out of your other browser sessions across all of your devices.') }}
@@ -79,7 +79,7 @@
 
                     <x-jet-input-error for="password" class="mt-2" />
                 </div>
-            </x-slot>
+            @endsection
 
             <x-slot name="footer">
                 <x-jet-secondary-button wire:click="$toggle('confirmingLogout')" wire:loading.attr="disabled">
@@ -91,7 +91,7 @@
                             wire:loading.attr="disabled">
                     {{ __('Log Out Other Browser Sessions') }}
                 </x-jet-button>
-            </x-slot>
+            @endsection
         </x-jet-dialog-modal>
-    </x-slot>
+    @endsection
 </x-jet-action-section>

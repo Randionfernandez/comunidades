@@ -23,8 +23,8 @@ class JuntaController extends Controller
         $this->user = auth()->user();
         //$juntas = $comunidad_activa->juntas;
         
-        $activeCommunity = session()->get('activeCommunity');
-        $juntas = $activeCommunity->juntas()->get();
+        $cmd_seleccionada = session()->get('cmd_seleccionada');
+        $juntas = $cmd_seleccionada->juntas()->get();
         
         return view('juntas.index', [
             'user' => $this->user,
@@ -43,7 +43,6 @@ class JuntaController extends Controller
      */
     public function create()
     {
-        $tipos = ['ordinaria', 'extraordinaria'];
         
         return view('juntas.create', [
             'junta' => new Junta, 

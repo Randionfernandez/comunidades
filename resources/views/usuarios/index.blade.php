@@ -1,13 +1,15 @@
-<x-app-layout>
+@extends('adminlte.layout')
 
-    <x-slot name="header">
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Users')
         </h2>
         <hr>
-    </x-slot>
+    @endsection
+    
+    @section('content')
 
-    @if($activeCommunity->nombreRole($activeCommunity) == 'admin')
+    @if($cmd_seleccionada->nombreRole($cmd_seleccionada) == 'admin')
 
     <x-jet-button onclick="location.href ='{{ route('usuarios.create') }}'">@lang('New')</x-jet-button>
 
@@ -47,4 +49,4 @@
         @endif
     @endif
 
-</x-app-layout>
+@endsection

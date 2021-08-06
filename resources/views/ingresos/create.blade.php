@@ -1,14 +1,14 @@
-<x-app-layout>
+@extends('adminlte.layout') @section('content')
     
-    <x-slot name="header">
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Ingreso')
         </h2>
         <hr>
-    </x-slot>
-
+    @endsection
+    @section('content')
     <form action="{{ route('ingresos.store') }}" method="POST">
-        @csrf
+        
         @method('POST')
 
         <button class="btn btn-primary col-md-1 mx-4 mb-3">Guardar</button>
@@ -55,5 +55,5 @@
         </div>
 
     </form>
-</x-app-layout>
+@endsection
 

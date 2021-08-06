@@ -18,7 +18,7 @@ class DistribucionController extends Controller {
     public function index() {
         
         $distribuciones = Distribucion::orderBy('orden')->distinct('orden')->get();
-        $propiedades = session()->get('activeCommunity')->propiedades()->get();
+        $propiedades = session()->get('cmd_seleccionada')->propiedades()->get();
 
         return view('distribuciones.index', compact('distribuciones', 'propiedades'));
     }
@@ -30,7 +30,7 @@ class DistribucionController extends Controller {
      */
     public function create() {
 
-        $propiedades = session()->get('activeCommunity')->propiedades()->get();
+        $propiedades = session()->get('cmd_seleccionada')->propiedades()->get();
         $btnText1 = 'Save';
         $btnText2 = 'Back';
         $btndisabled = '';
@@ -55,7 +55,7 @@ class DistribucionController extends Controller {
     public function store(DistribucionRequest $request) {
 
         $input = $request->except('_token');
-        $inputPropiedades = session()->get('activeCommunity')->propiedades()->get();
+        $inputPropiedades = session()->get('cmd_seleccionada')->propiedades()->get();
         $nPropiedades = count($inputPropiedades);
         $suma = 0;
 
@@ -108,7 +108,7 @@ class DistribucionController extends Controller {
         
         $distribucion = Distribucion::where('name', '=', $distribucion->name)->where('name', '!=', 'unidadRegistral')->get()->last();
         $propietarios = User::all('id');
-        $propiedades = session()->get('activeCommunity')->propiedades()->get();
+        $propiedades = session()->get('cmd_seleccionada')->propiedades()->get();
         
         return view('distribuciones.edit', [
             'distribucion' => $distribucion,

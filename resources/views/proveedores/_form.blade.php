@@ -3,13 +3,13 @@
 @if($btndisabled != 'disabled')
 <div class="inline-flex">
     <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
-    <x-jet-danger-button onclick="location.href ='{{ route('proveedores.pasarComunidad', Session()->get('activeCommunity')) }}'"> {{ __($btnText2) }}</x-jet-danger-button>
+    <x-jet-danger-button onclick="location.href ='{{ route('proveedores.pasarComunidad', Session()->get('cmd_seleccionada')) }}'"> {{ __($btnText2) }}</x-jet-danger-button>
 </div>
 @else
 <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
     <a class="btn btn-primary" href="{{ route('proveedores.edit', $proveedor) }}">@lang('Edit')</a>
     <a class="btn btn-danger" href="#" onclick="document.getElementById('delete-seleccion').submit()">@lang('Delete')</a>
-    <a class="btn btn-secondary text-white" href='{{ route('proveedores.pasarComunidad', Session()->get('activeCommunity')) }}'>@lang('Back')</a>
+    <a class="btn btn-secondary text-white" href='{{ route('proveedores.pasarComunidad', Session()->get('cmd_seleccionada')) }}'>@lang('Back')</a>
     <form class="d-none" id='delete-seleccion' method="POST" action="{{ route('proveedores.destroy', $proveedor) }}">
         @csrf @method('DELETE')
     </form>

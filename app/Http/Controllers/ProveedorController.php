@@ -14,7 +14,7 @@ class ProveedorController extends Controller {
 
     //
     private $msj = '';
-    private $activeCommunity = null;
+    private $cmd_seleccionada = null;
     private $tiposGastos = TipoGasto::class;
     private $paises = Pais::class;
     
@@ -28,7 +28,7 @@ class ProveedorController extends Controller {
     public function __construct() {
         $this->tiposGastos = TipoGasto::all();
         $this->paises = Pais::all();
-        $this->activeCommunity = session()->get('activeCommunity');
+        $this->cmd_seleccionada = session()->get('cmd_seleccionada');
     }
     
     public function index() {
@@ -65,18 +65,18 @@ class ProveedorController extends Controller {
 
         $this->msj = 'El proveedor fué creado con éxito';
         
-        $this->activeCommunity = session()->get('activeCommunity');
+        $this->cmd_seleccionada = session()->get('cmd_seleccionada');
         Proveedor::create($request->validated());
         $new_proveedor = Proveedor::orderBy('created_at', 'desc')->first();
         
         ComunidadProveedor::create([
-            'comunidad_id' => $this->activeCommunity->id,
+            'comunidad_id' => $this->cmd_seleccionada->id,
             'proveedor_id' => $new_proveedor->id,
             'created_at' => $new_proveedor->created_at,
             'updated_at' => $new_proveedor->updated_at
         ]);
 
-       return redirect()->route('proveedores.pasarComunidad', $this->activeCommunity)->with('status', [$this->msj, 'alert-success']);
+       return redirect()->route('proveedores.pasarComunidad', $this->cmd_seleccionada)->with('status', [$this->msj, 'alert-success']);
     }
 
     /**
@@ -137,13 +137,13 @@ class ProveedorController extends Controller {
      */
     public function destroy(Proveedor $proveedor) {
         
-        $this->activeCommunity = session()->get('activeCommunity');
+        $this->cmd_seleccionada = session()->get('cmd_seleccionada');
 
         $this->msj = 'El proveedor fué eliminado con éxito';
 
         $proveedor->delete();
 
-        return redirect()->route('proveedores.pasarComunidad', $this->activeCommunity)->with('status', [$this->msj, 'alert-danger']);
+        return redirect()->route('proveedores.pasarComunidad', $this->cmd_seleccionada)->with('status', [$this->msj, 'alert-danger']);
     }
 
     public function select(Proveedor $proveedor) {
@@ -155,11 +155,11 @@ class ProveedorController extends Controller {
 
     public function pasarComunidad(Comunidad $comunidad) {
 
-        session()->put('activeCommunity', $comunidad);
-        $this->activeCommunity = session()->get('activeCommunity');
+        session()->put('cmd_seleccionada', $comunidad);
+        $this->cmd_seleccionada = session()->get('cmd_seleccionada');
 
         return view('proveedores.index', [// llamamos al Modelo
-            'activeCommunity' => $this->activeCommunity
+            'cmd_seleccionada' => $this->cmd_seleccionada
         ]);
     }
 

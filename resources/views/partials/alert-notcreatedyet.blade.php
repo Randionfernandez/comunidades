@@ -1,4 +1,11 @@
-<div class="alert alert-danger alert-dismissible fade show" role="alert">
-    {{$emptyText1}}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-</div>
+@push('scripts')
+        <script>
+            $(document).ready(function() {
+                $(document).Toasts('create', {
+                    class: 'bg-danger',
+                    title: 'There are not',
+                    body: 'There are not communities created yet.',
+                });
+            });
+        </script>
+    @endpush

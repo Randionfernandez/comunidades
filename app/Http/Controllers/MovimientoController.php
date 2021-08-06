@@ -42,9 +42,9 @@ class MovimientoController extends Controller {
      */
     public function create() {
         //
-        $cuentas = session()->get('activeCommunity')->cuentas;
+        $cuentas = session()->get('cmd_seleccionada')->cuentas;
         $propietarios = User::all();
-        $propiedades = Session()->get('activeCommunity')->propiedades;
+        $propiedades = Session()->get('cmd_seleccionada')->propiedades;
         $grupos = Distribucion::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
         
@@ -85,7 +85,7 @@ class MovimientoController extends Controller {
     public function show(Movimiento $movimiento) {
         //
         
-        $comunidad = Session()->get('activeCommunity');
+        $comunidad = Session()->get('cmd_seleccionada');
         $cuentas = cuenta::all();
         $grupos = Distribucion::distinct('name')->get();
         $tiposGastos = TipoGasto::all();
@@ -114,7 +114,7 @@ class MovimientoController extends Controller {
     public function edit(Movimiento $movimiento) {
         //
         $cuentas = Cuenta::all();
-        $propiedades = Session()->get('activeCommunity')->propiedades;
+        $propiedades = Session()->get('cmd_seleccionada')->propiedades;
 
         $grupos = Distribucion::distinct('name')->get();
         $movimiento1 = Movimiento::where('concepto', '!=', 'ingreso')->findOrFail($movimiento->id);

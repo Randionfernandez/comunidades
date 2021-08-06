@@ -1,10 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('adminlte.layout') @section('content')
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Movimientos')
         </h2>
         <hr>
-    </x-slot>
+    @endsection @section('content')
 
     <a href="{{ route('movimientos.create') }}" class="btn btn-primary mx-5 mb-4">Crear</a>
 
@@ -75,4 +75,4 @@
         @endif
         </tbody>
     </table>
-</x-app-layout>
+@endsection

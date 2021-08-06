@@ -1,11 +1,11 @@
 <x-jet-form-section submit="updateProfileInformation">
     <x-slot name="title">
         {{ __('Profile Information') }}
-    </x-slot>
+    @endsection
 
     <x-slot name="description">
         {{ __('Update your account\'s profile information and email address.') }}
-    </x-slot>
+    @endsection
 
     <x-slot name="form">
         <!-- Profile Photo -->
@@ -65,7 +65,7 @@
             <x-jet-input id="email" type="email" class="mt-1 block w-full" wire:model.defer="state.email" />
             <x-jet-input-error for="email" class="mt-2" />
         </div>
-    </x-slot>
+    @endsection
 
     <x-slot name="actions">
         <x-jet-action-message class="mr-3" on="saved">
@@ -75,5 +75,5 @@
         <x-jet-button wire:loading.attr="disabled" wire:target="photo">
             {{ __('Save') }}
         </x-jet-button>
-    </x-slot>
+    @endsection
 </x-jet-form-section>

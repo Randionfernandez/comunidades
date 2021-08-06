@@ -1,10 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('adminlte.layout')
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Movimientos')
         </h2>
         <hr>
-    </x-slot>
+    @endsection @section('content')
     <x-jet-button onclick="location.href ='{{ route('movimientos.create') }}'">@lang('New')</x-jet-button>
     <br>
     <x-jet-button class="btn-success" onclick="location.href ='{{ route('ingresos.index') }}'">@lang('Ingresos')</x-jet-button>
@@ -74,4 +74,4 @@
     @else
         @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not transactions created yet'])
     @endif
-</x-app-layout>
+@endsection

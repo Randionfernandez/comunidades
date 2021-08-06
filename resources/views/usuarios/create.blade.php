@@ -1,4 +1,4 @@
-<x-app-layout>
+@extends('adminlte.layout') @section('content')
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />
@@ -50,4 +50,4 @@
             </div>
         </form>
     </x-jet-authentication-card>
-</x-app-layout>
+@endsection

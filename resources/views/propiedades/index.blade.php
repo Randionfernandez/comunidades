@@ -1,11 +1,13 @@
-<x-app-layout>
+@extends('adminlte.layout')
 
-    <x-slot name="header">
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Propiedades')
         </h2>
         <hr>
-    </x-slot>
+    @endsection 
+    
+    @section('content')
 
     @include('partials.session-status')
     
@@ -45,4 +47,4 @@
     @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not properties created yet'])
     @endif
     
-</x-app-layout>
+@endsection

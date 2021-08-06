@@ -24,7 +24,7 @@ Route::middleware('auth')->resource('/comunidades', ComunidadController::class)-
 
 Route::resource('usuarios', UserController::class)->names('usuarios');
 
-Route::middleware('auth')->get('/comunidades/select/{comunidad}', [App\Http\Controllers\ComunidadController::class, 'select'])->name('comunidades.select');
+Route::middleware('auth')->get('/comunidades/select/{comunidad}', [App\Http\Controllers\ComunidadController::class, 'seleccionar'])->name('comunidades.seleccionar');
 //Route::resource('/comunidades', ComunidadController::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {

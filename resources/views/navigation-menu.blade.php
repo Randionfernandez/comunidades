@@ -52,7 +52,7 @@
                                 </button>
                             </span>
                             @endif
-                        </x-slot>
+                        @endsection @section('content')
 
                         <x-slot name="content">
                             <!-- Account Management -->
@@ -88,7 +88,7 @@
                                     {{ __('Log Out') }}
                                 </x-jet-dropdown-link>
                             </form>
-                        </x-slot>
+                        @endsection @section('content')
                     </x-jet-dropdown>
                 </div>
             </div>
@@ -112,7 +112,7 @@
                             </button>
                         </span>
                         @endif
-                    </x-slot>
+                    @endsection @section('content')
 
                     <x-slot name="content">
                         <!-- Account Management -->
@@ -142,7 +142,7 @@
                                 {{ __('Log Out') }}
                             </x-jet-dropdown-link>
                         </form>
-                    </x-slot>
+                    @endsection @section('content')
                 </x-jet-dropdown>
             </div>
         </div>

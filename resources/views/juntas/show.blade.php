@@ -1,4 +1,4 @@
-<x-app-layout>
+@extends('adminlte.layout') @section('content')
 
     @include('partials.plantillashoweditfirst')
         <div class="bg-white py-3 px-4 shadow rounded">
@@ -8,4 +8,4 @@
         </div>
     @include('partials.plantillashoweditend')
 
-</x-app-layout>
+@endsection

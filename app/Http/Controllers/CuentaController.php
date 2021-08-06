@@ -12,7 +12,7 @@ class CuentaController extends Controller
 {
     
     private $msj = '';
-    private $activeCommunity = null;
+    private $cmd_seleccionada = null;
     private $divisas = null;
     
     /**
@@ -22,16 +22,16 @@ class CuentaController extends Controller
      */
     
     public function __construct() {
-        $this->activeCommunity = session()->get('activeCommunity');
+        $this->cmd_seleccionada = session()->get('cmd_seleccionada');
         $this->divisas = Divisa::all();
     }
     
     public function index()
     {
-        $this->activeCommunity = session()->get('activeCommunity');
+        $this->cmd_seleccionada = session()->get('cmd_seleccionada');
         
         return view('cuentas.index', [
-            'cuentas' => $this->activeCommunity->cuentas,
+            'cuentas' => $this->cmd_seleccionada->cuentas,
             'title' => 'Listado de cuentas bancarias'
         ]);
     }
@@ -63,10 +63,10 @@ class CuentaController extends Controller
     {
         $this->msj = 'La cuenta fué creada con éxito';
         
-        $this->activeCommunity = session()->get('activeCommunity');
+        $this->cmd_seleccionada = session()->get('cmd_seleccionada');
         
         $request->merge([
-            'comunidad_id' => $this->activeCommunity->id
+            'comunidad_id' => $this->cmd_seleccionada->id
         ]);
         
         Cuenta::create($request->validated());
@@ -89,7 +89,7 @@ class CuentaController extends Controller
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
             'btndisabled' => 'disabled',
-            'comunidad' => session()->get('activeCommunity')
+            'comunidad' => session()->get('cmd_seleccionada')
         ]);
     }
 
@@ -108,7 +108,7 @@ class CuentaController extends Controller
             'btnText1' => 'Update', 
             'btnText2' => 'Back', 
             'btndisabled' => '',
-            'comunidad' => session()->get('activeCommunity')
+            'comunidad' => session()->get('cmd_seleccionada')
         ]);
     }
 

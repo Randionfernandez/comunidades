@@ -1,10 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
+@extend('adminlte.layout')
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Lista distribucion de gastos')
         </h2>
         <hr>
-    </x-slot>
+    @endsection @section('content')
 
     <div class="position-relative">
         
@@ -69,4 +69,4 @@
         @endif
     </div>
 
-</x-app-layout> 
+@endsection @section('content') 

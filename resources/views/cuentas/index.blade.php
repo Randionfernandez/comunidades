@@ -1,10 +1,12 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('adminlte.layout')
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             {{__($title)}}
         </h2>
         <hr>
-    </x-slot>
+    @endsection
+    
+    @section('content')
     
     @include('partials.session-status')
 
@@ -51,4 +53,4 @@
     @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not Bank Accounts created yet'])
     @endif
 
-</x-app-layout>
+@endsection

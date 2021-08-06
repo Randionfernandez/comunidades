@@ -1,11 +1,13 @@
-<x-app-layout>
+@extends('adminlte.layout') @section('content')
     
-    <x-slot name="header">
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Listado de movimientos de') {{__($propiedad)}}
         </h2>
         <hr>
-    </x-slot>
+    @endsection
+    
+    @section('content')
 
     <a href="{{route('ingresos.index')}}" class="btn btn-danger mx-5 mb-4">Volver</a>
 
@@ -47,4 +49,4 @@
 
         </tbody>
     </table>
-</x-app-layout>
+@endsection

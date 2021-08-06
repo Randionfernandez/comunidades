@@ -11,7 +11,7 @@ use App\Models\Pais;
 class ComunidadController extends Controller {
 
     private $msj = '';
-    private $activeCommunity = null;
+    private $cmd_seleccionada = null;
     private $user = null;
     private $paises = Pais::class;
     
@@ -20,8 +20,8 @@ class ComunidadController extends Controller {
         $this->paises = Pais::all();
         
         
-        if (! session()->has('activeCommunity')) {
-            $this->activeCommunity = session()->put('activeCommunity', null);
+        if (! session()->has('cmd_seleccionada')) {
+            $this->cmd_seleccionada = session()->put('cmd_seleccionada', null);
         }
         
     }
@@ -94,7 +94,7 @@ class ComunidadController extends Controller {
             'updated_at' => $new_comunidad->updated_at
         ]);
 
-        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'alert-success']);
+        return redirect()->route('comunidades.index')->with('status', [$this->msj, 'bg-success']);
     }
 
     /**
@@ -145,7 +145,7 @@ class ComunidadController extends Controller {
         
         $comunidad->update($request->validated());
 
-        return redirect()->route('comunidades.show', $comunidad)->with('status', [$this->msj, 'alert-success']);
+        return redirect()->route('comunidades.show', $comunidad)->with('status', [$this->msj, 'bg-success']);
     }
 
     /**
@@ -160,24 +160,23 @@ class ComunidadController extends Controller {
         
         Comunidad_User::where('comunidad_id', '=', $comunidad->id)->delete();
         
-        $request->session()->put('activeCommunity', null);
+        $request->session()->put('cmd_seleccionada', null);
         
         $comunidad->delete();
 
-        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'alert-danger']);
+        return redirect()->route('comunidades.index', $comunidad)->with('status', [$this->msj, 'bg-danger']);
     }
-
-    public function select(Comunidad $comunidad, Request $request) {
-
+    
+    public function seleccionar(Comunidad $comunidad) {
         $this->msj = "Has seleccionado la comunidad ";
-        $color = 'alert-success';
+        $color = 'bg-success';
         
-        if (! session()->has('activeCommunity')) {
-            session()->put('activeCommunity', $comunidad);
+        if(! session()->has('cmd_seleccionada')) {
+            session(['cmd_seleccionada' => $comunidad]);
         } else {
             $this->msj = "Has salido de la comunidad seleccionada";
-            $color = 'alert-danger';
-            session()->put('activeCommunity', null);
+            $color = 'bg-danger';
+            session(['cmd_seleccionada' => null]);
         }
         
         return redirect()->route('dashboard', $comunidad)->with('status', [$this->msj, $color]);

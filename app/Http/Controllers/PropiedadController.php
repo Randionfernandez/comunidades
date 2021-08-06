@@ -21,11 +21,11 @@ class PropiedadController extends Controller
     public function index()
     {
         
-        $activeCommunity = session()->get('activeCommunity');
-        $propiedades = $activeCommunity->propiedades()->get();
+        $cmd_seleccionada = session()->get('cmd_seleccionada');
+        $propiedades = $cmd_seleccionada->propiedades()->get();
         
         return view('propiedades.index', [
-            'comunidad' => $activeCommunity,
+            'comunidad' => $cmd_seleccionada,
             'propiedades' => $propiedades
         ]);
     }
@@ -63,10 +63,10 @@ class PropiedadController extends Controller
         $this->msj = 'La propiedad fué creada con éxito';
         
         $request->merge([
-            'comunidad_id' => $request->session()->get('activeCommunity')->id
+            'comunidad_id' => $request->session()->get('cmd_seleccionada')->id
         ]);
         
-        //$propiedades = $request->session()->get('activeCommunity')->propiedades()->get('name');
+        //$propiedades = $request->session()->get('cmd_seleccionada')->propiedades()->get('name');
         
         Propiedad::create($request->validated());
         
@@ -82,13 +82,13 @@ class PropiedadController extends Controller
     public function show(Propiedad $propiedad)
     {
         
-        $activeCommunity = session()->get('activeCommunity');
+        $cmd_seleccionada = session()->get('cmd_seleccionada');
         $tipoPropiedades = TipoPropiedad::all();
         //$tipoPropiedades = ['local','piso','atico'];
         $propietarios = User::all();
         
         return view('propiedades.show', [
-            'comunidad' => $activeCommunity,
+            'comunidad' => $cmd_seleccionada,
             'propiedad' => $propiedad,
             'propietarios' => $propietarios,
             'tipoPropiedades' => $tipoPropiedades,

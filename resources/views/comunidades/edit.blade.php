@@ -1,4 +1,4 @@
-<x-app-layout>
+@extends('adminlte.layout') @section('content')
     @include('partials.plantillashoweditfirst')
         <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('comunidades.update', $comunidad) }}">
             @csrf @method('PATCH')
@@ -7,4 +7,4 @@
             @include('comunidades._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
         </form>
     @include('partials.plantillashoweditend')
-</x-app-layout>
+@endsection

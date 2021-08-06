@@ -1,4 +1,4 @@
-<x-app-layout>
+@extends('adminlte.layout') @section('content')
     
     @include('partials.plantillashoweditfirst')
     <form class="bg-white py-3 px-4clear shadow rounded" method="POST" action="{{ route('cuentas.update',$cuenta) }}">
@@ -9,5 +9,5 @@
     </form>
     @include('partials.plantillashoweditend')
     
-</x-app-layout>
+@endsection
 

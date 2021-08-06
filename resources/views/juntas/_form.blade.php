@@ -77,7 +77,7 @@
             <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="user_id" value="{{ old('user_id', auth()->user()->id) }}" hidden>
         </div>
         <div class="form-group">
-            <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="comunidad_id" value="{{ old('comunidad_id', session()->get('activeCommunity')->id) }}" hidden>
+            <input class="form-control border-0 bg-light shadow-sm" type="text" maxlength="35" name="comunidad_id" value="{{ old('comunidad_id', session()->get('cmd_seleccionada')->id) }}" hidden>
         </div>
     </div>
 </div>

@@ -1,11 +1,11 @@
 <x-jet-action-section>
     <x-slot name="title">
         {{ __('Two Factor Authentication') }}
-    </x-slot>
+    @endsection
 
     <x-slot name="description">
         {{ __('Add additional security to your account using two factor authentication.') }}
-    </x-slot>
+    @endsection
 
     <x-slot name="content">
         <h3 class="text-lg font-medium text-gray-900">
@@ -79,5 +79,5 @@
                 </x-jet-confirms-password>
             @endif
         </div>
-    </x-slot>
+    @endsection
 </x-jet-action-section>

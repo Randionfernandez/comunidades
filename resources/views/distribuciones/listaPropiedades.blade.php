@@ -1,10 +1,10 @@
-<x-app-layout>
-    <x-slot name="header">
+@extends('adminlte.layout')
+    @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
             @lang('Lista propietarios del grupo') {{__($propietarios[0]['name'])}}
         </h2>
         <hr>
-    </x-slot>
+    @endsection
 @section('title','listaPropietarios')
 
 @section('content')
@@ -49,6 +49,6 @@
     </tbody>
 </table>
 
-</x-app-layout>
+@endsection
 
 
