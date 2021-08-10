@@ -1,54 +1,65 @@
 @extends('adminlte.layout')
 
 @section('header')
-<h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-    @lang('Proveedores')
-</h2>
-<hr>
+    @include('partials.session-status')
+    @include('partials.header', ['title' => 'Tus proveedores'])
+    @include('partials.btncreate', ['ruta' => "proveedores.create", 'texto' => 'New'])
 @endsection
 
 @section('content')
-@include('partials.session-status')
 
-
-<x-jet-button onclick="location.href ='{{ route('proveedores.create') }}'">@lang('New')</x-jet-button>
-
-@if (! is_null($cmd_seleccionada->proveedor) && $cmd_seleccionada->proveedor->count())
-<div class="card">
-    <div class="card-body">
-        <table class="table table-hover dt-responsive nowrap" id="buscador">
-            <thead>
-                <tr class="text-white bg-dark">
-                    <th>@lang('nombre')</th>
-                    <th>@lang('cif')</th>
-                    <th>@lang('email')</th>
-                    <th>@lang('telefono')</th>
-
-                    <th class="col-span-2 text-center">@lang('Actions')</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @forelse($cmd_seleccionada->proveedor as $proveedor)
-                <tr>
-                    <td>{{$proveedor->nombre}}</td>
-                    <td>{{$proveedor->cif}}</td>
-                    <td>{{$proveedor->email}}</td>
-                    <td>{{$proveedor->telefono}}</td>
-                    <td class="flex">
-            <x-jet-button class="mx-2" onclick="location.href ='{{ route('proveedores.edit', $proveedor) }}'">{{ __('Edit') }}</x-jet-button>
-            <x-jet-danger-button onclick="location.href ='{{ route('proveedores.show', $proveedor) }}'">{{__('Show')}}</x-jet-danger-button>
-            </td>
+@section('content')
+    @if (! is_null($cmd_seleccionada->proveedor) && ! $cmd_seleccionada->proveedor->count())
+        @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not provider created yet'])
+    @else
+    <table id="tcmd" class="table table-striped table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th>@lang('nombre')</th>
+                <th>@lang('cif')</th>
+                <th>@lang('email')</th>
+                <th>@lang('telefono')</th>
+                <th>@lang('Acción')</th>
             </tr>
-            @empty
-            @include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay proveedores para esta comunidad'])
-            @endforelse
-            </tbody>
-        </table>
-    </div>
-</div>
-@else
-@include('partials.alert-notcreatedyet', ['emptyText1' => 'No hay proveedores para esta comunidad'])
+        </thead>
+        <tbody>
+            @forelse($cmd_seleccionada->proveedor as $proveedor)
+            <tr>
+                <td>{{$proveedor->nombre}}</td>
+                <td>{{$proveedor->cif}}</td>
+                <td>{{$proveedor->email}}</td>
+                <td>{{$proveedor->telefono}}</td>
+                <td class="flex border-2 text-center">                        
+                    <a class="btn btn-sm btn-info" href="{{ route('proveedores.edit', $proveedor->id) }}">
+                        <i class="far fa-edit size-20"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="{{ route('proveedores.show', $proveedor) }}">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </td> 
+
+            </tr>
+            @endforeach
+
+        </tbody>
+    </table>
+
 @endif
+
 @endsection
 
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $('#tcmd').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,
+        });
+    });
+</script>
+@endpush

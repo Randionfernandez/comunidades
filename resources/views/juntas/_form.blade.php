@@ -1,10 +1,7 @@
 @csrf
 
 @if($btndisabled != 'disabled')
-    <div class="inline-flex">
-        <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
-        <x-jet-danger-button onclick="location.href ='{{ route('juntas.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
-    </div>
+    @include('partials.btneditback', ['ruta' => 'juntas.index'])
 @else
     @include('partials.btneditdeleteback', ['route1' => 'juntas.edit', 'variable' => $junta, 'route2' => 'juntas.index', 'route3' => 'juntas.destroy'])
 @endif

@@ -1,11 +1,10 @@
 @extends('adminlte.layout')
 
 @section('header')
-<h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-    @lang('Lista de Ingresos')
-</h2>
-<hr>
-@endsection 
+        @include('partials.session-status')
+        @include('partials.header', ['title' => 'Lista de Ingresos'])
+        @include('partials.btncreate', ['ruta' => 'ingresos.create', 'texto' => 'New'])
+    @endsection
 
 @section('content')
 

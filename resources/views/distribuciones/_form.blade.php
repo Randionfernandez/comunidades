@@ -1,12 +1,7 @@
 @csrf
 
 @if($btndisabled != 'disabled')
-<div class="inline-flex">
-    @if ($propiedades->count())
-    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
-    @endif
-    <x-jet-danger-button onclick="location.href ='{{ route('distribuciones.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
-</div>
+    @include('partials.btneditback', ['ruta' => 'distribuciones.index'])
 @else
 @include('partials.btneditdeleteback', ['route1' => 'propiedades.edit', 'variable' => $propiedades, 'route2' => 'propiedades.index', 'route3' => 'propiedades.destroy'])
 @endif

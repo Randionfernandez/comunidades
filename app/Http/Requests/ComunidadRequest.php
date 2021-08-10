@@ -38,7 +38,7 @@ class ComunidadRequest extends FormRequest
             'localidad' => 'nullable|string|max:35',
             'provincia' => 'string|nullable',
             'cp' => 'required|size:5',
-            'pais' => 'nullable|exists:paises,codigoISO',
+            'pais' => 'nullable|exists:paises,codigoISO3',
             'logo' => 'nullable',
             'observaciones' => 'string|nullable'
     ];

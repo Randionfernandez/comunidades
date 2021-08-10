@@ -10,7 +10,7 @@ class ComunidadProveedor extends Model
 {
     use HasFactory;
     use SoftDeletes;
-	protected $table = 'comunidades_proveedores';
+	protected $table = 'comunidad_proveedor';
 	protected $dates = ['deleted_at'];
 
 	 protected $fillable = [

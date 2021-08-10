@@ -1,11 +1,12 @@
-@extends('adminlte.layout') @section('content')
-    @include('partials.plantillashoweditfirst')
-        <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('distribuciones.update', $distribucion) }}">
-            @csrf @method('PATCH')
-            <h1 class="display-4"> {{ __($title) }} </h1>
-            <hr>
-            @include('distribuciones._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
-        </form>
-    @include('partials.plantillashoweditend')
+@extends('partials._formgeneral')
+
+@section('header2')
+    {{ __($title) }}
 @endsection
 
+@section('content2')
+        <form method="POST" action="{{ route('distribuciones.update', $distribucion) }}">
+            @method('PATCH')
+            @include('distribuciones._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
+        </form>
+@endsection

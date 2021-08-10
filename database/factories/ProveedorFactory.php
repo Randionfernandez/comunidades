@@ -22,29 +22,31 @@ class ProveedorFactory extends Factory {
      */
     public function definition() {
         
-        $tiposGastos = DB::table('tipos_gastos')->pluck('id');
-        $provincia = $this->faker->randomElement(DB::table('provincias')->get());
-        $comunidadAutonoma = DB::table('comunidades_autonomas')->get()[$provincia->comunidadAutonoma_id-1];
-        $pais = DB::table('paises')->get()[$comunidadAutonoma->pais-1];
+        //$provincia = $this->faker->randomElement(DB::table('provincias')->get());
+        //$comunidadAutonoma = DB::table('comunidades_autonomas')->get()[$provincia->comunidadAutonoma_id-1];
+        $pais = DB::table('paises')->get();
+        $actividades = DB::table('actividades')->get();
+        
         
         return [
             'fechalta' => $this->faker->dateTimeBetween('-2 year'),
-            'cif' => $this->faker->unique()->dni(),
-            'tipoGasto' => $this->faker->randomElement($tiposGastos),
+            'doi' => $this->faker->unique()->dni(),
             'nombre' => 'C.P. ' . $this->faker->name,
-            'apellido1' => $this->faker->firstName,
-            'apellido2' => $this->faker->lastName,
+            'apellidos' => $this->faker->firstName,
+            'persona' => $this->faker->randomElement(['fisica', 'juridica']),
             'email' => $this->faker->unique()->safeEmail,
-            'telefono' => $this->faker->randomNumber(9, true),
-            'calle' => $this->faker->streetAddress(), //secondaryAddress(),
-            'codigopais' => $pais->codigoANSI,
+            'telefono1' => $this->faker->randomNumber(9, true),
+            'telefono2' => $this->faker->randomNumber(9, true),
+            'dir_postal' => $this->faker->streetAddress(), //secondaryAddress(),
+            'actividad' => $this->faker->randomElement($actividades),
+            'pais' => $pais->codigoISO3,
             'cp' => '07' . $this->faker->randomNumber(3, true),
-            'pais' => $pais->id,
-            'localidad' => $comunidadAutonoma->id,
-            'provincia' => $provincia->id,
-            //'localidad' => $this->faker->community(),
+            //'localidad' => $comunidadAutonoma->id,
+            //'provincia' => $provincia->id,
+            'localidad' => $this->faker->community(),
             //'localidad' => $this->faker->asciify(),
-            'iban' => $this->faker->iban('ES')
+            'iban' => $this->faker->iban('ES'),
+            'comentario' => $this->faker->text
         ];
     }
 

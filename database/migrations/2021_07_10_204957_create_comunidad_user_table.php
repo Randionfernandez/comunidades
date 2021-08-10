@@ -18,11 +18,14 @@ class CreateComunidadUserTable extends Migration {
                     ->onDelete('cascade');
             $table->foreignId('user_id')->constrained()
                     ->onDelete('cascade');
-            $table->foreignId('role_id')->constrained()
-                    ->onUpdate('cascade');
+            // Suprimida referencia con role, por incompatibilidad al instalar el
+            // paquete spatie/laravel-permission.
+            // //////////////       Modificar esta parte
+//            $table->foreignId('role_id')->constrained()
+//                    ->onUpdate('cascade');
 
             $table->unique(['comunidad_id', 'user_id']);
-        
+
             $table->timestamps();
         });
     }

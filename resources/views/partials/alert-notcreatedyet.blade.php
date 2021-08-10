@@ -4,7 +4,7 @@
                 $(document).Toasts('create', {
                     class: 'bg-danger',
                     title: 'There are not',
-                    body: 'There are not communities created yet.',
+                    body: 'There are not content created yet.'
                 });
             });
         </script>

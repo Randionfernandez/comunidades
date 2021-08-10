@@ -1,10 +1,7 @@
 @csrf
 
 @if($btndisabled != 'disabled')
-<div class="inline-flex">
-    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
-    <x-jet-danger-button onclick="location.href ='{{ route('comunidades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
-</div>
+    @include('partials.btneditback', ['ruta' => 'comunidades.index'])
 @else
     @include('partials.btneditdeleteback', ['route1' => 'comunidades.edit', 'variable' => $comunidad, 'route2' => 'comunidades.index', 'route3' => 'comunidades.destroy'])
 @endif
@@ -67,10 +64,10 @@
                 <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
                     <option value="0">@lang('Country')</option>
                     @forelse($paises as $pais)
-                    @if ( old('pais', $comunidad->pais) == $pais->codigoISO )
-                    <option value="{{ $pais->codigoISO }}" selected > {{ $pais->codigoISO }} </option>
+                    @if ( old('pais', $comunidad->pais) == $pais->codigoISO3 )
+                    <option value="{{ $pais->codigoISO3 }}" selected > {{ $pais->nombre }} </option>
                     @else
-                    <option value="{{ $pais->codigoISO }}"> {{ $pais->codigoISO }} </option>
+                    <option value="{{ $pais->codigoISO3 }}"> {{ $pais->nombre }} </option>
                     @endif
                     @empty
                     <p>No hay paises</p>

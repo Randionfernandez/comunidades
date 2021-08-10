@@ -2,33 +2,11 @@
 
 @section('header')
     @include('partials.session-status')
-    <div class="row mb-2">
-        <div class="col-sm-6">
-            <h1 class="m-0">Tus comunidades</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Starter Page</li>
-            </ol>
-        </div><!-- /.col -->
-    </div><!-- /.row -->
+    @include('partials.header', ['title' => 'Tus comunidades'])
     @if( $user->comunidades->count() < $user->MaxFreeCommunities)
-    <div class="box-header">
-        <div class='row'>
-            <div class='col-sm-12'>
-                <a href="{{route('comunidades.create')}}">
-                    <button class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">
-                        <i class="fa fa-plus"></i>  @lang('Crear comunidad')
-                    </button>
-                </a>
-            </div>
-        </div>
-    </div>
+        @include('partials.btncreate', ['ruta' => 'comunidades.create', 'texto' => 'Crear comunidad'])
     @endif
 @endsection
-
-
 
 @section('content')
 

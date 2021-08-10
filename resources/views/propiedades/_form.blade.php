@@ -1,12 +1,9 @@
 @csrf
 
 @if($btndisabled != 'disabled')
-<div class="inline-flex">
-    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
-    <x-jet-danger-button onclick="location.href ='{{ route('propiedades.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
-</div>
+    @include('partials.btneditback', ['ruta' => 'propiedades.index'])
 @else
-@include('partials.btneditdeleteback', ['route1' => 'propiedades.edit', 'variable' => $propiedad, 'route2' => 'propiedades.index', 'route3' => 'propiedades.destroy'])
+    @include('partials.btneditdeleteback', ['route1' => 'propiedades.edit', 'variable' => $propiedad, 'route2' => 'propiedades.index', 'route3' => 'propiedades.destroy'])
 @endif
 
 <x-jet-validation-errors></x-jet-validation-errors>
@@ -15,7 +12,7 @@
     
     <div class="col-4">
         <label for="denominacion" class="form-label">@lang('Denomination')</label>
-        <input type="text" id="nombre" name="denominacion" class="form-control" value="{{ old('denominacion', $propiedad->denominacion) }}" oninput="this.value = this.value.toUpperCase()"  {{$btndisabled}} required />
+        <input type="text" id="nombre" name="denominacion" class="form-control" maxlength="10" value="{{ old('denominacion', $propiedad->denominacion) }}" oninput="this.value = this.value.toUpperCase()"  {{$btndisabled}} required />
         @error('denominacion')
         <div class="alert alert-danger mb-2" role="alert">
             {{ $message }}
@@ -95,5 +92,5 @@
         </div>
         @enderror
     </div>
-    <input type="integer" id="activeCommunity" name="comunidad_id" value="{{Session()->get('activeCommunity')->id}}" readonly hidden />
+    <input type="integer" id="cmd_seleccionada" name="comunidad_id" value="{{Session()->get('cmd_seleccionada')->id}}" readonly hidden />
 </div>

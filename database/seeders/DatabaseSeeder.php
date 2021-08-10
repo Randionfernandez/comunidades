@@ -21,7 +21,6 @@ class DatabaseSeeder extends Seeder {
         $this->call([DivisaSeeder::class]);
         $this->call([TiposPropiedadSeeder::class]);
         $this->call([PaisSeeder::class]);
-        $this->call([RoleSeeder::class]);
         $this->call([ActividadSeeder::class]);
         
         $user = User::create([
@@ -40,7 +39,6 @@ class DatabaseSeeder extends Seeder {
         Comunidad_User::create([
             'comunidad_id' => 1,
             'user_id' => 2,
-            'role_id' => 2,
             'created_at' => now(),
             'updated_at' => now()
         ]);
@@ -49,8 +47,7 @@ class DatabaseSeeder extends Seeder {
         foreach ($comunidades as $comunidad) {
             Comunidad_User::create([
                 'comunidad_id' => $comunidad->id,
-                'user_id' => $user->id,
-                'role_id' => '2',
+                'user_id' => $user->id
             ]);
         }
     }

@@ -27,7 +27,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('propiedades.index')}}" class="nav-link {{ SetActiveRoute('propiedades') }}">
+                    <a href="{{ route('propiedades.index')}}" class="nav-link {{ SetActiveRoute('propiedades.*') }}">
                         <i class="fas fa-house-user nav-icon"></i>
                         <p>Propiedades</p>
                     </a>
@@ -41,7 +41,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('proveedores.pasarComunidad', $comunidad)}}" class="nav-link {{ SetActiveRoute('proveedores') }}">
+                    <a href="{{ route('proveedores.pasarComunidad', $comunidad)}}" class="nav-link {{ SetActiveRoute('proveedores.*') }}">
                         <i class="fa fa-concierge-bell nav-icon"></i>
                         <p>Proveedores</p>
                     </a>
@@ -89,7 +89,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('proveedores.pasarComunidad', $comunidad)}}" class="nav-link {{ SetActiveRoute('proveedores') }}">
+                    <a href="{{ route('proveedores.pasarComunidad', $comunidad)}}" class="nav-link {{ SetActiveRoute('proveedores.*') }}">
                         <i class="fa fa-concierge-bell nav-icon"></i>
                         <p>Proveedores</p>
                     </a>
@@ -128,7 +128,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a href="{{ route('propiedades.index')}}" class="nav-link {{ SetActiveRoute('propiedades') }}">
+                    <a href="{{ route('propiedades.index')}}" class="nav-link {{ SetActiveRoute('propiedades.*') }}">
                         <i class="fas fa-house-user nav-icon"></i>
                         <p>Mis propiedades</p>
                     </a>

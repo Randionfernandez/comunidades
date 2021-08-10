@@ -1,16 +1,18 @@
 @extends('adminlte.layout')
+    
     @section('header')
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            @lang('Movimientos')
-        </h2>
-        <hr>
-    @endsection @section('content')
-    <x-jet-button onclick="location.href ='{{ route('movimientos.create') }}'">@lang('New')</x-jet-button>
-    <br>
-    <x-jet-button class="btn-success" onclick="location.href ='{{ route('ingresos.index') }}'">@lang('Ingresos')</x-jet-button>
-
-    @include('partials.session-status')
-
+        @include('partials.session-status')
+        @include('partials.header', ['title' => 'Tus movimientos'])
+        @include('partials.btncreate', ['ruta' => "movimientos.create", 'texto' => 'New'])
+        <a href="{{ route('ingresos.index') }}">
+            <button class="btn btn-success" data-toggle="modal" data-target="#myModal">
+                <i class="fas fa-dollar-sign"></i>  @lang('Ingresos')
+            </button>
+        </a>
+    @endsection
+    
+    @section('content')
+    
     @php $divisa = '€ '; @endphp
 
     @if($movimientos->count() != 0)

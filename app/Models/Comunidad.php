@@ -45,6 +45,10 @@ class Comunidad extends Model {
         return $this->belongsToMany(User::class)->withTimestamps();
     }
     
+    public function proveedor() {
+        return $this->belongsToMany(Proveedor::class, 'comunidad_proveedor', 'comunidad_id', 'proveedor_id')->withTimestamps();
+    }
+    
     public function juntas () {
         return $this->hasMany(Junta::class, 'comunidad_id', 'id');
     }

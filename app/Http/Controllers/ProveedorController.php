@@ -7,18 +7,18 @@ use App\Http\Requests\ProveedorRequest;
 use App\Models\Comunidad;
 use App\Models\Proveedor;
 use App\Models\ComunidadProveedor;
-use App\Models\TipoGasto;
 use App\Models\Pais;
+use App\Models\Actividad;
 
 class ProveedorController extends Controller {
 
     //
     private $msj = '';
     private $cmd_seleccionada = null;
-    private $tiposGastos = TipoGasto::class;
     private $paises = Pais::class;
+    private $personas = ['física','jurídica'];
+    private $actividades = null;
     
-
     /**
      * Display a listing of the resource.
      *
@@ -26,9 +26,9 @@ class ProveedorController extends Controller {
      */
     
     public function __construct() {
-        $this->tiposGastos = TipoGasto::all();
         $this->paises = Pais::all();
         $this->cmd_seleccionada = session()->get('cmd_seleccionada');
+        $this->actividades = Actividad::all();
     }
     
     public function index() {
@@ -45,11 +45,11 @@ class ProveedorController extends Controller {
         /* if ( !auth()->user()->hasTeamPermission(Team::find(auth()->user()->current_team_id), 'server:create')) {
           abort(401, 'You cannot see');
           } */
-        
         return view('proveedores.create', [
             'proveedor' => new Proveedor(),
-            'tiposGastos' => $this->tiposGastos,
+            'personas' => $this->personas,
             'paises' => $this->paises,
+            'actividades' => $this->actividades,
             'btndisabled' => '',
             'title' => 'New Provider'
             ]);
@@ -89,8 +89,9 @@ class ProveedorController extends Controller {
         //
         return view('proveedores.show', [
             'proveedor' => $proveedor,
-            'tiposGastos' => $this->tiposGastos,
+            'personas' => $this->personas,
             'paises' => $this->paises,
+            'actividades' => $this->actividades,
             'btnText1' => 'Edit',
             'btnText2' => 'Back',
             'btndisabled' => 'disabled'
@@ -107,8 +108,9 @@ class ProveedorController extends Controller {
         
         return view('proveedores.edit', [
             'proveedor' => $proveedor,
-            'tiposGastos' => $this->tiposGastos,
+            'personas' => $this->personas,
             'paises' => $this->paises,
+            'actividades' => $this->actividades,
             'btndisabled' => ''
         ]);
     }

@@ -32,12 +32,12 @@ class UserController extends Controller
     {   
         $cmd_seleccionada = session()->get('cmd_seleccionada');
         $users = User::join('comunidad_user', 'comunidad_user.user_id', '=', 'users.id')
-            ->where('comunidad_user.comunidad_id','=', $cmd_seleccionada->id)
-            ->where('comunidad_user.role_id','=', 3)->get();
+            ->where('comunidad_user.comunidad_id','=', $cmd_seleccionada->id);
         
         return view('usuarios.index', [
             'users' => $users,
-            'cmd_seleccionada' => $cmd_seleccionada
+            'cmd_seleccionada' => $cmd_seleccionada,
+            'title' => 'Tus Usuarios'
         ]);
     }
 

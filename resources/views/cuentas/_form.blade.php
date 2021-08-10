@@ -1,10 +1,7 @@
 @csrf
 
 @if($btndisabled != 'disabled')
-<div class="inline-flex">
-    <x-jet-button class="mx-2">{{ __($btnText1) }}</x-jet-button>
-    <x-jet-danger-button onclick="location.href ='{{ route('cuentas.index') }}'"> {{ __($btnText2) }}</x-jet-danger-button>
-</div>
+    @include('partials.btneditback', ['ruta' => 'cuentas.index'])
 @else
 @include('partials.btneditdeleteback', ['route1' => 'cuentas.edit', 'variable' => $cuenta, 'route2' => 'cuentas.index', 'route3' => 'cuentas.destroy'])
 @endif
@@ -104,4 +101,4 @@
     <textarea class="form-control border-0 bg-light shadow-sm" type="text" name="comentarios" rows="5" cols="10" " name="comentarios" placeholder=@lang('Comentario') value="{{old('comentarios', $cuenta->comentarios)}}" {{$btndisabled}}>{{old('comentarios', $cuenta->comentarios)}}</textarea>
 </div>
 
-<input value="{{session()->get('activeCommunity')->id}}" name="comunidad_id" type="number" hidden/>
+<input value="{{session()->get('cmd_seleccionada')->id}}" name="comunidad_id" type="number" hidden/>

@@ -14,10 +14,12 @@ class CreatePaisesTable extends Migration
     public function up()
     {
         Schema::create('paises', function (Blueprint $table) {
-            $table->char('codigoISO',3)->primary();
-            $table->decimal('codigoANSI','3','0');
+            $table->char('codigoISO3',3)->primary();
+            $table->char('codigoISO2',2);
+            $table->decimal('cod_numerico','3','0');
             $table->string('nombre','50');
-            $table->unique('codigoANSI');
+
+            $table->unique('codigoISO2');
         });
     }
 

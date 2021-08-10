@@ -4,12 +4,6 @@
 </div>
 <div class="p-3">
     <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link"
-               href="{{ route('comunidades.index') }}"
-               >@lang('Comunidades')</a>
-        </li>
-
         @auth
         <li class="nav-item">
             <a class="nav-link"

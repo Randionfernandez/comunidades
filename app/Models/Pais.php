@@ -15,9 +15,10 @@ class Pais extends Model {
     public $timestamps = false;
     
     protected $fillable = [
-        'codigoISO',
-        'codigoANSI',
-        'nombre',
+        'codigoISO3',
+        'codigoISO2',
+        'cod_numerico',
+        'nombre'
     ];
 
     public function comunidades() {

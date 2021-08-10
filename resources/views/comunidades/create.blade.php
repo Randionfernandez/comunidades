@@ -1,11 +1,11 @@
-@extends('adminlte.layout')
+@extends('partials._formgeneral')
 
-@section('content')
-    @include('partials.plantillashoweditfirst')
-        <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('comunidades.store') }}">
-            <h1 class="display-4"> {{ __($title) }} </h1>
-            <hr>
+@section('header2')
+    {{ __($title) }}
+@endsection
+
+@section('content2')
+        <form method="POST" action="{{ route('comunidades.store') }}">
             @include('comunidades._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
         </form>
-    @include('partials.plantillashoweditend')
 @endsection

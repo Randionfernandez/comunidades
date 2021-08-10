@@ -1,50 +1,61 @@
 @extends('adminlte.layout')
 
-    @section('header')
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            @lang('Propiedades')
-        </h2>
-        <hr>
-    @endsection 
-    
-    @section('content')
+    @section('header')        
+        @include('partials.session-status')
+        @include('partials.header', ['title' => 'Tus propiedades'])
+        @include('partials.btncreate', ['ruta' => "propiedades.create", 'texto' => 'New'])
+    @endsection
 
-    @include('partials.session-status')
-    
-    <x-jet-button onclick="location.href ='{{ route('propiedades.create') }}'">@lang('New')</x-jet-button>
-
-    @if( $propiedades->count())
-
-    <div class="card">
-        <div class="card-body">
-            <table class="table table-hover dt-responsive nowrap" id="buscador">
-                <thead>
-                    <tr class="text-white bg-dark text-center">
-                        <th>@lang('Name')</th>
-                        <th>@lang('Owner')</th>
-                        <th class="col-span-2 text-center">@lang('Actions')</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    @forelse($propiedades as $propiedad )
-                    <tr class="text-center">
-                        <td>{{$propiedad->denominacion}}</td>
-                        <td>{{$propiedad->nombrePropietario($propiedad)}}</td>
-                        <td class="flex">
-                            <x-jet-button class="mx-2" onclick="location.href ='{{ route('propiedades.edit', $propiedad->id) }}'">{{ __('Edit') }}</x-jet-button>
-                            <x-jet-danger-button onclick="location.href ='{{ route('propiedades.show', $propiedad) }}'">{{__('Show')}}</x-jet-danger-button>
-                        </td>
-                    </tr>
-                    @empty
-                    @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not properties created yet'])
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
+@section('content')
+    @if (! $propiedades->count())
+        @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not properties created yet'])
     @else
-    @include('partials.alert-notcreatedyet', ['emptyText1' => 'There are not properties created yet'])
-    @endif
-    
+    <table id="tcmd" class="table table-striped table-bordered">
+        <thead class="text-center">
+            <tr>
+                <th>@lang('Name')</th>
+                <th>@lang('Owner')</th>
+                <th>@lang('Acción')</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach ($propiedades as $propiedad)
+            <tr>
+                <td>{{$propiedad->denominacion}}</td>
+                <td>{{$propiedad->nombrePropietario($propiedad)}}</td>
+
+                <td class="flex border-2 text-center">                        
+                    <a class="btn btn-sm btn-info" href="{{ route('propiedades.edit', $propiedad->id) }}">
+                        <i class="far fa-edit size-20"></i>
+                    </a>
+                    <a class="btn btn-sm btn-danger" href="{{ route('propiedades.show', $propiedad) }}">
+                        <i class="fas fa-search"></i>
+                    </a>
+                </td> 
+
+            </tr>
+            @endforeach
+
+        </tbody>
+    </table>
+
+@endif
+
 @endsection
+
+@push('scripts')
+<script>
+    $(document).ready(function () {
+        $('#tcmd').DataTable({
+            "paging": true,
+            "lengthChange": true,
+            "searching": true,
+            "ordering": true,
+            "info": true,
+            "autoWidth": true,
+            "responsive": true,
+        });
+    });
+</script>
+@endpush

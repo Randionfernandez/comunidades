@@ -1,10 +1,11 @@
 @extend('adminlte.layout')
     @section('header')
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
-            @lang('Lista distribucion de gastos')
-        </h2>
-        <hr>
-    @endsection @section('content')
+        @include('partials.session-status')
+        @include('partials.header', ['title' => 'Lista distribucion de gastos'])
+        @include('partials.btncreate', ['ruta' => "distribuciones.create", 'texto' => 'New'])
+    @endsection
+    
+    @section('content')
 
     <div class="position-relative">
         
@@ -69,4 +70,4 @@
         @endif
     </div>
 
-@endsection @section('content') 
+@endsection

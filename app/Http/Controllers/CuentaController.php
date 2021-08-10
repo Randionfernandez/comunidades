@@ -31,7 +31,7 @@ class CuentaController extends Controller
         $this->cmd_seleccionada = session()->get('cmd_seleccionada');
         
         return view('cuentas.index', [
-            'cuentas' => $this->cmd_seleccionada->cuentas,
+            'cuentas' => $this->cmd_seleccionada->cuentas()->get(),
             'title' => 'Listado de cuentas bancarias'
         ]);
     }

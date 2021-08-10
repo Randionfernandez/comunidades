@@ -25,9 +25,9 @@ class CuentaRequest extends FormRequest
     public function rules()
     {
         return [
-            'iban' => ['size:24', 'required', Rule::unique('cuentas')->ignore($this->route('cuentas'))],
+            'iban' => ['size:24', 'required', Rule::unique('cuentas')->ignore($this->cuenta, 'id')],
             'siglas' => ['string', 'size:4'],
-            'denominacion' => ['string', 'max:35', 'alpha_num'],
+            'denominacion' => ['string', 'max:35'],
             'fecha_apertura' => 'required|date',
             'activa' => 'boolean',
             //'saldo' => 'numeric|digits_between:0.00,10.00',

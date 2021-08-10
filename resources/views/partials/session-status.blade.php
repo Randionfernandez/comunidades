@@ -1,6 +1,6 @@
 @if (session('status'))
-@push('scripts')
-    <script>
+    @push('scripts')
+        <script>
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'top-end',
@@ -17,7 +17,6 @@
             icon: 'success',
                     title: 'Signed in successfully'
                     })
-        <script>
                 $(document).ready(function() {
                     $(document).Toasts('create', {
             class: '{{session('status')[1]}}',

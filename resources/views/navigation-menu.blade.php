@@ -27,11 +27,11 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-                @if (Session::has('activeCommunity'))
-                <h5 class="text-white">{{ Session::get('activeCommunity')->denom }}</h5>
-                <h5 class="pl-3 pr-1 text-warning">{{ Session::get('activeCommunity')->nombreRole(Session::get('activeCommunity')) }}</h5>
+                @if (Session::has('cmd_seleccionada'))
+                <!--<h5 class="text-white">{{ Session::get('cmd_seleccionada')->denom }}</h5>
+                <h5 class="pl-3 pr-1 text-warning">{{ Session::get('cmd_seleccionada')->nombreRole(Session::get('cmd_seleccionada')) }}</h5>-->
                 @else
-                    @yield('comunidadRole')
+                    <!--@yield('comunidadRole')-->
                 @endif
                 <!-- Settings Dropdown -->
                 <div class="ml-3 relative">
@@ -64,8 +64,8 @@
                                 {{ __('Profile') }}
                             </x-jet-dropdown-link>
                             
-                            @if (Session::has('activeCommunity'))
-                                <x-jet-dropdown-link class="bg-white" href="{{ route('comunidades.select', session()->get('activeCommunity')) }}">
+                            @if (Session::has('cmd_seleccionada'))
+                                <x-jet-dropdown-link class="bg-white" href="{{ route('comunidades.select', session()->get('cmd_seleccionada')) }}">
                                     @lang("Cambiar de comunidad")
                                 </x-jet-dropdown-link>
                             @endif

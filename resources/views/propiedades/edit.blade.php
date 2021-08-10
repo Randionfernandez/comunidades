@@ -1,10 +1,12 @@
-@extends('adminlte.layout') @section('content')
-    @include('partials.plantillashoweditfirst')
-    <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('propiedades.update', $propiedad) }}">
-        @csrf @method('PATCH')
-        <h1 class="display-4"> @lang('Edit Property') </h1>
-        <hr>
-        @include('propiedades._form', ['btnText1' =>$btnText1, 'btnText2' => $btnText2])
-    </form>
-    @include('partials.plantillashoweditend')
+@extends('partials._formgeneral')
+
+@section('header2')
+    @lang('Edit Property')
+@endsection
+
+@section('content2')
+        <form  method="POST" action="{{ route('propiedades.update', $propiedad) }}">
+            @method('PATCH')
+            @include('propiedades._form', ['btnText1' =>$btnText1, 'btnText2' => $btnText2])
+        </form>
 @endsection

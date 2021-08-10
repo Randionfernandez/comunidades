@@ -1,10 +1,12 @@
-@extends('adminlte.layout') @section('content')
-    @include('partials.plantillashoweditfirst')
-    <form class="bg-white py-3 px-4 shadow rounded" method="POST" action="{{ route('proveedores.update', $proveedor) }}">
-        @csrf @method('PATCH')
-        <h1 class="display-4"> @lang('Editar proveedor') </h1>
-        <hr>
+@extends('partials._formgeneral')
+
+@section('header2')
+    @lang('Editar proveedor')
+@endsection
+
+@section('content2')
+    <form method="POST" action="{{ route('proveedores.update', $proveedor) }}">
+        @method('PATCH')
         @include('proveedores._form', ['btnText1' =>'Update', 'btnText2' => 'Cancel'])
     </form>
-    @include('partials.plantillashoweditend')
 @endsection

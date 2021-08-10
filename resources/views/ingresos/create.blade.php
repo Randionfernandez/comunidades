@@ -1,4 +1,4 @@
-@extends('adminlte.layout') @section('content')
+@extends('adminlte.layout')
     
     @section('header')
         <h2 class="font-semibold text-xl text-gray-800 leading-tight text-center">
@@ -6,6 +6,7 @@
         </h2>
         <hr>
     @endsection
+    
     @section('content')
     <form action="{{ route('ingresos.store') }}" method="POST">
         

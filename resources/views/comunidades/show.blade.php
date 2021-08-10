@@ -1,21 +1,9 @@
-@extends('adminlte.layout') @section('content')
+@extends('partials._formgeneral')
 
-@section('comunidadRole')
-<li class="nav-item mt-1">
-    <span class="text-white">{{ $comunidad->denom }}</span>
-</li>
-<li class="nav-item mt-1">
-    <span class="pl-3 pr-1 text-warning">{{ $comunidad->nombreRole($comunidad) }}</span>
-</li>
+@section('header2')
+     @lang('Denomination') {{ $comunidad->denom }}
 @endsection
 
-@section('content')
-@include('partials.plantillashoweditfirst')
-<div class="bg-white py-3 px-4 shadow rounded">
-    <h1 class="display-4"> @lang('Denomination') {{ $comunidad->denom }} </h1>
-    <hr>
+@section('content2')
     @include('comunidades._form',['title' => 'Show', 'btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
-</div>
-@include('partials.plantillashoweditend')
-
 @endsection

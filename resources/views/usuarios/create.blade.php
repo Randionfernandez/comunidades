@@ -1,4 +1,6 @@
-@extends('adminlte.layout') @section('content')
+@extends('adminlte.layout') ´
+
+@section('content')
     <x-jet-authentication-card>
         <x-slot name="logo">
             <x-jet-authentication-card-logo />

@@ -27,8 +27,8 @@ class PropiedadRequest extends FormRequest {
         return [
             "comunidad_id" => ["exists:comunidades,id"],
             "user_id" => ["required", "exists:users,id"],
-            "denominacion" => ["required", "max:10", Rule::unique('propiedades')->where('comunidad_id', Session()->get('activeCommunity')->id)->ignore($this->route('propiedad'))],
-            "parte" => ["required", Rule::unique('propiedades')->where('comunidad_id', Session()->get('activeCommunity')->id)->ignore($this->route('propiedad'))],
+            "denominacion" => ["required", "max:10", Rule::unique('propiedades')->where('comunidad_id', Session()->get('cmd_seleccionada')->id)->ignore($this->route('propiedad'))],
+            "parte" => ["required", Rule::unique('propiedades')->where('comunidad_id', Session()->get('cmd_seleccionada')->id)->ignore($this->route('propiedad'))],
             "coeficiente" => ["required", "numeric"],
             "domiciliada" => 'boolean|nullable',
             'iban' => ["string", "max:24"],
