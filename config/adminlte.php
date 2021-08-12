@@ -190,7 +190,7 @@ return [
     */
 
     'use_route_url' => false,
-    'dashboard_url' => 'home',
+    'dashboard_url' => 'dash',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'register_url' => 'register',
@@ -255,31 +255,35 @@ return [
         //     'label'       => 4,
         //     'label_color' => 'success',
         // ],
-        ['header' => 'account_settings'],
-        [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
+        // ['header' => 'Configuración de la cuenta'],
+
+        // [
+        //     'text' => 'Perfil de usuario',
+        //     // 'url'  => 'admin/settings',
+        //     'url'  => 'profile/show',
+        //     'icon' => 'fas fa-fw fa-user',
+        // ],
+        // [
+        //     'text' => 'change_password',
+        //     'url'  => 'admin/settings',
+        //     'icon' => 'fas fa-fw fa-lock',
+        // ],
         [
             'text'    => 'Dashboard',
             'icon'    => 'fas fa-fw fa-share',
+            'label_color' => 'success',
             'submenu' => [
                 // [
                 //     'text' => 'level_one',
                 //     'url'  => '#',
                 // ],
-               [
+             [
                 'text'    => 'PROPIETARIOS',
+                 'icon_color' => 'green',
                 'submenu' => [
                   [
                     'text' => 'Propietarios en activo',
-                    'url'  => 'user',
+                    'url'  => '/user',
 
                 ],
                 [
@@ -299,6 +303,7 @@ return [
         [
             'text'    => 'COMUNIDADES',
             'url'     => '#',
+             'icon_color' => 'red',
                     // 'url'  => 'admin/settings',
             'submenu' => [
                 [
@@ -335,64 +340,66 @@ return [
                 ],
             ],
         ],
+    //     [
+    //         'text'    => 'PROPIETARIOS',
+    //         'url'  => 'user',
+    //         'submenu' => [
+    //           [
+    //             'text' => 'Alta de Propietarios',
+    //             'url'  => 'user/create',
+    //         ],
+    //         [
+    //             'text' => 'Configuración',
+    //             'url'  => 'user/edit',
+    //         ],
+    //         [
+    //             'text' => 'Baja de Propietarios',
+    //             'url'  => 'user/edit',
+    //         ],
+    //     ],
+    // ],
         [
-            'text'    => 'PROPIETARIOS',
-            'url'  => 'user',
+            'text' => 'GESTION DE GASTOS',
+            'icon_color' => 'yellow',
+            'url'  => '#',
             'submenu' => [
               [
-                'text' => 'Alta de Propietarios',
-                'url'  => 'user/create',
+                'text' => 'CUENTAS',
+                'url'  => '#',
             ],
             [
-                'text' => 'Configuración',
-                'url'  => 'user/edit',
+                'text' => 'PROVEEDORES',
+                'url'  => '#',
             ],
             [
-                'text' => 'Baja de Propietarios',
-                'url'  => 'user/edit',
+                'text' => 'DISTRIBUCION DE GASTOS',
+                'url'  => '#',
             ],
         ],
     ],
     [
-        'text' => 'GESTION DE GASTOS',
+        'text' => 'Boletin Actas y Juntas',
         'url'  => '#',
-        'submenu' => [
-          [
-            'text' => 'CUENTAS',
-            'url'  => '#',
-        ],
-        [
-            'text' => 'PROVEEDORES',
-            'url'  => '#',
-        ],
-        [
-            'text' => 'DISTRIBUCION DE GASTOS',
-            'url'  => '#',
-        ],
+        'icon_color' => 'cyan',
     ],
 ],
-[
-    'text' => 'Boletin Actas y Juntas',
-    'url'  => '#',
 ],
-],
-],
-['header' => 'labels'],
-[
-    'text'       => 'important',
-    'icon_color' => 'red',
-    'url'        => '#',
-],
-[
-    'text'       => 'warning',
-    'icon_color' => 'yellow',
-    'url'        => '#',
-],
-[
-    'text'       => 'information',
-    'icon_color' => 'cyan',
-    'url'        => '#',
-],
+// ['header' => 'labels'],
+// [
+//     'text'       => 'important',
+//     'icon_color' => 'red',
+//     'url'        => '#',
+// ],
+// [
+//     'text'       => 'Boletin Actas y Juntas',
+//     'icon_color' => 'yellow',
+//     'url'        => '#',
+// ],
+// [
+//     'text'       => 'Boletin Actas y Juntas',
+//     'icon_color' => 'cyan',
+//     'url'        => '#',
+// ],
 ],
 
     /*
@@ -513,5 +520,5 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Other-Configuration
     */
 
-    'livewire' => false,
+    'livewire' => true,
 ];

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-emailspace App\Http\Controllers;
+// emailspace App\Http\Controllers;
 
 use App\Models\Convocatoria;
 use App\Http\Controllers\Controller;

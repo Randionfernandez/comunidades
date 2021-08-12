@@ -42,7 +42,8 @@
 </div>
 
 
-<div class="row m-4 p-4 d-flex flex-lg-nowrap justify-content-lg-around">
+<div class="row m-auto p-5 with-3d-shadow justify-content-center">
+<div class="row m-4 p-4 d-flex flex-lg-nowrap flex-xl-nowrap justify-content-lg-around card-deck">
     <div class="col xs-col-1 sm-col-6 md-col-6 lg-col-3 ">
         <a href="{{ route('comunidades.create') }}">
         <div class="card m-3 p-3 zoom " style="width: 16rem;">
@@ -114,7 +115,6 @@
             </div>
         </div>
 </div>
-
 <div class="row m-auto p-5 with-3d-shadow justify-content-center">
     <div class="card border-light mb-3" style="max-width: 75rem;">
         <div class="card-header"><h3>Quiénes somos</h3></div>
