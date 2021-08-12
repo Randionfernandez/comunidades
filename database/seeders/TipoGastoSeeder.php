@@ -25,7 +25,7 @@ class TipoGastoSeeder extends Seeder {
 
         foreach ($tiposGastos as $tipoGasto) {
             TipoGasto::create([
-                'nombreTipoGasto' => $tipoGasto,
+                'nombre' => $tipoGasto,
             ]);
         }
     }

@@ -13,16 +13,19 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
         <!-- Font Awesome Icons -->
         <link rel="stylesheet" href="/adminlte/plugins/fontawesome-free/css/all.min.css">
-
         <link rel="stylesheet" href="/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
         <link rel="stylesheet" href="/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
         <link rel="stylesheet" href="/adminlte/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
-
-        @stack('styles')
+        <!-- daterange picker -->
+        <link rel="stylesheet" href="/adminlte/plugins/daterangepicker/daterangepicker.css">
+        <!-- Tempusdominus Bootstrap 4 -->
+        <link rel="stylesheet" href="/adminlte/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+        <!-- Select2 -->
+        <link rel="stylesheet" href="/adminlte/plugins/select2/css/select2.min.css">
+        <link rel="stylesheet" href="/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">
-
-
+        <link rel="stylesheet" href="/adminlte/css/adminlte.min.css">  
+        @stack('styles')
     </head>
     <body class="hold-transition sidebar-mini">
         <div class="wrapper">
@@ -91,7 +94,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- ./wrapper -->
 
         <!-- REQUIRED SCRIPTS -->
-
         <!-- jQuery -->
         <script src="/adminlte/plugins/jquery/jquery.min.js"></script>
         <!-- Bootstrap 4 -->
@@ -99,15 +101,21 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <!-- Datatables & plugins  -->
         <script src="/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
         <script src="/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
-
         <!-- AdminLTE App -->
         <script src="/adminlte/js/adminlte.min.js"></script>
         <!-- Toastr -->
         <script src="/adminlte/plugins/toastr/toastr.min.js"></script>
-        
         <!-- SweetAlert2 -->
         <script src="/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
+        <!-- Select2 -->
+        <script src="/adminlte/plugins/select2/js/select2.full.min.js"></script>
+        <!-- InputMask -->
+        <script src="/adminlte/plugins/moment/moment.min.js"></script>
+        <script src="/adminlte/plugins/inputmask/jquery.inputmask.min.js"></script>
+        <!-- Tempusdominus Bootstrap 4 -->
+        <script src="/adminlte/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+        
 
-        @stack('scripts')
+        @stack('scripts')        
     </body>
 </html>

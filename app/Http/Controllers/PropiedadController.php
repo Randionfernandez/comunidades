@@ -38,12 +38,12 @@ class PropiedadController extends Controller
     public function create()
     {
         //$tipoPropiedades = TipoPropiedad::all();
-        $tipoPropiedades = TipoPropiedad::all();
+        $tipos = TipoPropiedad::all();
         $propietarios = User::all();
         
         return view('propiedades.create', [
             'propiedad' => new Propiedad,
-            'tipoPropiedades' => $tipoPropiedades,
+            'tipos' => $tipos,
             'propietarios' => $propietarios,
             'btnText1' => 'Save',
             'btnText2' => 'Cancel',
@@ -83,7 +83,7 @@ class PropiedadController extends Controller
     {
         
         $cmd_seleccionada = session()->get('cmd_seleccionada');
-        $tipoPropiedades = TipoPropiedad::all();
+        $tipos = TipoPropiedad::all();
         //$tipoPropiedades = ['local','piso','atico'];
         $propietarios = User::all();
         
@@ -91,7 +91,7 @@ class PropiedadController extends Controller
             'comunidad' => $cmd_seleccionada,
             'propiedad' => $propiedad,
             'propietarios' => $propietarios,
-            'tipoPropiedades' => $tipoPropiedades,
+            'tipos' => $tipos,
             'btnText1' => 'Show', 
             'btnText2' => 'Back', 
             'btndisabled' => 'disabled'
@@ -106,13 +106,13 @@ class PropiedadController extends Controller
      */
     public function edit(Propiedad $propiedad)
     {
-        $tipoPropiedades = TipoPropiedad::all();
+        $tipos = TipoPropiedad::all();
         //$tipoPropiedades = ['local','piso','atico'];
         $propietarios = User::all();
         
         return view('propiedades.edit', [
             'propiedad' => $propiedad,
-            'tipoPropiedades' => $tipoPropiedades,
+            'tipos' => $tipos,
             'propietarios' => $propietarios,
             'btnText1' => 'Update',
             'btnText2' => 'Cancel',

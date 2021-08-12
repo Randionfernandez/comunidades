@@ -28,7 +28,7 @@
                 <td>{{$proveedor->nombre}}</td>
                 <td>{{$proveedor->cif}}</td>
                 <td>{{$proveedor->email}}</td>
-                <td>{{$proveedor->telefono}}</td>
+                <td>{{$proveedor->telefono1}}</td>
                 <td class="flex border-2 text-center">                        
                     <a class="btn btn-sm btn-info" href="{{ route('proveedores.edit', $proveedor->id) }}">
                         <i class="far fa-edit size-20"></i>
