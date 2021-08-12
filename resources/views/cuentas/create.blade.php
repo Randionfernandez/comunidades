@@ -10,3 +10,6 @@
     </form>
 @endsection
 
+@push('scripts')
+    @include('partials.functions')
+@endpush

@@ -9,5 +9,5 @@
 @endsection
 
 @push('scripts')
-    @include('comunidades.functions')
+    @include('partials.functions')
 @endpush

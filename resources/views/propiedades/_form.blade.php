@@ -53,7 +53,7 @@
         <!-- text input -->
         <div class="form-group">
             <label for="parte"> @lang('Parte') </label>
-            <input type="number" name="parte" class="form-control" placeholder="@lang('Parte...')" value="{{ old('parte', $propiedad->parte) }}" {{$btndisabled}} required>
+            <input type="number" name="parte" class="form-control" min="1" max="{{Session()->get('cmd_seleccionada')->partes}}" placeholder="@lang('Parte...')" value="{{ old('parte', $propiedad->parte) }}" {{$btndisabled}} required>
             @if ($errors->has('parte'))
             <span class="error-message">{{ $errors->first('parte') }}</span>
             @endif
@@ -82,7 +82,7 @@
     <div class="col-sm-12">
         <!-- textarea -->
         <div class="form-group">
-            <label>@lang('Observaciones')</label>
+            <label for="observaciones">@lang('Observaciones')</label>
             <textarea class="form-control" name="observaciones" rows="5" placeholder="Observaciones ..." value="{{old('observaciones', $propiedad->observaciones)}}" {{$btndisabled}}>{{old('observaciones', $propiedad->observaciones)}}</textarea>
         </div>
     </div>

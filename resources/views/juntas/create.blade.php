@@ -11,5 +11,5 @@
 @endsection
 
 @push('scripts')
-    @include('juntas.functions')
+    @include('partials.functions')
 @endpush

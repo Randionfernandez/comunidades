@@ -78,9 +78,9 @@
         <!-- text input -->
         <div class="form-group">
             <label for="fechasegunda"> @lang('Fecha Segunda') </label>
-            <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                <input type="text" name="fechasegunda" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{ old('fechasegunda', $junta->fechasegunda) }}" {{$btndisabled}} required/>
-                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+            <div class="input-group date" id="reservationdate2" data-target-input="nearest">
+                <input type="text" name="fechasegunda" class="form-control datetimepicker-input" data-target="#reservationdate2" value="{{ old('fechasegunda', $junta->fechasegunda) }}" {{$btndisabled}} required/>
+                <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
             </div>
@@ -95,9 +95,9 @@
             <div class="bootstrap-timepicker">
                 <div class="form-group">
                     <label for="horasegunda">@lang('Hora segunda')</label>
-                    <div class="input-group date" id="timepicker" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#timepicker" name="horasegunda" value="{{ old('horasegunda', $junta->horasegunda) }}" {{$btndisabled}} required/>
-                        <div class="input-group-append" data-target="#timepicker" data-toggle="datetimepicker">
+                    <div class="input-group date" id="timepicker2" data-target-input="nearest">
+                        <input type="text" name="horasegunda" class="form-control datetimepicker-input" data-target="#timepicker2" value="{{ old('horasegunda', $junta->horasegunda) }}" {{$btndisabled}} required/>
+                        <div class="input-group-append" data-target="#timepicker2" data-toggle="datetimepicker">
                             <div class="input-group-text"><i class="far fa-clock"></i></div>
                         </div>
                     </div>

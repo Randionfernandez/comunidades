@@ -10,3 +10,7 @@
             @include('cuentas._form', ['btnText1' => $btnText1, 'btnText2' => $btnText2, 'btndisabled' => $btndisabled])
         </form>
 @endsection
+
+@push('scripts')
+    @include('partials.functions')
+@endpush

@@ -10,3 +10,7 @@
         @include('proveedores._form', ['btnText1' =>'Update', 'btnText2' => 'Cancel'])
     </form>
 @endsection
+
+@push('scripts')
+    @include('partials.functions')
+@endpush

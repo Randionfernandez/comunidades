@@ -10,5 +10,20 @@
         $('#reservationdate').datetimepicker({
             format: 'DD/MM/YYYY'
         });
+        
+        //Date picker
+        $('#reservationdate2').datetimepicker({
+            format: 'DD/MM/YYYY'
+        });
+        
+        //Timepicker
+        $('#timepicker').datetimepicker({
+          format: 'LT'
+        });
+        
+        //Timepicker
+        $('#timepicker2').datetimepicker({
+          format: 'LT'
+        });
     });
 </script>

@@ -113,73 +113,98 @@
     </div>
 </div>
 
-<div class="panel panel-default top-spaced">
-    <div class="panel-heading ng-binding">
-        <b>@lang('Notifications address')</b>
-        <hr>
-    </div>
-    <div class="panel-body">
-        <div class="row form-group">
-            <div class="col-3">
-                <label for="dir_postal">@lang('Direccion Postal')</label>
-                <input class="form-control border-0 bg-light shadow-sm" type="string" name="dir_postal" max="40" placeholder=@lang('dir_postal') value="{{old('dir_postal', $proveedor->dir_postal)}}" {{$btndisabled}} required>
-            </div>
-            <div class="col-3">
-                <label for="pais">@lang('Country')</label>
-                <select class="form-select" aria-label="Default select example" name="pais" {{$btndisabled}}>
-                    <option value="0">@lang('Country')</option>
-                    @forelse($paises as $pais)
-                    @if ( old('pais', $proveedor->pais) == $pais->codigoISO3)
-                    <option value="{{$pais->codigoISO3}}" selected > {{$pais->nombre}} </option>
-                    @else
-                    <option value="{{$pais->codigoISO3}}"> {{$pais->nombre}} </option>
-                    @endif
-                    @empty
-                    <p>No hay paises</p>
-                    @endforelse
-                </select>
-            </div>
-            <div class="col-3">
-                <label for="localidad">@lang('Localidad')</label>
-                <input class="form-control border-0 bg-light shadow-sm" type="string" name="localidad" max="35" placeholder=@lang('localidad') value="{{old('localidad', $proveedor->localidad)}}" {{$btndisabled}} required>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label for="cp">@lang('cp')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="cp" size="5" maxlength="5" placeholder=@lang('cp') value="{{old('cp', $proveedor->cp)}}" {{$btndisabled}} required>
-                </div>
-            </div>
-        </div>
-
-        <div class="row form-group">
-            <div class="col-4">
-                <label for="actividad">@lang('Actividad')</label>
-                <select class="form-select" aria-label="Default select example" name="actividad" {{$btndisabled}}>
-                    <option value="0">@lang('Actividad')</option>
-                    @forelse($actividades as $actividad)
-                    @if ( trim(old('actividad', $proveedor->actividad)) == trim($actividad->codigo))
-                    <option value="{{$actividad->codigo}}" selected > {{$actividad->actividad}} </option>
-                    @else
-                    <option value="{{$actividad->codigo}}"> {{$actividad->actividad}} </option>
-                    @endif
-                    @empty
-                    <p>No hay actividades</p>
-                    @endforelse
-                </select>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="iban">@lang('Iban')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="iban" size="24" maxlength="34" placeholder=@lang('iban') value="{{old('iban', $proveedor->iban)}}" {{$btndisabled}} required>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-group">
-                    <label for="comentario">@lang('Comentario')</label>
-                    <input class="form-control border-0 bg-light shadow-sm" type="text" name="comentario" maxlength="40" placeholder=@lang('comentario') value="{{old('comentario', $proveedor->comentario)}}" {{$btndisabled}} required>
-                </div>
-            </div>
+<div class="row">
+    <div class="col-sm-12">
+        <!-- text input -->
+        <div class="form-group">
+            <label for="dir_postal"> @lang('Direccion Postal') </label>
+            <input type="text" name="dir_postal" maxlength="40" class="form-control" placeholder="@lang('Direccion Postal...')" value="{{ old('dir_postal', $proveedor->dir_postal) }}" {{$btndisabled}} required>
+            @if ($errors->has('dir_postal'))
+            <span class="error-message">{{ $errors->first('dir_postal') }}</span>
+            @endif
         </div>
     </div>
 </div>
-<br><br>
+
+<div class="row">
+    <div class="col-sm-4">
+        <!-- text input -->
+        <div class="form-group">
+            <label for="cp"> @lang('cp') </label>
+            <input type="text" name="cp" size="5" class="form-control" placeholder="@lang('cp...')" value="{{ old('cp', $proveedor->cp) }}" {{$btndisabled}} required>
+            @if ($errors->has('cp'))
+            <span class="error-message">{{ $errors->first('cp') }}</span>
+            @endif
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <!-- text input -->
+        <div class="form-group">
+            <label for="localidad"> @lang('localidad') </label>
+            <input type="text" name="localidad" maxlength="40" class="form-control" placeholder="@lang('localidad...')" value="{{ old('localidad', $proveedor->localidad) }}" {{$btndisabled}} required>
+            @if ($errors->has('localidad'))
+            <span class="error-message">{{ $errors->first('localidad') }}</span>
+            @endif
+        </div>
+    </div>
+    <div class="col-sm-4">
+        <div class="form-group">
+            <label for="pais" class="form-label">@lang('Country')</label>
+            <select class="form-control select2bs4" style="width: 100%" aria-label="Default select example" name="pais" {{$btndisabled}}>
+                <option value="0">@lang('Country')</option>
+                @forelse($paises as $pais)
+                @if ( old('pais', $proveedor->pais) == $pais->id )
+                <option value="{{ $pais->codigoISO3 }}" selected > {{ $pais->nombre }} </option>
+                @else
+                <option value="{{ $pais->codigoISO3 }}"> {{ $pais->nombre }} </option>
+                @endif
+                @empty
+                <p>@lang('No hay paises')</p>
+                @endforelse
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6">
+        <div class="form-group">
+            <label for="actividad" class="form-label">@lang('Activity')</label>
+            <select class="form-control select2bs4" style="width: 100%" aria-label="Default select example" name="actividad" {{$btndisabled}}>
+                <option value="0">@lang('Activity')</option>
+                @forelse($actividades as $actividad)
+                @if ( old('actividad', $proveedor->actividad) == trim($actividad->codigo) )
+                <option value="{{$actividad->codigo}}" selected > {{$actividad->actividad}} </option>
+                @else
+                <option value="{{$actividad->codigo}}"> {{$actividad->actividad}} </option>
+                @endif
+                @empty
+                <p>@lang('No hay actividades')</p>
+                @endforelse
+            </select>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <!-- text input -->
+        <div class="form-group">
+            <label for="iban"> @lang('Iban') </label>
+            <input type="text" name="iban" size="24" class="form-control" placeholder="@lang('Iban...')" value="{{ old('iban', $proveedor->iban) }}" {{$btndisabled}} required>
+            @if ($errors->has('iban'))
+            <span class="error-message">{{ $errors->first('iban') }}</span>
+            @endif
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12">
+        <!-- textarea -->
+        <div class="form-group">
+            <label for="comentario">@lang('Comentario')</label>
+            <textarea class="form-control" name="comentario" maxlength="40" rows="5" placeholder="Comentario..." value="{{old('comentario', $proveedor->comentario)}}" {{$btndisabled}}>{{old('comentario', $proveedor->comentario)}}</textarea>
+            @if ($errors->has('comentario'))
+            <span class="error-message">{{ $errors->first('comentario') }}</span>
+            @endif
+        </div>
+    </div>
+</div>
