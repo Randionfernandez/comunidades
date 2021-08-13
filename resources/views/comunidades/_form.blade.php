@@ -34,13 +34,13 @@
 <div class="row">
     <div class="col-sm-6">
         <!-- text input -->
-        <div class="form-group">
+        <div class="form-group">            
             <label for="fechalta"> @lang('Fecha de alta') </label>
-            <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                <input type="text" name="fechalta" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{old('fechalta', $comunidad->fechalta)}}" {{$btndisabled}} required/>
+            <div class="input-group date">
                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
+                <input type="date" name="fechalta" class="form-control" value="{{ old('fechalta', $comunidad->fechalta) }}" {{$btndisabled}} required/>
             </div>
             @if ($errors->has('fechalta'))
             <span class="error-message">{{ $errors->first('fechalta') }}</span>

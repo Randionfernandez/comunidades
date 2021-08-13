@@ -6,15 +6,6 @@
         $('.select2bs4').select2({
             theme: 'bootstrap4'
         });
-        //Date picker
-        $('#reservationdate').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
-        
-        //Date picker
-        $('#reservationdate2').datetimepicker({
-            format: 'DD/MM/YYYY'
-        });
         
         //Timepicker
         $('#timepicker').datetimepicker({

@@ -72,10 +72,10 @@
     <div class="col-sm-4">
         <label for="fechalta"> @lang('Fecha de Alta') </label>
         <div class="input-group date" id="reservationdate" data-target-input="nearest">
-            <input type="text" name="fechalta" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{ old('fechalta', $proveedor->fechalta) }}" {{$btndisabled}} required/>
             <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                 <div class="input-group-text"><i class="fa fa-calendar"></i></div>
             </div>
+            <input type="date" name="fechalta" class="form-control" value="{{ old('fechalta', $proveedor->fechalta) }}" {{$btndisabled}} required/>
         </div>
         @if ($errors->has('fechalta'))
         <span class="error-message">{{ $errors->first('fechalta') }}</span>
@@ -153,7 +153,7 @@
             <select class="form-control select2bs4" style="width: 100%" aria-label="Default select example" name="pais" {{$btndisabled}}>
                 <option value="0">@lang('Country')</option>
                 @forelse($paises as $pais)
-                @if ( old('pais', $proveedor->pais) == $pais->id )
+                @if ( old('pais', $proveedor->pais) == $pais->codigoISO3 )
                 <option value="{{ $pais->codigoISO3 }}" selected > {{ $pais->nombre }} </option>
                 @else
                 <option value="{{ $pais->codigoISO3 }}"> {{ $pais->nombre }} </option>
@@ -173,7 +173,7 @@
             <select class="form-control select2bs4" style="width: 100%" aria-label="Default select example" name="actividad" {{$btndisabled}}>
                 <option value="0">@lang('Activity')</option>
                 @forelse($actividades as $actividad)
-                @if ( old('actividad', $proveedor->actividad) == trim($actividad->codigo) )
+                @if ( trim(old('actividad', $proveedor->actividad)) == trim($actividad->codigo) )
                 <option value="{{$actividad->codigo}}" selected > {{$actividad->actividad}} </option>
                 @else
                 <option value="{{$actividad->codigo}}"> {{$actividad->actividad}} </option>

@@ -59,11 +59,11 @@
         <!-- text input -->
         <div class="form-group">
             <label for="fecha_apertura"> @lang('Fecha de apertura') </label>
-            <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                <input type="text" name="fecha_apertura" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{ old('fecha_apertura', $cuenta->fecha_apertura) }}" {{$btndisabled}} required/>
-                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
+            <div class="input-group date">
+                <div class="input-group-append">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
+                <input type="date" name="fecha_apertura" class="form-control" value="{{ old('fecha_apertura', $cuenta->fecha_apertura) }}" {{$btndisabled}} required/>
             </div>
             @if ($errors->has('fecha_apertura'))
             <span class="error-message">{{ $errors->first('fecha_apertura') }}</span>
