@@ -19,7 +19,7 @@
         //Timepicker
         $('#timepicker').datetimepicker({
           format: 'LT'
-        });
+        });;
         
         //Timepicker
         $('#timepicker2').datetimepicker({

@@ -37,7 +37,7 @@
         <div class="form-group">
             <label for="fechalta"> @lang('Fecha de alta') </label>
             <div class="input-group date" id="reservationdate" data-target-input="nearest">
-                <input type="text" name="fechalta" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{ old('fechalta', $comunidad->fechalta) }}" {{$btndisabled}} required/>
+                <input type="text" name="fechalta" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{old('fechalta', $comunidad->fechalta)}}" {{$btndisabled}} required/>
                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
