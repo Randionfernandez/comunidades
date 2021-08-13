@@ -26,7 +26,7 @@
             @forelse($cmd_seleccionada->proveedor as $proveedor)
             <tr>
                 <td>{{$proveedor->nombre}}</td>
-                <td>{{$proveedor->cif}}</td>
+                <td>{{$proveedor->doi}}</td>
                 <td>{{$proveedor->email}}</td>
                 <td>{{$proveedor->telefono1}}</td>
                 <td class="flex border-2 text-center">                        
