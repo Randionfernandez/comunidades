@@ -37,10 +37,10 @@
 				@enderror
 			</div>
 
-			<div class="form-group">
-				<label for="apellido1" class="form-label">Apellido 1</label>
-				<input required type="text" id="apellido1" name="apellido1" class="form-control" value="{{$user->apellido1}}" required autofocus autocomplete="apellido1" placeholder="Introduce el primer apellido..."/>
-				@error('apellido1')
+		<div class="form-group">
+				<label for="apellidos" class="form-label">Apellidos</label>
+				<input required type="text" id="apellido1" name="apellidos" class="form-control" value="{{old('apellidos')}}" required autofocus autocomplete="apellidos" placeholder="Introduce los apellidos..."/>
+				@error('apellidos')
 				<div class="alert alert-danger mb-2" role="alert">
 					{{ $message }}
 				</div>

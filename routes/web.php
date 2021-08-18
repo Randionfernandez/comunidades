@@ -22,16 +22,16 @@ use App\Http\Controllers\DashController;
 */
 
 
-//vista original laravel
-// Route::get('/', function () {
-// 	return view('welcome');
-// });
+// // vista original laravel
+Route::get('/', function () {
+	return view('welcome');
+});
 
 
 //por defecto la raíz siemore rediridi´ra a la autentcación
-Route::get('/', function () {
- return view('auth.login');
-});
+// Route::get('/', function () {
+//  return view('auth.login');
+// });
 
 
 // Route::get('/', function () {
@@ -84,8 +84,11 @@ Route::middleware(['auth:sanctum','verified'])->group( function () {
   //   Route::get('/dash/adminltpropietario/create'),[PropiedadController::class,'create'])->name('adminltpropietario.create');
   // Route::get('/dash/adminltpropietario',[PropiedadController::class,'index'])->name('propiedad.index');
 
+//distribuciones de gastos
+  Route::resource('distribuciones', 'DistribucionController')->parameters(['distribuciones' => 'distribucion']);;
+//juntas
 
-
+Route::resource('juntas', JuntaController::class)->parameters(['juntas' => 'junta'])->names('juntas');
 
   //actas
   Route::resource('acta',ActaController::class)->names('acta');

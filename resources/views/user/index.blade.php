@@ -36,12 +36,12 @@
 				<tr>
 					<th scope="col">@lang('ID')</th >
 					<th scope="col">@lang('Nombre')</th >
-					<th scope="col">@lang('Apellido 1')</th >
-					<th scope="col">@lang('Apellido 2')</th >
+					<th scope="col">@lang('Apellidos')</th >
+					{{-- <th scope="col">@lang('Apellido 2')</th > --}}
 					<th scope="col" class="ms-4">@lang('Email')</th >
 					<th scope="col">@lang('Role')</th >
 					{{-- <th scope="col">@lang('Fecha')</th > --}}
-					<th scope="col">@lang('Nif')</th >
+					<th scope="col">@lang('DOI')</th >
 					<th scope="col">@lang('Teléfono')</th >
 					<th scope="col">@lang('Calle')</th >
 					<th scope="col">@lang('Portal')</th >
@@ -65,12 +65,12 @@
 					{{-- <td>  {{dd($user)}}  </td> --}}
 					<td>{{$user->id}}</td>
 					<td>{{$user->name}}</td>
-					<td>{{$user->apellido1}}</td>
-					<td>{{$user->apellido2}}</td>
+					<td>{{$user->apellidos}}</td>
+					{{-- <td>{{$user->apellido2}}</td> --}}
 					<td>{{$user->email}}</td>
 					<td>{{$user->role}}</td>
 					{{-- <td>{{$user->fecha}}</td> --}}
-					<td>{{$user->nif}}</td>
+					<td>{{$user->doi}}</td>
 					<td>{{$user->telefono}}</td>
 					<td>{{$user->calle}}</td>
 					<td>{{$user->portal}}</td>

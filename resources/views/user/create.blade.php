@@ -1,5 +1,12 @@
-@extends('layouts.plantilla')
+{{-- @extends('layouts.plantilla')
+ --}}
+ @extends('adminlte::page')
 
+@section('title', 'CONFIGURACIÓN USUARIOS')
+
+@section('content_header')
+    <h1>CONFIGURACION</h1>
+@stop
 @section('content')
 <div class="card uper" style="margin-bottom: 4%;">
 	<div class="card-header">
@@ -30,16 +37,16 @@
 			</div>
 
 			<div class="form-group">
-				<label for="apellido1" class="form-label">Apellido 1</label>
-				<input required type="text" id="apellido1" name="apellido1" class="form-control" value="{{old('apellido1')}}" required autofocus autocomplete="apellido1" placeholder="Introduce el primer apellido..."/>
-				@error('apellido1')
+				<label for="apellidos" class="form-label">Apellidos</label>
+				<input required type="text" id="apellido1" name="apellidos" class="form-control" value="{{old('apellidos')}}" required autofocus autocomplete="apellidos" placeholder="Introduce los apellidos..."/>
+				@error('apellidos')
 				<div class="alert alert-danger mb-2" role="alert">
 					{{ $message }}
 				</div>
 				@enderror
 			</div>
 
-			<div class="form-group">
+		{{-- 	<div class="form-group">
 				<label for="apellido2" class="form-label">Apellido 2</label>
 				<input required type="text" id="apellido2" name="apellido2" class="form-control" value="{{old('apellido2')}}" required autofocus autocomplete="apellido2" placeholder="Introduce el segundo apellido..."/>
 				@error('apellido2')
@@ -47,7 +54,7 @@
 					{{ $message }}
 				</div>
 				@enderror
-			</div>
+			</div> --}}
 
 
 
@@ -239,4 +246,25 @@
 		</form>
 	</div>
 </div>
-@endsection
+{{-- @endsection --}}
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+{{--       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> --}}
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+@stop
+
+@section('js')
+ <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+<script>
+var myModal = document.getElementById('myModal')
+var myInput = document.getElementById('myInput')
+
+myModal.addEventListener('shown.bs.modal', function () {
+  myInput.focus()
+})
+</script>
+
+@stop

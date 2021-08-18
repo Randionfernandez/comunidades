@@ -15,7 +15,7 @@ class ActaController extends Controller
      */
     public function index()
     {
-        //
+        return view ('acta.index');
     }
 
     /**

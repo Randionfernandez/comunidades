@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Propiedad;
-
 use App\Models\Comunidad;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -16,6 +15,7 @@ class PropiedadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+       private $msj = '';
     public function index()
     {
         return view('propiedad.index');

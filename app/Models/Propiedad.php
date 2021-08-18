@@ -15,13 +15,20 @@ class Propiedad extends Model
 	use SoftDeletes;
 	protected $table = "propiedades";
 	protected $fillable = [
-		'comunidades_id',
-		'users_id',
-		'ref_ca',
+		// 'comunidades_id',
+		// 'users_id',
+		// 'ref_ca',
+		// 'parte',
+		// 'coeficiente',
+		// 'tipo',
+		// 'observaciones'
+		'denominacion',
 		'parte',
 		'coeficiente',
+		'domiciliada',
+		'iban',
 		'tipo',
-		'observaciones'
+		'observaciones',
 	];
 
 //relaciones
@@ -37,7 +44,7 @@ class Propiedad extends Model
 	public function scopeTermino($query,$termino){
 		if ($termino === '') {
     return; //termino vacío para la funcion
-	}
+}
 return $query->where('ref_ca','like',"%{$this->search}%")
 ->orWhereHas('users_id',function($query2) use ($termino){
 	$query2->where('users_id','like',"%{$this->search}%");

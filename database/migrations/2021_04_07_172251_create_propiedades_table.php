@@ -14,27 +14,57 @@ class CreatePropiedadesTable extends Migration
     public function up()
     {
         Schema::create('propiedades', function (Blueprint $table) {
+          //   $table->id();
+          //   $table->timestamps();
+          //   $table->softDeletes();
+          //   $table->unsignedBigInteger('comunidades_id');
+          //   $table->unsignedBigInteger('users_id')->nullable();  // Solo consideramos un propietario por propiedad
+          //   $table->string('ref_ca')->unique();
+
+          //   $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
+          //   $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
+
+          // // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
+          //   $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
+          //   $table->string('observaciones')->nullable();
+
+
+          //   $table->foreign('users_id')->references('id')->on('users');
+
+          //   $table->foreign('comunidades_id')->references('id')->on('comunidades')
+          //           ->onDelete('cascade');
+
+          //   $table->index(['comunidades_id','parte']);
             $table->id();
-            $table->timestamps();
-            $table->softDeletes();
-            $table->unsignedBigInteger('comunidades_id');
-            $table->unsignedBigInteger('users_id')->nullable();  // Solo consideramos un propietario por propiedad
-            $table->string('ref_ca')->unique();
 
+            $table->unsignedBigInteger('comunidad_id');
+            $table->unsignedBigInteger('user_id')->nullable();  // Solo consideramos un propietario por propiedad
+            $table->string('denominacion', 10)->comment("Nombre por el que se conoce la parte, p.e., 1 izda. Ent-B, etc.");
             $table->integer('parte')->comment("Cada una de las partes que componen la comunidad, según registro de la propiedad");
-            $table->integer('coeficiente')->comment("Porcentage de participación en el total de la comunidad, según registro de la propiedad");
-
-          // posiblemente se enlace con una entidad 'tipo_propiedad' para controlar el dominio de valores
-            $table->enum('tipo',['local','piso','atico'])->comment("Tipo de propiedad: piso, ático, local,...");
+            $table->decimal('coeficiente', 5, 2)->comment("Porcentaje de participación en el total de la comunidad, según registro de la propiedad");
+            $table->boolean('domiciliada')->default('false')->comment("Cierto, si la propiedad tiene domiciliado el cobro de recibos");
+            $table->char('iban', 24)->nullable()->comment("IBAN de la cuenta en la que se cargan los recibos domiciliados");
+            $table->char('tipo', 4)->default('NCN')->comment("Tipo de propiedad: piso, ático, local,...; el default 'NCN' significa 'No consta'");
             $table->string('observaciones')->nullable();
 
+            $table->timestamps();
+            $table->softDeletes();
 
-            $table->foreign('users_id')->references('id')->on('users');
 
-            $table->foreign('comunidades_id')->references('id')->on('comunidades')
+            // Las opciones de una FK se pueden consultar en la fuente:
+            //    https://github.com/laravel/framework/blob/8.x/src/Illuminate/Database/Schema/ForeignKeyDefinition.php
+            $table->foreign('user_id')->references('id')->on('users')
+                    ->onDelete('set null');
+
+            $table->foreign('tipo')->references('codigo')->on('tipos_propiedad')
+                    ->onUpdate('cascade')
+                    ->onDelete('restrict'); //comprobar cómo procesa PostgreSql la opción 'restrict'
+
+            $table->foreign('comunidad_id')->references('id')->on('comunidades')
                     ->onDelete('cascade');
 
-            $table->index(['comunidades_id','parte']);
+            $table->unique(['comunidad_id', 'parte']);
+            $table->unique(['comunidad_id', 'denominacion']);
         });
     }
 
