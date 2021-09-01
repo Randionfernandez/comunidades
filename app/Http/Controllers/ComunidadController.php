@@ -16,10 +16,7 @@ class ComunidadController extends Controller {
     private $user = null;
     private $paises = Pais::class;
     
-    public function __construct(Request $request) {
-        
-        $this->paises = Pais::all();
-        
+    public function __construct(Request $request) {        
         
         if (! session()->has('cmd_seleccionada')) {
             $this->cmd_seleccionada = session()->put('cmd_seleccionada', null);
