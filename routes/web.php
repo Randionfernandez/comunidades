@@ -20,47 +20,53 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('auth')->resource('/comunidades', ComunidadController::class)->parameters(['comunidades'=> 'comunidad']);
-
-Route::resource('usuarios', UserController::class)->names('usuarios');
-
-Route::middleware('auth')->get('/comunidades/select/{comunidad}', [App\Http\Controllers\ComunidadController::class, 'seleccionar'])->name('comunidades.seleccionar');
-//Route::resource('/comunidades', ComunidadController::class);
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function (Comunidad $comunidad = null) {
+    $comunidad = session('cmd_seleccionada');
+    return view('dashboard', compact('comunidad'));
 })->name('dashboard');
 
-Route::resource('distribuciones', 'DistribucionController')->parameters(['distribuciones' => 'distribucion']);;
+Route::group(['middleware' => ['auth']], function () {
 
-//Route::resource('distribucion', GastoController::class);
+    Route::resource('/comunidades', ComunidadController::class)->parameters(['comunidades' => 'comunidad']);
 
-Route::resource('cuentas', CuentaController::class)->parameters(['cuentas' => 'cuenta']);
+    Route::resource('usuarios', UserController::class)->names('usuarios');
 
-Route::resource('liquidacion', LiquidacionController::class);
+    Route::get('/comunidades/select/{comunidad}', [App\Http\Controllers\ComunidadController::class, 'seleccionar'])->name('comunidades.seleccionar');
 
-Route::resource('movimientos', MovimientoController::class);
+    Route::resource('distribuciones', 'DistribucionController')->parameters(['distribuciones' => 'distribucion']);
 
-Route::resource('ingresos', IngresoController::class);
+    Route::resource('cuentas', CuentaController::class)->parameters(['cuentas' => 'cuenta']);
 
-Route::resource('propiedades', PropiedadController::class)->parameters(['propiedades' => 'propiedad']);
+    Route::resource('liquidacion', LiquidacionController::class);
 
-Route::get('listar',function () {
-    $resultado= DB::select('select * from comunidades');
-    return 'Listado de comunidades';
-    
+    Route::resource('movimientos', MovimientoController::class);
+
+    Route::resource('ingresos', IngresoController::class);
+
+    Route::resource('propiedades', PropiedadController::class)->parameters(['propiedades' => 'propiedad']);
+
+    Route::resource('listaPropietarios', ListaPropietarioController::class);
+
+    Route::resource('listaMovimientos', ListaMovimientoController::class);
+
+    Route::get('proveedores/index/{comunidad?}', [\App\Http\Controllers\ProveedorController::class, 'pasarComunidad'])->name('proveedores.pasarComunidad');
+
+    Route::resource('proveedores', ProveedorController::class, ['except' => ['index']])->parameters(['proveedores' => 'proveedor'])->names('proveedores');
+
+    Route::resource('juntas', JuntaController::class)->parameters(['juntas' => 'junta'])->names('juntas');
 });
 
-Route::resource('listaPropietarios', ListaPropietarioController::class);
-
-Route::resource('listaMovimientos', ListaMovimientoController::class);
-
-Route::get('proveedores/index/{comunidad?}', [\App\Http\Controllers\ProveedorController::class , 'pasarComunidad'])->name('proveedores.pasarComunidad');
-
-Route::resource('proveedores', ProveedorController::class, ['except' => ['index']])->parameters(['proveedores' => 'proveedor'])->names('proveedores');
-
-Route::resource('juntas', JuntaController::class)->parameters(['juntas' => 'junta'])->names('juntas');
+Route::get('listar', function () {
+    $resultado = DB::select('select * from comunidades');
+    return 'Listado de comunidades';
+});
 
 Route::get('/contenedor', function (ContainerInterface $container) {
     return dd($container);
 })->name('contenedor');
+
+// Ruta ejecutada cuando la ruta de la petición entrante no es reconocida por 
+// ninguna de las anteriores rutas. Mantener siempre al final de este fichero.
+Route::fallback(function () {
+    return view('fallback');
+});

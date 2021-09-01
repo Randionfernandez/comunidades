@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\ComunidadRequest;
 use App\Models\Comunidad;
+use App\Models\Documento;
 use \App\Models\Comunidad_User;
 use App\Models\Pais;
 
@@ -82,7 +83,17 @@ class ComunidadController extends Controller {
             'gratuita' => $gratuita
         ]);
 
-        Comunidad::create($request->validated());
+        $comunidad = Comunidad::create($request->validated());
+        
+        if (request()->hasFile('doc')) {
+            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
+            $comunidad->documentos()->create([
+                'name' => $request->file('doc')->getClientOriginalName(),
+                'hash_name' => $request->file('doc')->store(request()->cif),
+            ]);
+        }
+        
+        $comunidad->usuarios()->attach(auth()->user()->id);
 
         $new_comunidad = Comunidad::latest('created_at')->first();
 
@@ -142,7 +153,17 @@ class ComunidadController extends Controller {
 
         $this->msj = 'La comunidad fué actualizada con éxito';
         
+        if (request()->hasFile('doc')) {
+            // guarda el fichero en una subcarpeta cuyo nombre es el cif de la comunidad        
+            $comunidad->documentos()->create([
+                'name' => $request->file('doc')->getClientOriginalName(),
+                'hash_name' => $request->file('doc')->store(request()->cif),
+            ]);
+        }
+        
         $comunidad->update($request->validated());
+        $this->cmd_seleccionada = session()->put('cmd_seleccionada', $comunidad);
+        
 
         return redirect()->route('comunidades.show', $comunidad)->with('status', [$this->msj, 'bg-success']);
     }

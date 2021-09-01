@@ -130,14 +130,11 @@
                 </div>
             </div>
             <div class="form-group">
-                <label for="exampleInputFile">File input</label>
+                <label for="doc_comunidad">@lang('Nuevo documento')</label>
                 <div class="input-group">
                     <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="exampleInputFile" name="logo" value="{{old('observaciones', $comunidad->observaciones)}}" {{$btndisabled}}>
-                        <label class="custom-file-label" for="exampleInputFile">@lang('Choose file')</label>
-                    </div>
-                    <div class="input-group-append">
-                        <span class="input-group-text" {{$btndisabled}}>@lang('Upload')</span>
+                        <input name="doc" type="file" class="custom-file-input" id="doc_comunidad" {{$btndisabled}}>
+                        <label class="custom-file-label" for="doc_comunidad">Elige un archivo</label>
                     </div>
                 </div>
             </div>

@@ -41,13 +41,13 @@
 <div class="row">
     <div class="col-sm-6">
         <!-- text input -->
-        <div class="form-group">
+        <div class="form-group">            
             <label for="fechaprimera"> @lang('Fecha Primera') </label>
-            <div class="input-group date" id="reservationdate" data-target-input="nearest">
+            <div class="input-group date">
                 <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
-                <input type="date" name="fechaprimera" class="form-control datetimepicker-input" data-target="#reservationdate" value="{{ old('fechaprimera', $junta->fechaprimera) }}" {{$btndisabled}} required/>
+                <input type="date" name="fechaprimera" class="form-control" value="{{ old('fechaprimera', $junta->fechaprimera) }}" {{$btndisabled}} required/>
             </div>
             @if ($errors->has('fechaprimera'))
             <span class="error-message">{{ $errors->first('fechaprimera') }}</span>
@@ -76,13 +76,13 @@
 <div class="row">
     <div class="col-sm-6">
         <!-- text input -->
-        <div class="form-group">
+        <div class="form-group">            
             <label for="fechasegunda"> @lang('Fecha Segunda') </label>
-            <div class="input-group date" id="reservationdate2" data-target-input="nearest">
-                <div class="input-group-append" data-target="#reservationdate2" data-toggle="datetimepicker">
+            <div class="input-group date">
+                <div class="input-group-append" data-target="#reservationdate" data-toggle="datetimepicker">
                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                 </div>
-                <input type="date" name="fechasegunda" class="form-control datetimepicker-input" data-target="#reservationdate2" value="{{ old('fechasegunda', $junta->fechasegunda) }}" {{$btndisabled}} required/>
+                <input type="date" name="fechasegunda" class="form-control" value="{{ old('fechasegunda', $junta->fechasegunda) }}" {{$btndisabled}} required/>
             </div>
             @if ($errors->has('fechasegunda'))
             <span class="error-message">{{ $errors->first('fechasegunda') }}</span>
