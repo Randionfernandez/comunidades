@@ -38,8 +38,7 @@ class ComunidadController extends Controller {
         
         return view('comunidades.index', [
             'user' => $this->user,
-            'comunidades' => $this->user->comunidades,
-            'paises' => $this->paises
+            'comunidades' => $this->user->comunidades
         ]);
     }
 
