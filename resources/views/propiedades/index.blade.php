@@ -3,7 +3,9 @@
     @section('header')        
         @include('partials.session-status')
         @include('partials.header', ['title' => 'Tus propiedades'])
-        @include('partials.btncreate', ['ruta' => "propiedades.create", 'texto' => 'New'])
+        @if( $comunidad->propiedades()->count() < $comunidad->partes)
+            @include('partials.btncreate', ['ruta' => "propiedades.create", 'texto' => 'New'])
+        @endif
     @endsection
 
 @section('content')
