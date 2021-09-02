@@ -81,7 +81,7 @@ class ComunidadController extends Controller {
             'activa' => true,
             'gratuita' => $gratuita
         ]);
-
+        
         $comunidad = Comunidad::create($request->validated());
         
         if (request()->hasFile('doc')) {
@@ -95,13 +95,6 @@ class ComunidadController extends Controller {
         $comunidad->usuarios()->attach(auth()->user()->id);
 
         $new_comunidad = Comunidad::latest('created_at')->first();
-
-        Comunidad_User::create([
-            'comunidad_id' => $new_comunidad->id,
-            'user_id' => $this->user->id,
-            'created_at' => $new_comunidad->created_at,
-            'updated_at' => $new_comunidad->updated_at
-        ]);
 
         return redirect()->route('comunidades.index')->with('status', [$this->msj, 'bg-success']);
     }
