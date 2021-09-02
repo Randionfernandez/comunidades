@@ -53,6 +53,10 @@ class Comunidad extends Model {
         return $this->hasMany(Junta::class, 'comunidad_id', 'id');
     }
     
+    public function documentos() {
+        return $this->hasMany(Documento::class);
+    }
+    
     public function nombreRole(Comunidad $comunidad){
         return Role::join('comunidad_user', 'roles.id', '=', 'comunidad_user.role_id')->where('comunidad_user.comunidad_id', '=', $comunidad->id)->where('comunidad_user.user_id', '=', auth()->user()->id)->get()->pluck('role')->last();
     }
