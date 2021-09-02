@@ -16,7 +16,9 @@ class ComunidadController extends Controller {
     private $user = null;
     private $paises = Pais::class;
     
-    public function __construct(Request $request) {        
+    public function __construct(Request $request) {
+        
+        $this->paises = Pais::all();
         
         if (! session()->has('cmd_seleccionada')) {
             $this->cmd_seleccionada = session()->put('cmd_seleccionada', null);
@@ -35,7 +37,8 @@ class ComunidadController extends Controller {
         
         return view('comunidades.index', [
             'user' => $this->user,
-            'comunidades' => $this->user->comunidades
+            'comunidades' => $this->user->comunidades,
+            'paises' => $this->paises
         ]);
     }
 
